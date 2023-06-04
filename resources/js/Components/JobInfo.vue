@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <h1>{{ job.title }}</h1>
-        <p>{{ job.description }}</p>
-        <p>{{ job.location }}</p>
+    <div class="mt-4">
+        <p class="text-gray-600 text-sm">{{ job.shortDescription }}...</p>
+        <!-- <p>{{ job.location }}</p>
         <p>{{ job.clicks }}</p>
         <p>{{ job.status }}</p>
-        <p>{{ job.user.name }}</p>
-        <p>{{ job.category.title }}</p>
+        <p>{{ job.category.title }}</p> -->
     </div>
 </template>
 
