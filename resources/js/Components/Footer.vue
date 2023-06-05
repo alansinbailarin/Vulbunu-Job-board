@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-white rounded-md m-4">
+    <footer class="bg-white rounded-md my-8 mx-4 md:mx-[5rem]">
         <div
             class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between"
         >

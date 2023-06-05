@@ -1,6 +1,6 @@
 <template>
     <div class="text-center my-8 px-4">
-        <h1 class="text-4xl font-bold mb-3">
+        <h1 class="text-2xl md:text-5xl font-bold mb-3">
             Ofertas de empleo <span class="text-indigo-500">patrocinadas</span>
         </h1>
         <span class="text-gray-500">
