@@ -2,18 +2,16 @@
     <div class="mt-4">
         <div
             v-if="job.salary"
-            class="flex items-center text-xs font-medium text-gray-500"
+            class="flex items-center gap-1 text-xs md:text-md font-medium text-gray-500"
         >
-            <p>{{ job.salary?.currency.symbol }}</p>
-            <p>{{ job.salary?.min }}</p>
+            <p>{{ job.salary?.currency.symbol }}{{ job.salary?.min }}</p>
             <span> - </span>
-            <p>{{ job.salary?.currency.symbol }}</p>
-            <p>{{ job.salary?.max }}</p>
+            <p>{{ job.salary?.currency.symbol }}{{ job.salary?.max }}</p>
             <span>/</span>
-            <p>{{ job.salary?.periodicity.period }}</p>
+            <p>{{ job.salary?.periodicity.title }}</p>
         </div>
         <div v-else>
-            <p class="text-gray-500 text-xs font-medium">
+            <p class="text-gray-500 text-xs font-medium md:text-md">
                 Salario no mostrado por la empresa
             </p>
         </div>

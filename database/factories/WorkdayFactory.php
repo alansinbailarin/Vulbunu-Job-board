@@ -17,7 +17,7 @@ class WorkdayFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->word(),
+            'title' => fake()->randomElement(['Medio tiempo', 'Tiempo completo']),
             'description' => fake()->paragraph(),
         ];
     }

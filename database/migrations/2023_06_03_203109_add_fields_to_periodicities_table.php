@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('periodicities', function (Blueprint $table) {
-            $table->enum('period', ['Mensual', 'Semanal', 'Quincenal', 'Diario']);
+            // 'Mensual', 'Semanal', 'Quincenal', 'Diario', 'Anual'
+            $table->string('title');
         });
     }
 

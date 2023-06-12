@@ -17,7 +17,8 @@ class PeriodicityFactory extends Factory
     public function definition(): array
     {
         return [
-            'period' => fake()->randomElement(['Mensual', 'Semanal', 'Quincenal', 'Diario']),
+            // 'period' => fake()->randomElement(['Mensual', 'Semanal', 'Quincenal', 'Diario']),
+            'title' => fake()->randomElement(['Mensual', 'Semanal', 'Quincenal', 'Diario', 'Anual']), // 
         ];
     }
 }

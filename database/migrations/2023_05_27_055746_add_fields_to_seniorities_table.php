@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('seniorities', function (Blueprint $table) {
             $table->tinyText('title');
-            $table->string('description');
+            $table->text('description');
         });
     }
 

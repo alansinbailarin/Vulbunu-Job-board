@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropColumns('salaries', ['min', 'max']);
+        Schema::dropColumns('salaries', ['min', 'max', 'job_id', 'currency_id', 'salary_type_id', 'periodicity_id']);
     }
 };

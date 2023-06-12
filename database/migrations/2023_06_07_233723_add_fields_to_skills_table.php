@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('job_modalities', function (Blueprint $table) {
-            $table->tinyText('title');
-            $table->string('description');
+        Schema::table('skills', function (Blueprint $table) {
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropColumns('job_modalities', ['title', 'description']);
+        Schema::dropColumns('skills', ['name', 'description']);
     }
 };

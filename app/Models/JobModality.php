@@ -17,4 +17,9 @@ class JobModality extends Model
     {
         return $this->hasMany(Job::class);
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

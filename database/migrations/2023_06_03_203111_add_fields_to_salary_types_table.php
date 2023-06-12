@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('salary_types', function (Blueprint $table) {
-            $table->enum('type', ['Salario base', 'Por comision', 'Por venta', 'Por hora']);
+            // 'Salario base', 'Por comision', 'Por venta', 'Por hora'
+            $table->string('title');
         });
     }
 

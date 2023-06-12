@@ -36,7 +36,7 @@
                         >Publica una vacante gratis</Link
                     >
                     <Link
-                        href="#"
+                        href="/talents"
                         class="font-medium text-xs rounded-md lg:text-base text-gray-700 py-3 px-5 border-2 border-gray-600 transition-all duration-300 ease-in-out ml-3"
                         >Contrata talento</Link
                     >

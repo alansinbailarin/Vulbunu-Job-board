@@ -17,7 +17,7 @@ class JobModalityFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->word(),
+            'title' => fake()->randomElement(['Remoto', 'Presencial', 'Mixto']),
             'description' => fake()->paragraph(),
         ];
     }

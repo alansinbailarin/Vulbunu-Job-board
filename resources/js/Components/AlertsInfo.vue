@@ -1,0 +1,66 @@
+<template>
+    <div class="mx-auto px-4 md:px-12 my-12 flex justify-center items-center">
+        <div
+            class="container p-4 md:p-7 lg:p-12 rounded-xl bg-gray-900 grid grid-cols-1"
+        >
+            <div class="col-span-2 text-center md:text-left">
+                <span
+                    class="text-indigo-400 font-medium uppercase text-sm md:text-base"
+                >
+                    Sabemos que tu tiempo es importante!
+                </span>
+                <h1
+                    class="text-white font-semibold mt-1 text-2xl md:text-4xl lg:text-6xl"
+                >
+                    Mantente informado sobre nuevos empleos publicados
+                    diariamente
+                </h1>
+                <p class="text-gray-400 mt-2 text-sm md:text-lg mb-6">
+                    <a href="/" class="text-gray-200">miprimerempleo.lat</a> te
+                    ofrece los mejores trabajos publicados diariamente a un solo
+                    click de distancia, mantente informado anotándote en nuestra
+                    base de datos de candidatos que quieren recibir alertas
+                    diariamente.
+                </p>
+                <form>
+                    <div class="relative">
+                        <div
+                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+                        >
+                            <svg
+                                aria-hidden="true"
+                                class="w-5 h-5 text-gray-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <input
+                            type="search"
+                            id="search"
+                            class="block w-full p-4 pl-10 text-sm text-gray-300 rounded-lg bg-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Ingresa tu email..."
+                            required
+                        />
+                        <button
+                            type="submit"
+                            class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+                        >
+                            Suscribete
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup></script>

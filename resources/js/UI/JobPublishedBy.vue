@@ -1,9 +1,7 @@
 <template>
     <div class="flex items-center justify-between">
         <div class="flex items-center">
-            <Link href="#">
-                <img src="../../img/nike.jpeg" alt="" class="w-16 rounded-lg" />
-            </Link>
+            <img src="../../img/nike.jpeg" alt="" class="w-16 rounded-lg" />
             <div class="ml-4 items-center">
                 <div v-if="job.featured">
                     <span
@@ -12,7 +10,10 @@
                             'font-medium flex items-center gap-1',
                         ]"
                     >
-                        {{ job.title
+                        {{ job.title }}
+                    </span>
+                    <span class="text-gray-500 text-sm flex items-center gap-1"
+                        >{{ job.user.name
                         }}<svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="14"
@@ -26,7 +27,6 @@
                             />
                         </svg>
                     </span>
-                    <p class="text-gray-500 text-sm">{{ job.user.name }}</p>
                 </div>
                 <div v-else>
                     <h1 class="font-medium">{{ job.title }}</h1>

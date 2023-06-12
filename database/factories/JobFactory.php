@@ -3,8 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\JobModality;
+use App\Models\Priority;
 use App\Models\Seniority;
+use App\Models\State;
 use App\Models\User;
 use App\Models\Workday;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,7 +29,8 @@ class JobFactory extends Factory
             'title' => fake()->jobTitle(),
             'slug' => fake()->slug(),
             'description' => fake()->paragraph(),
-            'location' => fake()->city(),
+            'extra_info' => fake()->paragraph(),
+            'apply_on' => fake()->url(),
             'color' => fake()->randomElement(['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'indigo', 'gray']),
             'clicks' => fake()->numberBetween(0, 10000),
             'status' => fake()->randomElement(['draft', 'published', 'archived']),
@@ -36,6 +41,10 @@ class JobFactory extends Factory
             'seniority_id' => Seniority::all()->random()->id,
             'job_modality_id' => JobModality::all()->random()->id,
             'workday_id' => Workday::all()->random()->id,
+            'priority_id' => Priority::all()->random()->id,
+            'country_id' => Country::all()->random()->id,
+            'state_id' => State::all()->random()->id,
+            'city_id' => City::all()->random()->id,
         ];
     }
 }

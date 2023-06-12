@@ -19,6 +19,7 @@
                             midiauno.com
                         </span></Link
                     >
+
                     <button
                         @click="toggleMenu"
                         type="button"
@@ -65,11 +66,11 @@
                             </li>
                             <li>
                                 <Link
-                                    href="/talentos"
+                                    href="/talents"
                                     class="text-base py-2 px-4 flex"
                                     :class="{
                                         'text-indigo-500':
-                                            $page.url === '/talentos',
+                                            $page.url === '/talents',
                                     }"
                                     >Talentos</Link
                                 >
@@ -88,7 +89,7 @@
                             <li>
                                 <Link
                                     href="/salarios"
-                                    class="text-base py-2 px-4 flex"
+                                    class="text-base py-2 px-4 flex border-b border-gray-100"
                                     :class="{
                                         'text-indigo-500':
                                             $page.url === '/salarios',
@@ -96,28 +97,51 @@
                                     >Salarios</Link
                                 >
                             </li>
-                            <li>
-                                <Link
-                                    href="/salarios"
-                                    class="text-base py-2 px-4 flex"
-                                    :class="{
-                                        'text-indigo-500':
-                                            $page.url === '/salarios',
-                                    }"
-                                    >Inicia sesión</Link
+                            <div v-if="user" class="py-2 px-4 text-base">
+                                <p class="text-gray-400 text-sm">
+                                    Información del usuario
+                                </p>
+                                <p
+                                    class="text-gray-700 font-medium text-sm mt-2"
                                 >
-                            </li>
-                            <li>
-                                <Link
-                                    href="/salarios"
-                                    class="text-base py-2 px-4 flex"
-                                    :class="{
-                                        'text-indigo-500':
-                                            $page.url === '/salarios',
-                                    }"
-                                    >Registrate</Link
+                                    {{ user.name }}
+                                </p>
+                                <p
+                                    class="text-gray-700 font-medium text-sm mt-2"
                                 >
-                            </li>
+                                    {{ user.email }}
+                                </p>
+                                <div class="mt-4 font-normal">
+                                    <Link class="text-sm" href="#"
+                                        >Cerrar sesión</Link
+                                    >
+                                </div>
+                            </div>
+                            <div v-else>
+                                <li>
+                                    <Link
+                                        href="/login"
+                                        class="text-base py-2 px-4 flex"
+                                        :class="{
+                                            'text-indigo-500':
+                                                $page.url === '/salarios',
+                                        }"
+                                        >Inicia sesión</Link
+                                    >
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/user-account/create"
+                                        class="text-base py-2 px-4 flex"
+                                        :class="{
+                                            'text-indigo-500':
+                                                $page.url ===
+                                                '/user-account/create',
+                                        }"
+                                        >Registrate</Link
+                                    >
+                                </li>
+                            </div>
                         </ul>
                         <div class="w-full px-6 py-3 text-center">
                             <Link
@@ -151,28 +175,87 @@
                         }"
                         >Trabajos</Link
                     >
-                    <Link href="#">Talentos</Link>
+                    <Link
+                        href="/talents"
+                        :class="{
+                            'text-indigo-500': $page.url === '/talents',
+                        }"
+                        >Talentos</Link
+                    >
                     <Link href="#">Alertas</Link>
                     <Link href="#">Salarios</Link>
                 </div>
                 <div
                     class="hidden md:flex flex-row gap-4 text-sm items-center font-medium"
                 >
+                    <div v-if="user" class="mr-2">
+                        <button
+                            @click="showUserMenu = !showUserMenu"
+                            class="text-gray-700 flex items-center gap-2 hover:text-gray-600 transition-all ease-in-out duration-500"
+                        >
+                            {{ user.name
+                            }}<svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="13"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-chevron-down"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                                />
+                            </svg>
+                        </button>
+                        <div
+                            v-show="showUserMenu"
+                            :class="{
+                                'bg-white': !isTransparent,
+                                'bg-white bg-opacity-80 backdrop-filter backdrop-blur transition-all duration-300 ease-in-out':
+                                    isTransparent,
+                            }"
+                            class="absolute transition-all ease-in-out duration-300 bg-white w-[8.5rem] py-3 rounded-md shadow-md p-2 mt-2"
+                        >
+                            <p
+                                class="text-xs font-normal text-gray-400 mb-1 break-words"
+                            >
+                                Mi cuenta
+                            </p>
+                            <p class="text-xs font-normal break-words mb-1">
+                                Perfil
+                            </p>
+                            <p class="text-xs font-normal break-words">
+                                Configuración
+                            </p>
+                            <div class="mt-3 font-normal">
+                                <Link
+                                    class="text-xs"
+                                    href="/logout"
+                                    method="DELETE"
+                                    as="button"
+                                    >Cerrar sesión</Link
+                                >
+                            </div>
+                        </div>
+                    </div>
                     <Link
                         class="bg-gray-100 rounded-md text-gray-700 px-4 py-2 hover:bg-gray-200 transition duration-200 ease-in-out font-semibold"
-                        href="#"
+                        href="/talents"
                         >Contrata talento</Link
                     >
-                    <Link
-                        class="bg-indigo-600 rounded-md text-white px-4 py-2 hover:bg-indigo-700 transition duration-200 ease-in-out font-semibold"
-                        href="#"
-                        >Inicia sesión</Link
-                    >
-                    <Link
-                        class="px-4 py-2 rounded-md text-gray-700 hover:text-gray-500 transition-all duration-300 ease-in-out font-semibold"
-                        href="#"
-                        >Registrate</Link
-                    >
+                    <div v-if="!user">
+                        <Link
+                            class="bg-indigo-600 rounded-md text-white px-4 py-2 hover:bg-indigo-700 transition duration-200 ease-in-out font-semibold"
+                            href="/login"
+                            >Inicia sesión</Link
+                        >
+                        <Link
+                            class="px-4 py-2 rounded-md text-gray-700 hover:text-gray-500 transition-all duration-300 ease-in-out font-semibold"
+                            href="/user-account/create"
+                            >Registrate</Link
+                        >
+                    </div>
                 </div>
             </nav>
         </div>
@@ -185,6 +268,7 @@ import { ref, onMounted } from "vue";
 
 const isMenuOpen = ref(false);
 const isTransparent = ref(false);
+const showUserMenu = ref(false);
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
@@ -201,6 +285,10 @@ const handleScroll = () => {
 
     isTransparent.value = scrollPosition > threshold;
 };
+
+const props = defineProps({
+    user: Object,
+});
 </script>
 
 <style scoped>

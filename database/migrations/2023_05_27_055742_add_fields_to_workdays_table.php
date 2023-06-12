@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Medio tiempo, tiempo completo
         Schema::table('workdays', function (Blueprint $table) {
             $table->tinyText('title');
             $table->string('description');

@@ -4,7 +4,11 @@
     <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"
     >
-        <Box v-for="featuredJob in featuredJobs" :key="featuredJob.id">
+        <Box
+            class="mx-4"
+            v-for="featuredJob in featuredJobs"
+            :key="featuredJob.id"
+        >
             <Link :href="`/jobs/${featuredJob.slug}`">
                 <JobPublishedBy :job="featuredJob" /><JobAditionals
                     :job="featuredJob" />
@@ -22,7 +26,7 @@
     <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"
     >
-        <Box v-for="job in jobs" :key="job.id">
+        <Box class="mx-4" v-for="job in jobs" :key="job.id">
             <Link :href="`/jobs/${job.slug}`">
                 <JobPublishedBy :job="job" /><JobAditionals :job="job" />
                 <JobInfo :job="job" />
@@ -39,7 +43,11 @@
     <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"
     >
-        <Box v-for="popularJob in popularJobs" :key="popularJob.id">
+        <Box
+            class="mx-4"
+            v-for="popularJob in popularJobs"
+            :key="popularJob.id"
+        >
             <Link :href="`/jobs/${popularJob.slug}`">
                 <JobPublishedBy :job="popularJob" /><JobAditionals
                     :job="popularJob" />
@@ -49,6 +57,8 @@
             /></Link>
         </Box>
     </div>
+
+    <AlertsInfo />
 </template>
 
 <script setup>
@@ -65,6 +75,7 @@ import LatesFeaturedJobs from "@/Components/LatestFeaturedJobs.vue";
 import FindCandidates from "@/Components/FindCandidates.vue";
 import SalaryInfo from "@/Components/SalaryInfo.vue";
 import MoreViewedJobs from "@/Components/MoreViewedJobs.vue";
+import AlertsInfo from "@/Components/AlertsInfo.vue";
 
 defineProps({
     jobs: { type: Array },

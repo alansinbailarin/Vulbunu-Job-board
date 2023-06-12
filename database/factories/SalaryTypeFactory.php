@@ -17,7 +17,8 @@ class SalaryTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => fake()->randomElement(['Salario base', 'Por comision', 'Por venta', 'Por hora']),
+            'title' => fake()->randomElement(['Salario base', 'Por comision', 'Por venta', 'Por hora']), // 'Salario base', 'Por comision', 'Por venta', 'Por hora
+            // 'type' => fake()->randomElement(['Salario base', 'Por comision', 'Por venta', 'Por hora']),
         ];
     }
 }

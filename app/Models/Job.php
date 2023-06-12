@@ -61,8 +61,38 @@ class Job extends Model
         return $this->hasOne(Salary::class);
     }
 
+    public function responsability()
+    {
+        return $this->hasMany(Responsability::class);
+    }
+
+    public function requirement()
+    {
+        return $this->hasMany(Requirement::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function priority()
+    {
+        return $this->belongsTo(Priority::class);
     }
 }

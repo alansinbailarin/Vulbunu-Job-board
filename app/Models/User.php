@@ -21,6 +21,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'looking_for_job',
+        'phone',
+        'about_me',
+        'linkedin',
+        'birthdate',
+        'cv',
+        'job_modality_id',
+        'gender_id'
     ];
 
     /**
@@ -46,6 +54,51 @@ class User extends Authenticatable
     public function jobs()
     {
         return $this->hasMany(Job::class);
+    }
+
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    public function experience()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    public function language()
+    {
+        return $this->belongsToMany(Language::class);
+    }
+
+    public function skill()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
+
+    public function jobModality()
+    {
+        return $this->belongsTo(JobModality::class);
     }
 
     public function getRouteKeyName()
