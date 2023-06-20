@@ -86,13 +86,18 @@ class Job extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
     public function priority()
     {
         return $this->belongsTo(Priority::class);
+    }
+
+    public function applicant()
+    {
+        return $this->hasMany(Applicant::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

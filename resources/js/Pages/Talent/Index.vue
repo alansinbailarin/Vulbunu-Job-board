@@ -1,21 +1,25 @@
 <template>
-    <div class="container mx-auto my-8 px-4">
+    <div class="container mx-auto my-4 px-4">
         <div
             class="bg-gradient-to-r to-gray-800 from-indigo-950 p-6 rounded-md"
         >
-            <div class="grid grid-cols-3 gap-4 items-center">
+            <div class="md:grid grid-cols-3 gap-4 items-center">
                 <div class="col-span-2">
-                    <h1 class="text-white text-5xl font-bold">
-                        Contamos con una comunidad de {{ count }} profesionales
-                        para que formen parte de tu empresa
+                    <h1
+                        class="text-white text-2xl md:text-4xl lg:text-5xl font-bold"
+                    >
+                        Contamos con una comunidad amplia de profesionales para
+                        que formen parte de tu empresa
                     </h1>
-                    <p class="text-lg text-gray-200 mt-4">
+                    <p
+                        class="text-sm md:text-base lg:text-lg text-gray-200 mt-4"
+                    >
                         En esta sección, encontraras a los nuevos profesionales
                         mejor calificados para ocupar el puesto de trabajo que
                         estas promocionando, a unos pocos clicks.
                     </p>
                 </div>
-                <div class="col-span-1">
+                <div class="col-span-1 hidden md:block">
                     <img
                         class="w-56 mx-auto"
                         src="../../../img/rightscene.png"
@@ -24,17 +28,17 @@
                 </div>
             </div>
         </div>
-        <div class="grid grid-cols-4 gap-4 mt-6">
-            <div class="col-span-1 bg-white rounded-md p-4 max-h-[30rem]">
-                Aqui iran los filtros
-            </div>
+        <Filter
+            :talents="talents"
+            :filters="filters"
+            :jobModalities="jobModalities"
+        />
+        <div class="md:grid grid-cols-3 gap-4">
             <div class="col-span-3">
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-white col-span-2 rounded-md p-4">
-                        Aqui ira la busqueda
-                    </div>
+                <div class="md:grid grid-cols-3 gap-3">
                     <div
-                        class="bg-white p-4 rounded-md"
+                        v-if="talents && talents.length"
+                        class="bg-white p-4 rounded-md mb-2 md:mb-0"
                         v-for="talent in talents"
                         :key="talent.id"
                     >
@@ -99,24 +103,40 @@
                             </p>
                         </div>
                     </div>
+                    <div v-else class="col-span-3 text-center my-12">
+                        <h1 class="text-2xl font-bold">En serio lo sentimos</h1>
+                        <p class="text-gray-500">
+                            No se encontro ningun resultado con los parametros
+                            deseados.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+import Filter from "./Components/Filter.vue";
+import { ref, watch } from "vue";
+import { router } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
 import * as dayjs from "dayjs";
 import { es } from "dayjs/locale/es";
 
 dayjs.locale("es");
 
-defineProps({
+const props = defineProps({
     talents: {
         type: Array,
     },
     count: {
         type: Number,
+    },
+    filters: {
+        type: Object,
+    },
+    jobModalities: {
+        type: Array,
     },
 });
 </script>

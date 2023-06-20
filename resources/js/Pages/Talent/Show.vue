@@ -1,19 +1,27 @@
 <template>
     <div class="container mx-auto p-4">
-        <div class="bg-white rounded-md">
+        <h1 class="text-xl font-semibold mb-2">Perfil del usuario</h1>
+        <div class="bg-white rounded-md mb-4">
             <div class="p-4">
                 <div class="flex items-center justify-between">
-                    <div class="md:flex items-center gap-4">
+                    <div class="md:flex gap-4">
                         <img
+                            v-if="talent.avatar"
                             :src="`${talent.avatar}`"
                             alt=""
-                            class="rounded-lg w-40 h-40 object-cover"
+                            class="rounded-lg md:w-40 md:h-40 object-cover"
+                        />
+                        <img
+                            v-else
+                            src="../../../img/no-image.jpeg"
+                            alt=""
+                            class="rounded-lg md:w-40 md:h-40 object-cover"
                         />
                         <div>
-                            <div
-                                class="md:flex mt-3 md:mt-0 items-center gap-2 mb-1"
-                            >
-                                <h1 class="font-semibold">{{ talent.name }}</h1>
+                            <div class="mt-3 md:mt-0 items-center gap-2 mb-1">
+                                <h1 class="font-semibold">
+                                    {{ talent.name }} {{ talent.last_name }}
+                                </h1>
                                 <span
                                     class="text-gray-500 text-xs rounded-md font-medium"
                                     >Miembro desde el
@@ -24,8 +32,9 @@
                                     }}
                                 </span>
                             </div>
-                            <div class="md:flex items-center gap-3 mb-3">
+                            <div class="md:flex items-center gap-3 flex-nowrap">
                                 <span
+                                    v-if="talent.job_title"
                                     class="flex items-center gap-2 text-gray-500 text-sm"
                                 >
                                     <svg
@@ -46,6 +55,11 @@
                                     {{ talent.job_title }}
                                 </span>
                                 <span
+                                    v-if="
+                                        talent.country?.name ||
+                                        talent.state?.name ||
+                                        talent.city?.name
+                                    "
                                     class="flex items-center gap-2 text-gray-500 text-sm"
                                 >
                                     <svg
@@ -60,9 +74,9 @@
                                             d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
                                         />
                                     </svg>
-                                    {{ talent.country.name }},
-                                    {{ talent.state.name }}
-                                    {{ talent.city.name }}
+                                    {{ talent.country?.name }},
+                                    {{ talent.state?.name }}
+                                    {{ talent.city?.name }}
                                 </span>
                                 <span
                                     class="flex items-center gap-2 text-gray-500 text-sm"
@@ -89,6 +103,7 @@
                                     >
                                 </span>
                                 <span
+                                    v-if="talent.linkedin"
                                     class="flex items-center gap-2 text-gray-500 text-sm"
                                 >
                                     <svg
@@ -105,20 +120,21 @@
                                     </svg>
                                     <a
                                         :href="`${talent.linkedin}`"
+                                        target="_blank"
                                         class="text-blue-400 underline"
                                         >Linkedin</a
                                     >
                                 </span>
                                 <div class="text-gray-500 text-xs">
                                     <p
-                                        v-if="talent.gender.name == 'Otro'"
-                                        class="flex items-center text-sm gap-1 text-purple-500"
+                                        v-if="talent.gender?.name == 'Otro'"
+                                        class="flex items-center text-sm gap-1 text-gray-500"
                                     >
-                                        <span class="text-purple-500"
+                                        <span class=""
                                             ><svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
+                                                width="13"
+                                                height="13"
                                                 fill="currentColor"
                                                 class="bi bi-gender-ambiguous"
                                                 viewBox="0 0 16 16"
@@ -133,15 +149,15 @@
                                     </p>
                                     <p
                                         v-else-if="
-                                            talent.gender.name == 'Masculino'
+                                            talent.gender?.name == 'Masculino'
                                         "
-                                        class="flex items-center text-sm gap-1 text-blue-500"
+                                        class="flex items-center text-sm gap-1 text-gray-500"
                                     >
-                                        <span class="text-blue-500"
+                                        <span class=""
                                             ><svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
+                                                width="13"
+                                                height="13"
                                                 fill="currentColor"
                                                 class="bi bi-gender-male"
                                                 viewBox="0 0 16 16"
@@ -156,15 +172,15 @@
                                     </p>
                                     <p
                                         v-else-if="
-                                            talent.gender.name == 'Femenino'
+                                            talent.gender?.name == 'Femenino'
                                         "
-                                        class="flex items-center text-sm gap-1 text-pink-500"
+                                        class="flex items-center text-sm gap-1 text-gray-500"
                                     >
-                                        <span class="text-pink-500"
+                                        <span class=""
                                             ><svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
+                                                width="13"
+                                                height="13"
                                                 fill="currentColor"
                                                 class="bi bi-gender-female"
                                                 viewBox="0 0 16 16"
@@ -179,15 +195,15 @@
                                     </p>
                                     <p
                                         v-else-if="
-                                            talent.gender.name == 'Trans'
+                                            talent.gender?.name == 'Trans'
                                         "
-                                        class="flex items-center text-indigo-500 text-sm gap-1"
+                                        class="flex items-center text-gray-500 text-sm gap-1"
                                     >
-                                        <span class="text-indigo-500"
+                                        <span class=""
                                             ><svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
+                                                width="13"
+                                                height="13"
                                                 fill="currentColor"
                                                 class="bi bi-gender-trans"
                                                 viewBox="0 0 16 16"
@@ -201,14 +217,185 @@
                                         Trans
                                     </p>
                                 </div>
+                                <div>
+                                    <span
+                                        v-if="
+                                            talent.jobmodality?.title == 'Mixto'
+                                        "
+                                        class="flex items-center gap-1 text-sm text-gray-500"
+                                        ><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="12"
+                                            height="12"
+                                            fill="currentColor"
+                                            class="bi bi-check-circle-fill"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                                            />
+                                        </svg>
+                                        {{ talent.jobmodality?.title }}</span
+                                    >
+                                    <span
+                                        v-if="
+                                            talent.jobmodality?.title ==
+                                            'Remoto'
+                                        "
+                                        class="flex items-center gap-1 text-sm text-gray-500"
+                                        ><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="12"
+                                            height="12"
+                                            fill="currentColor"
+                                            class="bi bi-house-check-fill"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"
+                                            />
+                                            <path
+                                                d="m8 3.293 4.712 4.712A4.5 4.5 0 0 0 8.758 15H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
+                                            />
+                                            <path
+                                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.707l.547.547 1.17-1.951a.5.5 0 1 1 .858.514Z"
+                                            />
+                                        </svg>
+                                        {{ talent.jobmodality?.title }}</span
+                                    >
+                                    <span
+                                        v-if="
+                                            talent.jobmodality?.title ==
+                                            'Presencial'
+                                        "
+                                        class="flex items-center gap-1 text-sm text-gray-500"
+                                        ><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="12"
+                                            height="12"
+                                            fill="currentColor"
+                                            class="bi bi-building-fill-check"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514Z"
+                                            />
+                                            <path
+                                                d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7.256A4.493 4.493 0 0 0 12.5 8a4.493 4.493 0 0 0-3.59 1.787A.498.498 0 0 0 9 9.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .39-.187A4.476 4.476 0 0 0 8.027 12H6.5a.5.5 0 0 0-.5.5V16H3a1 1 0 0 1-1-1V1Zm2 1.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5Zm3 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1ZM4 5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5ZM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5ZM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z"
+                                            />
+                                        </svg>
+                                        {{ talent.jobmodality?.title }}</span
+                                    >
+                                </div>
+                                <div v-for="language in talent.language">
+                                    <span
+                                        class="text-gray-600 bg-gray-100 px-2 py-1 text-xs rounded-md"
+                                        >{{ language.name }}</span
+                                    >
+                                </div>
                             </div>
+                            <div class="flex items-center gap-1 text-xs my-2">
+                                <span
+                                    v-for="skill in talent.skill"
+                                    class="text-gray-600 bg-gray-100 px-2 py-1 rounded-md"
+                                    >{{ skill.name }}</span
+                                >
+                            </div>
+
                             <div>
                                 <p class="text-gray-400 text-sm">
                                     {{ talent.about_me }}
                                 </p>
+
+                                <div class="items-center gap-2 flex">
+                                    <a
+                                        href="#"
+                                        class="hover:bg-gray-100 border border-dashed mt-2 border-gray-300 text-gray-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
+                                    >
+                                        <svg
+                                            class="fill-current w-3 h-3 mr-2"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                        >
+                                            <path
+                                                d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
+                                            />
+                                        </svg>
+                                        <span>Descargar curriculum</span>
+                                    </a>
+                                    <Link
+                                        class="hover:bg-indigo-600 mt-2 bg-indigo-500 text-white font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
+                                        href="#"
+                                        >Contactar</Link
+                                    >
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="talent.education && talent.education.length > 0">
+            <h1 class="text-xl font-semibold mb-2">Educación</h1>
+            <div class="bg-white rounded-md">
+                <div class="p-4">
+                    <ul
+                        v-for="education in talent.education"
+                        :key="education.id"
+                    >
+                        <li class="mb-3">
+                            <time class="text-xs text-gray-400">
+                                {{
+                                    dayjs(education.start_date).format(
+                                        "D [de] MMMM [del] YYYY"
+                                    )
+                                }}
+                                -
+                                {{
+                                    dayjs(education.end_date).format(
+                                        "D [de] MMMM [del] YYYY"
+                                    )
+                                }}
+                            </time>
+                            <p class="font-semibold text-gray-700">
+                                {{ education.name }}
+                            </p>
+                            <p class="text-sm text-gray-500">
+                                {{ education.description }}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div v-if="talent.experience && talent.experience.length > 0">
+            <h1 class="text-xl font-semibold my-2">Trayecto laboral</h1>
+            <div class="bg-white rounded-md">
+                <div class="p-4">
+                    <ul v-for="job in talent.experience" :key="job.id">
+                        <li class="mb-3">
+                            <time class="text-xs text-gray-400"
+                                >{{
+                                    dayjs(job.start_date).format(
+                                        "D [de] MMMM [del] YYYY"
+                                    )
+                                }}
+                                -
+                                {{
+                                    dayjs(job.end_date).format(
+                                        "D [de] MMMM [del] YYYY"
+                                    )
+                                }}</time
+                            >
+                            <p class="font-semibold text-gray-700">
+                                {{ job.name }}
+                            </p>
+                            <p class="text-sm text-gray-500">
+                                {{ job.description }}
+                            </p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -216,6 +403,7 @@
 </template>
 
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import * as dayjs from "dayjs";
 import { es } from "dayjs/locale/es";
 

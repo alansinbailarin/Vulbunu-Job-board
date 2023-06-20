@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --toastify-toast-width: 400px;
+    --toastify-color-warning: #ec9b00;
+}

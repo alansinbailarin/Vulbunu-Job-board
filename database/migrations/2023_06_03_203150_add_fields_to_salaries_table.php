@@ -15,10 +15,10 @@ return new class extends Migration
             $table->unsignedBigInteger('min')->nullable();
             $table->unsignedBigInteger('max')->nullable();
 
-            $table->unsignedBigInteger('job_id');
-            $table->unsignedBigInteger('currency_id');
-            $table->unsignedBigInteger('salary_type_id');
-            $table->unsignedBigInteger('periodicity_id');
+            $table->unsignedBigInteger('job_id')->nullable();
+            $table->unsignedBigInteger('currency_id')->nullable();
+            $table->unsignedBigInteger('salary_type_id')->nullable();
+            $table->unsignedBigInteger('periodicity_id')->nullable();
 
             $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');

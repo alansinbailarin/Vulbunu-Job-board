@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('job_tag', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('job_id');
-            $table->unsignedBigInteger('tag_id');
+            $table->unsignedBigInteger('job_id')->nullable();
+            $table->unsignedBigInteger('tag_id')->nullable();
 
             $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');

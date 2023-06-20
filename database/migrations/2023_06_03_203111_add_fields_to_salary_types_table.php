@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('salary_types', function (Blueprint $table) {
             // 'Salario base', 'Por comision', 'Por venta', 'Por hora'
-            $table->string('title');
+            $table->string('title')->nullable();
         });
     }
 

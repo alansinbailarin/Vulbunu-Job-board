@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('job_modalities', function (Blueprint $table) {
-            $table->tinyText('title');
-            $table->text('description');
+            $table->tinyText('title')->nullable();
+            $table->text('description')->nullable();
         });
     }
 

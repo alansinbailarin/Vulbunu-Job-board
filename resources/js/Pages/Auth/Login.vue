@@ -64,8 +64,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm text-red-700">
-                                        Por favor, complete el campo de correo
-                                        electrónico.
+                                        {{ form.errors.email }}
                                     </p>
                                 </div>
                             </div>
@@ -112,8 +111,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm text-red-700">
-                                        Por favor, complete el campo de
-                                        contraseña.
+                                        {{ form.errors.password }}
                                     </p>
                                 </div>
                             </div>
@@ -140,8 +138,7 @@
                             </div>
                             <div>
                                 <p class="text-sm text-yellow-700">
-                                    Las credenciales ingresadas no coinciden con
-                                    nuestros registros.
+                                    {{ form.errors.sessionError }}
                                 </p>
                             </div>
                         </div>

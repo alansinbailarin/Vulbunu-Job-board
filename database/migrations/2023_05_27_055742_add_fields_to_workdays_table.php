@@ -13,8 +13,8 @@ return new class extends Migration
     {
         // Medio tiempo, tiempo completo
         Schema::table('workdays', function (Blueprint $table) {
-            $table->tinyText('title');
-            $table->string('description');
+            $table->tinyText('title')->nullable();
+            $table->string('description')->nullable();
         });
     }
 

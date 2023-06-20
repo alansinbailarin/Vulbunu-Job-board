@@ -55,11 +55,11 @@
                             </li>
                             <li>
                                 <Link
-                                    href="/trabajos"
+                                    href="/jobs"
                                     class="text-base py-3 px-4 flex"
                                     :class="{
                                         'text-indigo-500':
-                                            $page.url === '/trabajos',
+                                            $page.url === '/jobs',
                                     }"
                                     >Trabajos</Link
                                 >
@@ -104,15 +104,24 @@
                                 <p
                                     class="text-gray-700 font-medium text-sm mt-2"
                                 >
-                                    {{ user.name }}
+                                    {{ user.name }} {{ user.last_name }}
                                 </p>
                                 <p
-                                    class="text-gray-700 font-medium text-sm mt-2"
+                                    class="text-gray-500 font-medium text-sm mt-2"
                                 >
                                     {{ user.email }}
                                 </p>
+                                <Link
+                                    href="/dashboard"
+                                    class="text-gray-700 font-medium text-sm mt-2"
+                                    >Administración</Link
+                                >
                                 <div class="mt-4 font-normal">
-                                    <Link class="text-sm" href="#"
+                                    <Link
+                                        class="text-sm"
+                                        href="/logout"
+                                        method="DELETE"
+                                        as="button"
                                         >Cerrar sesión</Link
                                     >
                                 </div>
@@ -169,9 +178,9 @@
                         >Inicio</Link
                     >
                     <Link
-                        href="/trabajos"
+                        href="/jobs"
                         :class="{
-                            'text-indigo-500': $page.url === '/trabajos',
+                            'text-indigo-500': $page.url === '/jobs',
                         }"
                         >Trabajos</Link
                     >
@@ -193,8 +202,9 @@
                             @click="showUserMenu = !showUserMenu"
                             class="text-gray-700 flex items-center gap-2 hover:text-gray-600 transition-all ease-in-out duration-500"
                         >
-                            {{ user.name
-                            }}<svg
+                            {{ user.name }}
+                            {{ user.last_name }}
+                            <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="13"
                                 height="16"
@@ -215,20 +225,17 @@
                                 'bg-white bg-opacity-80 backdrop-filter backdrop-blur transition-all duration-300 ease-in-out':
                                     isTransparent,
                             }"
-                            class="absolute transition-all ease-in-out duration-300 bg-white w-[8.5rem] py-3 rounded-md shadow-md p-2 mt-2"
+                            class="absolute transition-all ease-in-out duration-300 bg-white w-[11rem] py-3 rounded-md shadow-md p-2 mt-2"
                         >
-                            <p
-                                class="text-xs font-normal text-gray-400 mb-1 break-words"
+                            <p class="text-gray-400 text-xs mb-1">
+                                Información del usuario
+                            </p>
+                            <Link
+                                href="/dashboard"
+                                class="text-gray-700 text-xs"
+                                >Administración</Link
                             >
-                                Mi cuenta
-                            </p>
-                            <p class="text-xs font-normal break-words mb-1">
-                                Perfil
-                            </p>
-                            <p class="text-xs font-normal break-words">
-                                Configuración
-                            </p>
-                            <div class="mt-3 font-normal">
+                            <div class="mt-2 font-normal">
                                 <Link
                                     class="text-xs"
                                     href="/logout"
@@ -281,7 +288,7 @@ onMounted(() => {
 const handleScroll = () => {
     const scrollPosition =
         window.pageYOffset || document.documentElement.scrollTop;
-    const threshold = 100; // Ajusta este valor según tus necesidades
+    const threshold = 50; // Ajusta este valor según tus necesidades
 
     isTransparent.value = scrollPosition > threshold;
 };

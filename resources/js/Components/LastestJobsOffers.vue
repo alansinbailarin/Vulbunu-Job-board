@@ -20,7 +20,7 @@
             </div>
             <div class="text-center">
                 <Link
-                    href=""
+                    href="/jobs"
                     class="border-2 rounded-md border-gray-200 text-gray-200 px-7 font-medium py-3 md:px-8 md:py-4 text-sm"
                     >Ver todo</Link
                 >

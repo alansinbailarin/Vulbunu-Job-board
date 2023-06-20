@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('periodicities', function (Blueprint $table) {
             // 'Mensual', 'Semanal', 'Quincenal', 'Diario', 'Anual'
-            $table->string('title');
+            $table->string('title')->nullable();
         });
     }
 

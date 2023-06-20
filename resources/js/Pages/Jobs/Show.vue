@@ -75,7 +75,7 @@
                 <div>
                     <Link
                         href="#"
-                        class="bg-blue-600 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-blue-700"
+                        class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
                         >Aplicar ahora</Link
                     >
                 </div>
@@ -122,9 +122,7 @@
                 <p class="text-gray-500">-</p>
                 <div class="text-gray-500">
                     Visto por
-                    <span class="font-medium text-gray-700">{{
-                        job.clicks
-                    }}</span>
+                    <span class="font-medium text-gray-700">{{ visits }}</span>
                     personas
                 </div>
             </div>
@@ -132,12 +130,12 @@
         <div class="mt-2 px-4">
             <div
                 v-if="job.salary"
-                class="flex items-center gap-1 text-sm font-medium text-gray-500"
+                class="flex items-center gap-1 text-sm font-medium text-gray-500 lowercase"
             >
-                <p>{{ job.salary?.currency.symbol }}{{ job.salary?.min }}</p>
+                <p>{{ job.salary?.currency.symbol }}{{ formattedMinSalary }}</p>
                 <span> - </span>
-                <p>{{ job.salary?.currency.symbol }}{{ job.salary?.max }}</p>
-                <span>/</span>
+                <p>{{ job.salary?.currency.symbol }}{{ formattedMaxSalary }}</p>
+
                 <p>{{ job.salary?.periodicity.title }}</p>
             </div>
             <div v-else>
@@ -160,37 +158,41 @@
             <h1 class="text-gray-800 text-sm md:text-base font-medium">
                 Sobre la empresa
             </h1>
-            <p class="text-gray-600 text-sm md:text-base mt-1">
+            <p class="text-gray-600 text-sm md:text-base">
                 {{ job.extra_info }}
             </p>
-            <h1 class="text-gray-800 text-sm md:text-base font-medium">
+            <h1 class="text-gray-800 text-sm md:text-base font-medium mt-2">
                 Descripcion del empleo
             </h1>
-            <p class="text-gray-600 text-sm md:text-base mt-1">
+            <p class="text-gray-600 text-sm md:text-base">
                 {{ job.description }}
             </p>
-            <h1 class="text-gray-800 text-sm md:text-base font-medium mt-4">
-                Requerimientos
-            </h1>
-            <ul class="space-y-1 text-gray-600 list-disc list-inside">
-                <li
-                    class="text-sm md:text-base mt-1"
-                    v-for="requirement in job.requirement"
-                >
-                    {{ requirement.description }}
-                </li>
-            </ul>
-            <h1 class="text-gray-800 text-sm md:text-base font-medium mt-4">
-                Responsabilidades
-            </h1>
-            <ul class="space-y-1 text-gray-600 list-disc list-inside">
-                <li
-                    class="text-sm md:text-base mt-1"
-                    v-for="responsability in job.responsability"
-                >
-                    {{ responsability.description }}
-                </li>
-            </ul>
+            <div v-if="job.requirement && job.requirement.length > 0">
+                <h1 class="text-gray-800 text-sm md:text-base font-medium mt-4">
+                    Requerimientos
+                </h1>
+                <ul class="space-y-1 text-gray-600 list-disc list-inside">
+                    <li
+                        class="text-sm md:text-base mt-1"
+                        v-for="requirement in job.requirement"
+                    >
+                        {{ requirement.description }}
+                    </li>
+                </ul>
+            </div>
+            <div v-if="job.responsability && job.responsability.length > 0">
+                <h1 class="text-gray-800 text-sm md:text-base font-medium mt-4">
+                    Responsabilidades
+                </h1>
+                <ul class="space-y-1 text-gray-600 list-disc list-inside">
+                    <li
+                        class="text-sm md:text-base mt-1"
+                        v-for="responsability in job.responsability"
+                    >
+                        {{ responsability.description }}
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="flex md:hidden items-center gap-3 mt-5 px-4">
             <div>
@@ -215,15 +217,15 @@
             </div>
             <Link
                 href="#"
-                class="block bg-blue-600 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-blue-700"
+                class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
                 >Aplicar ahora</Link
             >
         </div>
         <div class="mt-6 px-4">
             <h1
-                class="text-gray-800 text-base font-semibold mb-4 text-center md:text-left"
+                class="text-gray-800 text-lg font-semibold mb-4 text-center md:text-left"
             >
-                Empleos similares
+                Te podria interesar
             </h1>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"
@@ -250,11 +252,36 @@ import JobPublishedBy from "@/UI/JobPublishedBy.vue";
 import Tags from "@/UI/Tags.vue";
 import JobAditionals from "@/Components/JobAditionals.vue";
 import Salary from "@/Components/Salary.vue";
+import { computed } from "vue";
 
-defineProps({
+const props = defineProps({
     job: { type: Object },
     similares: { type: Array },
 });
+
+const visits = computed(() =>
+    props.job.clicks.toLocaleString({
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2,
+    })
+);
+
+const formattedMinSalary = computed(() =>
+    (props.job.salary?.min).toLocaleString({
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2,
+    })
+);
+
+const formattedMaxSalary = computed(() =>
+    (props.job.salary?.max).toLocaleString({
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2,
+    })
+);
 </script>
 
 <script>

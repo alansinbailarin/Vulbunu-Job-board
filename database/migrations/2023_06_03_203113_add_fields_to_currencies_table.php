@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('currencies', function (Blueprint $table) {
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->string('symbol');
+            $table->string('code')->unique()->nullable();
+            $table->string('name')->nullable();
+            $table->string('symbol')->nullable();
         });
     }
 

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string("last_name");
-            $table->string('username')->unique();
-            $table->string('slug');
+            $table->string('username')->unique()->nullable();
+            $table->string('slug')->unique()->nullable();
             $table->string('job_title')->nullable();
             $table->string('avatar')->nullable();
             $table->string('cover_photo')->nullable();

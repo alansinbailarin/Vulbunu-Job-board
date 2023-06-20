@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'username',
         'email',
         'password',
         'looking_for_job',
@@ -99,6 +101,11 @@ class User extends Authenticatable
     public function jobModality()
     {
         return $this->belongsTo(JobModality::class);
+    }
+
+    public function applicant()
+    {
+        return $this->hasMany(Applicant::class);
     }
 
     public function getRouteKeyName()

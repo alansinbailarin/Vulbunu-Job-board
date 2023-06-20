@@ -20,6 +20,8 @@ class EducationFactory extends Factory
         return [
             'name' => fake()->company(),
             'description' => fake()->paragraph(),
+            'start_date' => fake()->date(),
+            'end_date' => fake()->date(),
             'user_id' => User::all()->random()->id,
         ];
     }

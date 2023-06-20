@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->tinyText('title');
-            $table->tinyText('slug');
-            $table->text('description');
+            $table->tinyText('title')->nullable();
+            $table->tinyText('slug')->nullable();
+            $table->text('description')->nullable();
             $table->text('extra_info')->nullable();
             $table->string('apply_on')->nullable();
             $table->tinyText('color')->nullable();
@@ -23,12 +23,12 @@ return new class extends Migration
             $table->unsignedBigInteger('clicks')->default(0);
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
 
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('seniority_id');
-            $table->unsignedBigInteger('job_modality_id');
-            $table->unsignedBigInteger('workday_id');
-            $table->unsignedBigInteger('priority_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('seniority_id')->nullable();
+            $table->unsignedBigInteger('job_modality_id')->nullable();
+            $table->unsignedBigInteger('workday_id')->nullable();
+            $table->unsignedBigInteger('priority_id')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-nowrap items-center gap-2 text-xs mt-3">
+    <div class="flex flex-wrap items-center gap-2 text-xs mt-3">
         <!-- <div
             class="border border-gray-300 text-gray-700 rounded-lg px-2 py-0.5 flex items-center"
         >

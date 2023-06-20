@@ -1,9 +1,11 @@
+import "vue3-toastify/dist/index.css";
+import "../css/app.css";
+
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { ZiggyVue } from "ziggy";
-import ToastPlugin from "vue-toast-notification";
-import "vue-toast-notification/dist/theme-bootstrap.css";
-import "../css/app.css";
+import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import Vue3Toastify from "vue3-toastify";
 
 createInertiaApp({
     resolve: (name) => {
@@ -14,7 +16,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
-            .use(ToastPlugin)
+            .use(Vue3Toastify)
             .mount(el);
     },
 });

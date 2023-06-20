@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('requirements', function (Blueprint $table) {
             $table->id();
-            $table->text('description');
+            $table->text('description')->nullable();
 
-            $table->unsignedBigInteger('job_id');
+            $table->unsignedBigInteger('job_id')->nullable();
             $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
 
             $table->timestamps();
