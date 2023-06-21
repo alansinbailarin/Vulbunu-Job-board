@@ -27,7 +27,7 @@
             </div>
         </div>
         <Filters
-            :jobs="jobs"
+            :jobs="jobs.data"
             :categories="categories"
             :jobModalities="jobModalities"
             :workdays="workdays"
@@ -37,9 +37,9 @@
             <div class="col-span-3">
                 <div class="md:grid grid-cols-3 gap-3">
                     <Box
-                        v-if="jobs && jobs.length"
+                        v-if="jobs && jobs.data.length"
                         class="mb-4"
-                        v-for="job in jobs"
+                        v-for="job in jobs.data"
                         :key="job.id"
                     >
                         <Link :href="`/jobs/${job.slug}`">
@@ -58,12 +58,12 @@
                         </p>
                     </div>
                 </div>
-                <!-- <div
+                <div
                     v-if="jobs.data.length"
                     class="w-full flex justify-center my-8"
                 >
                     <Pagination :links="jobs.links" />
-                </div> -->
+                </div>
             </div>
         </div>
     </div>

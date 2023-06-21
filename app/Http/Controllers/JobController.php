@@ -53,9 +53,8 @@ class JobController extends Controller
             ->with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
             ->where('status', 'published')
             ->orderBy('featured', 'desc')
-            ->get();
-        // ->paginate()
-        // ->withQueryString();
+            ->paginate()
+            ->withQueryString();
 
         $categories = Category::all();
         $jobModalities = JobModality::all();
