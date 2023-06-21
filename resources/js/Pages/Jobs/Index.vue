@@ -58,6 +58,12 @@
                         </p>
                     </div>
                 </div>
+                <div
+                    v-if="jobs.data.length"
+                    class="w-full flex justify-center my-8"
+                >
+                    <Pagination :links="jobs.links" />
+                </div>
             </div>
         </div>
     </div>
@@ -71,6 +77,7 @@ import Tags from "@/UI/Tags.vue";
 import JobAditionals from "@/Components/JobAditionals.vue";
 import Salary from "@/Components/Salary.vue";
 import Filters from "./Components/Filters.vue";
+import Pagination from "../../UI/Pagination.vue";
 
 const props = defineProps({
     jobs: { type: [Array, Object] },
