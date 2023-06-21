@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Salary;
+use App\Models\State;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SalarySeeder extends Seeder
+class StateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $salary = Salary::factory(100)->create();
+        $state = State::factory(10)->create();
     }
 }

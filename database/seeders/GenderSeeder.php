@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Salary;
+use App\Models\Gender;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SalarySeeder extends Seeder
+class GenderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $salary = Salary::factory(100)->create();
+        $gender = Gender::factory(4)->create();
     }
 }

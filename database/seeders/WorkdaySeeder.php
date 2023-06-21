@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Salary;
+use App\Models\Workday;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SalarySeeder extends Seeder
+class WorkdaySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $salary = Salary::factory(100)->create();
+        $workday = Workday::factory(4)->create();
     }
 }

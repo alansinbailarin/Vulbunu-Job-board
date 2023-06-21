@@ -4,7 +4,6 @@ import "../css/app.css";
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { ZiggyVue } from "ziggy";
-import Vue3Toastify from "vue3-toastify";
 
 createInertiaApp({
     resolve: (name) => {
@@ -15,7 +14,6 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
-            .use(Vue3Toastify)
             .mount(el);
     },
 });

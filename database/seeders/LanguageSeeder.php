@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Salary;
+use App\Models\Language;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SalarySeeder extends Seeder
+class LanguageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $salary = Salary::factory(100)->create();
+        $language = Language::factory(4)->create();
     }
 }
