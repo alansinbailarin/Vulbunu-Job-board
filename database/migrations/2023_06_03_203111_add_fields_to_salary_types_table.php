@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropColumns('salary_types', ['type']);
+        Schema::dropColumns('salary_types', ['title']);
     }
 };
