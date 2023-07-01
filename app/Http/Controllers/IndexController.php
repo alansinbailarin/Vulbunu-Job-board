@@ -17,15 +17,83 @@ class IndexController extends Controller
         $fechaActual = Carbon::now();
         $fechaHace14Dias = $fechaActual->subDays(14);
 
-        $featuredJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')->where('featured', true)->where('status', 'published')->latest()->take(6)->get();
-        $jobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')->where('status', 'published')->latest()->take(6)->get();
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->state_id) {
+                $featuredJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                    ->where('featured', true)
+                    ->where('status', 'published')
+                    ->orderBy('state_id', 'desc')
+                    ->latest('created_at')
+                    ->take(6)
+                    ->get();
+            } else {
+                $featuredJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                    ->where('featured', true)
+                    ->where('status', 'published')
+                    ->latest()
+                    ->take(6)
+                    ->get();
+            }
+        } else {
+            $featuredJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                ->where('featured', true)
+                ->where('status', 'published')
+                ->latest()
+                ->take(6)
+                ->get();
+        }
 
-        $popularJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
-            ->where('created_at', '>=', $fechaHace14Dias)
-            ->where('status', 'published')
-            ->orderBy('clicks', 'desc')
-            ->take(6)
-            ->get();
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->state_id) {
+                $jobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                    ->where('status', 'published')
+                    ->orderBy('state_id', 'desc')
+                    ->latest('created_at')
+                    ->take(6)
+                    ->get();
+            } else {
+                $jobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                    ->where('status', 'published')
+                    ->latest()
+                    ->take(6)
+                    ->get();
+            }
+        } else {
+            $jobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                ->where('status', 'published')
+                ->latest()
+                ->take(6)
+                ->get();
+        }
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->state_id) {
+                $popularJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                    ->where('created_at', '>=', $fechaHace14Dias)
+                    ->where('status', 'published')
+                    ->orderBy('state_id', 'desc')
+                    ->latest('created_at')
+                    ->take(6)
+                    ->get();
+            } else {
+                $popularJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                    ->where('created_at', '>=', $fechaHace14Dias)
+                    ->where('status', 'published')
+                    ->orderBy('clicks', 'desc')
+                    ->take(6)
+                    ->get();
+            }
+        } else {
+            $popularJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+                ->where('created_at', '>=', $fechaHace14Dias)
+                ->where('status', 'published')
+                ->orderBy('clicks', 'desc')
+                ->take(6)
+                ->get();
+        }
 
         $jobs->transform(function ($job) {
             $job->shortDescription = substr($job->description, 0, 70);
@@ -56,12 +124,33 @@ class IndexController extends Controller
 
     public function show(Job $job)
     {
-        $similares = Job::where('category_id', $job->category_id)
-            ->where('id', '!=', $job->id)
-            ->where('status', 'published')
-            ->latest('id')
-            ->take(6)
-            ->get();
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->state_id) {
+                $similares = Job::where('category_id', $job->category_id)
+                    ->where('id', '!=', $job->id)
+                    ->where('status', 'published')
+                    ->where('state_id', $user->state_id)
+                    ->latest('id')
+                    ->take(6)
+                    ->get();
+            } else {
+                $similares = Job::where('category_id', $job->category_id)
+                    ->where('id', '!=', $job->id)
+                    ->where('status', 'published')
+                    ->latest('id')
+                    ->take(6)
+                    ->get();
+            }
+        } else {
+            $similares = Job::where('category_id', $job->category_id)
+                ->where('id', '!=', $job->id)
+                ->where('status', 'published')
+                ->latest('id')
+                ->take(6)
+                ->get();
+        }
 
         $similares->transform(function ($job) {
             $job->shortDescription = substr($job->description, 0, 70);

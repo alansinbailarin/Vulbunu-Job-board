@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobModality;
 use App\Models\Workday;
+use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,6 +15,11 @@ class JobController extends Controller
     public function index(Request $request)
     {
         $filters = $request->only(['title', 'location', 'category', 'jobModality', 'workday']);
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $filters['location'] = $user->state->name;
+        }
 
         $jobs = Job::query()
             ->when($request->input('title'), function ($query, $title) {

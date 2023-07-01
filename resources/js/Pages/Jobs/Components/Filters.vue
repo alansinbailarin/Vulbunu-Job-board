@@ -114,7 +114,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { watch, ref } from "vue";
+import { onMounted } from "vue";
 
 const props = defineProps({
     filters: {
@@ -132,6 +132,10 @@ const props = defineProps({
     workdays: {
         type: Array,
     },
+});
+
+onMounted(() => {
+    filter();
 });
 
 const filterForm = useForm({

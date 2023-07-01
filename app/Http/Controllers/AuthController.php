@@ -20,7 +20,7 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]), true)) {
             throw ValidationException::withMessages([
-                'sessionError' => 'Authentication failed'
+                'sessionError' => 'The provided credentials do not match our records.'
             ]);
         }
 

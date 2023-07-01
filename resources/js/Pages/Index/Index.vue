@@ -49,8 +49,8 @@
             :key="popularJob.id"
         >
             <Link :href="`/jobs/${popularJob.slug}`">
-                <JobPublishedBy :job="popularJob" /><JobAditionals
-                    :job="popularJob" />
+                <JobPublishedBy :job="popularJob" />
+                <JobAditionals :job="popularJob" />
                 <JobInfo :job="popularJob" />
                 <Salary :job="popularJob" />
                 <Tags :job="popularJob"

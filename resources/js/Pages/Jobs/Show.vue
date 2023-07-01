@@ -73,10 +73,10 @@
                     </button>
                 </div>
                 <div>
-                    <Link
-                        href="#"
+                    <a
+                        :href="`${job.apply_on}`"
                         class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
-                        >Aplicar ahora</Link
+                        >Aplicar ahora</a
                     >
                 </div>
             </div>
@@ -215,10 +215,10 @@
                     </svg>
                 </button>
             </div>
-            <Link
-                href="#"
+            <a
+                :href="`${job.apply_on}`"
                 class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
-                >Aplicar ahora</Link
+                >Aplicar ahora</a
             >
         </div>
         <div class="mt-6 px-4">

@@ -59,7 +59,7 @@
                                     class="text-base py-3 px-4 flex"
                                     :class="{
                                         'text-indigo-500':
-                                            $page.url === '/jobs',
+                                            $page.url.includes('/jobs'),
                                     }"
                                     >Trabajos</Link
                                 >
@@ -70,7 +70,7 @@
                                     class="text-base py-2 px-4 flex"
                                     :class="{
                                         'text-indigo-500':
-                                            $page.url === '/talents',
+                                            $page.url.includes('/talents'),
                                     }"
                                     >Talentos</Link
                                 >
@@ -180,14 +180,14 @@
                     <Link
                         href="/jobs"
                         :class="{
-                            'text-indigo-500': $page.url === '/jobs',
+                            'text-indigo-500': $page.url.includes('/jobs'),
                         }"
                         >Trabajos</Link
                     >
                     <Link
                         href="/talents"
                         :class="{
-                            'text-indigo-500': $page.url === '/talents',
+                            'text-indigo-500': $page.url.includes('/talents'),
                         }"
                         >Talentos</Link
                     >

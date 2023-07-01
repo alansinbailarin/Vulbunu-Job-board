@@ -19,6 +19,4 @@ const page = usePage();
 const user = computed(() => {
     return page.props.user;
 });
-
-console.log(user);
 </script>

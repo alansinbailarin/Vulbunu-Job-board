@@ -39,6 +39,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
+
 defineProps({
     job: { type: [Array, Object] },
 });

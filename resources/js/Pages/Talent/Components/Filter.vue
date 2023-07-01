@@ -85,6 +85,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import { onMounted } from "vue";
 
 const props = defineProps({
     filters: {
@@ -96,6 +97,10 @@ const props = defineProps({
     jobModalities: {
         type: Array,
     },
+});
+
+onMounted(() => {
+    filter();
 });
 
 const filterForm = useForm({

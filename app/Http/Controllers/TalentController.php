@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobModality;
-use App\Models\Language;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\UserLocation;
-use Termwind\Components\Dd;
+use Auth;
 
 class TalentController extends Controller
 {
     public function index(Request $request)
     {
         $filters = $request->only(['job_title', 'location', 'jobmodality']);
+
+        if (Auth::check()) {
+            $user = Auth::user();
+            $filters['location'] = $user->state->name;
+        }
 
         if (auth()->check()) {
             $talents = User::query()
