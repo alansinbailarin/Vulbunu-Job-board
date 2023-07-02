@@ -114,7 +114,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { onMounted } from "vue";
+import { onMounted, ref, onBeforeMount } from "vue";
 
 const props = defineProps({
     filters: {
@@ -134,9 +134,20 @@ const props = defineProps({
     },
 });
 
+const firstRender = ref(true);
+
 onMounted(() => {
-    filter();
+    loadJobs();
 });
+
+const loadJobs = () => {
+    if (firstRender.value) {
+        firstRender.value = false;
+        return;
+    }
+
+    filter();
+};
 
 const filterForm = useForm({
     title: props.filters.title ?? null,

@@ -38,129 +38,134 @@
                             ></path>
                         </svg>
                     </button>
-                    <div
-                        :class="{ hidden: !isMenuOpen }"
-                        class="w-full md:block md:w-auto transition-all duration-500 ease-in-out"
-                    >
-                        <ul class="flex flex-col md:p-0 mt-2 md:flex-row p-2">
-                            <li>
-                                <Link
-                                    href="/"
-                                    class="text-base py-3 px-4 flex"
-                                    :class="{
-                                        'text-indigo-500': $page.url === '/',
-                                    }"
-                                    >Inicio</Link
-                                >
-                            </li>
-                            <li>
-                                <Link
-                                    href="/jobs"
-                                    class="text-base py-3 px-4 flex"
-                                    :class="{
-                                        'text-indigo-500':
-                                            $page.url.includes('/jobs'),
-                                    }"
-                                    >Trabajos</Link
-                                >
-                            </li>
-                            <li>
-                                <Link
-                                    href="/talents"
-                                    class="text-base py-2 px-4 flex"
-                                    :class="{
-                                        'text-indigo-500':
-                                            $page.url.includes('/talents'),
-                                    }"
-                                    >Talentos</Link
-                                >
-                            </li>
-                            <li>
-                                <Link
-                                    href="/alertas"
-                                    class="text-base py-2 px-4 flex"
-                                    :class="{
-                                        'text-indigo-500':
-                                            $page.url === '/alertas',
-                                    }"
-                                    >Alertas</Link
-                                >
-                            </li>
-                            <li>
-                                <Link
-                                    href="/salarios"
-                                    class="text-base py-2 px-4 flex border-b border-gray-100"
-                                    :class="{
-                                        'text-indigo-500':
-                                            $page.url === '/salarios',
-                                    }"
-                                    >Salarios</Link
-                                >
-                            </li>
-                            <div v-if="user" class="py-2 px-4 text-base">
-                                <p class="text-gray-400 text-sm">
-                                    Información del usuario
-                                </p>
-                                <p
-                                    class="text-gray-700 font-medium text-sm mt-2"
-                                >
-                                    {{ user.name }} {{ user.last_name }}
-                                </p>
-                                <p
-                                    class="text-gray-500 font-medium text-sm mt-2"
-                                >
-                                    {{ user.email }}
-                                </p>
-                                <Link
-                                    href="/dashboard"
-                                    class="text-gray-700 font-medium text-sm mt-2"
-                                    >Administración</Link
-                                >
-                                <div class="mt-4 font-normal">
-                                    <Link
-                                        class="text-sm"
-                                        href="/logout"
-                                        method="DELETE"
-                                        as="button"
-                                        >Cerrar sesión</Link
-                                    >
-                                </div>
-                            </div>
-                            <div v-else>
+                    <Transition
+                        ><div
+                            v-show="isMenuOpen"
+                            class="w-full md:block md:w-auto transition-all duration-500 ease-in-out"
+                        >
+                            <ul
+                                class="flex flex-col md:p-0 mt-2 md:flex-row p-2"
+                            >
                                 <li>
                                     <Link
-                                        href="/login"
+                                        href="/"
+                                        class="text-base py-3 px-4 flex"
+                                        :class="{
+                                            'text-indigo-500':
+                                                $page.url === '/',
+                                        }"
+                                        >Inicio</Link
+                                    >
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/jobs"
+                                        class="text-base py-3 px-4 flex"
+                                        :class="{
+                                            'text-indigo-500':
+                                                $page.url.includes('/jobs'),
+                                        }"
+                                        >Trabajos</Link
+                                    >
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/talents"
                                         class="text-base py-2 px-4 flex"
+                                        :class="{
+                                            'text-indigo-500':
+                                                $page.url.includes('/talents'),
+                                        }"
+                                        >Talentos</Link
+                                    >
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/alertas"
+                                        class="text-base py-2 px-4 flex"
+                                        :class="{
+                                            'text-indigo-500':
+                                                $page.url === '/alertas',
+                                        }"
+                                        >Alertas</Link
+                                    >
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/salarios"
+                                        class="text-base py-2 px-4 flex border-b border-gray-100"
                                         :class="{
                                             'text-indigo-500':
                                                 $page.url === '/salarios',
                                         }"
-                                        >Inicia sesión</Link
+                                        >Salarios</Link
                                     >
                                 </li>
-                                <li>
+                                <div v-if="user" class="py-2 px-4 text-base">
+                                    <p class="text-gray-400 text-sm">
+                                        Información del usuario
+                                    </p>
+                                    <p
+                                        class="text-gray-700 font-medium text-sm mt-2"
+                                    >
+                                        {{ user.name }} {{ user.last_name }}
+                                    </p>
+                                    <p
+                                        class="text-gray-500 font-medium text-sm mt-2"
+                                    >
+                                        {{ user.email }}
+                                    </p>
                                     <Link
-                                        href="/user-account/create"
-                                        class="text-base py-2 px-4 flex"
-                                        :class="{
-                                            'text-indigo-500':
-                                                $page.url ===
-                                                '/user-account/create',
-                                        }"
-                                        >Registrate</Link
+                                        href="/dashboard"
+                                        class="text-gray-700 font-medium text-sm mt-2"
+                                        >Administración</Link
                                     >
-                                </li>
+                                    <div class="mt-4 font-normal">
+                                        <Link
+                                            class="text-sm"
+                                            href="/logout"
+                                            method="DELETE"
+                                            as="button"
+                                            >Cerrar sesión</Link
+                                        >
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <li>
+                                        <Link
+                                            href="/login"
+                                            class="text-base py-2 px-4 flex"
+                                            :class="{
+                                                'text-indigo-500':
+                                                    $page.url === '/salarios',
+                                            }"
+                                            >Inicia sesión</Link
+                                        >
+                                    </li>
+                                    <li>
+                                        <Link
+                                            href="/user-account/create"
+                                            class="text-base py-2 px-4 flex"
+                                            :class="{
+                                                'text-indigo-500':
+                                                    $page.url ===
+                                                    '/user-account/create',
+                                            }"
+                                            >Registrate</Link
+                                        >
+                                    </li>
+                                </div>
+                            </ul>
+                            <div class="w-full px-6 py-3 text-center">
+                                <Link
+                                    class="block bg-gray-100 w-full py-3 px-4 rounded-md text-gray-700 hover:bg-gray-200 transition duration-200 ease-in-out font-semibold"
+                                    href="#"
+                                >
+                                    Contrata talento
+                                </Link>
                             </div>
-                        </ul>
-                        <div class="w-full px-6 py-3 text-center">
-                            <Link
-                                class="block bg-gray-100 w-full py-3 px-4 rounded-md text-gray-700 hover:bg-gray-200 transition duration-200 ease-in-out font-semibold"
-                                href="#"
-                            >
-                                Contrata talento
-                            </Link>
-                        </div>
-                    </div>
+                        </div></Transition
+                    >
                 </div>
                 <div class="text-xl font-bold hidden md:block">
                     <Link href="/" class="">
@@ -218,33 +223,35 @@
                                 />
                             </svg>
                         </button>
-                        <div
-                            v-show="showUserMenu"
-                            :class="{
-                                'bg-white': !isTransparent,
-                                'bg-white bg-opacity-80 backdrop-filter backdrop-blur transition-all duration-300 ease-in-out':
-                                    isTransparent,
-                            }"
-                            class="absolute transition-all ease-in-out duration-300 bg-white w-[11rem] py-3 rounded-md shadow-md p-2 mt-2"
-                        >
-                            <p class="text-gray-400 text-xs mb-1">
-                                Información del usuario
-                            </p>
-                            <Link
-                                href="/dashboard"
-                                class="text-gray-700 text-xs"
-                                >Administración</Link
+                        <Transition
+                            ><div
+                                v-show="showUserMenu"
+                                :class="{
+                                    'bg-white': !isTransparent,
+                                    'bg-white bg-opacity-80 backdrop-filter backdrop-blur transition-all duration-300 ease-in-out':
+                                        isTransparent,
+                                }"
+                                class="absolute transition-all ease-in-out duration-300 bg-white w-[11rem] py-3 rounded-md shadow-md p-2 mt-2"
                             >
-                            <div class="mt-2 font-normal">
+                                <p class="text-gray-400 text-xs mb-1">
+                                    Información del usuario
+                                </p>
                                 <Link
-                                    class="text-xs"
-                                    href="/logout"
-                                    method="DELETE"
-                                    as="button"
-                                    >Cerrar sesión</Link
+                                    href="/dashboard"
+                                    class="text-gray-700 text-xs"
+                                    >Administración</Link
                                 >
-                            </div>
-                        </div>
+                                <div class="mt-2 font-normal">
+                                    <Link
+                                        class="text-xs"
+                                        href="/logout"
+                                        method="DELETE"
+                                        as="button"
+                                        >Cerrar sesión</Link
+                                    >
+                                </div>
+                            </div></Transition
+                        >
                     </div>
                     <Link
                         class="bg-gray-100 rounded-md text-gray-700 px-4 py-2 hover:bg-gray-200 transition duration-200 ease-in-out font-semibold"
@@ -271,7 +278,7 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, Transition } from "vue";
 
 const isMenuOpen = ref(false);
 const isTransparent = ref(false);
@@ -303,5 +310,15 @@ header {
     /* backdrop-filter: none;  Para desactivar el desenfoque en navegadores que no lo admiten */
     transition: background-color 0.5s ease-in-out,
         backdrop-filter 0.3s ease-in-out;
+}
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }
 </style>
