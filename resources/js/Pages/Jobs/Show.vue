@@ -221,7 +221,7 @@
                 >Aplicar ahora</a
             >
         </div>
-        <div class="mt-6 px-4">
+        <div v-if="similares.length > 0" class="mt-6 px-4">
             <h1
                 class="text-gray-800 text-lg font-semibold mb-4 text-center md:text-left"
             >

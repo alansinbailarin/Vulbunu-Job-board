@@ -248,8 +248,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
-import { toast } from "vue3-toastify";
-import "vue3-toastify/dist/index.css";
 
 const form = useForm({
     name: null,

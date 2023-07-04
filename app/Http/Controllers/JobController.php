@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\Currency;
 use App\Models\Job;
 use App\Models\JobModality;
+use App\Models\Periodicity;
+use App\Models\Priority;
+use App\Models\SalaryType;
+use App\Models\State;
 use App\Models\Workday;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use SebastianBergmann\CodeCoverage\Report\Html\Colors;
 
 class JobController extends Controller
 {
@@ -78,5 +86,36 @@ class JobController extends Controller
             'workdays' => $workdays,
             'filters' => $filters,
         ]);
+    }
+
+    public function create(Request $request)
+    {
+        $categories = Category::all();
+        $jobModalities = JobModality::all();
+        $workdays = Workday::all();
+        $priorities = Priority::all();
+        $countries = Country::all();
+        $states = State::all();
+        $cities = City::all();
+        $currencies = Currency::all();
+        $salariesTypes = SalaryType::all();
+        $periodicities = Periodicity::all();
+
+        return Inertia::render('Jobs/Create', [
+            'categories' => $categories,
+            'jobModalities' => $jobModalities,
+            'workdays' => $workdays,
+            'priorities' => $priorities,
+            'countries' => $countries,
+            'states' => $states,
+            'cities' => $cities,
+            'currencies' => $currencies,
+            'salariesTypes' => $salariesTypes,
+            'periodicities' => $periodicities,
+        ]);
+    }
+
+    public function store(Request $request)
+    {
     }
 }

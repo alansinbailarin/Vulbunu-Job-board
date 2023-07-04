@@ -215,6 +215,9 @@
                                 height="16"
                                 fill="currentColor"
                                 class="bi bi-chevron-down"
+                                :class="{
+                                    'transform rotate-180': showUserMenu,
+                                }"
                                 viewBox="0 0 16 16"
                             >
                                 <path

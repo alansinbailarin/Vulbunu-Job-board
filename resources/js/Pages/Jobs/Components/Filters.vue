@@ -114,7 +114,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { onMounted, ref, onBeforeMount } from "vue";
+import { onMounted, ref } from "vue";
 
 const props = defineProps({
     filters: {
