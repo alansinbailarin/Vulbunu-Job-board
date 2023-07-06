@@ -51,7 +51,7 @@
                             >Aplica en:</label
                         >
                         <input
-                            type="text"
+                            type="url"
                             id="apply_on"
                             name="apply_on"
                             placeholder="https://www.ejemplo.com/apply/on/..."
@@ -152,9 +152,10 @@
                             >Pais</label
                         >
                         <select
-                            name="countryInput"
                             id="country"
                             form="createJob"
+                            v-model="selectedCountry"
+                            @change="getStates"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option
@@ -174,7 +175,8 @@
                         <select
                             id="state"
                             form="createJob"
-                            name="stateInput"
+                            v-model="selectedState"
+                            @change="getCities"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option
@@ -193,7 +195,7 @@
                         >
                         <select
                             id="city"
-                            name="cityInput"
+                            v-model="selectedCity"
                             form="createJob"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
@@ -483,8 +485,9 @@
     </div>
 </template>
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { Transition } from "vue";
+import axios from "axios";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
@@ -500,15 +503,15 @@ const props = defineProps({
     priorities: {
         type: Array,
     },
-    countries: {
-        type: Array,
-    },
-    states: {
-        type: Array,
-    },
-    cities: {
-        type: Array,
-    },
+    // countries: {
+    //     type: Array,
+    // },
+    // states: {
+    //     type: Array,
+    // },
+    // cities: {
+    //     type: Array,
+    // },
     currencies: {
         type: Array,
     },
@@ -520,27 +523,57 @@ const props = defineProps({
     },
 });
 
-const form = useForm({
-    title: null,
-    category_id: 1,
-    job_modality_id: null,
-    workday_id: null,
-    priority_id: null,
-    country_id: null,
-    state_id: null,
-    city: null,
-    salary: null,
-    salary_type: null,
-    description: null,
-    extra_info: null,
-    requirements: [],
-    responsabilities: [],
-});
-
 const open = ref(false);
 const selectedTags = ref([]);
 const requirements = ref([""]);
 const responsabilities = ref([""]);
+const countries = ref([]);
+const states = ref([]);
+const cities = ref([]);
+const selectedCountry = ref("");
+const selectedState = ref("");
+const selectedCity = ref("");
+
+onMounted(() => {
+    getCountries();
+});
+
+const getCountries = () => {
+    axios
+        .get("/api/countries")
+        .then((response) => {
+            countries.value = response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
+const getStates = () => {
+    axios
+        .get(`/api/states/${selectedCountry.value}`)
+        .then((response) => {
+            states.value = response.data;
+            selectedState.value = "";
+            cities.value = [];
+            selectedCity.value = "";
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
+const getCities = () => {
+    axios
+        .get(`/api/cities/${selectedState.value}`)
+        .then((response) => {
+            cities.value = response.data;
+            selectedCity.value = "";
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
 
 const addTag = (value) => {
     if (selectedTags.value.length < 7 && !selectedTags.value.includes(value)) {

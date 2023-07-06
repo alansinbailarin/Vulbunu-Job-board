@@ -94,9 +94,10 @@ class JobController extends Controller
         $jobModalities = JobModality::all();
         $workdays = Workday::all();
         $priorities = Priority::all();
-        $countries = Country::all();
-        $states = State::all();
-        $cities = City::all();
+        // $countries = Country::all();
+        // $country_id = $request->input('countryInput');
+        // $states = State::where('country_id', $country_id)->get();
+        // $cities = City::all();
         $currencies = Currency::all();
         $salariesTypes = SalaryType::all();
         $periodicities = Periodicity::all();
@@ -106,13 +107,31 @@ class JobController extends Controller
             'jobModalities' => $jobModalities,
             'workdays' => $workdays,
             'priorities' => $priorities,
-            'countries' => $countries,
-            'states' => $states,
-            'cities' => $cities,
+            // 'countries' => $countries,
+            // 'states' => $states,
+            // 'cities' => $cities,
             'currencies' => $currencies,
             'salariesTypes' => $salariesTypes,
             'periodicities' => $periodicities,
         ]);
+    }
+
+    public function getCountries()
+    {
+        $countries = Country::all();
+        return response()->json($countries);
+    }
+
+    public function getStates($countryId)
+    {
+        $states = State::where('country_id', $countryId)->get();
+        return response()->json($states);
+    }
+
+    public function getCities($stateId)
+    {
+        $cities = City::where('state_id', $stateId)->get();
+        return response()->json($cities);
     }
 
     public function store(Request $request)
