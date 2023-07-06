@@ -35,6 +35,9 @@
                             id="category"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona una categoria
+                            </option>
                             <option
                                 v-for="category in categories"
                                 :key="category.id"
@@ -67,7 +70,8 @@
                             form="createJob"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="gray" selected>Gris</option>
+                            <option value="" hidden>Selecciona un color</option>
+                            <option value="gray">Gris</option>
                             <option value="blue">Azul</option>
                             <option value="indigo">Morado</option>
                             <option value="green">Verde</option>
@@ -82,10 +86,12 @@
                             form="createJob"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="draft">Borrador</option>
-                            <option value="published" selected>
-                                Publicado
+                            <option value="" hidden>
+                                Selecciona un estatus
                             </option>
+
+                            <option value="draft">Borrador</option>
+                            <option value="published">Publicado</option>
                             <option value="archived">Archivado</option>
                         </select>
                     </div>
@@ -102,6 +108,10 @@
                             form="createJob"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona una modalidad
+                            </option>
+
                             <option
                                 v-for="modality in jobModalities"
                                 :key="modality.id"
@@ -120,6 +130,10 @@
                             form="createJob"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona un tiempo
+                            </option>
+
                             <option
                                 v-for="workday in workdays"
                                 :key="workday.id"
@@ -138,6 +152,10 @@
                             form="createJob"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona una prioridad
+                            </option>
+
                             <option
                                 v-for="priority in priorities"
                                 :key="priority.id"
@@ -158,6 +176,7 @@
                             @change="getStates"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>Selecciona un pais</option>
                             <option
                                 v-for="country in countries"
                                 :key="country.id"
@@ -179,6 +198,9 @@
                             @change="getCities"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona un estado
+                            </option>
                             <option
                                 v-for="state in states"
                                 :key="state.id"
@@ -199,6 +221,9 @@
                             form="createJob"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona una ciudad
+                            </option>
                             <option
                                 v-for="city in cities"
                                 :key="city.id"
@@ -305,6 +330,10 @@
                             name="currencyInput"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona un tipo de moneda
+                            </option>
+
                             <option
                                 v-for="currency in currencies"
                                 :key="currency.id"
@@ -324,6 +353,8 @@
                             id="min"
                             name="min"
                             placeholder="Minimo"
+                            min="1"
+                            pattern="^[0-9]+"
                             class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                     </div>
@@ -336,6 +367,8 @@
                             id="max"
                             name="max"
                             placeholder="Maximo"
+                            min="1"
+                            pattern="^[0-9]+"
                             class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                     </div>
@@ -348,6 +381,9 @@
                             name="periodicity_input"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona una periodicidad
+                            </option>
                             <option
                                 v-for="periodicity in periodicities"
                                 :key="periodicity.id"
@@ -366,6 +402,9 @@
                             name="salary_type_input"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
+                            <option value="" hidden>
+                                Selecciona un tipo de salario
+                            </option>
                             <option
                                 v-for="salaryT in salariesTypes"
                                 :key="salaryT.id"
