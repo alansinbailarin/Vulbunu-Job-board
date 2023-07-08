@@ -85,7 +85,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 const props = defineProps({
     filters: {
@@ -118,6 +118,25 @@ const filterForm = useForm({
     location: props.filters.location ?? null,
     jobModality: props.filters.jobModality ?? null,
 });
+
+watch(
+    () => ({
+        job_title: filterForm.job_title,
+        location: filterForm.location,
+        jobModality: filterForm.jobModality,
+    }),
+    (newValues, oldValues) => {
+        if (newValues.job_title !== oldValues.job_title) {
+            filter(newValues.job_title);
+        }
+        if (newValues.location !== oldValues.location) {
+            filter(newValues.location);
+        }
+        if (newValues.jobModality !== oldValues.jobModality) {
+            filter(newValues.jobModality);
+        }
+    }
+);
 
 const filter = () => {
     filterForm.get(route("talents.index"), {
