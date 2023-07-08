@@ -31,7 +31,7 @@
                 </p>
                 <div class="flex">
                     <Link
-                        href="#"
+                        href="/publish-job"
                         class="bg-gray-950 rounded-md text-xs lg:text-base font-medium text-white py-3 px-5 shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-800"
                         >Publica una vacante gratis</Link
                     >

@@ -26,6 +26,7 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{job}', [IndexController::class, 'show']);
 Route::get('/publish-job', [JobController::class, 'create'])->name('jobs.create')->middleware('auth');
+Route::post('/publish-job', [JobController::class, 'store'])->name('jobs.store')->middleware('auth');
 
 // Rutas para logearse
 Route::get('login', [AuthController::class, 'create'])->name('login')->middleware('guest');

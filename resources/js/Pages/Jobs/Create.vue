@@ -10,7 +10,7 @@
             </p>
         </div>
         <div class="bg-white rounded-md md:p-6 p-3">
-            <form name="createJob" class="">
+            <form name="createJob" @submit.prevent="publish">
                 <div class="md:grid grid-cols-6 gap-4 w-full text-sm">
                     <div class="mb-4 col-span-5">
                         <label
@@ -21,10 +21,22 @@
                         <input
                             type="text"
                             id="title"
-                            name="title"
+                            v-model="form.title"
                             placeholder="Ej. Tecnico en mantenimiento..."
                             class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
+                        <div
+                            v-if="form.errors.title"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.title }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-4">
                         <label for="category" class="block mb-2 font-medium"
@@ -33,6 +45,7 @@
                         <select
                             form="createJob"
                             id="category"
+                            v-model="form.category_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
@@ -46,6 +59,18 @@
                                 {{ category.title }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.category_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.category_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="md:grid grid-cols-6 md:mb-4 gap-4 text-sm">
@@ -56,10 +81,22 @@
                         <input
                             type="url"
                             id="apply_on"
-                            name="apply_on"
+                            v-model="form.apply_on"
                             placeholder="https://www.ejemplo.com/apply/on/..."
                             class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
+                        <div
+                            v-if="form.errors.apply_on"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.apply_on }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="color" class="block mb-2 font-medium"
@@ -68,14 +105,28 @@
                         <select
                             id="color"
                             form="createJob"
+                            v-model="form.color"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Selecciona un color</option>
                             <option value="gray">Gris</option>
                             <option value="blue">Azul</option>
+                            <option value="red">Rojo</option>
                             <option value="indigo">Morado</option>
                             <option value="green">Verde</option>
                         </select>
+                        <div
+                            v-if="form.errors.color"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.color }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="status" class="block mb-2 font-medium"
@@ -84,6 +135,7 @@
                         <select
                             id="status"
                             form="createJob"
+                            v-model="form.status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
@@ -94,6 +146,18 @@
                             <option value="published">Publicado</option>
                             <option value="archived">Archivado</option>
                         </select>
+                        <div
+                            v-if="form.errors.status"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.status }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="grid md:grid-cols-12 mb-4 md:gap-4 text-sm">
@@ -106,6 +170,7 @@
                         <select
                             id="jobModalities"
                             form="createJob"
+                            v-model="form.job_modality_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
@@ -120,6 +185,18 @@
                                 {{ modality.title }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.job_modality_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.job_modality_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="workdays" class="block mb-2 font-medium"
@@ -128,6 +205,7 @@
                         <select
                             id="workdays"
                             form="createJob"
+                            v-model="form.workday_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
@@ -142,6 +220,18 @@
                                 {{ workday.title }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.workday_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.workday_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="priority" class="block mb-2 font-medium"
@@ -150,6 +240,7 @@
                         <select
                             id="priority"
                             form="createJob"
+                            v-model="form.priority_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
@@ -164,6 +255,18 @@
                                 {{ priority.title }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.priority_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.priority_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="country" class="block mb-2 font-medium"
@@ -185,6 +288,18 @@
                                 {{ country.name }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.country_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.country_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-span-2 mt-4 md:mt-0">
@@ -209,6 +324,18 @@
                                 {{ state.name }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.state_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.state_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-span-2 mt-4 md:mt-0">
@@ -232,11 +359,23 @@
                                 {{ city.name }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.city_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.city_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="md:grid grid-cols-7 mb-4 gap-4 text-sm">
                     <div class="col-span-1">
-                        <p class="font-medium mb-2">Selecciona hasta 7 tags</p>
+                        <p class="font-medium mb-2">Selecciona hasta 6 tags</p>
                         <button
                             @click="open = !open"
                             type="button"
@@ -265,24 +404,24 @@
                             >
                                 <ul class="max-h-44 overflow-y-scroll">
                                     <li
-                                        v-for="category in categories"
+                                        v-for="tag in tags"
                                         class="py-1 px-2 my-1 text-sm rounded-md p-1"
                                         :class="{
                                             'bg-gray-100 ': isSelected(
-                                                category.title
+                                                tag.name,
+                                                tag.id
                                             ),
                                         }"
-                                        :key="category.id"
+                                        :key="tag.id"
+                                        :value="tag.id"
                                     >
                                         <button
-                                            @click="addTag(category.title)"
+                                            @click="addTag(tag.name, tag.id)"
                                             type="button"
-                                            :class="
-                                                getButtonClass(category.title)
-                                            "
+                                            :class="getButtonClass(tag.name)"
                                             class="w-full text-left"
                                         >
-                                            {{ category.title }}
+                                            {{ tag.name }}
                                         </button>
                                     </li>
                                 </ul>
@@ -291,19 +430,20 @@
                     </div>
                     <div class="col-span-6 mt-4 md:mt-0">
                         <p class="font-medium mb-2">
-                            Tags seleccionados {{ selectedTagsCount }}
+                            Tags seleccionados: {{ selectedTagsCount }}
                         </p>
                         <div
                             class="bg-gray-50 rounded-md border border-gray-300 px-2 flex flex-wrap items-center py-0.5"
                         >
                             <p class="py-2 mr-2">Selección:</p>
                             <button
-                                v-for="selectedTag in selectedTags"
+                                v-for="(selectedTag, index) in selectedTags"
+                                :key="index"
                                 type="button"
                                 @click="removeTag(selectedTag)"
                                 class="m-0.5 text-xs font-medium bg-blue-100 text-blue-700 px-3 rounded-full border border-blue-200 py-1.5 flex items-center justify-between"
                             >
-                                {{ selectedTag }}
+                                {{ selectedTag.value }}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
@@ -319,6 +459,15 @@
                             </button>
                         </div>
                     </div>
+                    <div v-if="form.errors.tag_id" class="px-2 py-2 rounded-md">
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.tag_id }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="md:grid grid-cols-7 mb-4 gap-4 text-sm">
                     <div class="col-span-1 mt-4 md:mt-0">
@@ -327,7 +476,7 @@
                         >
                         <select
                             id="currency"
-                            name="currencyInput"
+                            v-model="form.currency_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
@@ -343,6 +492,18 @@
                                 {{ currency.symbol }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.currency_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.currency_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="min" class="block mb-2 font-medium"
@@ -351,12 +512,24 @@
                         <input
                             type="number"
                             id="min"
-                            name="min"
+                            v-model="form.min"
                             placeholder="Minimo"
                             min="1"
                             pattern="^[0-9]+"
                             class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
+                        <div
+                            v-if="form.errors.min"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.min }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="max" class="block mb-2 font-medium"
@@ -365,12 +538,24 @@
                         <input
                             type="number"
                             id="max"
-                            name="max"
+                            v-model="form.max"
                             placeholder="Maximo"
                             min="1"
                             pattern="^[0-9]+"
                             class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
+                        <div
+                            v-if="form.errors.max"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.max }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="periodicity" class="block mb-2 font-medium"
@@ -378,7 +563,7 @@
                         >
                         <select
                             id="periodicity"
-                            name="periodicity_input"
+                            v-model="form.periodicity_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
@@ -392,6 +577,18 @@
                                 {{ periodicity.title }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.periodicity_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.periodicity_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="salary_type" class="block mb-2 font-medium"
@@ -399,7 +596,7 @@
                         >
                         <select
                             id="salary_type"
-                            name="salary_type_input"
+                            v-model="form.salary_type_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
@@ -413,6 +610,18 @@
                                 {{ salaryT.title }}
                             </option>
                         </select>
+                        <div
+                            v-if="form.errors.salary_type_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.salary_type_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="text-sm">
@@ -422,95 +631,49 @@
                         >Descripción</label
                     >
                     <textarea
-                        name="description"
+                        v-model="form.description"
                         id="description"
-                        class="w-full mb-4 text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                        class="w-full text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
                         cols="30"
                         rows="4"
                         placeholder="Escribe una descripción del empleo..."
                     ></textarea>
+                    <div
+                        v-if="form.errors.description"
+                        class="px-2 py-2 rounded-md"
+                    >
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <label
                         for="extra_info"
-                        class="block mb-2 font-medium text-left"
+                        class="block mb-2 mt-2 font-medium text-left"
                         >Información sobre la empresa</label
                     >
                     <textarea
-                        name="extra_info"
+                        v-model="form.extra_info"
                         id="extra_info"
                         class="w-full text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
                         cols="30"
                         rows="3"
                         placeholder="Escribe una descripción de la empresa..."
                     ></textarea>
-                </div>
-                <div class="text-sm mt-4 grid grid-cols-12 gap-4">
-                    <div class="col-span-12 flex items-center justify-between">
-                        <label
-                            for="requirements"
-                            class="block font-medium col-span-12"
-                            >Lista de requerimientos</label
-                        >
-                        <button
-                            @click="addRequirementInput"
-                            class="w-20 h-8 rounded-md bg-green-600 font-medium text-white"
-                            type="button"
-                        >
-                            Añadir
-                        </button>
-                    </div>
                     <div
-                        class="col-span-12 flex gap-2"
-                        v-for="(requirement, index) in requirements"
-                        :key="index"
+                        v-if="form.errors.extra_info"
+                        class="px-2 py-2 rounded-md"
                     >
-                        <input
-                            id="requirements"
-                            class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            type="text"
-                            :placeholder="'Introduce los requisitos...'"
-                        />
-                        <button
-                            @click="removeRequirementInput(index)"
-                            class="w-28 md:w-24 rounded-md bg-red-600 font-medium text-white"
-                            type="button"
-                        >
-                            Eliminar
-                        </button>
-                    </div>
-                </div>
-                <div class="text-sm mt-4 grid grid-cols-12 gap-4">
-                    <div class="col-span-12 flex items-center justify-between">
-                        <label
-                            for="responsabilities"
-                            class="block font-medium col-span-12"
-                            >Lista de requerimientos</label
-                        >
-                        <button
-                            @click="addResponsabilityInput"
-                            class="w-20 h-8 rounded-md bg-green-600 font-medium text-white"
-                            type="button"
-                        >
-                            Añadir
-                        </button>
-                    </div>
-                    <div
-                        class="col-span-12 flex gap-2"
-                        v-for="(responsability, index) in responsabilities"
-                        :key="index"
-                    >
-                        <input
-                            id="responsabilities"
-                            class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            type="text"
-                            :placeholder="'Introduce los responsabilidades...'"
-                        />
-                        <button
-                            @click="removeResponsabilityInput(index)"
-                            class="w-28 md:w-24 rounded-md bg-red-600 font-medium text-white"
-                            type="button"
-                        >
-                            Eliminar
-                        </button>
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.extra_info }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button
@@ -542,15 +705,6 @@ const props = defineProps({
     priorities: {
         type: Array,
     },
-    // countries: {
-    //     type: Array,
-    // },
-    // states: {
-    //     type: Array,
-    // },
-    // cities: {
-    //     type: Array,
-    // },
     currencies: {
         type: Array,
     },
@@ -560,18 +714,70 @@ const props = defineProps({
     periodicities: {
         type: Array,
     },
+    user_id: {
+        type: Number,
+    },
+    tags: {
+        type: Array,
+    },
 });
+
+const form = useForm({
+    user_id: props.user_id,
+    title: null,
+    category_id: "",
+    apply_on: null,
+    color: "",
+    status: "",
+    job_modality_id: "",
+    workday_id: "",
+    priority_id: "",
+    country_id: null,
+    state_id: null,
+    city_id: null,
+    tag_id: [],
+    min: null,
+    max: null,
+    currency_id: "",
+    salary_type_id: "",
+    periodicity_id: "",
+    description: null,
+    extra_info: null,
+});
+
+const publish = () => {
+    form.post(route("jobs.store"));
+};
 
 const open = ref(false);
 const selectedTags = ref([]);
-const requirements = ref([""]);
-const responsabilities = ref([""]);
 const countries = ref([]);
 const states = ref([]);
 const cities = ref([]);
 const selectedCountry = ref("");
 const selectedState = ref("");
 const selectedCity = ref("");
+const tags_id = ref([]);
+
+form.tag_id = computed(() => {
+    return tags_id.value;
+});
+
+form.user_id = computed(() => {
+    return props.user_id;
+});
+
+form.country_id = computed(() => {
+    return selectedCountry.value;
+});
+
+form.state_id = computed(() => {
+    return selectedState.value;
+});
+
+form.city_id = computed(() => {
+    return selectedCity.value;
+});
 
 onMounted(() => {
     getCountries();
@@ -614,18 +820,30 @@ const getCities = () => {
         });
 };
 
-const addTag = (value) => {
-    if (selectedTags.value.length < 7 && !selectedTags.value.includes(value)) {
-        selectedTags.value.push(value);
+const addTag = (value, id) => {
+    const tag = { value, id };
+
+    if (
+        selectedTags.value.length < 6 &&
+        !selectedTags.value.some((t) => t.value === value && t.id === id)
+    ) {
+        selectedTags.value.push(tag);
+        tags_id.value.push(id);
     }
 };
 
-const removeTag = (value) => {
-    selectedTags.value = selectedTags.value.filter((tag) => tag !== value);
+const removeTag = (selectedTag) => {
+    const index = selectedTags.value.indexOf(selectedTag);
+    if (index !== -1) {
+        selectedTags.value.splice(index, 1);
+        tags_id.value.splice(index, 1);
+    }
 };
 
-const isSelected = (value) => {
-    return selectedTags.value.includes(value);
+const isSelected = (value, id) => {
+    return selectedTags.value.some(
+        (tag) => tag.value === value && tag.id === id
+    );
 };
 
 const selectedTagsCount = computed(() => {
@@ -634,24 +852,8 @@ const selectedTagsCount = computed(() => {
 
 const getButtonClass = (value) => {
     return {
-        "cursor-not-allowed": isSelected(value) || selectedTagsCount.value >= 7,
+        "cursor-not-allowed": isSelected(value) || selectedTagsCount.value >= 6,
     };
-};
-
-const addRequirementInput = () => {
-    requirements.value.push("");
-};
-
-const removeRequirementInput = (index) => {
-    requirements.value.splice(index, 1);
-};
-
-const addResponsabilityInput = () => {
-    responsabilities.value.push("");
-};
-
-const removeResponsabilityInput = (index) => {
-    responsabilities.value.splice(index, 1);
 };
 </script>
 <script>

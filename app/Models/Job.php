@@ -23,6 +23,13 @@ class Job extends Model
         'seniority_id',
         'job_modality_id',
         'workday_id',
+        'priority_id',
+        'country_id',
+        'state_id',
+        'city_id',
+        'apply_on',
+        'extra_info',
+        'color'
     ];
 
     public function user()

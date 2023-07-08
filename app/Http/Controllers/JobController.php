@@ -8,15 +8,19 @@ use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Job;
 use App\Models\JobModality;
+use App\Models\JobTag;
 use App\Models\Periodicity;
 use App\Models\Priority;
+use App\Models\Salary;
 use App\Models\SalaryType;
 use App\Models\State;
+use App\Models\Tag;
 use App\Models\Workday;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use SebastianBergmann\CodeCoverage\Report\Html\Colors;
+use Termwind\Components\Dd;
 
 class JobController extends Controller
 {
@@ -90,29 +94,28 @@ class JobController extends Controller
 
     public function create(Request $request)
     {
+
+        $user_id = Auth::user()->id;
+
         $categories = Category::all();
         $jobModalities = JobModality::all();
         $workdays = Workday::all();
         $priorities = Priority::all();
-        // $countries = Country::all();
-        // $country_id = $request->input('countryInput');
-        // $states = State::where('country_id', $country_id)->get();
-        // $cities = City::all();
         $currencies = Currency::all();
         $salariesTypes = SalaryType::all();
         $periodicities = Periodicity::all();
+        $tags = Tag::all();
 
         return Inertia::render('Jobs/Create', [
             'categories' => $categories,
             'jobModalities' => $jobModalities,
             'workdays' => $workdays,
             'priorities' => $priorities,
-            // 'countries' => $countries,
-            // 'states' => $states,
-            // 'cities' => $cities,
             'currencies' => $currencies,
             'salariesTypes' => $salariesTypes,
             'periodicities' => $periodicities,
+            'tags' => $tags,
+            'user_id' => $user_id,
         ]);
     }
 
@@ -136,5 +139,100 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
+        $validateData = $request->validate(
+            [
+                'user_id' => 'required|integer|exists:users,id',
+                'title' => 'required|string|max:255',
+                'category_id' => 'required|integer|exists:categories,id',
+                'apply_on' => 'url|nullable',
+                'color' => 'required',
+                'status' => 'required',
+                'job_modality_id' => 'required|integer|exists:job_modalities,id',
+                'workday_id' => 'required|integer|exists:workdays,id',
+                'priority_id' => 'required|integer|exists:priorities,id',
+                'country_id' => 'required|exists:countries,id',
+                'state_id' => 'required_with:country_id',
+                'city_id' => 'required_with:state_id',
+                'tag_id' => 'required|array',
+                'tag_id.*' => 'integer|exists:tags,id',
+                'min' => 'nullable|integer|min:1|gt:0',
+                'max' => 'nullable|integer|max:300000|gt:min|required_with:min',
+                'currency_id' => 'required_with:min|required_with:max|nullable|integer|exists:currencies,id',
+                'salary_type_id' => 'required_with:min|required_with:max|nullable|integer|exists:salary_types,id',
+                'periodicity_id' => 'required_with:min|required_with:max|nullable|integer|exists:periodicities,id',
+                'description' => 'required|string|min:20|max:1000',
+                'extra_info' => 'required|string|min:20|max:1000',
+            ],
+            [
+                'title.required' => 'El titulo es requerido.',
+                'title.max' => 'La longitud máxima del campo titulo es de 255 caracteres.',
+                'category_id.required' => 'El campo de categoria es requerido.',
+                'category_id.exists' => 'El campo de categoria debe de contener una categoria existente.',
+                'category_id.integer' => 'El campo categoria debe de ser un numero.',
+                'apply_on.url' => 'El campo de aplicación debe de ser un campo valido de url.',
+                'color.required' => 'El campo color es requerido.',
+                'status.required' => 'El campo estatus es requerido.',
+                'job_modality_id.required' => 'El campo de modalidad es requerido.',
+                'job_modality_id.integer' => 'El campo de modalidad debe de ser numerico',
+                'job_modality_id.exists' => 'El campo modalidad debe contener una modalidad existente.',
+                'workday_id.required' => 'El campo de tipo de puesto es requerido.',
+                'workday_id.integer' => 'El campo de tipo de puesto debe de ser numerico',
+                'workday_id.exists' => 'El campo tipo de puesto debe contener un tipo de puesto existente.',
+                'priority_id.required' => 'El campo de prioridad es requerido.',
+                'priority_id.integer' => 'El campo de prioridad debe de ser numerico',
+                'priority_id.exists' => 'El campo prioridad debe contener una prioridad existente.',
+                'country_id.required' => 'El campo de pais es requerido.',
+                'country_id.exists' => 'El campo pais debe contener un pais existente.',
+                'state_id.required_with' => 'El campo de estado es requerido',
+                'city_id.required_with' => 'El campo de ciudad es requerido',
+                'tag_id.required' => 'Por favor, selecciona al menos un tag.',
+                'min.integer' => 'El campo minimo necesita ser un campo numerico.',
+                'min.min' => 'El minimo para este campo es 1.',
+                'min.gt' => 'El campo minimo debe de ser mayor a 0',
+                'max.integer' => 'El campo maximo necesita ser un campo numerico.',
+                'max.max' => 'El maximo para este campo es 300,000',
+                'max.gt' => 'El campo maximo debe de ser mayor al campo minimo',
+                'max.required_with' => 'Este campo es necesario cuando el campo minimo esta presente.',
+                'currency_id.required_with' => 'Por favor, selecciona una opción.',
+                'salary_type_id.required_with' => 'Por favor, selecciona una opción.',
+                'periodicity_id.required_with' => 'Por favor, selecciona una opción.',
+                'description.required' => 'El campo de descripción es requerido.',
+                'description.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
+                'description.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
+                'extra_info.required' => 'El campo de información es requerido.',
+                'extra_info.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
+                'extra_info.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.'
+            ]
+        );
+
+        $slugWithoutNumbers = str_replace(' ', '-', $request->title);
+        $slug = $slugWithoutNumbers . '-' . rand(1000, 9999);
+
+        $job = Job::create($validateData);
+
+        $job->slug = $slug;
+        $job->save();
+
+        $tagIds = $request->input('tag_id', []);
+
+        $salary = Salary::create([
+            'min' => $request->min,
+            'max' => $request->max,
+            'job_id' => $job->id,
+            'currency_id' => $request->currency_id,
+            'salary_type_id' => $request->salary_type_id,
+            'periodicity_id' => $request->periodicity_id,
+        ]);
+
+        $salary->save();
+
+        foreach ($tagIds as $tagId) {
+            JobTag::create([
+                'job_id' => $job->id,
+                'tag_id' => $tagId,
+            ]);
+        }
+
+        return redirect()->route('jobs.index')->with('success', 'Job created successfully.');
     }
 }
