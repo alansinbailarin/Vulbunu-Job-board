@@ -134,18 +134,16 @@ const props = defineProps({
     },
 });
 
-const firstRender = ref(true);
+const firstRender = ref(false);
 
 onMounted(() => {
-    loadJobs();
+    if (!firstRender.value) {
+        loadJobs();
+        firstRender.value = true;
+    }
 });
 
 const loadJobs = () => {
-    if (firstRender.value) {
-        firstRender.value = false;
-        return;
-    }
-
     filter();
 };
 

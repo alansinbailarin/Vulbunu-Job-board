@@ -99,17 +99,16 @@ const props = defineProps({
     },
 });
 
-const firstRender = ref(true);
+const firstRender = ref(false);
 
 onMounted(() => {
-    loadTalents();
+    if (!firstRender.value) {
+        loadTalents();
+        firstRender.value = true;
+    }
 });
 
 const loadTalents = () => {
-    if (firstRender.value) {
-        firstRender.value = false;
-        return;
-    }
     filter();
 };
 

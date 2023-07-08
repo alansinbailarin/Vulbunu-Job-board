@@ -104,10 +104,9 @@
                         </div>
                     </div>
                     <div v-else class="col-span-3 text-center my-12">
-                        <h1 class="text-2xl font-bold">En serio lo sentimos</h1>
+                        <h1 class="text-2xl font-bold">Lo sentimos</h1>
                         <p class="text-gray-500">
-                            No se encontro ningun resultado con los parametros
-                            deseados.
+                            No se han encontrado resultados para tu busqueda.
                         </p>
                     </div>
                 </div>
