@@ -114,7 +114,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 const props = defineProps({
     filters: {
@@ -156,6 +156,33 @@ const filterForm = useForm({
     jobModality: props.filters.jobModality ?? null,
     workday: props.filters.workday ?? null,
 });
+
+watch(
+    () => ({
+        title: filterForm.title,
+        location: filterForm.location,
+        category: filterForm.category,
+        jobModality: filterForm.category,
+        workday: filterForm.workday,
+    }),
+    (newValues, oldValues) => {
+        if (newValues.title !== oldValues.title) {
+            filter(newValues.title);
+        }
+        if (newValues.location !== oldValues.location) {
+            filter(newValues.location);
+        }
+        if (newValues.category !== oldValues.category) {
+            filter(newValues.category);
+        }
+        if (newValues.jobModality !== oldValues.jobModality) {
+            filter(newValues.jobModality);
+        }
+        if (newValues.workday !== oldValues.workday) {
+            filter(newValues.workday);
+        }
+    }
+);
 
 const filter = () => {
     filterForm.get(route("jobs.index"), {
