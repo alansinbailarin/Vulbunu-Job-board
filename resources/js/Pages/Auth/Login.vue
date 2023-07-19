@@ -1,23 +1,37 @@
 <template>
-    <div class="min-h-screen bg-gray-200 grid md:grid-cols-5">
-        <div
-            class="hidden md:flex col-span-3 bg-blue-600 items-center justify-center shadow-inner"
-        >
-            <div class="container mx-auto p-16 text-white">
-                <h1 class="text-2xl mb-3">miempleo.lat</h1>
-                <h1 class="text-6xl font-bold mb-4">
-                    Bienvenidos aplicantes y reclutadores
-                </h1>
-                <p class="text-blue-100">
-                    La manera mas fácil de conseguir tu primer empleo es con una
-                    plataforma totalmente personalizada para perfiles de
-                    personas recien egresadas o perfiles "Jr", si te
-                    caracterizas con esto, este lugar es el correcto para ti.
-                </p>
+    <div class="min-h-screen bg-white grid md:grid-cols-5">
+        <div class="hidden m-5 md:flex col-span-3">
+            <div class="w-full bg-blue-500 rounded-lg">
+                <div class="ml-6 mt-4">
+                    <h1 class="tracking-widest text-gray-100 font-bold">
+                        midiauno
+                    </h1>
+                </div>
+
+                <div class="p-6">
+                    <div class="mt-16 mb-6">
+                        <h1
+                            class="text-5xl text-white font-semibold tracking-wider"
+                        >
+                            Te ayudamos a encontrar el empleo de tus sueños, o
+                            si estas buscando personal, a encontrarlo.
+                        </h1>
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-xl text-gray-200 font-light">
+                            Con nuestros algoritmos inteligentes, te ayudamos a
+                            encontrar el empleo de tus sueños o el empleado
+                            ideal para que forme parte de tu empresa.
+                        </p>
+                    </div>
+                    <div class="mt-20">
+                        <div class="bg-gray-800 rounded-lg p-4"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="md:col-span-2 flex items-center justify-center bg-white">
-            <div class="container mx-auto p-16 text-center">
+            <div class="container mx-auto p-8 text-center">
                 <div class="mb-12">
                     <h2 class="text-2xl font-bold mb-2">Inicia Sesión</h2>
                     <p class="text-gray-400">

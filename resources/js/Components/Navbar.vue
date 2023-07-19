@@ -226,7 +226,7 @@
                                 />
                             </svg>
                         </button>
-                        <Transition
+                        <Transition v-on-click-outside="closeMenu"
                             ><div
                                 v-show="showUserMenu"
                                 :class="{
@@ -282,6 +282,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import { ref, onMounted, Transition } from "vue";
+import { vOnClickOutside } from "@vueuse/components";
 
 const isMenuOpen = ref(false);
 const isTransparent = ref(false);
@@ -289,6 +290,10 @@ const showUserMenu = ref(false);
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
+};
+
+const closeMenu = () => {
+    showUserMenu.value = false;
 };
 
 onMounted(() => {

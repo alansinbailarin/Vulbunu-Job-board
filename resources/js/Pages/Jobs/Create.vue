@@ -397,7 +397,7 @@
                                 />
                             </svg>
                         </button>
-                        <Transition
+                        <Transition v-on-click-outside="closeMenu"
                             ><div
                                 v-show="open"
                                 class="bg-white border border-gray-200 rounded-md w-[21rem] md:w-[9.8rem] mt-0.5 z-10 px-2 py-2 absolute"
@@ -687,10 +687,11 @@
     </div>
 </template>
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { Transition } from "vue";
 import axios from "axios";
 import { useForm } from "@inertiajs/vue3";
+import { vOnClickOutside } from "@vueuse/components";
 
 const props = defineProps({
     categories: {
@@ -724,29 +725,162 @@ const props = defineProps({
 
 const form = useForm({
     user_id: props.user_id,
-    title: null,
+    title: "",
     category_id: "",
-    apply_on: null,
+    apply_on: "",
     color: "",
     status: "",
     job_modality_id: "",
     workday_id: "",
     priority_id: "",
-    country_id: null,
-    state_id: null,
-    city_id: null,
+    country_id: "",
+    state_id: "",
+    city_id: "",
     tag_id: [],
-    min: null,
-    max: null,
+    min: "",
+    max: "",
     currency_id: "",
     salary_type_id: "",
     periodicity_id: "",
-    description: null,
-    extra_info: null,
+    description: "",
+    extra_info: "",
+});
+
+watch(
+    [
+        () => form.title,
+        () => form.category_id,
+        () => form.apply_on,
+        () => form.color,
+        () => form.status,
+        () => form.job_modality_id,
+        () => form.workday_id,
+        () => form.priority_id,
+        () => form.min,
+        () => form.max,
+        () => form.currency_id,
+        () => form.salary_type_id,
+        () => form.periodicity_id,
+        () => form.description,
+        () => form.extra_info,
+    ],
+    ([
+        newTitle,
+        newCategory,
+        newApplyOn,
+        newColor,
+        newStatus,
+        newJobModality,
+        newWorkday,
+        newPriority,
+        newMin,
+        newMax,
+        newCurrency,
+        newSalaryType,
+        newPeriodicity,
+        newDescription,
+        newExtraInfo,
+    ]) => {
+        localStorage.setItem("title", newTitle);
+        localStorage.setItem("category_id", newCategory);
+        localStorage.setItem("apply_on", newApplyOn);
+        localStorage.setItem("color", newColor);
+        localStorage.setItem("status", newStatus);
+        localStorage.setItem("job_modality_id", newJobModality);
+        localStorage.setItem("workday_id", newWorkday);
+        localStorage.setItem("priority_id", newPriority);
+        localStorage.setItem("min", newMin);
+        localStorage.setItem("max", newMax);
+        localStorage.setItem("currency_id", newCurrency);
+        localStorage.setItem("salary_type_id", newSalaryType);
+        localStorage.setItem("periodicity_id", newPeriodicity);
+        localStorage.setItem("description", newDescription);
+        localStorage.setItem("extra_info", newExtraInfo);
+    }
+);
+
+onMounted(() => {
+    getCountries();
+
+    let savedTitle = localStorage.getItem("title");
+    let savedCategory = localStorage.getItem("category_id");
+    let savedApplyOn = localStorage.getItem("apply_on");
+    let savedColor = localStorage.getItem("color");
+    let savedStatus = localStorage.getItem("status");
+    let savedJobModality = localStorage.getItem("job_modality_id");
+    let savedWorkday = localStorage.getItem("workday_id");
+    let savedPriority = localStorage.getItem("priority_id");
+    let savedMin = localStorage.getItem("min");
+    let savedMax = localStorage.getItem("max");
+    let savedCurrency = localStorage.getItem("currency_id");
+    let savedSalaryType = localStorage.getItem("salary_type_id");
+    let savedPeriodicity = localStorage.getItem("periodicity_id");
+    let savedDescription = localStorage.getItem("description");
+    let savedExtraInfo = localStorage.getItem("extra_info");
+
+    if (savedCategory) {
+        form.category_id = savedCategory;
+    }
+    if (savedTitle) {
+        form.title = savedTitle;
+    }
+
+    if (savedApplyOn) {
+        form.apply_on = savedApplyOn;
+    }
+
+    if (savedColor) {
+        form.color = savedColor;
+    }
+
+    if (savedStatus) {
+        form.status = savedStatus;
+    }
+
+    if (savedJobModality) {
+        form.job_modality_id = savedJobModality;
+    }
+
+    if (savedWorkday) {
+        form.workday_id = savedWorkday;
+    }
+
+    if (savedPriority) {
+        form.priority_id = savedPriority;
+    }
+
+    if (savedMin) {
+        form.min = savedMin;
+    }
+
+    if (savedMax) {
+        form.max = savedMax;
+    }
+
+    if (savedCurrency) {
+        form.currency_id = savedCurrency;
+    }
+
+    if (savedSalaryType) {
+        form.salary_type_id = savedSalaryType;
+    }
+
+    if (savedPeriodicity) {
+        form.periodicity_id = savedPeriodicity;
+    }
+
+    if (savedDescription) {
+        form.description = savedDescription;
+    }
+
+    if (savedExtraInfo) {
+        form.extra_info = savedExtraInfo;
+    }
 });
 
 const publish = () => {
     form.post(route("jobs.store"));
+    window.localStorage.clear();
 };
 
 const open = ref(false);
@@ -758,6 +892,10 @@ const selectedCountry = ref("");
 const selectedState = ref("");
 const selectedCity = ref("");
 const tags_id = ref([]);
+
+const closeMenu = () => {
+    open.value = false;
+};
 
 form.tag_id = computed(() => {
     return tags_id.value;
@@ -777,10 +915,6 @@ form.state_id = computed(() => {
 
 form.city_id = computed(() => {
     return selectedCity.value;
-});
-
-onMounted(() => {
-    getCountries();
 });
 
 const getCountries = () => {

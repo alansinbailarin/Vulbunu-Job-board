@@ -15,7 +15,10 @@ class TalentController extends Controller
 
         if (Auth::check()) {
             $user = Auth::user();
-            $filters['location'] = $user->state->name;
+
+            if ($user->state != null) {
+                $filters['location'] = $user->state->name;
+            }
         }
 
         if (auth()->check()) {

@@ -72,12 +72,6 @@
                                 {{ talent.country.name }},
                                 {{ talent.state.name }} {{ talent.city.name }}
                             </p>
-                            <!-- <div
-                                v-for="jobmodality in talent.jobmodality"
-                                :key="jobmodality.id"
-                            >
-                                {{ jobmodality.title }}-
-                            </div> -->
                             <a
                                 :href="`mailto:${talent.email}`"
                                 class="text-blue-500 text-xs underline mb-2"
@@ -121,6 +115,7 @@ import { router } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
 import * as dayjs from "dayjs";
 import { es } from "dayjs/locale/es";
+import PopOver from "./Components/PopOver.vue";
 
 dayjs.locale("es");
 

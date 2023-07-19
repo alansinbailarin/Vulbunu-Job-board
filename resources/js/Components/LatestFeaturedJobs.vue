@@ -5,7 +5,9 @@
         </h1>
         <span class="text-gray-500">
             Quieres que tu oferta de empleo aparezca en esta sección?
-            <Link href="#" class="underline text-blue-500">publicate</Link>
+            <Link href="/publish-job" class="underline text-blue-500"
+                >publicate</Link
+            >
         </span>
     </div>
 </template>
