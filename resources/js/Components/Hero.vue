@@ -20,14 +20,15 @@
                     >
                         empleo
                     </span>
-                    para recién graduados, internos y adultos mayores
+                    para recién graduados, internos y personas que buscan su
+                    primer empleo
                 </h1>
 
                 <p class="text-gray-500 mt-2 mb-8">
-                    Encuentra tu primer empleo, encuentra tu trabajo de medio
-                    tiempo, tu contrato de practicas y si eres un adulto que no
-                    encuentra empleo, aqui encontraras las mejores ofertas para
-                    ti.
+                    Encuentra tu primer empleo, trabajo de medio tiempo,
+                    contrato de prácticas o cualquier otro empleo en general.
+                    Aquí, encontrarás las mejores ofertas que se ajusten a tus
+                    necesidades.
                 </p>
                 <div class="flex">
                     <Link

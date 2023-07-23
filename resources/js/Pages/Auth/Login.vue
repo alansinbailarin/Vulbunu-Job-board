@@ -25,7 +25,40 @@
                         </p>
                     </div>
                     <div class="mt-20">
-                        <div class="bg-gray-800 rounded-lg p-4"></div>
+                        <swiper
+                            :spaceBetween="30"
+                            :centeredSlides="true"
+                            :autoplay="{
+                                delay: 2500,
+                                disableOnInteraction: false,
+                            }"
+                            :pagination="{
+                                clickable: true,
+                            }"
+                            :navigation="true"
+                            :modules="modules"
+                            class="mySwiper"
+                        >
+                            <swiper-slide
+                                v-for="(opinion, index) in opinions"
+                                :key="index"
+                                class="bg-blue-400 p-5 rounded-md"
+                            >
+                                <div class="flex items-center gap-3 mb-4">
+                                    <figure>
+                                        <img
+                                            :src="opinion.avatar"
+                                            :alt="opinion.user"
+                                            class="w-14 rounded-full"
+                                        />
+                                    </figure>
+                                    <h1>{{ opinion.user }}</h1>
+                                </div>
+                                <div class="mb-4">
+                                    <p>{{ opinion.comment }}</p>
+                                </div>
+                            </swiper-slide>
+                        </swiper>
                     </div>
                 </div>
             </div>
@@ -174,6 +207,39 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
+const opinions = [
+    {
+        avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+        user: "Juan Velez",
+        comment:
+            "Me encanta la página, encontré muchas ofertas de trabajo interesantes. ¡Gracias!",
+    },
+    {
+        avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+        user: "María Gómez",
+        comment:
+            "La página es muy fácil de usar y me ayudó a conseguir mi primer empleo. ¡La recomiendo!",
+    },
+    {
+        avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+        user: "Carlos Rodríguez",
+        comment:
+            "Excelente sitio para buscar empleo, las opciones son variadas y actualizadas.",
+    },
+    {
+        avatar: "https://randomuser.me/api/portraits/women/4.jpg",
+        user: "Laura Martínez",
+        comment:
+            "La interfaz es muy amigable y me resultó útil para encontrar trabajo rápidamente.",
+    },
+];
+
+const modules = [Autoplay, Pagination, Navigation];
 
 const form = useForm({
     email: null,
