@@ -99,19 +99,6 @@ const props = defineProps({
     },
 });
 
-const firstRender = ref(false);
-
-onMounted(() => {
-    if (!firstRender.value) {
-        loadTalents();
-        firstRender.value = true;
-    }
-});
-
-const loadTalents = () => {
-    filter();
-};
-
 const filterForm = useForm({
     job_title: props.filters.job_title ?? null,
     location: props.filters.location ?? null,

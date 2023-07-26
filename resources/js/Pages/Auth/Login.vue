@@ -42,7 +42,7 @@
                             <swiper-slide
                                 v-for="(opinion, index) in opinions"
                                 :key="index"
-                                class="bg-blue-400 p-5 rounded-md"
+                                class="bg-blue-600 p-5 rounded-md"
                             >
                                 <div class="flex items-center gap-3 mb-4">
                                     <figure>
@@ -52,9 +52,16 @@
                                             class="w-14 rounded-full"
                                         />
                                     </figure>
-                                    <h1>{{ opinion.user }}</h1>
+                                    <div>
+                                        <h1 class="text-white font-bold">
+                                            {{ opinion.user }}
+                                        </h1>
+                                        <p class="text-gray-300 text-sm">
+                                            {{ opinion.username }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="mb-4">
+                                <div class="mb-4 text-gray-300">
                                     <p>{{ opinion.comment }}</p>
                                 </div>
                             </swiper-slide>
@@ -216,24 +223,28 @@ const opinions = [
     {
         avatar: "https://randomuser.me/api/portraits/men/1.jpg",
         user: "Juan Velez",
+        username: "@jvelez",
         comment:
             "Me encanta la página, encontré muchas ofertas de trabajo interesantes. ¡Gracias!",
     },
     {
         avatar: "https://randomuser.me/api/portraits/women/2.jpg",
         user: "María Gómez",
+        username: "@mariag23",
         comment:
             "La página es muy fácil de usar y me ayudó a conseguir mi primer empleo. ¡La recomiendo!",
     },
     {
         avatar: "https://randomuser.me/api/portraits/men/3.jpg",
         user: "Carlos Rodríguez",
+        username: "@rodriguezc01",
         comment:
             "Excelente sitio para buscar empleo, las opciones son variadas y actualizadas.",
     },
     {
         avatar: "https://randomuser.me/api/portraits/women/4.jpg",
         user: "Laura Martínez",
+        username: "@mtzlau94",
         comment:
             "La interfaz es muy amigable y me resultó útil para encontrar trabajo rápidamente.",
     },
