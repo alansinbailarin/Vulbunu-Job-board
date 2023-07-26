@@ -79,11 +79,7 @@
                             >
                             <p class="text-gray-500 font-medium text-xs mb-2">
                                 Se unió el
-                                {{
-                                    moment(talent.created_at).format(
-                                        "dddd, MMMM Do YYYY"
-                                    )
-                                }}
+                                {{ talent.created_at }}
                             </p>
                             <p
                                 v-if="talent.about_me"
@@ -111,10 +107,6 @@
 <script setup>
 import Filter from "./Components/Filter.vue";
 import { Link } from "@inertiajs/vue3";
-import moment from "moment";
-import "moment/locale/es";
-
-moment.locale("es");
 
 const props = defineProps({
     talents: {
@@ -133,7 +125,6 @@ const props = defineProps({
 </script>
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
-import { computed } from "vue";
 export default {
     layout: MainLayout,
 };
