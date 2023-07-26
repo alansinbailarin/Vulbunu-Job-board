@@ -42,6 +42,11 @@ class IndexController extends Controller
             return $job;
         });
 
+        $jobs->transform(function ($job) {
+            $job->shortDescription = substr($job->description, 0, 70);
+            return $job;
+        });
+
         $featuredJobs->transform(function ($job) {
             $job->shortDescription = substr($job->description, 0, 70);
             return $job;

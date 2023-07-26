@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="filter">
+    <form action="" @submit.prevent="filter">
         <div
             class="bg-white rounded-md p-4 my-4 grid grid-cols-2 md:grid-cols-12 items-center gap-2"
         >

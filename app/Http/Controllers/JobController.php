@@ -31,7 +31,7 @@ class JobController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            if ($user->state != null){
+            if ($user->state != null) {
                 $filters['location'] = $user->state->name;
             }
         }
