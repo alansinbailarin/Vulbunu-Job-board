@@ -111,7 +111,7 @@
 <script setup>
 import Filter from "./Components/Filter.vue";
 import { Link } from "@inertiajs/vue3";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 dayjs.locale("es");
 
