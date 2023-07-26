@@ -21,4 +21,9 @@ export default defineConfig({
             ziggy: path.resolve("vendor/tightenco/ziggy/dist/vue.es.js"),
         },
     },
+    build: {
+        rollupOptions: {
+            external: ["axios"],
+        },
+    },
 });
