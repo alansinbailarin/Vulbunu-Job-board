@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-c877ecca.css",
+    "file": "assets/app-e0a9cc8b.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -33,7 +33,7 @@
     "src": "resources/img/salaries.png"
   },
   "resources/js/app.css": {
-    "file": "assets/app-8a685208.css",
+    "file": "assets/app-4caa4d44.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -47,10 +47,10 @@
       "assets/no-image-e45f77f8.jpeg"
     ],
     "css": [
-      "assets/app-8a685208.css",
-      "assets/app-c877ecca.css"
+      "assets/app-4caa4d44.css",
+      "assets/app-e0a9cc8b.css"
     ],
-    "file": "assets/app-c4507e5e.js",
+    "file": "assets/app-53b86b3c.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

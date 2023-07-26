@@ -110,12 +110,9 @@
 </template>
 <script setup>
 import Filter from "./Components/Filter.vue";
-import { ref, watch } from "vue";
-import { router } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
 import * as dayjs from "dayjs";
-import { es } from "dayjs/locale/es";
-import PopOver from "./Components/PopOver.vue";
+import { tn } from "dayjs";
 
 dayjs.locale("es");
 
