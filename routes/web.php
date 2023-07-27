@@ -7,6 +7,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\TalentController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,11 @@ use App\Http\Controllers\JobController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Iniciar sesion con otros provedores
+Route::get('/auth/{provider}/redirect', [SocialController::class, 'redirect'])->where('provider', 'google');
+
+Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->where('provider', 'google');
 
 // Ruta get para la página de inicio
 Route::get('/', [IndexController::class, 'index']);

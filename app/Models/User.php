@@ -112,4 +112,9 @@ class User extends Authenticatable
     {
         return 'slug';
     }
+
+    public function socials()
+    {
+        return $this->hasMany(Social::class);
+    }
 }

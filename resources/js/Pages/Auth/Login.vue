@@ -1,9 +1,9 @@
 <template>
     <div class="min-h-screen bg-white grid md:grid-cols-5">
         <div class="hidden m-5 md:flex col-span-3">
-            <div class="w-full bg-blue-500 rounded-lg">
+            <div class="w-full bg-gray-100 rounded-lg">
                 <div class="ml-6 mt-4">
-                    <h1 class="tracking-widest text-gray-100 font-bold">
+                    <h1 class="tracking-widest text-blue-500 font-bold">
                         Primer empleo latam
                     </h1>
                 </div>
@@ -11,14 +11,14 @@
                 <div class="p-6">
                     <div class="mt-16 mb-6">
                         <h1
-                            class="text-5xl text-white font-semibold tracking-wider"
+                            class="text-5xl text-gray-700 font-semibold tracking-wider"
                         >
                             Te ayudamos a encontrar el empleo de tus sueños, o
                             si estas buscando personal, a encontrarlo.
                         </h1>
                     </div>
                     <div class="mb-8">
-                        <p class="text-xl text-gray-200 font-light">
+                        <p class="text-lg text-gray-600 font-light">
                             Con nuestros algoritmos inteligentes, te ayudamos a
                             encontrar el empleo de tus sueños o el empleado
                             ideal para que forme parte de tu empresa.
@@ -42,7 +42,7 @@
                             <swiper-slide
                                 v-for="(opinion, index) in opinions"
                                 :key="index"
-                                class="bg-blue-600 p-5 rounded-md"
+                                class="bg-gray-200 hover:cursor-pointer p-5 rounded-md"
                             >
                                 <div class="flex items-center gap-3 mb-4">
                                     <figure>
@@ -53,16 +53,14 @@
                                         />
                                     </figure>
                                     <div>
-                                        <h1 class="text-white font-bold">
+                                        <h1 class="text-gray-700 font-bold">
                                             {{ opinion.user }}
                                         </h1>
-                                        <p class="text-gray-300 text-sm">
+                                        <p class="text-gray-500 text-sm">
                                             {{ opinion.username }}
                                         </p>
+                                        <p>{{ opinion.comment }}</p>
                                     </div>
-                                </div>
-                                <div class="mb-4 text-gray-300">
-                                    <p>{{ opinion.comment }}</p>
                                 </div>
                             </swiper-slide>
                         </swiper>
@@ -71,17 +69,61 @@
             </div>
         </div>
         <div class="md:col-span-2 flex items-center justify-center bg-white">
-            <div class="container mx-auto p-8 text-center">
-                <div class="mb-12">
-                    <h2 class="text-2xl font-bold mb-2">Inicia Sesión</h2>
-                    <p class="text-gray-400">
-                        Eres nuevo?
-                        <Link
-                            href="/user-account/create"
-                            class="text-blue-400 font-semibold"
-                            >Crea una cuenta</Link
-                        >
-                    </p>
+            <div class="container mx-auto p-6 text-center">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                        Inicia sesión
+                    </h2>
+
+                    <p class="text-gray-400 text-sm">Con tus redes sociales</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 mb-7 gap-2">
+                    <a
+                        href="/auth/google/redirect"
+                        class="flex items-center justify-center hover:bg-blue-600 transition-all md:text-sm duration-300 ease-in-out font-semibold bg-blue-500 flex-none px-3 py-2.5 md:px-4 md:py-2.5 border rounded-md text-white border-gray-300 relative"
+                    >
+                        <span class="absolute left-4">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="15"
+                                height="15"
+                                fill="currentColor"
+                                class="bi bi-google"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"
+                                />
+                            </svg>
+                        </span>
+                        <span>Iniciar sesión con Google</span>
+                    </a>
+                    <a
+                        href="/auth/google/redirect"
+                        class="flex items-center justify-center hover:bg-gray-900 transition-all md:text-sm duration-300 ease-in-out font-semibold bg-black flex-none px-3 py-2.5 md:px-4 md:py-2.5 border rounded-md text-white border-gray-300 relative"
+                    >
+                        <span class="absolute left-4">
+                            <svg
+                                class="w-5 h-5 mr-2 -ml-1"
+                                aria-hidden="true"
+                                focusable="false"
+                                data-prefix="fab"
+                                data-icon="apple"
+                                role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 384 512"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"
+                                ></path>
+                            </svg>
+                        </span>
+                        <span>Iniciar sesión con Apple</span>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-400 text-sm">O con tu email</p>
                 </div>
                 <form @submit.prevent="login" class="text-left">
                     <div class="mb-4">
@@ -94,8 +136,9 @@
                             type="email"
                             id="email"
                             name="email"
+                            placeholder="micorreo@proveedor.com"
                             v-model="form.email"
-                            class="w-full px-5 py-2.5 bg-gray-100 rounded-lg border-none focus:ring-0 text-gray-600"
+                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-0 text-gray-600"
                         />
                         <div
                             v-if="form.errors.email"
@@ -133,7 +176,7 @@
                             >
                             <Link
                                 href="#"
-                                class="text-blue-400 font-semibold text-sm"
+                                class="text-indigo-500 font-medium text-sm"
                                 >Olvidaste tu contraseña?</Link
                             >
                         </div>
@@ -141,8 +184,9 @@
                             type="password"
                             id="password"
                             name="password"
+                            placeholder="••••••••••••"
                             v-model="form.password"
-                            class="w-full px-5 py-2.5 bg-gray-100 rounded-lg border-none focus:ring-0 text-gray-600"
+                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-0 text-gray-600"
                         />
                         <div
                             v-if="form.errors.password"
@@ -200,12 +244,22 @@
                     <div class="mt-10">
                         <button
                             type="submit"
-                            class="w-full px-4 py-3 bg-blue-400 text-white font-semibold rounded-lg hover:bg-blue-500 transition-all duration-300 ease-in-out"
+                            class="w-full px-4 py-3 bg-indigo-500 text-white font-semibold rounded-lg hover:bg-indigo-600 transition-all duration-300 ease-in-out"
                         >
                             Iniciar Sesión
                         </button>
                     </div>
                 </form>
+                <div class="mt-6">
+                    <p class="text-gray-400 text-sm">
+                        Aun no eres miembro?
+                        <Link
+                            href="/user-account/create"
+                            class="text-indigo-400 font-medium"
+                            >Crea una cuenta</Link
+                        >
+                    </p>
+                </div>
             </div>
         </div>
     </div>
