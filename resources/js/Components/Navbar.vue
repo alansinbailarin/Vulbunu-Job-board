@@ -115,11 +115,11 @@
                                     >
                                         {{ user.email }}
                                     </p>
-                                    <Link
+                                    <!-- <Link
                                         href="/dashboard"
                                         class="text-gray-700 font-medium text-sm mt-2"
                                         >Administración</Link
-                                    >
+                                    > -->
                                     <div class="mt-4 font-normal">
                                         <Link
                                             class="text-sm"
@@ -239,11 +239,11 @@
                                 <p class="text-gray-400 text-xs mb-1">
                                     Información del usuario
                                 </p>
-                                <Link
+                                <!-- <Link
                                     href="/dashboard"
                                     class="text-gray-700 text-xs"
                                     >Administración</Link
-                                >
+                                > -->
                                 <div class="mt-2 font-normal">
                                     <Link
                                         class="text-xs"
