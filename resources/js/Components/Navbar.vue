@@ -54,6 +54,7 @@
                                             'text-indigo-500':
                                                 $page.url === '/',
                                         }"
+                                        @click="isMenuOpen = false"
                                         >Inicio</Link
                                     >
                                 </li>
@@ -65,6 +66,7 @@
                                             'text-indigo-500':
                                                 $page.url.includes('/jobs'),
                                         }"
+                                        @click="isMenuOpen = false"
                                         >Trabajos</Link
                                     >
                                 </li>
@@ -76,28 +78,31 @@
                                             'text-indigo-500':
                                                 $page.url.includes('/talents'),
                                         }"
+                                        @click="isMenuOpen = false"
                                         >Talentos</Link
                                     >
                                 </li>
                                 <li>
                                     <Link
-                                        href="/alertas"
+                                        href="#"
                                         class="text-base py-2 px-4 flex"
                                         :class="{
                                             'text-indigo-500':
                                                 $page.url === '/alertas',
                                         }"
+                                        @click="isMenuOpen = false"
                                         >Alertas</Link
                                     >
                                 </li>
                                 <li>
                                     <Link
-                                        href="/salarios"
+                                        href="#"
                                         class="text-base py-2 px-4 flex border-b border-gray-100"
                                         :class="{
                                             'text-indigo-500':
                                                 $page.url === '/salarios',
                                         }"
+                                        @click="isMenuOpen = false"
                                         >Salarios</Link
                                     >
                                 </li>
