@@ -4,7 +4,7 @@
             <div class="w-full bg-blue-500 rounded-lg">
                 <div class="ml-6 mt-4">
                     <h1 class="tracking-widest text-gray-100 font-bold">
-                        midiauno
+                        Primer empleo latam
                     </h1>
                 </div>
 

@@ -6,7 +6,7 @@
             <span class="text-sm text-gray-500 sm:text-center"
                 >© 2023
                 <a href="https://flowbite.com/" class="hover:underline"
-                    >midiauno</a
+                    >Primer empleo latam</a
                 >. Todos los derechos reservados
             </span>
             <ul

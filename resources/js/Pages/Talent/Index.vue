@@ -104,6 +104,12 @@
                         </p>
                     </div>
                 </div>
+                <!-- <div
+                    v-if="talents.data.length"
+                    class="w-full flex justify-center my-8"
+                >
+                    <Pagination :links="talents.links" />
+                </div> -->
             </div>
         </div>
     </div>
@@ -112,6 +118,7 @@
 import Filter from "./Components/Filter.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
+import Pagination from "../../UI/Pagination.vue";
 import { es } from "moment/locale/es";
 
 moment.locale("es");

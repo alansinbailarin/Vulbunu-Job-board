@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mi día uno</title>
+    <title>Primer empleo latam</title>
     @routes
     @vite('resources/js/app.js')
     @inertiaHead
