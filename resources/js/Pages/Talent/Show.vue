@@ -26,8 +26,8 @@
                                     class="text-gray-500 text-xs rounded-md font-medium"
                                     >Miembro desde el
                                     {{
-                                        dayjs(talent.created_at).format(
-                                            "dddd D [de] MMMM [del] YYYY"
+                                        moment(talent.created_at).format(
+                                            "dddd, MMMM Do YYYY"
                                         )
                                     }}
                                 </span>
@@ -347,14 +347,14 @@
                         <li class="mb-3">
                             <time class="text-xs text-gray-400">
                                 {{
-                                    dayjs(education.start_date).format(
-                                        "D [de] MMMM [del] YYYY"
+                                    moment(education.start_date).format(
+                                        "dddd, MMMM Do YYYY"
                                     )
                                 }}
                                 -
                                 {{
-                                    dayjs(education.end_date).format(
-                                        "D [de] MMMM [del] YYYY"
+                                    moment(education.end_date).format(
+                                        "dddd, MMMM Do YYYY"
                                     )
                                 }}
                             </time>
@@ -377,14 +377,14 @@
                         <li class="mb-3">
                             <time class="text-xs text-gray-400"
                                 >{{
-                                    dayjs(job.start_date).format(
-                                        "D [de] MMMM [del] YYYY"
+                                    moment(job.start_date).format(
+                                        "dddd, MMMM Do YYYY"
                                     )
                                 }}
                                 -
                                 {{
-                                    dayjs(job.end_date).format(
-                                        "D [de] MMMM [del] YYYY"
+                                    moment(job.end_date).format(
+                                        "dddd, MMMM Do YYYY"
                                     )
                                 }}</time
                             >
@@ -404,10 +404,10 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import * as dayjs from "dayjs";
-import { es } from "dayjs/locale/es";
+import moment from "moment";
+import { es } from "moment/locale/es";
 
-dayjs.locale("es");
+moment.locale("es");
 
 defineProps({
     talent: Object,
