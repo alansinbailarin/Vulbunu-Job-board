@@ -26,7 +26,8 @@ class TalentController extends Controller
                 ->when($request->input('job_title'), function ($query, $job_title) {
                     $query->where(function ($query) use ($job_title) {
                         $query->where('job_title', 'like', '%' . $job_title . '%')
-                            ->orWhere('about_me', 'like', '%' . $job_title . '%');
+                            ->orWhere('about_me', 'like', '%' . $job_title . '%')
+                            ->orWhere('name', 'like', '%' . $job_title . '%');
                     });
                 })
                 ->when($request->input('location'), function ($query, $location) {
@@ -59,7 +60,8 @@ class TalentController extends Controller
                 ->when($request->input('job_title'), function ($query, $job_title) {
                     $query->where(function ($query) use ($job_title) {
                         $query->where('job_title', 'like', '%' . $job_title . '%')
-                            ->orWhere('about_me', 'like', '%' . $job_title . '%');
+                            ->orWhere('about_me', 'like', '%' . $job_title . '%')
+                            ->orWhere('name', 'like', '%' . $job_title . '%');
                     });
                 })
                 ->when($request->input('location'), function ($query, $location) {

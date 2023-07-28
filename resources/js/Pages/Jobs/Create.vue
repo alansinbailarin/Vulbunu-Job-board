@@ -102,7 +102,16 @@
                         <label for="color" class="block mb-2 font-medium"
                             >Color</label
                         >
-                        <select
+                        <div
+                            class="w-full text-sm px-2 bg-gray-50 py-1.5 rounded-md border border-gray-200"
+                        >
+                            <input
+                                type="color"
+                                class="w-full rounded-md"
+                                v-model="form.color"
+                            />
+                        </div>
+                        <!-- <select
                             id="color"
                             form="createJob"
                             v-model="form.color"
@@ -114,7 +123,7 @@
                             <option value="red">Rojo</option>
                             <option value="indigo">Morado</option>
                             <option value="green">Verde</option>
-                        </select>
+                        </select> -->
                         <div
                             v-if="form.errors.color"
                             class="px-2 py-2 rounded-md"
@@ -728,7 +737,7 @@ const form = useForm({
     title: "",
     category_id: "",
     apply_on: "",
-    color: "",
+    color: "#272727",
     status: "",
     job_modality_id: "",
     workday_id: "",

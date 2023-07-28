@@ -11,8 +11,8 @@
                     <div v-if="job.featured" class="items-center">
                         <div>
                             <span
+                                :style="`color: ${job.color};`"
                                 :class="[
-                                    `text-${job.color}-600`,
                                     'font-medium text-lg md:text-2xl lg:text-3xl flex items-center gap-1',
                                 ]"
                             >
@@ -23,7 +23,7 @@
                             <span
                                 class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1"
                             >
-                                {{ job.user.name }}
+                                {{ job.user.name }} {{ job.user.last_name }}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="14"

@@ -5,15 +5,13 @@
             <div class="ml-4 items-center">
                 <div v-if="job.featured">
                     <span
-                        :class="[
-                            `text-${job.color}-600`,
-                            'font-medium flex items-center gap-1',
-                        ]"
+                        :style="`color: ${job.color};`"
+                        :class="['font-medium flex items-center gap-1']"
                     >
                         {{ job.title }}
                     </span>
                     <span class="text-gray-500 text-sm flex items-center gap-1"
-                        >{{ job.user.name
+                        >{{ job.user.name }} {{ job.user.last_name
                         }}<svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="14"

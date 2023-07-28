@@ -21,20 +21,20 @@ class IndexController extends Controller
             ->where('featured', true)
             ->where('status', 'published')
             ->latest()
-            ->take(9)
+            ->take(6)
             ->get();
 
         $jobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
             ->where('status', 'published')
             ->latest()
-            ->take(9)
+            ->take(6)
             ->get();
 
         $popularJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
             ->where('created_at', '>=', $fechaHace14Dias)
             ->where('status', 'published')
             ->orderBy('clicks', 'desc')
-            ->take(9)
+            ->take(6)
             ->get();
 
         $jobs->transform(function ($job) {

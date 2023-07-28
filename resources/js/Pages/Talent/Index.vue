@@ -49,9 +49,16 @@
                             >
                                 <div>
                                     <img
-                                        class="w-10 h-10 rounded-full object-cover"
+                                        v-if="talent.avatar"
                                         :src="`${talent.avatar}`"
                                         alt=""
+                                        class="w-10 h-10 rounded-full object-cover"
+                                    />
+                                    <img
+                                        v-else
+                                        src="../../../img/no-image.jpeg"
+                                        alt=""
+                                        class="w-10 h-10 rounded-full object-cover"
                                     />
                                 </div>
                                 <div>
@@ -80,8 +87,8 @@
                             <p class="text-gray-500 font-medium text-xs mb-2">
                                 Se unió el
                                 {{
-                                    moment(talent.created_at).format(
-                                        "dddd, MMMM Do YYYY"
+                                    dayjs(talent.created_at).format(
+                                        "dddd D [de] MMMM [del] YYYY"
                                     )
                                 }}
                             </p>
@@ -117,11 +124,9 @@
 <script setup>
 import Filter from "./Components/Filter.vue";
 import { Link } from "@inertiajs/vue3";
-import moment from "moment";
-import Pagination from "../../UI/Pagination.vue";
-import { es } from "moment/locale/es";
-
-moment.locale("es");
+import * as dayjs from "dayjs";
+import { es } from "dayjs/locale/es";
+dayjs.locale("es");
 
 const props = defineProps({
     talents: {
