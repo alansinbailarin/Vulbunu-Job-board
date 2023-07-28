@@ -68,7 +68,9 @@
                 </div>
             </div>
         </div>
-        <div class="md:col-span-2 flex items-center justify-center bg-white">
+        <div
+            class="md:col-span-2 flex mt-5 md:mt-0 md:items-center justify-center bg-white"
+        >
             <div class="container mx-auto p-6 text-center">
                 <div class="mb-6">
                     <h2 class="text-2xl font-bold mb-4 text-gray-800">
