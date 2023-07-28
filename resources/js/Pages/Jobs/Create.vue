@@ -310,7 +310,19 @@
                             </div>
                         </div>
                     </div>
-
+                    <input
+                        type="file"
+                        @input="form.logo = $event.target.files[0]"
+                    />
+                    <div v-if="form.errors.logo" class="px-2 py-2 rounded-md">
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.logo }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="state" class="block mb-2 font-medium"
                             >Estado</label
@@ -346,7 +358,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="city" class="block mb-2 font-medium"
                             >Ciudad</label
@@ -735,6 +746,7 @@ const props = defineProps({
 const form = useForm({
     user_id: props.user_id,
     title: "",
+    logo: null,
     category_id: "",
     apply_on: "",
     color: "#272727",

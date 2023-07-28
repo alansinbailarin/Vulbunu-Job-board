@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('apply_on')->nullable();
             $table->tinyText('color')->nullable();
             $table->boolean('featured')->default(false);
+            $table->string('img_path')->default('');
 
             $table->unsignedBigInteger('clicks')->default(0);
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');

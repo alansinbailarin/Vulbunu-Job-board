@@ -18,6 +18,7 @@ use App\Models\Tag;
 use App\Models\Workday;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use SebastianBergmann\CodeCoverage\Report\Html\Colors;
 use Termwind\Components\Dd;
@@ -165,6 +166,7 @@ class JobController extends Controller
                 'periodicity_id' => 'required_with:min|required_with:max|nullable|integer|exists:periodicities,id',
                 'description' => 'required|string|min:20|max:1000',
                 'extra_info' => 'required|string|min:20|max:1000',
+                'logo' => 'required|mimes:jpg,png,jpeg|max:1024'
             ],
             [
                 'title.required' => 'El titulo es requerido.',
@@ -204,9 +206,15 @@ class JobController extends Controller
                 'description.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
                 'extra_info.required' => 'El campo de información es requerido.',
                 'extra_info.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
-                'extra_info.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.'
+                'extra_info.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
+                'logo.required' => 'El logo es requerido.',
+                'logo.mimes' => 'Solo son aceptados archivos con terminacion JPG, PNG o JPEG.',
+                'logo.max' => 'El logo no debe de pesar mas de 1024 KB.'
             ]
         );
+
+        $folder = "images";
+        $img_path = Storage::disk('s3')->put($folder, $request->logo, 'public');
 
         $slugWithoutNumbers = str_replace(' ', '-', $request->title);
         $slug = $slugWithoutNumbers . '-' . rand(1000, 9999);
@@ -214,6 +222,8 @@ class JobController extends Controller
         $job = Job::create($validateData);
 
         $job->slug = $slug;
+        $job->img_path = $img_path;
+
         $job->save();
 
         $tagIds = $request->input('tag_id', []);

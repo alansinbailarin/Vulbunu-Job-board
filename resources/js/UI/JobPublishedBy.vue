@@ -1,7 +1,11 @@
 <template>
     <div class="flex items-center justify-between">
         <div class="flex items-center">
-            <img src="../../img/nike.jpeg" alt="" class="w-16 rounded-lg" />
+            <img
+                :src="`https://primerempleolat.s3.us-east-2.amazonaws.com/${job.img_path}`"
+                alt=""
+                class="w-16 rounded-lg"
+            />
             <div class="ml-4 items-center">
                 <div v-if="job.featured">
                     <span
