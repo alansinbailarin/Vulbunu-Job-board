@@ -101,7 +101,7 @@
                         <span>Iniciar sesión con Google</span>
                     </a>
                     <a
-                        href="/auth/google/redirect"
+                        href="/auth/facebook/redirect"
                         class="flex items-center justify-center hover:bg-gray-900 transition-all md:text-sm duration-300 ease-in-out font-semibold bg-black flex-none px-3 py-3 md:px-4 rounded-md text-white border-gray-300 relative"
                     >
                         <span class="absolute left-4">

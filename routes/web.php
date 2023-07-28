@@ -21,9 +21,9 @@ use App\Http\Controllers\SocialController;
 */
 
 // Iniciar sesion con otros provedores
-Route::get('/auth/{provider}/redirect', [SocialController::class, 'redirect'])->where('provider', 'google');
+Route::get('/auth/{provider}/redirect', [SocialController::class, 'redirect'])->where('provider', 'google|facebook');
 
-Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->where('provider', 'google');
+Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->where('provider', 'google|facebook');
 
 // Ruta get para la página de inicio
 Route::get('/', [IndexController::class, 'index']);
