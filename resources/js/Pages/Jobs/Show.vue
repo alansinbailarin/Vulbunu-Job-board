@@ -102,7 +102,12 @@
                 {{ job.city.name }}</span
             >
         </div>
-        <div class="mt-4 text-sm px-4">
+        <div class="px-4 mt-2">
+            <time class="text-gray-500 text-sm"
+                >Publicado {{ moment(job.created_at).fromNow() }}</time
+            >
+        </div>
+        <div class="mt-2 text-sm px-4">
             <div class="flex items-center gap-2">
                 <div v-if="job.priority.title == 'Alta'">
                     <p class="text-red-500">
@@ -253,6 +258,10 @@ import Tags from "@/UI/Tags.vue";
 import JobAditionals from "@/Components/JobAditionals.vue";
 import Salary from "@/Components/Salary.vue";
 import { computed } from "vue";
+import moment from "moment";
+import "moment/dist/locale/es";
+
+moment.locale("es");
 
 const props = defineProps({
     job: { type: Object },

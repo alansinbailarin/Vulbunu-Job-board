@@ -3,9 +3,12 @@
         <div class="hidden m-5 md:flex col-span-3">
             <div class="w-full bg-gray-100 rounded-lg">
                 <div class="ml-6 mt-4">
-                    <h1 class="tracking-widest text-blue-500 font-bold">
+                    <Link
+                        href="/"
+                        class="tracking-widest text-blue-500 font-bold"
+                    >
                         Primer empleo latam
-                    </h1>
+                    </Link>
                 </div>
 
                 <div class="p-6">
