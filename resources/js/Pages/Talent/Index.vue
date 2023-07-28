@@ -87,8 +87,8 @@
                             <p class="text-gray-500 font-medium text-xs mb-2">
                                 Se unió el
                                 {{
-                                    dayjs(talent.created_at).format(
-                                        "dddd D [de] MMMM [del] YYYY"
+                                    moment(talent.created_at).format(
+                                        "D [de] MMMM [del] YYYY"
                                     )
                                 }}
                             </p>
@@ -124,9 +124,10 @@
 <script setup>
 import Filter from "./Components/Filter.vue";
 import { Link } from "@inertiajs/vue3";
-import * as dayjs from "dayjs";
-import { es } from "dayjs/locale/es";
-dayjs.locale("es");
+import moment from "moment";
+import "moment/dist/locale/es";
+
+moment.locale("es");
 
 const props = defineProps({
     talents: {
