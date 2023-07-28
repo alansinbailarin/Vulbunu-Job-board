@@ -82,7 +82,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 mb-7 gap-2">
                     <a
                         href="/auth/google/redirect"
-                        class="flex items-center justify-center hover:bg-blue-600 transition-all md:text-sm duration-300 ease-in-out font-semibold bg-blue-500 flex-none px-3 py-2.5 md:px-4 md:py-2.5 border rounded-md text-white border-gray-300 relative"
+                        class="flex items-center justify-center hover:bg-blue-600 transition-all md:text-sm duration-300 ease-in-out font-semibold bg-blue-500 flex-none px-3 py-3 md:px-4 rounded-md text-white border-gray-300 relative"
                     >
                         <span class="absolute left-4">
                             <svg
@@ -102,7 +102,7 @@
                     </a>
                     <a
                         href="/auth/google/redirect"
-                        class="flex items-center justify-center hover:bg-gray-900 transition-all md:text-sm duration-300 ease-in-out font-semibold bg-black flex-none px-3 py-2.5 md:px-4 md:py-2.5 border rounded-md text-white border-gray-300 relative"
+                        class="flex items-center justify-center hover:bg-gray-900 transition-all md:text-sm duration-300 ease-in-out font-semibold bg-black flex-none px-3 py-3 md:px-4 rounded-md text-white border-gray-300 relative"
                     >
                         <span class="absolute left-4">
                             <svg
