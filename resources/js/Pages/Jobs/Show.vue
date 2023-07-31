@@ -10,7 +10,7 @@
                 />
                 <img
                     v-else
-                    src="../../img/no-image.jpeg"
+                    src="../../../img/no-image.jpeg"
                     alt=""
                     class="w-16 md:w-20 lg:w-24 rounded-md object-cover"
                 />
