@@ -42,7 +42,7 @@
                         >Contrata talento</Link
                     >
                 </div>
-                <div class="block md:hidden uppercase">
+                <div class="block md:hidden">
                     <div class="mb-8">
                         <Link
                             href="/publish-job"
