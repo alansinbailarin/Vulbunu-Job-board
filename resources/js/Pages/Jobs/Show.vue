@@ -141,7 +141,7 @@
         </div>
         <div class="mt-2 px-4">
             <div
-                v-if="job.salary"
+                v-if="job.salary?.show"
                 class="flex items-center gap-1 text-sm font-medium text-gray-500 lowercase"
             >
                 <p>{{ job.salary?.currency.symbol }}{{ formattedMinSalary }}</p>

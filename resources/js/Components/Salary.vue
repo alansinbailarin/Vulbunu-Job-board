@@ -1,7 +1,7 @@
 <template>
     <div class="mt-4">
         <div
-            v-if="job.salary"
+            v-if="job.salary?.show == 1"
             class="flex items-center gap-1 text-xs md:text-md font-medium text-gray-500 lowercase"
         >
             <p>{{ job.salary?.currency.symbol }}{{ formattedMinSalary }}</p>

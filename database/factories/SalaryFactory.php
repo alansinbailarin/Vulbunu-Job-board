@@ -24,6 +24,8 @@ class SalaryFactory extends Factory
             'min' => fake()->numberBetween(1000, 10000),
             'max' => fake()->numberBetween(10000, 100000),
 
+            'show' => fake()->boolean(),
+
             'job_id' => Job::all()->random()->id,
             'currency_id' => Currency::all()->random()->id,
             'salary_type_id' => SalaryType::all()->random()->id,
