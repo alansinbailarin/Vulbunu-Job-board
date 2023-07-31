@@ -29,7 +29,17 @@ class SocialController extends Controller
         $nameParts = explode(' ', $fullName);
         $firstName = $nameParts[0]; // "John"
         $lastName = isset($nameParts[1]) ? $nameParts[1] : null;
-        $username = $socialUser->getNickname();
+        $username = $fullName . rand(1, 9999);
+
+        while (User::where('username', $username)->exists()) {
+            $username = $fullName . rand(1, 9999);
+        }
+
+        $username = strtolower(str_replace(' ', '', $username));
+
+        $slug = $username;
+        $avatar = $socialUser->getAvatar();
+
         //if doesn's exist
         if (!$user) {
             // create user
@@ -37,7 +47,8 @@ class SocialController extends Controller
                 'name' => $firstName,
                 'last_name' => $lastName,
                 'username' => $username,
-                'avatar' => $socialUser->avatar,
+                'slug' => $slug,
+                'avatar' => $avatar,
                 'email' => $socialUser->getEmail(),
                 'password' => Hash::make(Str::random(7)),
             ]);

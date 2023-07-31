@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use function PHPSTORM_META\map;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -21,7 +23,12 @@ class User extends Authenticatable
         'name',
         'last_name',
         'username',
+        'slug',
+        'job_title',
+        'avatar',
+        'cover_photo',
         'email',
+        'email_verified_at',
         'password',
         'looking_for_job',
         'phone',
@@ -30,7 +37,10 @@ class User extends Authenticatable
         'birthdate',
         'cv',
         'job_modality_id',
-        'gender_id'
+        'gender_id',
+        'country_id',
+        'state_id',
+        'city_id'
     ];
 
     /**
