@@ -53,7 +53,7 @@
                         <p
                             class="text-gray-500 text-sm md:text-base lg:text-lg"
                         >
-                            {{ job.user.name }}
+                            {{ job.user.name }} {{ job.user.last_name }}
                         </p>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                 </p>
             </div>
         </div>
-        <div class="flex items-center mt-3 px-4">
+        <div class="flex flex-wrap gap-2 items-center mt-3 px-4">
             <p
                 class="bg-gray-200 py-0.5 px-2 text-xs text-gray-600 mr-2 rounded-md"
                 v-for="tag in job.tag"
