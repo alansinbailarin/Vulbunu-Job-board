@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <Navbar :user="user" />
         <main class="">
             <slot>Default</slot>
