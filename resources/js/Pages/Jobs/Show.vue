@@ -3,9 +3,16 @@
         <div class="flex items-center justify-between px-4 pt-4">
             <div class="flex items-center">
                 <img
-                    src="../../../img/nike.jpeg"
+                    v-if="job.img_path"
+                    :src="`https://primerempleolat.s3.us-east-2.amazonaws.com/${job.img_path}`"
                     alt=""
-                    class="w-16 md:w-20 lg:w-24 rounded-lg"
+                    class="w-16 md:w-20 lg:w-24 rounded-md object-cover"
+                />
+                <img
+                    v-else
+                    src="../../img/no-image.jpeg"
+                    alt=""
+                    class="w-16 md:w-20 lg:w-24 rounded-md object-cover"
                 />
                 <div class="ml-4">
                     <div v-if="job.featured" class="items-center">

@@ -39,7 +39,9 @@
                 </div>
                 <div v-else>
                     <h1 class="font-medium">{{ job.title }}</h1>
-                    <p class="text-gray-500 text-sm">{{ job.user.name }}</p>
+                    <p class="text-gray-500 text-sm">
+                        {{ job.user.name }} {{ job.user.last_name }}
+                    </p>
                 </div>
             </div>
         </div>
