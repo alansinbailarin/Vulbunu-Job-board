@@ -5,13 +5,13 @@
                 v-if="job.img_path"
                 :src="`https://primerempleolat.s3.us-east-2.amazonaws.com/${job.img_path}`"
                 alt=""
-                class="w-16 rounded-sm object-cover"
+                class="w-16 rounded-md h-11 object-cover"
             />
             <img
                 v-else
                 src="../../img/no-image.jpeg"
                 alt=""
-                class="rounded-sm w-16 object-cover"
+                class="rounded-md w-16 h-11 object-cover"
             />
             <div class="ml-4 items-center">
                 <div v-if="job.featured">
