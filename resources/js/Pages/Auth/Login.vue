@@ -82,7 +82,7 @@
 
                     <p class="text-gray-400 text-sm">Con tus redes sociales</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 mb-7 gap-2">
+                <div class="mb-7 gap-2">
                     <a
                         href="/auth/google/redirect"
                         class="flex items-center justify-center hover:bg-blue-600 transition-all md:text-sm duration-300 ease-in-out font-semibold bg-blue-500 flex-none px-3 py-3 md:px-4 rounded-md text-white border-gray-300 relative"

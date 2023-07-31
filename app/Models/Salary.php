@@ -12,6 +12,7 @@ class Salary extends Model
     protected $fillable = [
         'min',
         'max',
+        'show',
         'job_id',
         'currency_id',
         'salary_type_id',

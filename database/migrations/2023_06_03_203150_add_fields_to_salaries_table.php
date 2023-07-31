@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('min')->nullable();
             $table->unsignedBigInteger('max')->nullable();
 
-            $table->boolean('show')->default(false);
+            $table->boolean('show')->nullable()->default(false);
 
             $table->unsignedBigInteger('job_id')->nullable();
             $table->unsignedBigInteger('currency_id')->nullable();

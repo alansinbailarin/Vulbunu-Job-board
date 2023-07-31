@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="md:grid grid-cols-6 md:mb-4 gap-4 text-sm">
+                <div class="md:grid grid-cols-9 md:mb-4 gap-4 text-sm">
                     <div class="col-span-4">
                         <label for="apply_on" class="block mb-2 font-medium"
                             >Aplica en:</label
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-1 mt-4 md:mt-0">
+                    <div class="col-span-2 mt-4 md:mt-0">
                         <label for="status" class="block mb-2 font-medium"
                             >Estado del trabajo</label
                         >
@@ -163,6 +163,30 @@
                                 <div>
                                     <p class="text-sm text-red-600 text-left">
                                         {{ form.errors.status }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-2 mt-4 md:mt-0">
+                        <label for="color" class="mb- font-medium">Logo</label>
+                        <div
+                            class="w-full mt-2 text-sm px-2 bg-gray-50 py-1.5 rounded-md border border-gray-200"
+                        >
+                            <input
+                                class="w-full"
+                                type="file"
+                                @input="form.logo = $event.target.files[0]"
+                            />
+                        </div>
+                        <div
+                            v-if="form.errors.logo"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.logo }}
                                     </p>
                                 </div>
                             </div>
@@ -310,19 +334,7 @@
                             </div>
                         </div>
                     </div>
-                    <input
-                        type="file"
-                        @input="form.logo = $event.target.files[0]"
-                    />
-                    <div v-if="form.errors.logo" class="px-2 py-2 rounded-md">
-                        <div class="flex items-center">
-                            <div>
-                                <p class="text-sm text-red-600 text-left">
-                                    {{ form.errors.logo }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="state" class="block mb-2 font-medium"
                             >Estado</label
@@ -489,7 +501,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="md:grid grid-cols-7 mb-4 gap-4 text-sm">
+                <div class="md:grid grid-cols-8 mb-4 gap-4 text-sm">
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="currency" class="block mb-2 font-medium"
                             >Moneda</label
@@ -643,6 +655,34 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-span-1 mt-4 md:mt-0">
+                        <label for="salary_type" class="block mb-2 font-medium"
+                            >Mostrar salario</label
+                        >
+                        <select
+                            id="salary_type"
+                            v-model="form.show"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                        >
+                            <option value="" hidden>
+                                Selecciona una opción
+                            </option>
+                            <option :value="0">No mostrar</option>
+                            <option :value="1">Mostrar</option>
+                        </select>
+                        <div
+                            v-if="form.errors.show"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.show }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="text-sm">
                     <label
@@ -762,6 +802,7 @@ const form = useForm({
     max: "",
     currency_id: "",
     salary_type_id: "",
+    show: "",
     periodicity_id: "",
     description: "",
     extra_info: "",
