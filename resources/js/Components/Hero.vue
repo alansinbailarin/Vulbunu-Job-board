@@ -30,17 +30,33 @@
                     Aquí, encontrarás las mejores ofertas que se ajusten a tus
                     necesidades.
                 </p>
-                <div class="flex">
+                <div class="hidden md:flex gap-4">
                     <Link
                         href="/publish-job"
                         class="bg-gray-950 rounded-md text-xs lg:text-base font-medium text-white py-3 px-5 shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-800"
-                        >Publica una vacante gratis</Link
-                    >
+                        >Publica una vacante gratis
+                    </Link>
                     <Link
                         href="/talents"
-                        class="font-medium text-xs rounded-md lg:text-base text-gray-700 py-3 px-5 border-2 border-gray-600 transition-all duration-300 ease-in-out ml-3"
+                        class="font-medium text-xs rounded-md lg:text-base text-gray-700 py-3 px-5 border-2 border-gray-600 transition-all duration-300 ease-in-out"
                         >Contrata talento</Link
                     >
+                </div>
+                <div class="block md:hidden">
+                    <div class="mb-8">
+                        <Link
+                            href="/publish-job"
+                            class="bg-gray-950 rounded-md text-sm lg:text-base font-medium text-white py-3 px-8 shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-800"
+                            >Publica una vacante gratis
+                        </Link>
+                    </div>
+                    <div>
+                        <Link
+                            href="/talents"
+                            class="font-medium text-sm w-full rounded-md lg:text-base text-gray-700 py-3 px-8 border-2 border-gray-600 transition-all duration-300 ease-in-out"
+                            >Contrata talento</Link
+                        >
+                    </div>
                 </div>
             </div>
             <div class="hidden md:block mx-auto">
