@@ -171,7 +171,7 @@ class JobController extends Controller
                 'extra_info' => 'required|string|min:20|max:1000',
                 'requirements' => 'required|string|min:20|max:1000',
                 'responsabilities' => 'required|string|min:20|max:1000',
-                'logo' => 'required|mimes:jpg,png,jpeg|max:1024'
+                'logo' => 'required|mimes:jpg,png,jpeg|max:2048'
             ],
             [
                 'title.required' => 'El titulo es requerido.',
@@ -222,7 +222,7 @@ class JobController extends Controller
                 'responsabilities.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
                 'logo.required' => 'El logo es requerido.',
                 'logo.mimes' => 'Solo son aceptados archivos con terminacion JPG, PNG o JPEG.',
-                'logo.max' => 'El logo no debe de pesar mas de 1024 KB.'
+                'logo.max' => 'El logo no debe de pesar mas de 2048 KB.'
             ]
         );
 
