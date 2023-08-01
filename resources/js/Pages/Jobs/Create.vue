@@ -12,21 +12,10 @@
             <div
                 class="bg-blue-100 px-4 py-2 rounded-md my-4 text-sm text-blue-700 gap-2"
             >
-                <p class="flex items-center">
+                <p class="">
                     Por favor, recuerda que todos los campos marcados con
-                    asterisco(<span class="text-lg text-red-600"
-                        ><svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="8"
-                            height="8"
-                            fill="currentColor"
-                            class="bi bi-asterisk"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
-                            /></svg></span
-                    >) son campos obligatorios.
+                    asterisco(<span class="text-lg text-red-600">*</span>) son
+                    campos obligatorios.
                 </p>
                 <p class="flex items-center mt-2">
                     Recuerda que por fines de optimización, peso de las imagenes
