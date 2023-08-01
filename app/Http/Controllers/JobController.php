@@ -150,8 +150,8 @@ class JobController extends Controller
                 'user_id' => 'required|integer|exists:users,id',
                 'title' => 'required|string|max:255',
                 'category_id' => 'required|integer|exists:categories,id',
-                'apply_on' => 'url|nullable',
-                'color' => 'required',
+                'apply_on' => 'url|required',
+                'color' => 'nullable',
                 'status' => 'required',
                 'job_modality_id' => 'required|integer|exists:job_modalities,id',
                 'workday_id' => 'required|integer|exists:workdays,id',
@@ -171,7 +171,7 @@ class JobController extends Controller
                 'extra_info' => 'required|string|min:20|max:1000',
                 'requirements' => 'required|string|min:20|max:1000',
                 'responsabilities' => 'required|string|min:20|max:1000',
-                'logo' => 'required|mimes:jpg,png,jpeg|max:2048'
+                'logo' => 'required|mimes:jpg,png,jpeg|max:1024'
             ],
             [
                 'title.required' => 'El titulo es requerido.',
@@ -180,7 +180,7 @@ class JobController extends Controller
                 'category_id.exists' => 'El campo de categoria debe de contener una categoria existente.',
                 'category_id.integer' => 'El campo categoria debe de ser un numero.',
                 'apply_on.url' => 'El campo de aplicación debe de ser un campo valido de url.',
-                'color.required' => 'El campo color es requerido.',
+                'apply_on.required' => 'El campo de aplicación es un campo requerido.',
                 'status.required' => 'El campo estatus es requerido.',
                 'job_modality_id.required' => 'El campo de modalidad es requerido.',
                 'job_modality_id.integer' => 'El campo de modalidad debe de ser numerico',
@@ -222,7 +222,7 @@ class JobController extends Controller
                 'responsabilities.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
                 'logo.required' => 'El logo es requerido.',
                 'logo.mimes' => 'Solo son aceptados archivos con terminacion JPG, PNG o JPEG.',
-                'logo.max' => 'El logo no debe de pesar mas de 2048 KB.'
+                'logo.max' => 'El logo no debe de pesar mas de 1024 KB.'
             ]
         );
 

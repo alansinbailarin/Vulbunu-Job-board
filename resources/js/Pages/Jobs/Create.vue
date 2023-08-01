@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto px-4 mt-4">
-        <div class="my-4 md:my-10">
+        <div class="">
             <h1 class="font-bold text-xl md:text-2xl text-gray-700">
                 Describe el empleo a publicar
             </h1>
@@ -8,6 +8,37 @@
                 Introduce la mayor cantidad de datos acerca de el empleo a
                 publicar para poder hacer match con más aplicantes.
             </p>
+
+            <div
+                class="bg-blue-100 px-4 py-2 rounded-md my-4 text-sm text-blue-700 gap-2"
+            >
+                <p class="flex items-center">
+                    Por favor, recuerda que todos los campos marcados con
+                    asterisco(<span class="text-lg text-red-600"
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="8"
+                            fill="currentColor"
+                            class="bi bi-asterisk"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                            /></svg></span
+                    >) son campos obligatorios.
+                </p>
+                <p class="flex items-center mt-2">
+                    Recuerda que por fines de optimización, peso de las imagenes
+                    no debe de ser mayor a 1 MB.
+                </p>
+                <p class="flex items-center mt-2">
+                    Recuerda usar los campos de texto en formato de lista para
+                    los campos de requerimientos y responsabilidades para
+                    obtener una lista de requerimientos y responsabilidades
+                    mejor adaptada.
+                </p>
+            </div>
         </div>
         <div class="bg-white rounded-md md:p-6 p-3">
             <form name="createJob" @submit.prevent="publish">
@@ -15,9 +46,21 @@
                     <div class="mb-4 col-span-5">
                         <label
                             for="title"
-                            class="block mb-2 font-medium text-left"
-                            >Titulo</label
-                        >
+                            class="flex mb-2 font-medium text-left items-center"
+                            >Titulo
+                            <span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <input
                             type="text"
                             id="title"
@@ -39,9 +82,22 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label for="category" class="block mb-2 font-medium"
-                            >Categoria</label
-                        >
+                        <label
+                            for="category"
+                            class="flex mb-2 font-medium items-center"
+                            >Categoria<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <select
                             form="createJob"
                             id="category"
@@ -75,9 +131,22 @@
                 </div>
                 <div class="md:grid grid-cols-9 md:mb-4 gap-4 text-sm">
                     <div class="col-span-4">
-                        <label for="apply_on" class="block mb-2 font-medium"
-                            >Aplica en:</label
-                        >
+                        <label
+                            for="apply_on"
+                            class="flex items-center mb-2 font-medium"
+                            >Aplica en<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <input
                             type="url"
                             id="apply_on"
@@ -138,9 +207,23 @@
                         </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
-                        <label for="status" class="block mb-2 font-medium"
-                            >Estado del trabajo</label
-                        >
+                        <label
+                            for="status"
+                            class="flex items-center mb-2 font-medium"
+                            >Estado del trabajo<span
+                                class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <select
                             id="status"
                             form="createJob"
@@ -148,7 +231,7 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
-                                Selecciona un estatus
+                                Selecciona un estado
                             </option>
 
                             <option value="draft">Borrador</option>
@@ -169,7 +252,20 @@
                         </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
-                        <label for="color" class="mb- font-medium">Logo</label>
+                        <label for="color" class="flex items-center font-medium"
+                            >Logo<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <div
                             class="w-full mt-2 text-sm px-2 bg-gray-50 py-1.5 rounded-md border border-gray-200"
                         >
@@ -197,9 +293,20 @@
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label
                             for="jobModalities"
-                            class="block mb-2 font-medium"
-                            >Tipo de modalidad</label
-                        >
+                            class="flex items-center mb-2 font-medium"
+                            >Tipo de modalidad<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <select
                             id="jobModalities"
                             form="createJob"
@@ -232,9 +339,22 @@
                         </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
-                        <label for="workdays" class="block mb-2 font-medium"
-                            >Tipo de puesto</label
-                        >
+                        <label
+                            for="workdays"
+                            class="flex items-center mb-2 font-medium"
+                            >Tipo de puesto<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <select
                             id="workdays"
                             form="createJob"
@@ -267,9 +387,22 @@
                         </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
-                        <label for="priority" class="block mb-2 font-medium"
-                            >Prioridad</label
-                        >
+                        <label
+                            for="priority"
+                            class="flex items-center mb-2 font-medium"
+                            >Prioridad<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <select
                             id="priority"
                             form="createJob"
@@ -302,9 +435,22 @@
                         </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
-                        <label for="country" class="block mb-2 font-medium"
-                            >Pais</label
-                        >
+                        <label
+                            for="country"
+                            class="flex items-center mb-2 font-medium"
+                            >Pais<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <select
                             id="country"
                             form="createJob"
@@ -336,9 +482,22 @@
                     </div>
 
                     <div class="col-span-2 mt-4 md:mt-0">
-                        <label for="state" class="block mb-2 font-medium"
-                            >Estado</label
-                        >
+                        <label
+                            for="state"
+                            class="flex items-center mb-2 font-medium"
+                            >Estado<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <select
                             id="state"
                             form="createJob"
@@ -371,9 +530,22 @@
                         </div>
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
-                        <label for="city" class="block mb-2 font-medium"
-                            >Ciudad</label
-                        >
+                        <label
+                            for="city"
+                            class="flex items-center mb-2 font-medium"
+                            >Ciudad<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
                         <select
                             id="city"
                             v-model="selectedCity"
@@ -406,8 +578,24 @@
                     </div>
                 </div>
                 <div class="md:grid grid-cols-7 mb-4 gap-4 text-sm">
-                    <div class="col-span-1">
-                        <p class="font-medium mb-2">Selecciona hasta 6 tags</p>
+                    <div class="col-span-2">
+                        <p class="flex items-center font-medium mb-2">
+                            Selecciona hasta 6 tags
+                            <span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    />
+                                </svg>
+                            </span>
+                        </p>
                         <button
                             @click="open = !open"
                             type="button"
@@ -459,8 +647,20 @@
                                 </ul>
                             </div></Transition
                         >
+                        <div
+                            v-if="form.errors.tag_id"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.tag_id }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-span-6 mt-4 md:mt-0">
+                    <div class="col-span-5 mt-4 md:mt-0">
                         <p class="font-medium mb-2">
                             Tags seleccionados: {{ selectedTagsCount }}
                         </p>
@@ -489,15 +689,6 @@
                                     />
                                 </svg>
                             </button>
-                        </div>
-                    </div>
-                    <div v-if="form.errors.tag_id" class="px-2 py-2 rounded-md">
-                        <div class="flex items-center">
-                            <div>
-                                <p class="text-sm text-red-600 text-left">
-                                    {{ form.errors.tag_id }}
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -687,9 +878,21 @@
                 <div class="text-sm">
                     <label
                         for="description"
-                        class="block mb-2 font-medium text-left"
-                        >Descripción</label
-                    >
+                        class="flex items-center mb-2 font-medium text-left"
+                        >Descripción<span class="text-lg text-red-600"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="8"
+                                height="8"
+                                fill="currentColor"
+                                class="bi bi-asterisk ml-1"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                />
+                            </svg> </span
+                    ></label>
                     <textarea
                         v-model="form.description"
                         id="description"
@@ -712,9 +915,22 @@
                     </div>
                     <label
                         for="extra_info"
-                        class="block mb-2 mt-2 font-medium text-left"
-                        >Información sobre la empresa</label
-                    >
+                        class="flex items-center mb-2 mt-2 font-medium text-left"
+                        >Información sobre la empresa<span
+                            class="text-lg text-red-600"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="8"
+                                height="8"
+                                fill="currentColor"
+                                class="bi bi-asterisk ml-1"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                />
+                            </svg> </span
+                    ></label>
                     <textarea
                         v-model="form.extra_info"
                         id="extra_info"
@@ -737,8 +953,23 @@
                     </div>
                 </div>
                 <div>
-                    <h1 class="my-2 font-medium text-left text-sm">
-                        Requerimientos
+                    <h1
+                        class="my-2 flex items-center font-medium text-left text-sm"
+                    >
+                        Requerimientos<span class="text-lg text-red-600"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="8"
+                                height="8"
+                                fill="currentColor"
+                                class="bi bi-asterisk ml-1"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                />
+                            </svg>
+                        </span>
                     </h1>
                     <CKEditor
                         :editor="ClassicEditor"
@@ -759,8 +990,23 @@
                     </div>
                 </div>
                 <div>
-                    <h1 class="my-2 font-medium text-left text-sm">
-                        Responsabilidades
+                    <h1
+                        class="my-2 flex items-center font-medium text-left text-sm"
+                    >
+                        Responsabilidades<span class="text-lg text-red-600"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="8"
+                                height="8"
+                                fill="currentColor"
+                                class="bi bi-asterisk ml-1"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                />
+                            </svg>
+                        </span>
                     </h1>
                     <CKEditor
                         :editor="ClassicEditor"
@@ -1010,11 +1256,8 @@ const editorConfig = ref({
         "heading",
         "|",
         "bold",
-        "italic",
-        "link",
         "bulletedList",
         "numberedList",
-        "blockQuote",
         "undo",
         "redo",
     ],
