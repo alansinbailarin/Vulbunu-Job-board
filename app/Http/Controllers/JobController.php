@@ -11,6 +11,8 @@ use App\Models\JobModality;
 use App\Models\JobTag;
 use App\Models\Periodicity;
 use App\Models\Priority;
+use App\Models\Requirement;
+use App\Models\Responsability;
 use App\Models\Salary;
 use App\Models\SalaryType;
 use App\Models\State;
@@ -167,6 +169,8 @@ class JobController extends Controller
                 'periodicity_id' => 'required_with:min|required_with:max|nullable|integer|exists:periodicities,id',
                 'description' => 'required|string|min:20|max:1000',
                 'extra_info' => 'required|string|min:20|max:1000',
+                'requirements' => 'required|string|min:20|max:1000',
+                'responsabilities' => 'required|string|min:20|max:1000',
                 'logo' => 'required|mimes:jpg,png,jpeg|max:1024'
             ],
             [
@@ -210,6 +214,12 @@ class JobController extends Controller
                 'extra_info.required' => 'El campo de información es requerido.',
                 'extra_info.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
                 'extra_info.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
+                'requirements.required' => 'El campo de requerimientos es requerido.',
+                'requirements.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
+                'requirements.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
+                'responsabilities.required' => 'El campo de requerimientos es requerido.',
+                'responsabilities.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
+                'responsabilities.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
                 'logo.required' => 'El logo es requerido.',
                 'logo.mimes' => 'Solo son aceptados archivos con terminacion JPG, PNG o JPEG.',
                 'logo.max' => 'El logo no debe de pesar mas de 1024 KB.'
@@ -249,6 +259,19 @@ class JobController extends Controller
                 'tag_id' => $tagId,
             ]);
         }
+
+        $requirements = Requirement::create([
+            'description' => $request->requirements,
+            'job_id' => $job->id,
+        ]);
+
+        $responsabilities = Responsability::create([
+            'description' => $request->responsabilities,
+            'job_id' => $job->id,
+        ]);
+
+        $requirements->save();
+        $responsabilities->save();
 
         return redirect()->route('jobs.index')->with('success', 'Job created successfully.');
     }

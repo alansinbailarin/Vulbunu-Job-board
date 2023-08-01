@@ -183,12 +183,12 @@
                 <h1 class="text-gray-800 text-sm md:text-base font-medium mt-4">
                     Requerimientos
                 </h1>
-                <ul class="space-y-1 text-gray-600 list-disc list-inside">
+                <ul class="">
                     <li
                         class="text-sm md:text-base mt-1"
                         v-for="requirement in job.requirement"
                     >
-                        {{ requirement.description }}
+                        <div v-html="requirement.description"></div>
                     </li>
                 </ul>
             </div>
@@ -196,12 +196,12 @@
                 <h1 class="text-gray-800 text-sm md:text-base font-medium mt-4">
                     Responsabilidades
                 </h1>
-                <ul class="space-y-1 text-gray-600 list-disc list-inside">
+                <ul class="">
                     <li
                         class="text-sm md:text-base mt-1"
                         v-for="responsability in job.responsability"
                     >
-                        {{ responsability.description }}
+                        <div v-html="responsability.description"></div>
                     </li>
                 </ul>
             </div>

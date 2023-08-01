@@ -16,6 +16,9 @@
         "vue": "^3.3.4"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^38.1.1",
+        "@ckeditor/ckeditor5-list": "^38.1.1",
+        "@ckeditor/ckeditor5-vue": "^5.1.0",
         "@inertiajs/vue3": "^1.0.7",
         "@vueuse/components": "^10.2.1",
         "@vueuse/core": "^10.2.1",

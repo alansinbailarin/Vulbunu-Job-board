@@ -736,6 +736,50 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <h1 class="my-2 font-medium text-left text-sm">
+                        Requerimientos
+                    </h1>
+                    <CKEditor
+                        :editor="ClassicEditor"
+                        v-model="editorDataRequirements"
+                        :config="editorConfig"
+                    ></CKEditor>
+                    <div
+                        v-if="form.errors.requirements"
+                        class="px-2 py-2 rounded-md"
+                    >
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.requirements }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="my-2 font-medium text-left text-sm">
+                        Responsabilidades
+                    </h1>
+                    <CKEditor
+                        :editor="ClassicEditor"
+                        v-model="editorDataResponsabilities"
+                        :config="editorConfig"
+                    ></CKEditor>
+                    <div
+                        v-if="form.errors.responsabilities"
+                        class="px-2 py-2 rounded-md"
+                    >
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.responsabilities }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <button
                     class="w-full mt-4 font-medium bg-indigo-500 rounded-md py-2.5 text-white hover:bg-indigo-600 duration-300 ease-in-out"
                     type="submit"
@@ -752,6 +796,8 @@ import { Transition } from "vue";
 import axios from "axios";
 import { useForm } from "@inertiajs/vue3";
 import { vOnClickOutside } from "@vueuse/components";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { component as CKEditor } from "@ckeditor/ckeditor5-vue";
 
 const props = defineProps({
     categories: {
@@ -806,6 +852,8 @@ const form = useForm({
     periodicity_id: "",
     description: "",
     extra_info: "",
+    requirements: "",
+    responsabilities: "",
 });
 
 watch(
@@ -954,6 +1002,52 @@ const selectedCountry = ref("");
 const selectedState = ref("");
 const selectedCity = ref("");
 const tags_id = ref([]);
+const editorDataRequirements = ref("");
+const editorDataResponsabilities = ref("");
+
+const editorConfig = ref({
+    toolbar: [
+        "heading",
+        "|",
+        "bold",
+        "italic",
+        "link",
+        "bulletedList",
+        "numberedList",
+        "blockQuote",
+        "undo",
+        "redo",
+    ],
+    heading: {
+        options: [
+            {
+                model: "paragraph",
+                title: "Paragraph",
+                class: "ck-heading_paragraph",
+            },
+            {
+                model: "heading1",
+                view: "h1",
+                title: "Heading 1",
+                class: "ck-heading_heading1",
+            },
+            {
+                model: "heading2",
+                view: "h2",
+                title: "Heading 2",
+                class: "ck-heading_heading2",
+            },
+        ],
+    },
+});
+
+form.requirements = computed(() => {
+    return editorDataRequirements.value;
+});
+
+form.responsabilities = computed(() => {
+    return editorDataResponsabilities.value;
+});
 
 const closeMenu = () => {
     open.value = false;
@@ -1054,6 +1148,7 @@ const getButtonClass = (value) => {
 </script>
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default {
     layout: MainLayout,
 };
