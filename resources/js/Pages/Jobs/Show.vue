@@ -167,20 +167,20 @@
         </div>
 
         <div class="mt-6 px-4">
-            <h1 class="text-gray-800 text-sm md:text-base font-medium">
+            <h1 class="text-gray-900 text-sm md:text-base font-bold">
                 Sobre la empresa
             </h1>
             <p class="text-gray-600 text-sm md:text-base">
                 {{ job.extra_info }}
             </p>
-            <h1 class="text-gray-800 text-sm md:text-base font-medium mt-2">
+            <h1 class="text-gray-900 text-sm md:text-base font-bold mt-2">
                 Descripcion del empleo
             </h1>
             <p class="text-gray-600 text-sm md:text-base">
                 {{ job.description }}
             </p>
             <div v-if="job.requirement && job.requirement.length > 0">
-                <h1 class="text-gray-800 text-sm md:text-base font-medium mt-4">
+                <h1 class="text-gray-900 text-sm md:text-base font-bold mt-4">
                     Requerimientos
                 </h1>
                 <ul class="">
@@ -188,12 +188,15 @@
                         class="text-sm md:text-base mt-1"
                         v-for="requirement in job.requirement"
                     >
-                        <div v-html="requirement.description"></div>
+                        <div
+                            class="text-gray-700"
+                            v-html="requirement.description"
+                        ></div>
                     </li>
                 </ul>
             </div>
             <div v-if="job.responsability && job.responsability.length > 0">
-                <h1 class="text-gray-800 text-sm md:text-base font-medium mt-4">
+                <h1 class="text-gray-900 text-sm md:text-base font-bold mt-4">
                     Responsabilidades
                 </h1>
                 <ul class="">
@@ -201,7 +204,10 @@
                         class="text-sm md:text-base mt-1"
                         v-for="responsability in job.responsability"
                     >
-                        <div v-html="responsability.description"></div>
+                        <div
+                            class="text-gray-700"
+                            v-html="responsability.description"
+                        ></div>
                     </li>
                 </ul>
             </div>
