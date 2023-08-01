@@ -9,13 +9,13 @@
                             v-if="talent.avatar"
                             :src="`${talent.avatar}`"
                             alt=""
-                            class="rounded-lg md:w-40 md:h-40 object-cover"
+                            class="rounded-md w-96 h-72 md:w-40 md:h-40 object-cover"
                         />
                         <img
                             v-else
                             src="../../../img/no-image.jpeg"
                             alt=""
-                            class="rounded-lg md:w-40 md:h-40 object-cover"
+                            class="rounded-md w-full h-72 md:w-40 md:h-40 object-cover"
                         />
                         <div>
                             <div class="mt-3 md:mt-0 items-center gap-2 mb-1">
@@ -309,6 +309,7 @@
 
                                 <div class="items-center gap-2 flex">
                                     <a
+                                        v-if="talent.cv != null"
                                         href="#"
                                         class="hover:bg-gray-100 border border-dashed mt-2 border-gray-300 text-gray-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
                                     >
@@ -324,6 +325,7 @@
                                         <span>Descargar curriculum</span>
                                     </a>
                                     <Link
+                                        v-if="talent.looking_for_job"
                                         class="hover:bg-indigo-600 mt-2 bg-indigo-500 text-white font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
                                         href="#"
                                         >Contactar</Link

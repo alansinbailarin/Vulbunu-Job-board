@@ -110,11 +110,12 @@
                                     <p class="text-gray-400 text-sm">
                                         Información del usuario
                                     </p>
-                                    <p
+                                    <Link
+                                        :href="`/talents/${user.slug}`"
                                         class="text-gray-700 font-medium text-sm mt-2"
                                     >
                                         {{ user.name }} {{ user.last_name }}
-                                    </p>
+                                    </Link>
                                     <p
                                         class="text-gray-500 font-medium text-sm mt-2"
                                     >
