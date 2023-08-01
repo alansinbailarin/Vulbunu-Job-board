@@ -241,10 +241,20 @@
                                     'bg-white bg-opacity-80 backdrop-filter backdrop-blur transition-all duration-300 ease-in-out':
                                         isTransparent,
                                 }"
-                                class="absolute transition-all ease-in-out duration-300 bg-white w-[11rem] py-3 rounded-md shadow-md p-2 mt-2"
+                                class="absolute transition-all ease-in-out duration-300 bg-white w-[13rem] py-3 rounded-md shadow-md p-2 mt-2"
                             >
                                 <p class="text-gray-400 text-xs mb-1">
                                     Información del usuario
+                                </p>
+                                <Link
+                                    :href="`/talents/${user.slug}`"
+                                    @click="isMenuOpen = false"
+                                    class="text-gray-700 font-medium text-xs mt-2"
+                                >
+                                    {{ user.name }} {{ user.last_name }}
+                                </Link>
+                                <p class="text-gray-500 font-medium text-xs">
+                                    {{ user.email }}
                                 </p>
                                 <!-- <Link
                                     href="/dashboard"
@@ -253,7 +263,7 @@
                                 > -->
                                 <div class="mt-2 font-normal">
                                     <Link
-                                        class="text-xs"
+                                        class="text-xs font-bold text-gray-600"
                                         href="/logout"
                                         method="DELETE"
                                         as="button"

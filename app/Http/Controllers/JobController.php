@@ -22,8 +22,6 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
-use SebastianBergmann\CodeCoverage\Report\Html\Colors;
-use Termwind\Components\Dd;
 
 class JobController extends Controller
 {
