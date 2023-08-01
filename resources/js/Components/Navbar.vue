@@ -112,6 +112,7 @@
                                     </p>
                                     <Link
                                         :href="`/talents/${user.slug}`"
+                                        @click="isMenuOpen = false"
                                         class="text-gray-700 font-medium text-sm mt-2"
                                     >
                                         {{ user.name }} {{ user.last_name }}
