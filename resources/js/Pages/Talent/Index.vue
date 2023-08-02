@@ -37,9 +37,9 @@
             <div class="col-span-3">
                 <div class="md:grid grid-cols-3 gap-3">
                     <div
-                        v-if="talents && talents.length"
+                        v-if="talents && talents.data.length"
                         class="bg-white p-4 rounded-md mb-2 md:mb-0"
-                        v-for="talent in talents"
+                        v-for="talent in talents.data"
                         :key="talent.id"
                     >
                         <div class="flex items-center">
@@ -111,12 +111,12 @@
                         </p>
                     </div>
                 </div>
-                <!-- <div
+                <div
                     v-if="talents.data.length"
                     class="w-full flex justify-center my-8"
                 >
                     <Pagination :links="talents.links" />
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -126,13 +126,12 @@ import Filter from "./Components/Filter.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
 import "moment/dist/locale/es";
+import Pagination from "@/UI/Pagination.vue";
 
 moment.locale("es");
 
 const props = defineProps({
-    talents: {
-        type: Array,
-    },
+    talents: { type: [Array, Object] },
     count: {
         type: Number,
     },

@@ -6,6 +6,7 @@ use App\Models\JobModality;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use Termwind\Components\Dd;
 
 class TalentController extends Controller
 {
@@ -65,7 +66,9 @@ class TalentController extends Controller
                 ->whereNotNull('country_id')
                 ->whereNotNull('state_id')
                 ->whereNotNull('city_id')
-                ->get();
+                ->orderBy('created_at', 'desc')
+                ->paginate()
+                ->withQueryString();
         } else {
             $talents = User::query()
                 ->when($request->input('job_title'), function ($query, $job_title) {
@@ -109,7 +112,9 @@ class TalentController extends Controller
                 ->whereNotNull('country_id')
                 ->whereNotNull('state_id')
                 ->whereNotNull('city_id')
-                ->get();
+                ->orderBy('created_at', 'desc')
+                ->paginate()
+                ->withQueryString();
         }
 
         $jobModalities = JobModality::all();
