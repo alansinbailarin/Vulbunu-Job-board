@@ -54,6 +54,17 @@ class TalentController extends Controller
                 })
                 ->with('jobmodality', 'gender', 'skill', 'language', 'experience', 'education', 'country', 'state', 'city')->where('looking_for_job', true)
                 ->where('id', '!=', auth()->user()->id)
+                ->whereNotNull('name')
+                ->whereNotNull('last_name')
+                ->whereNotNull('username')
+                ->whereNotNull('slug')
+                ->whereNotNull('created_at')
+                ->whereNotNull('email')
+                ->whereNotNull('job_title')
+                ->whereNotNull('about_me')
+                ->whereNotNull('country_id')
+                ->whereNotNull('state_id')
+                ->whereNotNull('city_id')
                 ->get();
         } else {
             $talents = User::query()
@@ -87,6 +98,17 @@ class TalentController extends Controller
                     $query->where('job_modality_id', $jobModality);
                 })
                 ->with('jobmodality', 'gender', 'skill', 'language', 'experience', 'education', 'country', 'state', 'city')->where('looking_for_job', true)
+                ->whereNotNull('name')
+                ->whereNotNull('last_name')
+                ->whereNotNull('username')
+                ->whereNotNull('slug')
+                ->whereNotNull('created_at')
+                ->whereNotNull('email')
+                ->whereNotNull('job_title')
+                ->whereNotNull('about_me')
+                ->whereNotNull('country_id')
+                ->whereNotNull('state_id')
+                ->whereNotNull('city_id')
                 ->get();
         }
 

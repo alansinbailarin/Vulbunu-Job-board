@@ -52,13 +52,13 @@
                                         v-if="talent.avatar"
                                         :src="`${talent.avatar}`"
                                         alt=""
-                                        class="w-10 h-10 rounded-full object-cover"
+                                        class="w-12 h-11 rounded-md object-cover"
                                     />
                                     <img
                                         v-else
                                         src="../../../img/no-image.jpeg"
                                         alt=""
-                                        class="w-10 h-10 rounded-full object-cover"
+                                        class="w-12 h-11 rounded-md object-cover"
                                     />
                                 </div>
                                 <div>

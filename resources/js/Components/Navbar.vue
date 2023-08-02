@@ -107,29 +107,35 @@
                                     >
                                 </li>
                                 <div v-if="user" class="py-2 px-4 text-base">
-                                    <p class="text-gray-400 text-sm">
-                                        Información del usuario
-                                    </p>
                                     <Link
                                         :href="`/talents/${user.slug}`"
                                         @click="isMenuOpen = false"
-                                        class="text-gray-700 font-medium text-sm mt-2"
+                                        class="text-gray-700 font-normal my-2"
                                     >
                                         {{ user.name }} {{ user.last_name }}
+                                        <p
+                                            class="text-gray-500 font-medium text-xs"
+                                        >
+                                            {{ user.email }}
+                                        </p>
                                     </Link>
-                                    <p
-                                        class="text-gray-500 font-medium text-sm mt-2"
-                                    >
-                                        {{ user.email }}
-                                    </p>
-                                    <!-- <Link
-                                        href="/dashboard"
-                                        class="text-gray-700 font-medium text-sm mt-2"
-                                        >Administración</Link
-                                    > -->
-                                    <div class="mt-4 font-normal">
+                                    <div class="my-2">
                                         <Link
-                                            class="text-sm"
+                                            href="#"
+                                            class="text-gray-700 font-normal"
+                                            >Configuración</Link
+                                        >
+                                    </div>
+                                    <div>
+                                        <Link
+                                            href="/dashboard"
+                                            class="text-gray-700 font-normal"
+                                            >Administración</Link
+                                        >
+                                    </div>
+                                    <div class="mt-3 font-normal">
+                                        <Link
+                                            class="font-normal text-gray-700"
                                             href="/logout"
                                             method="DELETE"
                                             as="button"
@@ -236,34 +242,39 @@
                         <Transition v-on-click-outside="closeMenu"
                             ><div
                                 v-show="showUserMenu"
-                                :class="{
-                                    'bg-white': !isTransparent,
-                                    'bg-white bg-opacity-80 backdrop-filter backdrop-blur transition-all duration-300 ease-in-out':
-                                        isTransparent,
-                                }"
                                 class="absolute transition-all ease-in-out duration-300 bg-white w-[13rem] py-3 rounded-md shadow-md p-2 mt-2"
                             >
-                                <p class="text-gray-400 text-xs mb-1">
-                                    Información del usuario
-                                </p>
                                 <Link
                                     :href="`/talents/${user.slug}`"
                                     @click="isMenuOpen = false"
-                                    class="text-gray-700 font-medium text-xs mt-2"
+                                    class="text-gray-700 font-normal mt-2"
                                 >
                                     {{ user.name }} {{ user.last_name }}
+                                    <p
+                                        class="text-gray-500 font-medium text-xs"
+                                    >
+                                        {{ user.email }}
+                                    </p>
                                 </Link>
-                                <p class="text-gray-500 font-medium text-xs">
-                                    {{ user.email }}
-                                </p>
-                                <!-- <Link
-                                    href="/dashboard"
-                                    class="text-gray-700 text-xs"
-                                    >Administración</Link
-                                > -->
+                                <hr class="my-2" />
+                                <div class="mb-1">
+                                    <Link
+                                        href="#"
+                                        class="text-gray-700 font-normal"
+                                        >Configuración</Link
+                                    >
+                                </div>
+                                <div>
+                                    <Link
+                                        href="/dashboard"
+                                        class="text-gray-700 font-normal"
+                                        >Administración</Link
+                                    >
+                                </div>
+                                <hr class="my-2" />
                                 <div class="mt-2 font-normal">
                                     <Link
-                                        class="text-xs font-bold text-gray-600"
+                                        class="font-normal text-gray-700"
                                         href="/logout"
                                         method="DELETE"
                                         as="button"
