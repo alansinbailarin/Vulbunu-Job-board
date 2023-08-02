@@ -22,7 +22,7 @@
                     base de datos de candidatos que quieren recibir alertas
                     diariamente.
                 </p>
-                <form>
+                <form name="subscribeToAlerts">
                     <div class="relative">
                         <div
                             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
@@ -44,8 +44,8 @@
                             </svg>
                         </div>
                         <input
-                            type="search"
-                            id="search"
+                            type="email"
+                            id="email"
                             class="block w-full p-4 pl-10 text-sm text-gray-300 rounded-lg bg-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
                             placeholder="Ingresa tu email..."
                             required
@@ -57,10 +57,29 @@
                             Suscribete
                         </button>
                     </div>
+                    <!-- <div v-if="form.errors.email" class="px-2 py-2 rounded-md">
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.email }}
+                                </p>
+                            </div>
+                        </div>
+                    </div> -->
                 </form>
             </div>
         </div>
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+// import { useForm } from "@inertiajs/vue3";
+
+// const form = useForm({
+//     email: "",
+// });
+
+// const publish = () => {
+//     form.post(route("subscriber.store"));
+// };
+</script>

@@ -18,9 +18,13 @@ class AuthController extends Controller
         if (!Auth::attempt($request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string'
+        ], [
+            'email.required' => 'El campo de email es requerido',
+            'email.email' => 'El campo de email debe de ser un campo valido.',
+            'password.required' => 'El campo de contraseña es requerido',
         ]), true)) {
             throw ValidationException::withMessages([
-                'sessionError' => 'The provided credentials do not match our records.'
+                'sessionError' => 'Las credenciales proporcionadas no coinciden con ningun registro.'
             ]);
         }
 

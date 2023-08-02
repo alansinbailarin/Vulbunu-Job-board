@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Subscriber;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,6 +64,23 @@ class IndexController extends Controller
             'popularJobs' => $popularJobs,
         ]);
     }
+
+    // public function store(Request $request)
+    // {
+    //     $validateEmail = $request->validate([
+    //         'email' => 'required|email|unique:subscribers,email'
+    //     ], [
+    //         'email.required' => 'El campo email es obligatorio',
+    //         'email.email' => 'El campo email debe ser un email válido',
+    //         'email.unique' => 'El email ya se encuentra registrado'
+    //     ]);
+
+    //     $subscriber = Subscriber::create($validateEmail);
+
+    //     $subscriber->save();
+
+    //     return redirect()->route('index')->with('success', 'Subscrito exitosamente.');
+    // }
 
     public function show(Job $job)
     {
