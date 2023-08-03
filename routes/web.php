@@ -27,6 +27,7 @@ Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->
 
 // Ruta get para la página de inicio
 Route::get('/', [IndexController::class, 'index']);
+Route::post('/subscribe', [IndexController::class, 'store'])->name('index.store');
 
 // Rutas para la pagina de los empleos
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
@@ -43,6 +44,8 @@ Route::delete('logout', [AuthController::class, 'destroy'])->name('login.destroy
 
 // Ruta para crear perfil
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store'])->middleware('guest');
+
+Route::get('/user-account/configuration', [UserAccountController::class, 'index'])->name('user-account.index')->middleware('auth');
 
 // Rutas para los talentos
 Route::get('/talents', [TalentController::class, 'index'])->name('talents.index');

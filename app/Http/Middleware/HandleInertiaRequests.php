@@ -61,7 +61,7 @@ class HandleInertiaRequests extends Middleware
                 'city_id' => $request->user()->city_id,
             ] : null,
             'flash' => fn () => [
-                'toasts' => $request->session()->get('toasts'),
+                'success' => session('success')
             ],
         ]);
     }

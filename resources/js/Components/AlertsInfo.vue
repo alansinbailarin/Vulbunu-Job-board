@@ -22,7 +22,7 @@
                     base de datos de candidatos que quieren recibir alertas
                     diariamente.
                 </p>
-                <form name="subscribeToAlerts">
+                <form name="subscribeToAlerts" @submit.prevent="publish">
                     <div class="relative">
                         <div
                             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
@@ -46,6 +46,7 @@
                         <input
                             type="email"
                             id="email"
+                            v-model="form.email"
                             class="block w-full p-4 pl-10 text-sm text-gray-300 rounded-lg bg-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
                             placeholder="Ingresa tu email..."
                             required
@@ -57,15 +58,23 @@
                             Suscribete
                         </button>
                     </div>
-                    <!-- <div v-if="form.errors.email" class="px-2 py-2 rounded-md">
+                    <div v-if="form.errors.email" class="mt-2">
                         <div class="flex items-center">
                             <div>
-                                <p class="text-sm text-red-600 text-left">
+                                <p class="text-sm text-red-500 text-left">
                                     {{ form.errors.email }}
                                 </p>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+                    <div
+                        class="text-green-500 text-sm text-left mt-2"
+                        v-if="$page.props.flash.success"
+                    >
+                        <div class="flex items-center">
+                            <p>{{ $page.props.flash.success }}</p>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -73,13 +82,13 @@
 </template>
 
 <script setup>
-// import { useForm } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 
-// const form = useForm({
-//     email: "",
-// });
+const form = useForm({
+    email: "",
+});
 
-// const publish = () => {
-//     form.post(route("subscriber.store"));
-// };
+const publish = () => {
+    form.post(route("index.store"));
+};
 </script>

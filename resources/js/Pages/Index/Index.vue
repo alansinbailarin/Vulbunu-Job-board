@@ -58,7 +58,7 @@
         </Box>
     </div>
 
-    <!-- <AlertsInfo /> -->
+    <AlertsInfo />
 </template>
 
 <script setup>

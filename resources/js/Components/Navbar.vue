@@ -121,7 +121,7 @@
                                     </Link>
                                     <div class="my-2">
                                         <Link
-                                            href="#"
+                                            href="/user-account/configuration"
                                             class="text-gray-700 font-normal"
                                             >Configuración</Link
                                         >
@@ -259,7 +259,7 @@
                                 <hr class="my-2" />
                                 <div class="mb-1">
                                     <Link
-                                        href="#"
+                                        href="/user-account/configuration"
                                         class="text-gray-700 font-normal"
                                         >Configuración</Link
                                     >

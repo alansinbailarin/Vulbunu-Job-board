@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class UserAccountController extends Controller
 {
+    public function index()
+    {
+        return inertia('UserAccount/Index');
+    }
+
     public function create()
     {
         return inertia('UserAccount/Create');
@@ -25,14 +29,26 @@ class UserAccountController extends Controller
             $username = $baseUsername . rand(1, 9999);
         }
 
-        $validatedData = $request->validate([
-            'name' => 'required|string',
-            'last_name' => 'required|string',
-            'username' => 'string|unique:users',
-            'slug' => 'string|unique:users',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|min:8|confirmed|string'
-        ]);
+        $validatedData = $request->validate(
+            [
+                'name' => 'required|string',
+                'last_name' => 'required|string',
+                'username' => 'string|unique:users',
+                'slug' => 'string|unique:users',
+                'email' => 'required|string|email|unique:users',
+                'password' => 'required|min:8|confirmed|string'
+            ],
+            [
+                'name.required' => 'El nombre es un campo requerido',
+                'last_name.required' => 'El apellido es un campo requerido',
+                'email.required' => 'El correo electrónico es un campo requerido',
+                'email.email' => 'El correo electrónico debe ser válido',
+                'email.unique' => 'El correo electrónico ya está en uso',
+                'password.required' => 'La contraseña es un campo requerido',
+                'password.min' => 'La contraseña debe tener al menos 8 caracteres',
+                'password.confirmed' => 'Las contraseñas no coinciden',
+            ]
+        );
 
         $username = strtolower(str_replace(' ', '', $username));
         $slug = $username;

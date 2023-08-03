@@ -65,22 +65,22 @@ class IndexController extends Controller
         ]);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $validateEmail = $request->validate([
-    //         'email' => 'required|email|unique:subscribers,email'
-    //     ], [
-    //         'email.required' => 'El campo email es obligatorio',
-    //         'email.email' => 'El campo email debe ser un email válido',
-    //         'email.unique' => 'El email ya se encuentra registrado'
-    //     ]);
+    public function store(Request $request)
+    {
+        $validateEmail = $request->validate([
+            'email' => 'required|email|unique:subscribers,email'
+        ], [
+            'email.required' => 'El campo email es obligatorio',
+            'email.email' => 'El campo email debe ser un email válido',
+            'email.unique' => 'El email ya se encuentra registrado'
+        ]);
 
-    //     $subscriber = Subscriber::create($validateEmail);
+        $subscriber = Subscriber::create($validateEmail);
 
-    //     $subscriber->save();
+        $subscriber->save();
 
-    //     return redirect()->route('index')->with('success', 'Subscrito exitosamente.');
-    // }
+        return redirect()->back()->with('success', 'Te has suscrito correctamente');
+    }
 
     public function show(Job $job)
     {
