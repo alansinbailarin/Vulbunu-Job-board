@@ -31,7 +31,7 @@ Route::post('/subscribe', [IndexController::class, 'store'])->name('index.store'
 
 // Rutas para la pagina de los empleos
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('/jobs/{job}', [IndexController::class, 'show']);
+Route::get('/jobs/{job}', [IndexController::class, 'show'])->name('jobs.show');
 Route::get('/publish-job', [JobController::class, 'create'])->name('jobs.create')->middleware('auth');
 Route::post('/publish-job', [JobController::class, 'store'])->name('jobs.store')->middleware('auth');
 

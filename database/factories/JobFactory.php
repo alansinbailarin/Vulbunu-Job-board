@@ -26,6 +26,7 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
+            'uuid' => fake()->uuid(),
             'title' => fake()->jobTitle(),
             'slug' => fake()->slug(),
             'description' => fake()->paragraph(),

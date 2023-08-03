@@ -1,9 +1,9 @@
 <template>
     <form action="" @submit.prevent="filter">
         <div
-            class="bg-white rounded-md p-4 my-4 grid grid-cols-2 md:grid-cols-8 items-center gap-2"
+            class="bg-white rounded-md p-4 my-4 grid grid-cols-2 md:grid-cols-10 items-center gap-2"
         >
-            <div class="relative text-gray-400 col-span-2">
+            <div class="relative text-gray-400 col-span-2 md:col-span-4">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@
                 <input
                     v-model="filterForm.job_title"
                     type="search"
-                    placeholder="Palabra clave, titulo de trabajo..."
+                    placeholder="Nombre, palabra clave, titulo de trabajo..."
                     class="placeholder:text-gray-400 pl-8 text-gray-600 bg-gray-100 border border-gray-200 w-full rounded-md px-3 focus:ring-1 ring-indigo-300 text-sm"
                 />
             </div>

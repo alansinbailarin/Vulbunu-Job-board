@@ -20,7 +20,9 @@
             </svg>
             <span class="sr-only">Check icon</span>
         </div>
-        <div class="ml-3 text-sm font-normal">{{ props.message }}.</div>
+        <div class="ml-3 text-sm font-normal">
+            <p v-html="props.message"></p>
+        </div>
         <button
             @click="show = false"
             type="button"
@@ -61,6 +63,6 @@ const show = ref(true);
 onMounted(() => {
     setTimeout(() => {
         show.value = false;
-    }, 4000);
+    }, 10000);
 });
 </script>

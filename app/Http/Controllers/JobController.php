@@ -42,7 +42,8 @@ class JobController extends Controller
             ->when($request->input('title'), function ($query, $title) {
                 $query->where(function ($query) use ($title) {
                     $query->where('title', 'like', '%' . $title . '%')
-                        ->orWhere('description', 'like', '%' . $title . '%');
+                        ->orWhere('description', 'like', '%' . $title . '%')
+                        ->orWhere('uuid', 'like', '%' . $title . '%');
                 });
             })
             ->when($request->input('location'), function ($query, $location) {
@@ -272,6 +273,8 @@ class JobController extends Controller
         $requirements->save();
         $responsabilities->save();
 
-        return redirect()->route('jobs.index')->with('success', 'Job created successfully.');
+        $successMessage = 'El empleo fue publicado satisfactoriamente, ID: <a class="text-blue-600 font-semibold underline" href="' . route('jobs.show', $job->slug) . '">' . $job->id . '</a>';
+
+        return redirect()->route('jobs.index')->with('success', $successMessage);
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <form action="" @submit.prevent="filter">
+    <form @submit.prevent="filter">
         <div
             class="bg-white rounded-md p-4 my-4 grid grid-cols-2 md:grid-cols-12 items-center gap-2"
         >
@@ -21,7 +21,7 @@
                 <input
                     v-model="filterForm.title"
                     type="search"
-                    placeholder="Palabra clave, titulo de trabajo..."
+                    placeholder="Id, palabra clave, titulo de trabajo..."
                     class="placeholder:text-gray-400 pl-8 text-gray-600 bg-gray-100 border border-gray-200 w-full rounded-md px-3 focus:ring-1 ring-indigo-300 text-sm"
                 />
             </div>

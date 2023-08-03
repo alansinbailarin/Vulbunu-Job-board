@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Tag;
+use Ramsey\Uuid\Uuid;
 
 class Job extends Model
 {
@@ -12,6 +13,7 @@ class Job extends Model
 
     protected $fillable =
     [
+        'uuid',
         'title',
         'slug',
         'description',
@@ -31,6 +33,18 @@ class Job extends Model
         'extra_info',
         'color'
     ];
+
+    protected $uuidVersion = 4;
+
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = Uuid::uuid4()->toString();
+        });
+    }
 
     public function user()
     {
