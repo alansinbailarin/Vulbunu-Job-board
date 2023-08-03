@@ -1,6 +1,7 @@
 <template>
     <div class="">
         <Navbar :user="user" />
+        <ToastList />
         <main class="">
             <slot>Default</slot>
         </main>
@@ -11,7 +12,8 @@
 <script setup>
 import Navbar from "@/Components/Navbar.vue";
 import Footer from "../Components/Footer.vue";
-import { computed } from "vue";
+import ToastList from "../Components/ToastList.vue";
+import { computed, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
 const page = usePage();

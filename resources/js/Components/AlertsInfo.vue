@@ -67,14 +67,6 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="text-green-500 text-sm text-left mt-2"
-                        v-if="$page.props.flash.success"
-                    >
-                        <div class="flex items-center">
-                            <p>{{ $page.props.flash.success }}</p>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
