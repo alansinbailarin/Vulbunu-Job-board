@@ -1,7 +1,7 @@
 <template>
-    <div class="fixed w-full">
+    <div class="fixed right-4 top-24 md:right-24 z-50">
         <TransitionGroup
-            class="right-4 md:top-24 md:right-24 z-50 w-full max-w-xs"
+            class=""
             enter-from-class="translate-x-full opacity-0"
             enter-active-class="duration-500"
             leave-active-class="duration-500"

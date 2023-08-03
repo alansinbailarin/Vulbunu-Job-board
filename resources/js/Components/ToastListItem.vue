@@ -1,7 +1,7 @@
 <template>
     <div
         v-show="show"
-        class="flex md:px-24 items-center p-4 mb-4 text-gray-500 bg-white shadow"
+        class="flex rounded-md items-center p-4 mb-4 text-gray-500 bg-white shadow"
         role="alert"
     >
         <div

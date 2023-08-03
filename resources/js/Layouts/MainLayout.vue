@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <Navbar :user="user" />
-        <ToastList />
+        <ToastList class="" />
         <main class="">
             <slot>Default</slot>
         </main>
