@@ -61,13 +61,13 @@
                                         v-if="talent.avatar"
                                         :src="`${talent.avatar}`"
                                         alt=""
-                                        class="w-12 h-11 rounded-md object-cover"
+                                        class="w-12 h-11 rounded-full object-cover"
                                     />
                                     <img
                                         v-else
                                         src="../../../img/no-image.jpeg"
                                         alt=""
-                                        class="w-12 h-11 rounded-md object-cover"
+                                        class="w-12 h-11 rounded-full object-cover"
                                     />
                                 </div>
                                 <div>
@@ -105,7 +105,7 @@
                                 v-if="talent.about_me"
                                 class="text-gray-500 text-xs"
                             >
-                                {{ talent.about_me }}
+                                {{ talent.shortDescription }}...
                             </p>
                             <p v-else class="text-gray-500 text-xs">
                                 Esta persona no cuenta con una descripción

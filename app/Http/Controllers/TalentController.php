@@ -121,6 +121,10 @@ class TalentController extends Controller
 
         $jobModalities = JobModality::all();
         $count = User::where('looking_for_job', true)->count();
+        $talents->transform(function ($talent) {
+            $talent->shortDescription = substr($talent->about_me, 0, 120);
+            return $talent;
+        });
 
         return inertia('Talent/Index', [
             'talents' => $talents,

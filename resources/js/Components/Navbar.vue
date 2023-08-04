@@ -82,7 +82,7 @@
                                         >Talentos</Link
                                     >
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <Link
                                         href="#"
                                         class="text-base py-2 px-4 flex"
@@ -93,7 +93,7 @@
                                         @click="isMenuOpen = false"
                                         >Alertas</Link
                                     >
-                                </li>
+                                </li> -->
                                 <li>
                                     <Link
                                         href="#"
@@ -209,7 +209,7 @@
                         }"
                         >Talentos</Link
                     >
-                    <Link href="#">Alertas</Link>
+                    <!-- <Link href="#">Alertas</Link> -->
                     <Link href="#">Salarios</Link>
                 </div>
                 <div
