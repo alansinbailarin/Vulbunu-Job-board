@@ -19,6 +19,7 @@ use App\Models\State;
 use App\Models\Tag;
 use App\Models\Workday;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -228,15 +229,13 @@ class JobController extends Controller
 
         $folder = "images";
         $img_path = Storage::disk('s3')->put($folder, $request->logo, 'public');
-
         $slugWithoutNumbers = str_replace(' ', '-', $request->title);
         $slug = $slugWithoutNumbers . '-' . rand(1000, 9999);
-
         $job = Job::create($validateData);
-
+        $deathline = Carbon::now()->addDays($job->featured ? 45 : 25);
         $job->slug = $slug;
         $job->img_path = $img_path;
-
+        $job->deathline = $deathline;
         $job->save();
 
         $tagIds = $request->input('tag_id', []);

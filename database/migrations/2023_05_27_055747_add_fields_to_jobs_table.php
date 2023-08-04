@@ -21,6 +21,7 @@ return new class extends Migration
             $table->tinyText('color')->nullable();
             $table->boolean('featured')->default(false);
             $table->string('img_path')->default('');
+            $table->string('deathline')->nullable();
 
             $table->unsignedBigInteger('clicks')->default(0);
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
