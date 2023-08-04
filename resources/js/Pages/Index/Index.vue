@@ -1,10 +1,17 @@
 <template>
+    <Head title="Premlat - Inicio">
+        <meta
+            name="description"
+            content="Busca en nuestra basta lista de empleos publicados diariamente y de talentos disponibles, encuentra el que mejor se adapte a ti."
+        />
+    </Head>
     <Hero />
     <LatesFeaturedJobs />
     <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"
     >
         <Box
+            :style="isJobFeatured(featuredJob)"
             class="mx-4"
             v-for="featuredJob in featuredJobs"
             :key="featuredJob.id"
@@ -26,7 +33,12 @@
     <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"
     >
-        <Box class="mx-4" v-for="job in jobs" :key="job.id">
+        <Box
+            :style="isJobFeatured(job)"
+            class="mx-4"
+            v-for="job in jobs"
+            :key="job.id"
+        >
             <Link :href="`/jobs/${job.slug}`">
                 <JobPublishedBy :job="job" /><JobAditionals :job="job" />
                 <JobInfo :job="job" />
@@ -44,6 +56,7 @@
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"
     >
         <Box
+            :style="isJobFeatured(popularJob)"
             class="mx-4"
             v-for="popularJob in popularJobs"
             :key="popularJob.id"
@@ -76,11 +89,18 @@ import FindCandidates from "@/Components/FindCandidates.vue";
 import SalaryInfo from "@/Components/SalaryInfo.vue";
 import MoreViewedJobs from "@/Components/MoreViewedJobs.vue";
 import AlertsInfo from "@/Components/AlertsInfo.vue";
+import { Head } from "@inertiajs/vue3";
+import { computed } from "vue";
 
 defineProps({
     jobs: { type: Array },
     featuredJobs: { type: Array },
     popularJobs: { type: Array },
+});
+const isJobFeatured = computed(function () {
+    return (job) => {
+        return job.featured === 1 ? `border: 1px dashed ${job.color};` : "";
+    };
 });
 </script>
 

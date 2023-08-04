@@ -1,4 +1,13 @@
 <template>
+    <div>
+        <Head :title="`${count} Talentos disponibles`">
+            <meta
+                name="description"
+                content="Explora nuestra lista de talentos disponibles y encuentra candidatos calificados para tus necesidades de contratación. Encuentra profesionales en diversas áreas listos para contribuir a tu equipo."
+            />
+        </Head>
+    </div>
+
     <div class="container mx-auto my-4 px-4">
         <div
             class="bg-gradient-to-r to-gray-800 from-indigo-950 p-6 rounded-md"
@@ -127,6 +136,7 @@ import { Link } from "@inertiajs/vue3";
 import moment from "moment";
 import "moment/dist/locale/es";
 import Pagination from "@/UI/Pagination.vue";
+import { Head } from "@inertiajs/vue3";
 
 moment.locale("es");
 

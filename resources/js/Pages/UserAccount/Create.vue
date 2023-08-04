@@ -1,4 +1,11 @@
 <template>
+    <Head title="Premlat - Registro">
+        <meta
+            name="description"
+            content="Únete a la comunidad de Premlat y comienza a explorar oportunidades laborales. Regístrate para acceder a una amplia gama de trabajos y conectarte con empresas en búsqueda de talento como tú."
+        />
+    </Head>
+
     <div class="min-h-screen bg-white grid md:grid-cols-5">
         <div class="hidden m-5 md:flex col-span-3">
             <div class="w-full bg-gray-100 rounded-lg">
@@ -342,6 +349,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Head } from "@inertiajs/vue3";
 
 const opinions = [
     {

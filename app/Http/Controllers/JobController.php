@@ -90,12 +90,15 @@ class JobController extends Controller
             return $job;
         });
 
+        $count = Job::where('status', 'published')->count();
+
         return Inertia::render('Jobs/Index', [
             'jobs' => $jobs,
             'categories' => $categories,
             'jobModalities' => $jobModalities,
             'workdays' => $workdays,
             'filters' => $filters,
+            'count' => $count,
         ]);
     }
 

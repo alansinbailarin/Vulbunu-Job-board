@@ -120,7 +120,7 @@ class TalentController extends Controller
         }
 
         $jobModalities = JobModality::all();
-        $count = $talents->count();
+        $count = User::where('looking_for_job', true)->count();
 
         return inertia('Talent/Index', [
             'talents' => $talents,

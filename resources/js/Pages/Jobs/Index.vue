@@ -1,4 +1,12 @@
 <template>
+    <div>
+        <Head :title="`${count} Trabajos para ti`">
+            <meta
+                name="description"
+                content="Busca en nuestra basta lista de empleos publicados diariamente, encuentra el que mejor se adapte a ti."
+            />
+        </Head>
+    </div>
     <div class="container mx-auto px-4 mt-4">
         <div
             class="bg-gradient-to-r to-gray-800 from-indigo-950 p-6 rounded-md"
@@ -37,6 +45,7 @@
             <div class="col-span-3">
                 <div class="md:grid grid-cols-3 gap-3">
                     <Box
+                        :style="isJobFeatured(job)"
                         v-if="jobs && jobs.data.length"
                         class="mb-4"
                         v-for="job in jobs.data"
@@ -77,6 +86,8 @@ import JobAditionals from "@/Components/JobAditionals.vue";
 import Salary from "@/Components/Salary.vue";
 import Filters from "./Components/Filters.vue";
 import Pagination from "../../UI/Pagination.vue";
+import { Head } from "@inertiajs/vue3";
+import { computed } from "vue";
 
 const props = defineProps({
     jobs: { type: [Array, Object] },
@@ -84,6 +95,13 @@ const props = defineProps({
     jobModalities: { type: Array },
     workdays: { type: Array },
     filters: { type: Object },
+    count: { type: Number },
+});
+
+const isJobFeatured = computed(function () {
+    return (job) => {
+        return job.featured === 1 ? `border: 1px dashed ${job.color};` : "";
+    };
 });
 </script>
 

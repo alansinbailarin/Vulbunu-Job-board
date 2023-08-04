@@ -249,7 +249,11 @@
             <div
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"
             >
-                <Box v-for="similar in similares" :key="similar.id">
+                <Box
+                    :style="isJobFeatured(similar)"
+                    v-for="similar in similares"
+                    :key="similar.id"
+                >
                     <Link :href="`/jobs/${similar.slug}`">
                         <JobPublishedBy :job="similar" />
                         <JobAditionals :job="similar" />
@@ -305,6 +309,12 @@ const formattedMaxSalary = computed(() =>
         maximumFractionDigits: 2,
     })
 );
+
+const isJobFeatured = computed(function () {
+    return (job) => {
+        return job.featured === 1 ? `border: 1px dashed ${job.color};` : "";
+    };
+});
 </script>
 
 <script>
