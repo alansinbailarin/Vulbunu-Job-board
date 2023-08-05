@@ -29,8 +29,10 @@ class ChangeJobStatus extends Command
         $jobs = Job::where('status', 'published')->get();
 
         foreach ($jobs as $job) {
-            if (strtotime($job->deathline) < time()) {
-                $job->update(['status' => 'archived']);
+            if ($job->deathline != null) {
+                if (strtotime($job->deathline) < time()) {
+                    $job->update(['status' => 'archived']);
+                }
             }
         }
     }
