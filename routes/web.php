@@ -46,10 +46,12 @@ Route::delete('logout', [AuthController::class, 'destroy'])->name('login.destroy
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store'])->middleware('guest');
 
 Route::get('/user-account/configuration', [UserAccountController::class, 'index'])->name('user-account.index')->middleware('auth');
+Route::put('/user-account/configuration', [UserAccountController::class, 'update'])->name('user-account.update')->middleware('auth');
+Route::delete('/user-account/configuration', [UserAccountController::class, 'deleteImage'])->name('user-account.destroy')->middleware('auth');
 
 // Rutas para los talentos
 Route::get('/talents', [TalentController::class, 'index'])->name('talents.index');
-Route::get('/talents/{talent}', [TalentController::class, 'show']);
+Route::get('/talents/{talent}', [TalentController::class, 'show'])->name('talents.show');
 
 // Admin dashboard
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth');

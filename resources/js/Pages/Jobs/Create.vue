@@ -1016,7 +1016,9 @@
                     </div>
                 </div>
                 <button
-                    class="w-full mt-4 font-medium bg-indigo-500 rounded-md py-2.5 text-white hover:bg-indigo-600 duration-300 ease-in-out"
+                    class="bg-indigo-600 w-full mt-4 rounded-md px-4 py-2 text-white font-semibold hover:bg-indigo-500 transition duration-200 ease-in-out"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
                     type="submit"
                 >
                     Publicar empleo
