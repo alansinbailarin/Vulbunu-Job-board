@@ -113,55 +113,18 @@ class UserAccountController extends Controller
             $user->avatar = Storage::disk('s3')->url($filePath);
         }
 
-        if ($user->name != $validatedData['name']) {
-            $user->name = $validatedData['name'];
 
-            $changes = true;
-        }
+        $user->name = $validatedData['name'];
+        $user->last_name = $validatedData['last_name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->birthdate = $validatedData['birthdate'];
+        $user->about_me = $validatedData['about_me'];
+        $user->slug = $validatedData['slug'];
 
-        if ($user->last_name != $validatedData['last_name']) {
-            $user->last_name = $validatedData['last_name'];
+        $user->save();
 
-            $changes = true;
-        }
-
-        if ($user->username != $validatedData['username']) {
-            $user->username = $validatedData['username'];
-
-            $changes = true;
-        }
-
-        if ($user->email != $validatedData['email']) {
-            $user->email = $validatedData['email'];
-
-            $changes = true;
-        }
-
-        if ($user->birthdate != $validatedData['birthdate']) {
-            $user->birthdate = $validatedData['birthdate'];
-
-            $changes = true;
-        }
-
-        if ($user->about_me != $validatedData['about_me']) {
-            $user->about_me = $validatedData['about_me'];
-
-            $changes = true;
-        }
-
-        if ($user->slug != $validatedData['slug']) {
-            $user->slug = $validatedData['slug'];
-
-            $changes = true;
-        }
-
-        if ($changes) {
-            $user->save();
-
-            return redirect()->back()->with('success', 'Perfil actualizado correctamente');
-        } else {
-            return redirect()->back()->with('success', 'No se han realizado cambios');
-        }
+        return redirect()->back()->with('success', 'Perfil actualizado correctamente');
     }
 
     public function deleteImage()
