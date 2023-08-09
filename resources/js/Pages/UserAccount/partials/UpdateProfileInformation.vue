@@ -48,7 +48,7 @@
                 <button
                     v-if="user.avatar"
                     class="mt-2 border-2 border-red-500 px-3 py-1 rounded-md text-red-500 text-sm"
-                    @click.prevent="deletePhoto"
+                    @click="showAlert"
                 >
                     Eliminar imagen
                 </button>
@@ -278,6 +278,25 @@
 <script setup>
 import { useForm, router } from "@inertiajs/vue3";
 import { defineProps, ref } from "vue";
+import Swal from "sweetalert2";
+
+const showAlert = () => {
+    Swal.fire({
+        title: "Seguro que deseas eliminar tu imagen de perfil?",
+        text: "No podrás revertir esta acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "0E70FF",
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            deletePhoto();
+        } else if (result.isDenied) {
+            Swal.fire("Tus cambios no se han guardado", "", "info");
+        }
+    });
+};
 
 const photoPreview = ref(null);
 const photoInput = ref(null);
