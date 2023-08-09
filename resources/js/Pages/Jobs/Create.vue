@@ -1028,12 +1028,18 @@
                 </div>
                 <button
                     class="bg-indigo-600 w-full mt-4 rounded-md px-4 py-2 text-white font-semibold hover:bg-indigo-500 transition duration-200 ease-in-out"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
+                    :class="{ 'opacity-25': form.processing || !form.isDirty }"
+                    :disabled="form.processing || !form.isDirty"
                     type="submit"
                 >
                     Publicar empleo
                 </button>
+                <div
+                    class="text-center mt-1 text-sm text-orange-500"
+                    v-if="form.isDirty"
+                >
+                    Hay cambios sin guardar
+                </div>
             </form>
         </div>
     </div>
