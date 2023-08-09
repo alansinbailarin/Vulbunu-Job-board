@@ -264,7 +264,10 @@
                 >
                     Guardar cambios
                 </button>
-                <div class="text-sm text-orange-500" v-if="form.isDirty">
+                <div
+                    class="text-sm md:text-left text-center mt-1 text-orange-500"
+                    v-if="form.isDirty"
+                >
                     Hay cambios sin guardar
                 </div>
             </div>

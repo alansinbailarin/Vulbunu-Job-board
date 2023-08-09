@@ -12,7 +12,7 @@
                 <div
                     class="max-w-screen-xl md:hidden flex flex-wrap items-center justify-between mx-auto"
                 >
-                    <Link href="/" class=""
+                    <Link href="/" class="" @click="isMenuOpen = false"
                         ><span
                             class="font-bold text-transparent text-xl bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-600"
                         >
@@ -122,6 +122,7 @@
                                     <div class="my-2">
                                         <Link
                                             href="/user-account/configuration"
+                                            @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
                                             >Configuración</Link
                                         >
@@ -129,6 +130,7 @@
                                     <div>
                                         <Link
                                             href="/dashboard"
+                                            @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
                                             >Administración</Link
                                         >

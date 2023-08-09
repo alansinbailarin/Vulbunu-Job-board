@@ -1034,12 +1034,6 @@
                 >
                     Publicar empleo
                 </button>
-                <div
-                    class="text-center mt-1 text-sm text-orange-500"
-                    v-if="form.isDirty"
-                >
-                    Hay cambios sin guardar
-                </div>
             </form>
         </div>
     </div>
