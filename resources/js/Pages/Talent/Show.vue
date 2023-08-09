@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <Head :title="`${talent.name} ${talent.last_name}`"></Head>
+    </div>
     <div class="container mx-auto p-4">
         <h1 class="text-xl font-semibold mb-2">Perfil del usuario</h1>
         <div class="bg-white rounded-md mb-4">
@@ -405,7 +408,7 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, Head } from "@inertiajs/vue3";
 import moment from "moment";
 import "moment/dist/locale/es";
 

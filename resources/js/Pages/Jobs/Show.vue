@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <Head :title="`${job.title}`"> </Head>
+    </div>
     <div class="container mx-auto">
         <div class="flex items-center justify-between px-4 pt-4">
             <div class="flex items-center">
@@ -268,7 +271,7 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, Head } from "@inertiajs/vue3";
 import JobInfo from "../../Components/JobInfo.vue";
 import Box from "@/UI/Box.vue";
 import JobPublishedBy from "@/UI/JobPublishedBy.vue";

@@ -1,4 +1,12 @@
 <template>
+    <div>
+        <Head title="Publica una vacante">
+            <meta
+                name="description"
+                content="Publica tus vacantes en cualquier area de trabajo!."
+            />
+        </Head>
+    </div>
     <div class="container mx-auto px-4 mt-4">
         <div class="">
             <h1 class="font-bold text-xl md:text-2xl text-gray-700">
@@ -1029,6 +1037,7 @@
 </template>
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
+import { Head } from "@inertiajs/vue3";
 import { Transition } from "vue";
 import axios from "axios";
 import { useForm } from "@inertiajs/vue3";
