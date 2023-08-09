@@ -264,13 +264,16 @@
                                     /></svg></span
                         ></label>
                         <div
-                            class="w-full mt-2 text-sm px-2 bg-gray-50 py-1.5 rounded-md border border-gray-200"
+                            class="w-full mt-2 text-xs px-2 md:px-0 bg-gray-50 py-1.5 md:py-0 rounded-md border md:border-none border-gray-200"
                         >
                             <input
                                 class="w-full"
                                 type="file"
                                 @input="form.logo = $event.target.files[0]"
                             />
+                            <p class="text-[0.6rem] mt-1 text-gray-500">
+                                JPEG, JPG, PNG (Max. 1MB).
+                            </p>
                         </div>
                         <div
                             v-if="form.errors.logo"

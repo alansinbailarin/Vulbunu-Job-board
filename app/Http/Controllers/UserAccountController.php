@@ -73,7 +73,7 @@ class UserAccountController extends Controller
             'name' => 'required|string|min:3',
             'last_name' => 'required|string|min:3',
             'username' => 'string|min:3|unique:users,username,' . $user->id,
-            'slug' => 'string|min:3|unique:users,slug,' . $user->id,
+            'slug' => 'min:3|alpha_dash|unique:users,slug,' . $user->id,
             'email' => 'required|string|email|unique:users,email,' . $user->id,
             'avatar' => 'image|mimes:jpeg,png,jpg|max:2048|uploaded',
             'birthdate' => 'required|date|before:15 years ago',
@@ -96,6 +96,9 @@ class UserAccountController extends Controller
             'birthdate.date' => 'La fecha de nacimiento debe ser válida',
             'birthdate.before' => 'No tienes la edad suficiente para registrarte en esta plataforma',
             'about_me.max' => 'La descripción debe tener menos de 1000 caracteres',
+            'slug.min' => 'El slug es demasiado corto',
+            'slug.unique' => 'El slug ya está en uso',
+            'slug.alpha_dash' => 'El slug solo puede contener letras, números, guiones y guiones bajos',
         ]);
 
 
@@ -115,8 +118,7 @@ class UserAccountController extends Controller
         $user->email = $validatedData['email'];
         $user->birthdate = $validatedData['birthdate'];
         $user->about_me = $validatedData['about_me'];
-
-        $user->slug = $user->username;
+        $user->slug = $validatedData['slug'];
 
         $user->save();
 
