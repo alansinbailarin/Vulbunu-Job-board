@@ -75,9 +75,9 @@ class UserAccountController extends Controller
             'username' => 'string|min:3|unique:users,username,' . $user->id,
             'slug' => 'string|min:3|unique:users,slug,' . $user->id,
             'email' => 'required|string|email|unique:users,email,' . $user->id,
-            'avatar' => 'image|mimes:jpeg,png,jpg|max:1024',
+            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048|uploaded',
             'birthdate' => 'required|date|before:15 years ago',
-            'about_me' => 'string|max:1000',
+            'about_me' => 'max:2000',
         ], [
             'name.required' => 'El nombre es un campo requerido',
             'name.min' => 'El nombre es demasiado corto',
