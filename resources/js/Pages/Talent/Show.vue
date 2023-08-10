@@ -311,9 +311,9 @@
                                 </p>
 
                                 <div class="items-center gap-2 flex">
-                                    <a
+                                    <button
                                         v-if="talent.cv != null"
-                                        href="#"
+                                        @click.prevent="downloadCV(talent.cv)"
                                         class="hover:bg-gray-100 border border-dashed mt-2 border-gray-300 text-gray-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
                                     >
                                         <svg
@@ -326,7 +326,7 @@
                                             />
                                         </svg>
                                         <span>Descargar curriculum</span>
-                                    </a>
+                                    </button>
                                     <Link
                                         v-if="talent.looking_for_job"
                                         class="hover:bg-indigo-600 mt-2 bg-indigo-500 text-white font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
@@ -417,6 +417,21 @@ moment.locale("es");
 defineProps({
     talent: Object,
 });
+
+const downloadCV = (url) => {
+    fetch(url)
+        .then((response) => response.blob())
+        .then((blob) => {
+            const blobUrl = window.URL.createObjectURL(new Blob([blob]));
+            const fileName = url.split("/").pop();
+            const link = document.createElement("a");
+            link.href = blobUrl;
+            link.setAttribute("download", fileName);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        });
+};
 </script>
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
