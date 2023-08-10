@@ -259,21 +259,15 @@
                         <label for="slug" value="slug">Enlace al perfil</label>
                         <div class="relative mb-4 flex flex-wrap items-stretch">
                             <span
-                                class="hidden md:flex bg-gray-100 items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-1.5 text-center mt-1 font-normal leading-[1.6] text-gray-500 text-sm dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                                id="basic-addon3"
+                                class="bg-gray-100 items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-1.5 text-center mt-1 font-normal leading-[1.6] text-gray-500 text-sm dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
                                 >https://primerempleo.lat/talents/</span
                             >
-                            <span
-                                class="md:hidden flex bg-gray-100 items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-1.5 text-center mt-1 font-normal leading-[1.6] text-gray-500 text-sm dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                                id="basic-addon3"
-                                >primerempleo.lat/talents/</span
-                            >
+
                             <input
                                 v-model="form.slug"
                                 type="text"
                                 class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 font-normal mt-1 text-sm leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out"
                                 id="slug"
-                                aria-describedby="basic-addon3"
                             />
                         </div>
                         <div
