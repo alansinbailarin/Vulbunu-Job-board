@@ -1,7 +1,7 @@
 <template>
-    <h1 class="font-semibold text-xl mb-1">Información del perfil</h1>
+    <h1 class="font-semibold text-xl mb-2">Información del perfil</h1>
 
-    <div class="border border-gray-200 p-4 rounded-md">
+    <div class="p-4 rounded-md">
         <form @submit.prevent="updateProfileInformation" class="">
             <div class="flex flex-col items-center gap-4">
                 <input
@@ -17,18 +17,18 @@
                             name="avatar"
                             :src="user.avatar"
                             :alt="user.name"
-                            class="rounded-full h-20 w-20 object-cover"
+                            class="rounded-full h-28 w-28 object-cover"
                         />
                         <img
                             v-else
                             src="../../../../img/no-image.jpeg"
                             alt=""
-                            class="rounded-full h-20 w-20 object-cover"
+                            class="rounded-full h-28 w-28 object-cover"
                         />
                     </div>
                     <div v-show="photoPreview" class="mt-2">
                         <span
-                            class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
+                            class="block rounded-full w-28 h-28 bg-cover bg-no-repeat bg-center"
                             :style="
                                 'background-image: url(\'' +
                                 photoPreview +
@@ -395,6 +395,165 @@
                 </div>
             </div>
 
+            <div v-if="showUserLocation" class="mt-4">
+                <table class="w-full hidden md:table">
+                    <thead class="text-left text-gray-700">
+                        <tr class="">
+                            <th class="font-medium">Pais</th>
+                            <th class="font-medium">Estado</th>
+                            <th class="font-medium">Ciudad</th>
+                            <th class="font-medium">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm text-gray-500">
+                        <tr>
+                            <td>{{ props.user.country?.name }}</td>
+                            <td>{{ props.user.state?.name }}</td>
+                            <td>{{ props.user.city?.name }}</td>
+                            <td>
+                                <button
+                                    class="text-green-500"
+                                    @click="showUserLocation = false"
+                                >
+                                    Cambiar ubicación
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="w-full md:hidden">
+                    <div class="text-left text-gray-700 mb-2">
+                        <div class="font-medium mb-1">País</div>
+                        <div>{{ props.user.country?.name }}</div>
+                    </div>
+                    <div class="text-left text-gray-700 mb-2">
+                        <div class="font-medium mb-1">Estado</div>
+                        <div>{{ props.user.state?.name }}</div>
+                    </div>
+                    <div class="text-left text-gray-700 mb-2">
+                        <div class="font-medium mb-1">Ciudad</div>
+                        <div>{{ props.user.city?.name }}</div>
+                    </div>
+                    <div class="text-left text-gray-700 mb-2">
+                        <div class="font-medium mb-1">Acción</div>
+                        <div>
+                            <button
+                                class="text-green-500"
+                                @click="showUserLocation = false"
+                            >
+                                Cambiar ubicación
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="md:grid grid-cols-3 gap-4">
+                <div class="mt-4 md:mt-0">
+                    <label
+                        for="country"
+                        class="flex items-center mb-2 font-medium"
+                        >País</label
+                    >
+                    <select
+                        id="country"
+                        form="createJob"
+                        v-model="selectedCountry"
+                        @change="getStates"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                    >
+                        <option value="" hidden>Selecciona un pais</option>
+                        <option
+                            v-for="country in countries"
+                            :key="country.id"
+                            :value="country.id"
+                        >
+                            {{ country.name }}
+                        </option>
+                    </select>
+                    <div
+                        v-if="form.errors.country_id"
+                        class="px-2 py-2 rounded-md"
+                    >
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.country_id }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 md:mt-0">
+                    <label
+                        for="state"
+                        class="flex items-center mb-2 font-medium"
+                        >Estado</label
+                    >
+                    <select
+                        id="state"
+                        form="createJob"
+                        v-model="selectedState"
+                        @change="getCities"
+                        :disabled="!selectedCountry"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                    >
+                        <option value="" hidden>Selecciona un estado</option>
+                        <option
+                            v-for="state in states"
+                            :key="state.id"
+                            :value="state.id"
+                        >
+                            {{ state.name }}
+                        </option>
+                    </select>
+                    <div
+                        v-if="form.errors.state_id"
+                        class="px-2 py-2 rounded-md"
+                    >
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.state_id }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <label for="city" class="flex items-center mb-2 font-medium"
+                        >Ciudad</label
+                    >
+                    <select
+                        id="city"
+                        v-model="selectedCity"
+                        form="createJob"
+                        :disabled="!selectedState"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                    >
+                        <option value="" hidden>Selecciona una ciudad</option>
+                        <option
+                            v-for="city in cities"
+                            :key="city.id"
+                            :value="city.id"
+                        >
+                            {{ city.name }}
+                        </option>
+                    </select>
+                    <div
+                        v-if="form.errors.city_id"
+                        class="px-2 py-2 rounded-md"
+                    >
+                        <div class="flex items-center">
+                            <div>
+                                <p class="text-sm text-red-600 text-left">
+                                    {{ form.errors.city_id }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="md:flex items-center gap-3 mt-4">
                 <button
                     type="submit"
@@ -411,7 +570,8 @@
 
 <script setup>
 import { useForm, router } from "@inertiajs/vue3";
-import { defineProps, ref } from "vue";
+import { defineProps, ref, computed, onMounted } from "vue";
+import axios from "axios";
 import Swal from "sweetalert2";
 
 const showDeleteAlert = (itemToDelete) => {
@@ -432,6 +592,20 @@ const showDeleteAlert = (itemToDelete) => {
 
 const photoPreview = ref(null);
 const photoInput = ref(null);
+const countries = ref([]);
+const states = ref([]);
+const cities = ref([]);
+const selectedCountry = ref("");
+const selectedState = ref("");
+const selectedCity = ref("");
+
+const showUserLocation = computed(() => {
+    return props.user.country_id &&
+        props.user.state_id &&
+        props.user.city_id != null
+        ? true
+        : false;
+});
 
 const props = defineProps({
     user: Object,
@@ -451,7 +625,22 @@ const form = useForm(() => ({
     phone: props.user.phone,
     cv: props.user.cv,
     linkedin: props.user.linkedin,
+    country_id: props.user.country_id,
+    state_id: props.user.state_id,
+    city_id: props.user.city_id,
 }));
+
+form.country_id = computed(() => {
+    return selectedCountry.value;
+});
+
+form.state_id = computed(() => {
+    return selectedState.value;
+});
+
+form.city_id = computed(() => {
+    return selectedCity.value;
+});
 
 const updateProfileInformation = () => {
     if (photoInput.value) {
@@ -520,6 +709,47 @@ const downloadCV = (url) => {
             document.body.appendChild(link);
             link.click();
             link.remove();
+        });
+};
+
+onMounted(() => {
+    getCountries();
+});
+
+const getCountries = () => {
+    axios
+        .get("/api/countries")
+        .then((response) => {
+            countries.value = response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
+const getStates = () => {
+    axios
+        .get(`/api/states/${selectedCountry.value}`)
+        .then((response) => {
+            states.value = response.data;
+            selectedState.value = "";
+            cities.value = [];
+            selectedCity.value = "";
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
+const getCities = () => {
+    axios
+        .get(`/api/cities/${selectedState.value}`)
+        .then((response) => {
+            cities.value = response.data;
+            selectedCity.value = "";
+        })
+        .catch((error) => {
+            console.log(error);
         });
 };
 </script>

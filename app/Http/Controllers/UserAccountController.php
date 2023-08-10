@@ -82,6 +82,9 @@ class UserAccountController extends Controller
             'phone' => 'nullable|max:10',
             'linkedin' => 'nullable|url',
             'cv' => 'nullable|max:2048',
+            'country_id' => 'nullable|exists:countries,id',
+            'state_id' => 'required_with:country_id',
+            'city_id' => 'required_with:state_id',
         ], [
             'name.required' => 'El nombre es un campo requerido',
             'name.min' => 'El nombre es demasiado corto',
@@ -106,6 +109,10 @@ class UserAccountController extends Controller
             'phone.max' => 'El teléfono debe tener menos de 10 caracteres',
             'linkedin.url' => 'El perfil de LinkedIn debe ser una URL válida',
             'cv.max' => 'El CV no debe pesar más de 1MB',
+            'country_id.required' => 'El campo de pais es requerido.',
+            'country_id.exists' => 'El campo pais debe contener un pais existente.',
+            'state_id.required_with' => 'El campo de estado es requerido',
+            'city_id.required_with' => 'El campo de ciudad es requerido',
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -139,6 +146,9 @@ class UserAccountController extends Controller
         $user->job_title = $validatedData['job_title'];
         $user->phone = $validatedData['phone'];
         $user->linkedin = $validatedData['linkedin'];
+        $user->country_id = $validatedData['country_id'];
+        $user->state_id = $validatedData['state_id'];
+        $user->city_id = $validatedData['city_id'];
 
         $user->save();
 
@@ -179,38 +189,4 @@ class UserAccountController extends Controller
             return redirect()->route('user-account.index')->with('success', 'CV eliminado correctamente');
         }
     }
-    // {
-    //     $user = Auth::user();
-
-    //     $avatarUrl = $user->avatar;
-
-    //     if ($avatarUrl) {
-    //         $fileParts = pathinfo($avatarUrl);
-    //         $filename = $fileParts['basename'];
-    //         Storage::disk('s3')->delete('avatars/' . $user->id . '/' . $filename);
-    //     }
-
-    //     $user->avatar = null;
-    //     $user->save();
-
-    //     return redirect()->route('user-account.index')->with('success', 'Imagen eliminada correctamente');
-    // }
-
-    // public function deleteCV()
-    // {
-    //     $user = Auth::user();
-
-    //     $cvUrl = $user->cv;
-
-    //     if ($cvUrl) {
-    //         $fileParts = pathinfo($cvUrl);
-    //         $filename = $fileParts['basename'];
-    //         Storage::disk('s3')->delete('cvs/' . $user->id . '/' . $filename);
-    //     }
-
-    //     $user->cv = null;
-    //     $user->save();
-
-    //     return redirect()->route('user-account.index')->with('success', 'CV eliminado correctamente');
-    // }
 }

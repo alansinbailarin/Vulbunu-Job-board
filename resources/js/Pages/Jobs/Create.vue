@@ -503,6 +503,7 @@
                             id="state"
                             form="createJob"
                             v-model="selectedState"
+                            :disabled="!selectedCountry"
                             @change="getCities"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
@@ -551,6 +552,7 @@
                             id="city"
                             v-model="selectedCity"
                             form="createJob"
+                            :disabled="!selectedState"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
