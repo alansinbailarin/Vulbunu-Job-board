@@ -47,7 +47,9 @@ Route::resource('user-account', UserAccountController::class)->only(['create', '
 
 Route::get('/user-account/configuration', [UserAccountController::class, 'index'])->name('user-account.index')->middleware('auth');
 Route::put('/user-account/configuration', [UserAccountController::class, 'update'])->name('user-account.update')->middleware('auth');
-Route::delete('/user-account/configuration', [UserAccountController::class, 'deleteImage'])->name('user-account.destroy')->middleware('auth');
+Route::delete('/user-account/configuration/{itemToDelete}', [UserAccountController::class, 'deleteItem'])->where('itemToDelete', 'avatar|cv')->name('user-account.destroy')->middleware('auth');
+
+// Route::delete('/user-account/configuration', [UserAccountController::class, 'deleteCV'])->name('user-account.deleteCV')->middleware('auth');
 
 // Rutas para los talentos
 Route::get('/talents', [TalentController::class, 'index'])->name('talents.index');

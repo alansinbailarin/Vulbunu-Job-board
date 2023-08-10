@@ -47,8 +47,8 @@
 
                 <button
                     v-if="user.avatar"
-                    class="mt-2 border-2 border-red-500 px-3 py-1 rounded-md text-red-500 text-sm"
-                    @click="showAlert"
+                    class="mt-2 border-2 border-red-500 hover:bg-red-50 transition-all ease-in-out duration-150 px-3 py-1 rounded-md text-red-500 text-sm"
+                    @click="showDeleteAlert('avatar')"
                 >
                     Eliminar imagen
                 </button>
@@ -142,6 +142,91 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-1.5">
+                        <label for="linkedin" value="linkedin"
+                            >Url de linkedin</label
+                        >
+                        <input
+                            id="linkedin"
+                            v-model="form.linkedin"
+                            type="url"
+                            placeholder="Tu enlace de linkedin"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            required
+                            autocomplete="linkedin"
+                        />
+                        <div
+                            v-if="form.errors.linkedin"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.linkedin }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1.5">
+                        <label for="cv" value="cv">Hoja de vida</label>
+                        <div
+                            class="w-full items-center mt-2 text-xs px-2 md:px-0 py-1.5 md:py-0 rounded-md border md:border-none border-gray-200"
+                        >
+                            <div v-if="props.user.cv">
+                                <button
+                                    @click.prevent="downloadCV(props.user.cv)"
+                                    class="hover:bg-gray-100 mr-4 border border-dashed border-gray-300 text-gray-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
+                                >
+                                    <svg
+                                        class="fill-current w-3 h-3 mr-2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
+                                        />
+                                    </svg>
+                                    <span>Descargar curriculum</span>
+                                </button>
+                                <button
+                                    @click="showDeleteAlert('cv')"
+                                    class="hover:bg-red-50 border border-dashed border-red-300 text-red-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
+                                >
+                                    <svg
+                                        class="fill-current w-3 h-3 mr-2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
+                                        />
+                                    </svg>
+                                    <span>Eliminar CV</span>
+                                </button>
+                            </div>
+                            <div v-else>
+                                <input
+                                    class="w-full"
+                                    type="file"
+                                    accept=".pdf"
+                                    @input="form.cv = $event.target.files[0]"
+                                />
+                                <p class="text-[0.6rem] mt-1 text-gray-500">
+                                    PDF (Max. 2MB).
+                                </p>
+                            </div>
+                        </div>
+                        <div v-if="form.errors.cv" class="px-2 py-2 rounded-md">
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.cv }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <div class="mb-1.5">
@@ -171,7 +256,7 @@
                         </div>
                     </div>
                     <div class="mb-1.5">
-                        <label for="slug" value="email">Enlace al perfil</label>
+                        <label for="slug" value="slug">Enlace al perfil</label>
                         <div class="relative mb-4 flex flex-wrap items-stretch">
                             <span
                                 class="hidden md:flex bg-gray-100 items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-1.5 text-center mt-1 font-normal leading-[1.6] text-gray-500 text-sm dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
@@ -187,7 +272,7 @@
                                 v-model="form.slug"
                                 type="text"
                                 class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 font-normal mt-1 text-sm leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out"
-                                id="basic-url"
+                                id="slug"
                                 aria-describedby="basic-addon3"
                             />
                         </div>
@@ -230,13 +315,68 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-1.5">
+                        <label for="job_title" value="job_title"
+                            >Ocupación de trabajo</label
+                        >
+                        <input
+                            id="job_title"
+                            v-model="form.job_title"
+                            type="text"
+                            placeholder="Ocupación de trabajo"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            required
+                            autocomplete="job_title"
+                        />
+                        <div
+                            v-if="form.errors.job_title"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.job_title }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1.5">
+                        <label for="phone" value="phone"
+                            >Número de telefono</label
+                        >
+                        <input
+                            id="phone"
+                            v-model="form.phone"
+                            type="tel"
+                            placeholder="6632883212"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            required
+                            autocomplete="phone"
+                        />
+                        <div
+                            v-if="form.errors.phone"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.phone }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-span-2">
+                <div class="col-span-2 mt-5">
+                    <label for="about_me" value="about_me"
+                        >Información personal</label
+                    >
                     <textarea
                         v-model="form.about_me"
                         name="about_me"
                         id="about_me"
-                        class="w-full rounded-md border border-gray-200 bg-gray-50 text-sm"
+                        class="w-full my-1 rounded-md border border-gray-200 bg-gray-50 text-sm"
                         cols="100"
                         rows="10"
                     ></textarea>
@@ -274,20 +414,18 @@ import { useForm, router } from "@inertiajs/vue3";
 import { defineProps, ref } from "vue";
 import Swal from "sweetalert2";
 
-const showAlert = () => {
+const showDeleteAlert = (itemToDelete) => {
     Swal.fire({
-        title: "Seguro que deseas eliminar tu imagen de perfil?",
+        title: "Seguro que deseas eliminarlo?",
         text: "No podrás revertir esta acción!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "0E70FF",
-        confirmButtonText: "Si, eliminar!",
-        cancelButtonText: "No, cancelar!",
+        confirmButtonText: "Eliminar!",
+        cancelButtonText: "Eancelar!",
     }).then((result) => {
         if (result.isConfirmed) {
-            deletePhoto();
-        } else if (result.isDenied) {
-            Swal.fire("Tus cambios no se han guardado", "", "info");
+            deleteItem(itemToDelete);
         }
     });
 };
@@ -309,6 +447,10 @@ const form = useForm(() => ({
     birthdate: props.user.birthdate,
     about_me: props.user.about_me,
     slug: props.user.slug,
+    job_title: props.user.job_title,
+    phone: props.user.phone,
+    cv: props.user.cv,
+    linkedin: props.user.linkedin,
 }));
 
 const updateProfileInformation = () => {
@@ -344,12 +486,18 @@ const updatePhotoPreview = () => {
     reader.readAsDataURL(photo);
 };
 
-const deletePhoto = () => {
-    router.delete(route("user-account.destroy"), {
+const deleteItem = (itemToDelete) => {
+    router.delete(route("user-account.destroy", { itemToDelete }), {
         preserveScroll: true,
         onSuccess: () => {
-            photoPreview.value = null;
-            clearPhotoFileInput();
+            if (itemToDelete === "avatar") {
+                photoPreview.value = null;
+                clearPhotoFileInput();
+            } else if (itemToDelete === "cv") {
+                form.cv = null;
+            }
+
+            itemToDelete = null;
         },
     });
 };
@@ -358,5 +506,20 @@ const clearPhotoFileInput = () => {
     if (photoInput.value?.value) {
         photoInput.value.value = null;
     }
+};
+
+const downloadCV = (url) => {
+    fetch(url)
+        .then((response) => response.blob())
+        .then((blob) => {
+            const blobUrl = window.URL.createObjectURL(new Blob([blob]));
+            const fileName = url.split("/").pop();
+            const link = document.createElement("a");
+            link.href = blobUrl;
+            link.setAttribute("download", fileName);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        });
 };
 </script>

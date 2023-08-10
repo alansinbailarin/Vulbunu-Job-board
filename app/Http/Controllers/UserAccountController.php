@@ -73,11 +73,15 @@ class UserAccountController extends Controller
             'name' => 'required|string|min:3',
             'last_name' => 'required|string|min:3',
             'username' => 'string|min:3|unique:users,username,' . $user->id,
-            'slug' => 'min:3|alpha_dash|unique:users,slug,' . $user->id,
+            'slug' => 'required|min:3|alpha_dash|unique:users,slug,' . $user->id,
             'email' => 'required|string|email|unique:users,email,' . $user->id,
-            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'birthdate' => 'required|date|before:15 years ago',
-            'about_me' => 'max:2000',
+            'about_me' => 'nullable|max:2000|string',
+            'job_title' => 'nullable|max:100',
+            'phone' => 'nullable|max:10',
+            'linkedin' => 'nullable|url',
+            'cv' => 'nullable|max:2048',
         ], [
             'name.required' => 'El nombre es un campo requerido',
             'name.min' => 'El nombre es demasiado corto',
@@ -88,7 +92,6 @@ class UserAccountController extends Controller
             'email.required' => 'El correo electrónico es un campo requerido',
             'email.email' => 'El correo electrónico debe ser válido',
             'email.unique' => 'El correo electrónico ya está en uso',
-            'avatar.image' => 'El archivo debe ser una imagen',
             'avatar.mimes' => 'El archivo debe ser una imagen jpeg o png',
             'avatar.max' => 'El archivo no debe pesar más de 1MB',
             'avatar.uploaded' => 'El archivo no es valido',
@@ -99,9 +102,11 @@ class UserAccountController extends Controller
             'slug.min' => 'El slug es demasiado corto',
             'slug.unique' => 'El slug ya está en uso',
             'slug.alpha_dash' => 'El slug solo puede contener letras, números, guiones y guiones bajos',
+            'job_title.max' => 'El puesto de trabajo debe tener menos de 100 caracteres',
+            'phone.max' => 'El teléfono debe tener menos de 10 caracteres',
+            'linkedin.url' => 'El perfil de LinkedIn debe ser una URL válida',
+            'cv.max' => 'El CV no debe pesar más de 1MB',
         ]);
-
-        $changes = false;
 
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
@@ -113,6 +118,16 @@ class UserAccountController extends Controller
             $user->avatar = Storage::disk('s3')->url($filePath);
         }
 
+        if ($request->hasFile('cv')) {
+            $file = $request->file('cv');
+            $filename = $file->getClientOriginalName();
+
+            $filePath = 'cvs/' . $user->id . '/' . $filename;
+            Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+
+            $user->cv = Storage::disk('s3')->url($filePath);
+        }
+
 
         $user->name = $validatedData['name'];
         $user->last_name = $validatedData['last_name'];
@@ -121,27 +136,81 @@ class UserAccountController extends Controller
         $user->birthdate = $validatedData['birthdate'];
         $user->about_me = $validatedData['about_me'];
         $user->slug = $validatedData['slug'];
+        $user->job_title = $validatedData['job_title'];
+        $user->phone = $validatedData['phone'];
+        $user->linkedin = $validatedData['linkedin'];
 
         $user->save();
 
         return redirect()->back()->with('success', 'Perfil actualizado correctamente');
     }
 
-    public function deleteImage()
+    public function deleteItem($itemToDelete)
     {
         $user = Auth::user();
 
-        $avatarUrl = $user->avatar;
+        if ($itemToDelete == 'avatar') {
+            $avatarUrl = $user->avatar;
 
-        if ($avatarUrl) {
-            $fileParts = pathinfo($avatarUrl);
-            $filename = $fileParts['basename'];
-            Storage::disk('s3')->delete('avatars/' . $user->id . '/' . $filename);
+            if ($avatarUrl) {
+                $fileParts = pathinfo($avatarUrl);
+                $filename = $fileParts['basename'];
+                Storage::disk('s3')->delete('avatars/' . $user->id . '/' . $filename);
+            }
+
+            $user->avatar = null;
+            $user->save();
+
+            return redirect()->route('user-account.index')->with('success', 'Imagen eliminada correctamente');
         }
 
-        $user->avatar = null;
-        $user->save();
+        if ($itemToDelete == 'cv') {
+            $cvUrl = $user->cv;
 
-        return redirect()->route('user-account.index')->with('success', 'Imagen eliminada correctamente');
+            if ($cvUrl) {
+                $fileParts = pathinfo($cvUrl);
+                $filename = $fileParts['basename'];
+                Storage::disk('s3')->delete('cvs/' . $user->id . '/' . $filename);
+            }
+
+            $user->cv = null;
+            $user->save();
+
+            return redirect()->route('user-account.index')->with('success', 'CV eliminado correctamente');
+        }
     }
+    // {
+    //     $user = Auth::user();
+
+    //     $avatarUrl = $user->avatar;
+
+    //     if ($avatarUrl) {
+    //         $fileParts = pathinfo($avatarUrl);
+    //         $filename = $fileParts['basename'];
+    //         Storage::disk('s3')->delete('avatars/' . $user->id . '/' . $filename);
+    //     }
+
+    //     $user->avatar = null;
+    //     $user->save();
+
+    //     return redirect()->route('user-account.index')->with('success', 'Imagen eliminada correctamente');
+    // }
+
+    // public function deleteCV()
+    // {
+    //     $user = Auth::user();
+
+    //     $cvUrl = $user->cv;
+
+    //     if ($cvUrl) {
+    //         $fileParts = pathinfo($cvUrl);
+    //         $filename = $fileParts['basename'];
+    //         Storage::disk('s3')->delete('cvs/' . $user->id . '/' . $filename);
+    //     }
+
+    //     $user->cv = null;
+    //     $user->save();
+
+    //     return redirect()->route('user-account.index')->with('success', 'CV eliminado correctamente');
+    // }
 }

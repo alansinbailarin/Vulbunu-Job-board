@@ -269,6 +269,7 @@
                             <input
                                 class="w-full"
                                 type="file"
+                                accept=".png, .jpg, .jpeg"
                                 @input="form.logo = $event.target.files[0]"
                             />
                             <p class="text-[0.6rem] mt-1 text-gray-500">
