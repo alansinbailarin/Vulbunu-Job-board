@@ -253,7 +253,7 @@
                         <label for="slug" value="slug">Enlace al perfil</label>
                         <div class="relative mb-4 flex flex-wrap items-stretch">
                             <span
-                                class="bg-gray-100 items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-1.5 text-center mt-1 font-normal leading-[1.6] text-gray-500 text-sm dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                                class="bg-gray-100 items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-1.5 text-center mt-1 font-normal leading-[1.6] text-gray-500 text-sm"
                                 >https://primerempleo.lat/talents/</span
                             >
 
