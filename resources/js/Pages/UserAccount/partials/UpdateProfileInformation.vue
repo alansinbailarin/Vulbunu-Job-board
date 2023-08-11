@@ -168,10 +168,10 @@
                         <div
                             class="w-full items-center mt-2 text-xs px-2 md:px-0 py-1.5 md:py-0 rounded-md border md:border-none border-gray-200"
                         >
-                            <div v-if="props.user.cv">
+                            <div v-if="props.user.cv" class="">
                                 <button
                                     @click.prevent="downloadCV(props.user.cv)"
-                                    class="hover:bg-gray-100 mr-4 border border-dashed border-gray-300 text-gray-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
+                                    class="hover:bg-gray-100 mb-1 md:mb-0 mr-4 border border-dashed border-gray-300 text-gray-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
                                 >
                                     <svg
                                         class="fill-current w-3 h-3 mr-2"
@@ -186,7 +186,7 @@
                                 </button>
                                 <button
                                     @click="showDeleteAlert('cv')"
-                                    class="hover:bg-red-50 border border-dashed border-red-300 text-red-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
+                                    class="hover:bg-red-50 border mt-1 md:mt-0 border-dashed border-red-300 text-red-600 font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
                                 >
                                     <svg
                                         class="fill-current w-3 h-3 mr-2"
@@ -354,7 +354,125 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-2 mt-5">
+                <div class="col-span-2">
+                    <div class="md:grid grid-cols-3 gap-4">
+                        <div>
+                            <label
+                                for="jobModalities"
+                                class="flex items-center mb-2"
+                                >Tipo de modalidad</label
+                            >
+                            <select
+                                id="jobModalities"
+                                form=""
+                                v-model="form.job_modality_id"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            >
+                                <option value="" hidden>
+                                    Selecciona una modalidad
+                                </option>
+
+                                <option
+                                    v-for="modality in props.jobModalities"
+                                    :key="modality.id"
+                                    :value="modality.id"
+                                >
+                                    {{ modality.title }}
+                                </option>
+                            </select>
+                            <div
+                                v-if="form.errors.job_modality_id"
+                                class="px-2 py-2 rounded-md"
+                            >
+                                <div class="flex items-center">
+                                    <div>
+                                        <p
+                                            class="text-sm text-red-600 text-left"
+                                        >
+                                            {{ form.errors.job_modality_id }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-1">
+                            <label for="gender" class="flex items-center mb-2"
+                                >Genero</label
+                            >
+                            <select
+                                id="gender"
+                                form=""
+                                v-model="form.gender_id"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            >
+                                <option value="" hidden>
+                                    Selecciona tu genero
+                                </option>
+
+                                <option
+                                    v-for="gender in props.genders"
+                                    :key="gender.id"
+                                    :value="gender.id"
+                                >
+                                    {{ gender.name }}
+                                </option>
+                            </select>
+                            <div
+                                v-if="form.errors.gender_id"
+                                class="px-2 py-2 rounded-md"
+                            >
+                                <div class="flex items-center">
+                                    <div>
+                                        <p
+                                            class="text-sm text-red-600 text-left"
+                                        >
+                                            {{ form.errors.gender_id }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-1">
+                            <label
+                                for="looking_for_job"
+                                class="flex items-center mb-2"
+                                >Estas buscando trabajo?</label
+                            >
+                            <select
+                                id="looking_for_job"
+                                form=""
+                                v-model="form.looking_for_job"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            >
+                                <option value="" hidden>
+                                    Selecciona una opción
+                                </option>
+
+                                <option value="1">
+                                    Estoy en busqueda de empleo
+                                </option>
+                                <option value="0">
+                                    No estoy en busqueda de empleo
+                                </option>
+                            </select>
+                            <div
+                                v-if="form.errors.gender_id"
+                                class="px-2 py-2 rounded-md"
+                            >
+                                <div class="flex items-center">
+                                    <div>
+                                        <p
+                                            class="text-sm text-red-600 text-left"
+                                        >
+                                            {{ form.errors.gender_id }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-2 mt-2 md:mt-0">
                     <label for="about_me" value="about_me"
                         >Información personal</label
                     >
@@ -381,60 +499,7 @@
                     </div>
                 </div>
             </div>
-
-            <div v-if="showUserLocation" class="mt-4">
-                <table class="w-full hidden md:table">
-                    <thead class="text-left text-gray-700">
-                        <tr class="">
-                            <th class="font-medium">Pais</th>
-                            <th class="font-medium">Estado</th>
-                            <th class="font-medium">Ciudad</th>
-                            <th class="font-medium">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm text-gray-500">
-                        <tr>
-                            <td>{{ props.user.country?.name }}</td>
-                            <td>{{ props.user.state?.name }}</td>
-                            <td>{{ props.user.city?.name }}</td>
-                            <td>
-                                <button
-                                    class="text-green-500"
-                                    @click="showUserLocation = false"
-                                >
-                                    Cambiar ubicación
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="w-full md:hidden">
-                    <div class="text-left text-gray-700 mb-2">
-                        <div class="font-medium mb-1">País</div>
-                        <div>{{ props.user.country?.name }}</div>
-                    </div>
-                    <div class="text-left text-gray-700 mb-2">
-                        <div class="font-medium mb-1">Estado</div>
-                        <div>{{ props.user.state?.name }}</div>
-                    </div>
-                    <div class="text-left text-gray-700 mb-2">
-                        <div class="font-medium mb-1">Ciudad</div>
-                        <div>{{ props.user.city?.name }}</div>
-                    </div>
-                    <div class="text-left text-gray-700 mb-2">
-                        <div class="font-medium mb-1">Acción</div>
-                        <div>
-                            <button
-                                class="text-green-500"
-                                @click="showUserLocation = false"
-                            >
-                                Cambiar ubicación
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div v-else class="md:grid grid-cols-3 gap-4">
+            <div class="md:grid grid-cols-3 gap-4">
                 <div class="mt-4 md:mt-0">
                     <label
                         for="country"
@@ -448,7 +513,7 @@
                         @change="getStates"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                     >
-                        <option value="" hidden>Selecciona un pais</option>
+                        <option value="" hidden>{{ userCountry }}</option>
                         <option
                             v-for="country in countries"
                             :key="country.id"
@@ -485,7 +550,7 @@
                         :disabled="!selectedCountry"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                     >
-                        <option value="" hidden>Selecciona un estado</option>
+                        <option value="" hidden>{{ userState }}</option>
                         <option
                             v-for="state in states"
                             :key="state.id"
@@ -518,7 +583,7 @@
                         :disabled="!selectedState"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                     >
-                        <option value="" hidden>Selecciona una ciudad</option>
+                        <option value="" hidden>{{ userCity }}</option>
                         <option
                             v-for="city in cities"
                             :key="city.id"
@@ -557,7 +622,7 @@
 
 <script setup>
 import { useForm, router } from "@inertiajs/vue3";
-import { defineProps, ref, computed, onMounted } from "vue";
+import { defineProps, ref, computed, onMounted, watchEffect } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -586,16 +651,10 @@ const selectedCountry = ref("");
 const selectedState = ref("");
 const selectedCity = ref("");
 
-const showUserLocation = computed(() => {
-    return props.user.country_id &&
-        props.user.state_id &&
-        props.user.city_id != null
-        ? true
-        : false;
-});
-
 const props = defineProps({
     user: Object,
+    jobModalities: Array,
+    genders: Array,
 });
 
 const form = useForm(() => ({
@@ -615,7 +674,34 @@ const form = useForm(() => ({
     country_id: props.user.country_id,
     state_id: props.user.state_id,
     city_id: props.user.city_id,
+    job_modality_id: "" ? "" : props.user.job_modality_id,
+    gender_id: "" ? "" : props.user.gender_id,
+    looking_for_job: "" ? "" : props.user.looking_for_job,
 }));
+
+const userCountry = computed(() => {
+    if (props.user.country == null) {
+        return "Selecciona un país";
+    } else if (props.user.country != null) {
+        return props.user.country.name;
+    }
+});
+
+const userState = computed(() => {
+    if (props.user.state == null) {
+        return "Selecciona un estado";
+    } else if (props.user.state != null) {
+        return props.user.state.name;
+    }
+});
+
+const userCity = computed(() => {
+    if (props.user.city == null) {
+        return "Selecciona una ciudad";
+    } else if (props.user.city != null) {
+        return props.user.city.name;
+    }
+});
 
 form.country_id = computed(() => {
     return selectedCountry.value;
@@ -629,14 +715,30 @@ form.city_id = computed(() => {
     return selectedCity.value;
 });
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+});
+
 const updateProfileInformation = () => {
     if (photoInput.value) {
         form.avatar = photoInput.value.files[0];
     }
 
-    form.post(route("user-account.update"), {
+    form.put(route("user-account.update"), {
         preserveScroll: true,
         onSuccess: () => {
+            Toast.fire({
+                icon: "success",
+                title: "Perfil actualizado correctamente",
+            });
             if (photoInput.value) {
                 photoInput.value.value = "";
             }

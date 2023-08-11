@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gender;
+use App\Models\JobModality;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Storage;
-use Termwind\Components\Dd;
 
 class UserAccountController extends Controller
 {
     public function index()
     {
-        return inertia('UserAccount/Index');
+        $jobModalities = JobModality::all();
+        $genders = Gender::all();
+
+        return inertia('UserAccount/Index', [
+            'jobModalities' => $jobModalities,
+            'genders' => $genders
+        ]);
     }
 
     public function create()
@@ -85,6 +92,9 @@ class UserAccountController extends Controller
             'country_id' => 'nullable|exists:countries,id',
             'state_id' => 'required_with:country_id',
             'city_id' => 'required_with:state_id',
+            'job_modality_id' => 'nullable|exists:job_modalities,id',
+            'gender_id' => 'nullable|exists:genders,id',
+            'looking_for_job' => 'nullable|boolean'
         ], [
             'name.required' => 'El nombre es un campo requerido',
             'name.min' => 'El nombre es demasiado corto',
@@ -113,6 +123,9 @@ class UserAccountController extends Controller
             'country_id.exists' => 'El campo pais debe contener un pais existente.',
             'state_id.required_with' => 'El campo de estado es requerido',
             'city_id.required_with' => 'El campo de ciudad es requerido',
+            'job_modality_id.exists' => 'El campo modalidad de trabajo debe contener una modalidad existente',
+            'gender_id.exists' => 'El campo género debe contener un género existente',
+            'looking_for_job.boolean' => 'El campo de busco trabajo debe ser booleano'
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -135,24 +148,107 @@ class UserAccountController extends Controller
             $user->cv = Storage::disk('s3')->url($filePath);
         }
 
+        $changes = false;
 
-        $user->name = $validatedData['name'];
-        $user->last_name = $validatedData['last_name'];
-        $user->username = $validatedData['username'];
-        $user->email = $validatedData['email'];
-        $user->birthdate = $validatedData['birthdate'];
-        $user->about_me = $validatedData['about_me'];
-        $user->slug = $validatedData['slug'];
-        $user->job_title = $validatedData['job_title'];
-        $user->phone = $validatedData['phone'];
-        $user->linkedin = $validatedData['linkedin'];
-        $user->country_id = $validatedData['country_id'];
-        $user->state_id = $validatedData['state_id'];
-        $user->city_id = $validatedData['city_id'];
+        if ($user->name != $validatedData['name']) {
+            $user->name = $validatedData['name'];
 
-        $user->save();
+            $changes = true;
+        }
 
-        return redirect()->back()->with('success', 'Perfil actualizado correctamente');
+        if ($user->last_name != $validatedData['last_name']) {
+            $user->last_name = $validatedData['last_name'];
+
+            $changes = true;
+        }
+
+        if ($user->username != $validatedData['username']) {
+            $user->username = $validatedData['username'];
+
+            $changes = true;
+        }
+
+        if ($user->email != $validatedData['email']) {
+            $user->email = $validatedData['email'];
+
+            $changes = true;
+        }
+
+        if ($user->birthdate != $validatedData['birthdate']) {
+            $user->birthdate = $validatedData['birthdate'];
+
+            $changes = true;
+        }
+
+        if ($user->about_me != $validatedData['about_me']) {
+            $user->about_me = $validatedData['about_me'];
+
+            $changes = true;
+        }
+
+        if ($user->slug != $validatedData['slug']) {
+            $user->slug = $validatedData['slug'];
+
+            $changes = true;
+        }
+
+        if ($user->job_title != $validatedData['job_title']) {
+            $user->job_title = $validatedData['job_title'];
+
+            $changes = true;
+        }
+
+        if ($user->phone != $validatedData['phone']) {
+            $user->phone = $validatedData['phone'];
+
+            $changes = true;
+        }
+
+        if ($user->linkedin != $validatedData['linkedin']) {
+            $user->linkedin = $validatedData['linkedin'];
+
+            $changes = true;
+        }
+
+        if ($user->country_id != $validatedData['country_id']) {
+            $user->country_id = $validatedData['country_id'];
+
+            $changes = true;
+        }
+
+        if ($user->state_id != $validatedData['state_id']) {
+            $user->state_id = $validatedData['state_id'];
+
+            $changes = true;
+        }
+
+        if ($user->city_id != $validatedData['city_id']) {
+            $user->city_id = $validatedData['city_id'];
+
+            $changes = true;
+        }
+
+        if ($user->job_modality_id != $validatedData['job_modality_id']) {
+            $user->job_modality_id = $validatedData['job_modality_id'];
+
+            $changes = true;
+        }
+
+        if ($user->gender_id != $validatedData['gender_id']) {
+            $user->gender_id = $validatedData['gender_id'];
+
+            $changes = true;
+        }
+
+        if ($user->looking_for_job != $validatedData['looking_for_job']) {
+            $user->looking_for_job = $validatedData['looking_for_job'];
+
+            $changes = true;
+        }
+
+        if ($changes) {
+            $user->save();
+        }
     }
 
     public function deleteItem($itemToDelete)

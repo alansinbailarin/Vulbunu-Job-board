@@ -2,7 +2,11 @@
     <Head title="Configuración del perfil"></Head>
     <div class="container mx-auto my-4 px-4">
         <div class="bg-white p-4 rounded-md">
-            <UpdateProfileInformationForm :user="page.props.user" />
+            <UpdateProfileInformationForm
+                :user="page.props.user"
+                :jobModalities="props.jobModalities"
+                :genders="props.genders"
+            />
         </div>
     </div>
 </template>
@@ -11,6 +15,11 @@
 import { Head } from "@inertiajs/vue3";
 import { usePage } from "@inertiajs/vue3";
 import UpdateProfileInformationForm from "@/Pages/UserAccount/partials/UpdateProfileInformation.vue";
+
+const props = defineProps({
+    jobModalities: Array,
+    genders: Array,
+});
 
 const page = usePage();
 </script>
