@@ -63,7 +63,7 @@
                             id="title"
                             v-model="form.title"
                             placeholder="Ej. Tecnico en mantenimiento..."
-                            class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.title"
@@ -149,7 +149,7 @@
                             id="apply_on"
                             v-model="form.apply_on"
                             placeholder="https://www.ejemplo.com/apply/on/..."
-                            class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full placeholder:text-gray-300 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.apply_on"
@@ -742,7 +742,7 @@
                             placeholder="Minimo"
                             min="1"
                             pattern="^[0-9]+"
-                            class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full placeholder:text-gray-300 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.min"
@@ -768,7 +768,7 @@
                             placeholder="Maximo"
                             min="1"
                             pattern="^[0-9]+"
-                            class="w-full text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.max"
@@ -899,7 +899,7 @@
                     <textarea
                         v-model="form.description"
                         id="description"
-                        class="w-full text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
                         cols="30"
                         rows="4"
                         placeholder="Escribe una descripción del empleo..."
@@ -937,7 +937,7 @@
                     <textarea
                         v-model="form.extra_info"
                         id="extra_info"
-                        class="w-full text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                        class="w-full placeholder:text-gray-300 text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
                         cols="30"
                         rows="3"
                         placeholder="Escribe una descripción de la empresa..."

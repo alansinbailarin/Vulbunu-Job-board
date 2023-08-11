@@ -71,10 +71,9 @@
                             id="name"
                             v-model="form.name"
                             type="text"
-                            required
                             autocomplete="name"
-                            placeholder="Nombre"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            placeholder="Miguel"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.name"
@@ -97,10 +96,8 @@
                             id="username"
                             v-model="form.username"
                             type="text"
-                            placeholder="Nombre de usuario"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            required
-                            autocomplete="username"
+                            placeholder="destructor30029"
+                            class="w-full my-1 text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.username"
@@ -125,8 +122,7 @@
                             v-model="form.birthdate"
                             type="date"
                             placeholder="Fecha de nacimiento"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            required
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="birthdate"
                         />
                         <div
@@ -150,9 +146,8 @@
                             id="linkedin"
                             v-model="form.linkedin"
                             type="url"
-                            placeholder="Tu enlace de linkedin"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            required
+                            placeholder="https://www.linkedin.com/in/usuario"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="linkedin"
                         />
                         <div
@@ -237,9 +232,8 @@
                             id="last_name"
                             v-model="form.last_name"
                             type="text"
-                            placeholder="Apellido"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            required
+                            placeholder="Gutierrez"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="last_name"
                         />
                         <div
@@ -266,7 +260,8 @@
                             <input
                                 v-model="form.slug"
                                 type="text"
-                                class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 font-normal mt-1 text-sm leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out"
+                                placeholder="miguelitoff"
+                                class="relative m-0 placeholder:text-gray-300 block w-[1px] min-w-0 flex-auto rounded-r border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 font-normal mt-1 text-sm leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out"
                                 id="slug"
                             />
                         </div>
@@ -291,9 +286,8 @@
                             id="email"
                             v-model="form.email"
                             type="text"
-                            placeholder="Correo electrónico"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            required
+                            placeholder="Ejemplo@primerempleo.lat"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="email"
                         />
                         <div
@@ -317,9 +311,8 @@
                             id="job_title"
                             v-model="form.job_title"
                             type="text"
-                            placeholder="Ocupación de trabajo"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            required
+                            placeholder="Ingeniero quimico"
+                            class="w-full my-1 text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="job_title"
                         />
                         <div
@@ -344,8 +337,7 @@
                             v-model="form.phone"
                             type="tel"
                             placeholder="6632883212"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
-                            required
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="phone"
                         />
                         <div
@@ -370,7 +362,8 @@
                         v-model="form.about_me"
                         name="about_me"
                         id="about_me"
-                        class="w-full my-1 rounded-md border border-gray-200 bg-gray-50 text-sm"
+                        placeholder="Soy un ingeniero quimico con 5 años de experiencia en el sector de la industria farmaceutica..."
+                        class="w-full my-1 rounded-md border border-gray-200 bg-gray-50 text-sm placeholder:text-gray-300"
                         cols="100"
                         rows="10"
                     ></textarea>
