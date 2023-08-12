@@ -75,12 +75,34 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import Swal from "sweetalert2";
 
 const form = useForm({
     email: "",
 });
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+});
+
 const publish = () => {
-    form.post(route("index.store"));
+    form.post(route("index.store"), {
+        preserveScroll: true,
+        onSuccess: () => {
+            Toast.fire({
+                icon: "success",
+                title: "¡Te has suscrito a las alertas de empleo!",
+            });
+            form.reset();
+        },
+    });
 };
 </script>

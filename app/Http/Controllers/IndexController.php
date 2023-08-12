@@ -79,7 +79,7 @@ class IndexController extends Controller
 
         $subscriber->save();
 
-        return redirect()->back()->with('success', 'Te has suscrito correctamente');
+        return redirect()->back();
     }
 
     public function show(Job $job)
