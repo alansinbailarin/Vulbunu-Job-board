@@ -151,107 +151,22 @@ class UserAccountController extends Controller
             $user->cv = Storage::disk('s3')->url($filePath);
         }
 
-        $changes = false;
+        $user->name = $validatedData['name'];
+        $user->last_name = $validatedData['last_name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->birthdate = $validatedData['birthdate'];
+        $user->about_me = $validatedData['about_me'];
+        $user->slug = $validatedData['slug'];
+        $user->job_title = $validatedData['job_title'];
+        $user->phone = $validatedData['phone'];
+        $user->linkedin = $validatedData['linkedin'];
+        $user->country_id = $validatedData['country_id'];
+        $user->state_id = $validatedData['state_id'];
+        $user->city_id = $validatedData['city_id'];
+        $user->save();
 
-        if ($user->name != $validatedData['name']) {
-            $user->name = $validatedData['name'];
-
-            $changes = true;
-        }
-
-        if ($user->last_name != $validatedData['last_name']) {
-            $user->last_name = $validatedData['last_name'];
-
-            $changes = true;
-        }
-
-        if ($user->username != $validatedData['username']) {
-            $user->username = $validatedData['username'];
-
-            $changes = true;
-        }
-
-        if ($user->email != $validatedData['email']) {
-            $user->email = $validatedData['email'];
-
-            $changes = true;
-        }
-
-        if ($user->birthdate != $validatedData['birthdate']) {
-            $user->birthdate = $validatedData['birthdate'];
-
-            $changes = true;
-        }
-
-        if ($user->about_me != $validatedData['about_me']) {
-            $user->about_me = $validatedData['about_me'];
-
-            $changes = true;
-        }
-
-        if ($user->slug != $validatedData['slug']) {
-            $user->slug = $validatedData['slug'];
-
-            $changes = true;
-        }
-
-        if ($user->job_title != $validatedData['job_title']) {
-            $user->job_title = $validatedData['job_title'];
-
-            $changes = true;
-        }
-
-        if ($user->phone != $validatedData['phone']) {
-            $user->phone = $validatedData['phone'];
-
-            $changes = true;
-        }
-
-        if ($user->linkedin != $validatedData['linkedin']) {
-            $user->linkedin = $validatedData['linkedin'];
-
-            $changes = true;
-        }
-
-        if ($user->country_id != $validatedData['country_id']) {
-            $user->country_id = $validatedData['country_id'];
-
-            $changes = true;
-        }
-
-        if ($user->state_id != $validatedData['state_id']) {
-            $user->state_id = $validatedData['state_id'];
-
-            $changes = true;
-        }
-
-        if ($user->city_id != $validatedData['city_id']) {
-            $user->city_id = $validatedData['city_id'];
-
-            $changes = true;
-        }
-
-        if ($user->job_modality_id != $validatedData['job_modality_id']) {
-            $user->job_modality_id = $validatedData['job_modality_id'];
-
-            $changes = true;
-        }
-
-        if ($user->gender_id != $validatedData['gender_id']) {
-            $user->gender_id = $validatedData['gender_id'];
-
-            $changes = true;
-        }
-
-        if ($user->looking_for_job != $validatedData['looking_for_job']) {
-            $user->looking_for_job = $validatedData['looking_for_job'];
-
-            $changes = true;
-        }
-
-        if ($changes) {
-            $user->save();
-        }
+        return redirect()->back()->with('success', 'Perfil actualizado correctamente');
     }
 
     public function deleteItem($itemToDelete)

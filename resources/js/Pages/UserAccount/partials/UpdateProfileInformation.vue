@@ -356,7 +356,7 @@
                 </div>
                 <div class="col-span-2">
                     <div class="md:grid grid-cols-3 gap-4">
-                        <div class="mt-1">
+                        <div>
                             <label
                                 for="jobModalities"
                                 class="flex items-center mb-2"
@@ -622,7 +622,7 @@
 
 <script setup>
 import { useForm, router } from "@inertiajs/vue3";
-import { defineProps, ref, computed, onMounted } from "vue";
+import { defineProps, ref, computed, onMounted, watchEffect } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -736,13 +736,9 @@ const updateProfileInformation = () => {
         form.avatar = photoInput.value.files[0];
     }
 
-    form.put(route("user-account.update"), {
+    form.post(route("user-account.update"), {
         preserveScroll: true,
         onSuccess: () => {
-            Toast.fire({
-                icon: "success",
-                title: "Perfil actualizado correctamente",
-            });
             if (photoInput.value) {
                 photoInput.value.value = "";
             }
