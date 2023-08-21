@@ -356,7 +356,7 @@
                 </div>
                 <div class="col-span-2">
                     <div class="md:grid grid-cols-3 gap-4">
-                        <div>
+                        <div class="mt-1">
                             <label
                                 for="jobModalities"
                                 class="flex items-center mb-2"

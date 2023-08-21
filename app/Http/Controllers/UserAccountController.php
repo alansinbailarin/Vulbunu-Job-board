@@ -164,6 +164,7 @@ class UserAccountController extends Controller
         $user->country_id = $validatedData['country_id'];
         $user->state_id = $validatedData['state_id'];
         $user->city_id = $validatedData['city_id'];
+
         $user->save();
 
         return redirect()->back()->with('success', 'Perfil actualizado correctamente');
