@@ -6,6 +6,7 @@
                 :user="page.props.user"
                 :jobModalities="props.jobModalities"
                 :genders="props.genders"
+                :skills="props.skills"
             />
         </div>
     </div>
@@ -19,6 +20,7 @@ import UpdateProfileInformationForm from "@/Pages/UserAccount/partials/UpdatePro
 const props = defineProps({
     jobModalities: Array,
     genders: Array,
+    skills: Array,
 });
 
 const page = usePage();

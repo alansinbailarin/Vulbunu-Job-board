@@ -356,7 +356,7 @@
                 </div>
                 <div class="col-span-2">
                     <div class="md:grid grid-cols-3 gap-4">
-                        <div>
+                        <div class="mt-1">
                             <label
                                 for="jobModalities"
                                 class="flex items-center mb-2"
@@ -622,9 +622,27 @@
 
 <script setup>
 import { useForm, router } from "@inertiajs/vue3";
-import { defineProps, ref, computed, onMounted, watchEffect } from "vue";
+import { defineProps, ref, computed, onMounted } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
+
+const props = defineProps({
+    user: Object,
+    jobModalities: Array,
+    genders: Array,
+    skills: Array,
+});
+
+const photoPreview = ref(null);
+const photoInput = ref(null);
+const tags_id = ref([]);
+const countries = ref([]);
+const states = ref([]);
+const cities = ref([]);
+const selectedCountry = ref("");
+const selectedState = ref("");
+const selectedCity = ref("");
+const selectedTags = ref([]);
 
 const showDeleteAlert = (itemToDelete) => {
     Swal.fire({
@@ -641,21 +659,6 @@ const showDeleteAlert = (itemToDelete) => {
         }
     });
 };
-
-const photoPreview = ref(null);
-const photoInput = ref(null);
-const countries = ref([]);
-const states = ref([]);
-const cities = ref([]);
-const selectedCountry = ref("");
-const selectedState = ref("");
-const selectedCity = ref("");
-
-const props = defineProps({
-    user: Object,
-    jobModalities: Array,
-    genders: Array,
-});
 
 const form = useForm(() => ({
     _method: "PUT",
@@ -677,6 +680,7 @@ const form = useForm(() => ({
     job_modality_id: "" ? "" : props.user.job_modality_id,
     gender_id: "" ? "" : props.user.gender_id,
     looking_for_job: "" ? "" : props.user.looking_for_job,
+    tag_id: [] ? [] : props.user.tag_id,
 }));
 
 const userCountry = computed(() => {

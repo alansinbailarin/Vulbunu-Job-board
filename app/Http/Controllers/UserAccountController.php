@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gender;
 use App\Models\JobModality;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +16,12 @@ class UserAccountController extends Controller
     {
         $jobModalities = JobModality::all();
         $genders = Gender::all();
+        $skills = Skill::all();
 
         return inertia('UserAccount/Index', [
             'jobModalities' => $jobModalities,
-            'genders' => $genders
+            'genders' => $genders,
+            'skills' => $skills
         ]);
     }
 
