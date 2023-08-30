@@ -89,12 +89,9 @@ class UserAccountController extends Controller
             'birthdate' => 'required|date|before:15 years ago',
             'about_me' => 'nullable|max:2000|string',
             'job_title' => 'nullable|max:100',
-            'phone' => 'nullable|max:10',
+            'phone' => 'nullable|max:10|min:10',
             'linkedin' => 'nullable|url',
             'cv' => 'nullable|max:2048',
-            'country_id' => 'nullable|exists:countries,id',
-            'state_id' => 'required_with:country_id',
-            'city_id' => 'required_with:state_id',
             'job_modality_id' => 'nullable|exists:job_modalities,id',
             'gender_id' => 'nullable|exists:genders,id',
             'looking_for_job' => 'nullable|boolean'
@@ -119,13 +116,10 @@ class UserAccountController extends Controller
             'slug.unique' => 'El slug ya está en uso',
             'slug.alpha_dash' => 'El slug solo puede contener letras, números, guiones y guiones bajos',
             'job_title.max' => 'El puesto de trabajo debe tener menos de 100 caracteres',
-            'phone.max' => 'El teléfono debe tener menos de 10 caracteres',
+            'phone.max' => 'El teléfono debe contener 10 caracteres',
+            'phone.min' => 'El teléfono debe contener 10 caracteres',
             'linkedin.url' => 'El perfil de LinkedIn debe ser una URL válida',
             'cv.max' => 'El CV no debe pesar más de 1MB',
-            'country_id.required' => 'El campo de pais es requerido.',
-            'country_id.exists' => 'El campo pais debe contener un pais existente.',
-            'state_id.required_with' => 'El campo de estado es requerido',
-            'city_id.required_with' => 'El campo de ciudad es requerido',
             'job_modality_id.exists' => 'El campo modalidad de trabajo debe contener una modalidad existente',
             'gender_id.exists' => 'El campo género debe contener un género existente',
             'looking_for_job.boolean' => 'El campo de busco trabajo debe ser booleano'
@@ -161,9 +155,9 @@ class UserAccountController extends Controller
         $user->job_title = $validatedData['job_title'];
         $user->phone = $validatedData['phone'];
         $user->linkedin = $validatedData['linkedin'];
-        $user->country_id = $validatedData['country_id'];
-        $user->state_id = $validatedData['state_id'];
-        $user->city_id = $validatedData['city_id'];
+        $user->job_modality_id = $validatedData['job_modality_id'];
+        $user->gender_id = $validatedData['gender_id'];
+        $user->looking_for_job = $validatedData['looking_for_job'];
 
         $user->save();
 

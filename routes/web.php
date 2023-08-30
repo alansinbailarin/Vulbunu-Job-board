@@ -8,6 +8,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\TalentController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\UserLocation;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::resource('user-account', UserAccountController::class)->only(['create', '
 Route::get('/user-account/configuration', [UserAccountController::class, 'index'])->name('user-account.index')->middleware('auth');
 Route::put('/user-account/configuration', [UserAccountController::class, 'update'])->name('user-account.update')->middleware('auth');
 Route::delete('/user-account/configuration/{itemToDelete}', [UserAccountController::class, 'deleteItem'])->where('itemToDelete', 'avatar|cv')->name('user-account.destroy')->middleware('auth');
+Route::put('/user-account/configuration/location', [UserLocation::class, 'update'])->name('location.update')->middleware('auth');
 
 // Route::delete('/user-account/configuration', [UserAccountController::class, 'deleteCV'])->name('user-account.deleteCV')->middleware('auth');
 
