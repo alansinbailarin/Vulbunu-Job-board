@@ -297,7 +297,9 @@
                                     >
                                 </div>
                             </div>
-                            <div class="flex items-center gap-1 text-xs my-2">
+                            <div
+                                class="flex items-center gap-1 text-xs my-2 flex-wrap"
+                            >
                                 <span
                                     v-for="skill in talent.skill"
                                     class="text-gray-600 bg-gray-100 px-2 py-1 rounded-md"

@@ -1,7 +1,6 @@
 <template>
     <div class="p-4 rounded-md">
         <h1 class="font-semibold text-xl mb-2">Información del perfil</h1>
-
         <form @submit.prevent="updateProfileInformation" class="">
             <div class="flex flex-col items-center gap-4">
                 <input
@@ -523,7 +522,6 @@ const props = defineProps({
     user: Object,
     jobModalities: Array,
     genders: Array,
-    skills: Array,
 });
 
 const photoPreview = ref(null);
@@ -562,7 +560,6 @@ const form = useForm(() => ({
     job_modality_id: props.user.job_modality_id,
     gender_id: props.user.gender_id,
     looking_for_job: props.user.looking_for_job,
-    tag_id: [] ? [] : props.user.tag_id,
 }));
 
 const updateProfileInformation = () => {

@@ -6,9 +6,13 @@
                 :user="page.props.user"
                 :jobModalities="props.jobModalities"
                 :genders="props.genders"
-                :skills="props.skills"
             />
             <UpdateUserLocation :user="page.props.user" />
+            <UpdateUserSkills
+                :user="page.props.user"
+                :skills="props.skills"
+                :userSkills="props.userSkills"
+            />
         </div>
     </div>
 </template>
@@ -18,12 +22,16 @@ import { Head } from "@inertiajs/vue3";
 import { usePage } from "@inertiajs/vue3";
 import UpdateProfileInformationForm from "@/Pages/UserAccount/partials/UpdateProfileInformation.vue";
 import UpdateUserLocation from "./partials/UpdateUserLocation.vue";
+import UpdateUserSkills from "./partials/UpdateUserSkills.vue";
 
 const props = defineProps({
     jobModalities: Array,
     genders: Array,
     skills: Array,
+    userSkills: Array,
 });
+
+console.log(props.userSkills.value);
 
 const page = usePage();
 </script>

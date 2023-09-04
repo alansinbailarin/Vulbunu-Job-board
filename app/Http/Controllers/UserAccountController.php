@@ -14,14 +14,18 @@ class UserAccountController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+
         $jobModalities = JobModality::all();
         $genders = Gender::all();
         $skills = Skill::all();
+        $userSkills = $user->skill()->get();
 
         return inertia('UserAccount/Index', [
             'jobModalities' => $jobModalities,
             'genders' => $genders,
-            'skills' => $skills
+            'skills' => $skills,
+            'userSkills' => $userSkills
         ]);
     }
 
