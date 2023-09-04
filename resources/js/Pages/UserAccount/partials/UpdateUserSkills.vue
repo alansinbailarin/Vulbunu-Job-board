@@ -40,7 +40,7 @@
                                     class="py-1 px-2 my-1 text-sm rounded-md p-1"
                                     :class="{
                                         'bg-gray-100': isSelected(
-                                            skill.name,
+                                            selectedSkills.name,
                                             skill.id
                                         ),
                                     }"
@@ -182,13 +182,14 @@ onMounted(() => {
 
 // Función para agregar habilidades seleccionadas
 const addTag = async (value, id) => {
-    const skill = { value, id };
+    // Verifica si la habilidad ya está seleccionada por su id
+    const isSkillSelected = selectedSkills.value.some(
+        (skill) => skill.id === id
+    );
 
-    if (
-        selectedSkills.value.length < 10 &&
-        !selectedSkills.value.some((t) => t.value === value && t.id === id)
-    ) {
-        selectedSkills.value.push(skill);
+    if (selectedSkills.value.length < 10 && !isSkillSelected) {
+        const skillToAdd = { value, id };
+        selectedSkills.value.push(skillToAdd);
         skills_id.value.push(id);
     }
 };
