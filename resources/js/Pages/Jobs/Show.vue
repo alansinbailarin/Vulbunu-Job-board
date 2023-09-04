@@ -108,9 +108,9 @@
                 class="text-orange-600 bg-orange-100 px-1 py-0.5 rounded-md"
                 >{{ job.workday.title }}</span
             >
-            <span class="text-green-600 bg-green-100 px-1 py-0.5 rounded-md"
-                >{{ job.country.name }}, {{ job.state.name }}
-                {{ job.city.name }}</span
+            <span class="text-green-600 bg-green-100 px-1 py-0.5 rounded-md">
+                {{ job.state.name }} {{ job.city?.name }},
+                {{ job.country.name }}</span
             >
         </div>
         <div class="px-4 mt-2">

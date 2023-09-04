@@ -84,9 +84,10 @@
                             </Link>
                         </div>
                         <div class="mt-2">
-                            <p class="text-gray-500 text-sm">
-                                {{ talent.country.name }},
-                                {{ talent.state.name }} {{ talent.city.name }}
+                            <p class="text-gray-500 text-sm uppercase">
+                                {{ talent.city?.name }}
+                                {{ talent.state.name }},
+                                {{ talent.country.name }}
                             </p>
                             <a
                                 :href="`mailto:${talent.email}`"
