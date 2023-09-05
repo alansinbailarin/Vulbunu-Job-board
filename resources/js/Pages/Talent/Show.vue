@@ -63,7 +63,7 @@
                                         talent.state?.name ||
                                         talent.city?.name
                                     "
-                                    class="flex items-center gap-2 text-gray-500 text-sm uppercase"
+                                    class="flex items-center gap-2 text-gray-500 text-sm capitalize"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

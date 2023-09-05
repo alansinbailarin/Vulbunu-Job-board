@@ -84,7 +84,7 @@
                             </Link>
                         </div>
                         <div class="mt-2">
-                            <p class="text-gray-500 text-sm uppercase">
+                            <p class="text-gray-500 text-sm capitalize">
                                 {{ talent.city?.name }}
                                 {{ talent.state.name }},
                                 {{ talent.country.name }}
