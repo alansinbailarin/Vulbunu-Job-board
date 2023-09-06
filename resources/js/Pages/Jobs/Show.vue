@@ -84,12 +84,15 @@
                     </button>
                 </div>
                 <div>
-                    <a
-                        :href="`${job.apply_on}`"
-                        target="_blank"
-                        class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
-                        >Aplicar ahora</a
-                    >
+                    <a :href="`${job.apply_on}`" target="_blank">
+                        <button
+                            @click="shareProfile(props.job.id)"
+                            target="_blank"
+                            class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
+                        >
+                            Aplicar ahora
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -238,13 +241,15 @@
                     </svg>
                 </button>
             </div>
-            <button
-                @click="shareProfile(props.job.id)"
-                target="_blank"
-                class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
-            >
-                Aplicar ahora
-            </button>
+            <a :href="`${job.apply_on}`" target="_blank" class="w-full">
+                <button
+                    @click="shareProfile(props.job.id)"
+                    target="_blank"
+                    class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
+                >
+                    Aplicar ahora
+                </button>
+            </a>
         </div>
         <div v-if="similares.length > 0" class="mt-6 px-4">
             <h1
