@@ -15,6 +15,7 @@ import Footer from "../Components/Footer.vue";
 import ToastList from "../Components/ToastList.vue";
 import { computed, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
+import Banner from "@/Components/Banner.vue";
 
 const page = usePage();
 

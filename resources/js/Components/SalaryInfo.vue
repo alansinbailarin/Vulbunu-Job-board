@@ -21,8 +21,9 @@
             <Link
                 class="bg-indigo-500 text-white py-3 px-6 rounded-md font-medium"
                 href="#"
-                >Publica tu salario anónimamente</Link
             >
+                Publica tu salario anónimamente
+            </Link>
         </div>
     </div>
 </template>

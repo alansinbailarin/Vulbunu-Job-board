@@ -10,6 +10,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\UserLocation;
 use App\Http\Controllers\SkillsController;
+use App\Http\Controllers\ApplicantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +63,6 @@ Route::get('/talents/{talent}', [TalentController::class, 'show'])->name('talent
 
 // Admin dashboard
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth');
+
+// Share profile with the job poster
+Route::post('/share-profile', [ApplicantController::class, 'shareProfile'])->name('share-profile')->middleware('auth');

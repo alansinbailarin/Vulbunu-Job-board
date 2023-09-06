@@ -84,6 +84,8 @@ class IndexController extends Controller
 
     public function show(Job $job)
     {
+        $authUser = auth()->user();
+        $jobId = $job->id;
 
         $similares = Job::where('category_id', $job->category_id)
             ->where('id', '!=', $job->id)
@@ -101,7 +103,9 @@ class IndexController extends Controller
 
         return inertia('Jobs/Show', [
             'job' => $job->load('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city'),
-            'similares' => $similares->load('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
+            'similares' => $similares->load('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city'),
+            'authUser' => $authUser,
+            'jobId' => $jobId
         ]);
     }
 }

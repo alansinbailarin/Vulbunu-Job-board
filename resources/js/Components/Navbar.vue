@@ -263,6 +263,7 @@
                                     <Link
                                         href="/user-account/configuration"
                                         class="text-gray-700 font-normal"
+                                        @click="showUserMenu = false"
                                         >Configuración</Link
                                     >
                                 </div>
@@ -270,6 +271,7 @@
                                     <Link
                                         href="/dashboard"
                                         class="text-gray-700 font-normal"
+                                        @click="showUserMenu = false"
                                         >Administración</Link
                                     >
                                 </div>

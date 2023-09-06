@@ -86,6 +86,7 @@
                 <div>
                     <a
                         :href="`${job.apply_on}`"
+                        target="_blank"
                         class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
                         >Aplicar ahora</a
                     >
@@ -237,11 +238,13 @@
                     </svg>
                 </button>
             </div>
-            <a
-                :href="`${job.apply_on}`"
+            <button
+                @click="shareProfile(props.job.id)"
+                target="_blank"
                 class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
-                >Aplicar ahora</a
             >
+                Aplicar ahora
+            </button>
         </div>
         <div v-if="similares.length > 0" class="mt-6 px-4">
             <h1
@@ -271,7 +274,7 @@
 </template>
 
 <script setup>
-import { Link, Head } from "@inertiajs/vue3";
+import { Link, Head, router } from "@inertiajs/vue3";
 import JobInfo from "../../Components/JobInfo.vue";
 import Box from "@/UI/Box.vue";
 import JobPublishedBy from "@/UI/JobPublishedBy.vue";
@@ -287,6 +290,7 @@ moment.locale("es");
 const props = defineProps({
     job: { type: Object },
     similares: { type: Array },
+    authUser: { type: Object },
 });
 
 const visits = computed(() =>
@@ -318,6 +322,12 @@ const isJobFeatured = computed(function () {
         return job.featured === 1 ? `border: 1px dashed ${job.color};` : "";
     };
 });
+
+const shareProfile = (job_id) => {
+    router.post(route("share-profile", { job_id: job_id }), {
+        preserveScroll: true,
+    });
+};
 </script>
 
 <script>
