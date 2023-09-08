@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div
-                class="rounded-md bg-gradient-to-r from-red-500 to-red-600 text-white p-4"
+                class="rounded-md bg-gradient-to-r from-red-500 to-red-700 text-white p-4"
             >
                 <div class="flex items-center justify-between">
                     <div>
@@ -201,19 +201,167 @@
                     </h1>
                     <p class="text-xs mt-2 font-light text-gray-500">
                         {{
-                            job.description.trim().length > 120
-                                ? job.description.trim().slice(0, 120) + "..."
+                            job.description.trim().length > 80
+                                ? job.description.trim().slice(0, 80) + "..."
                                 : job.description.trim()
                         }}
                     </p>
-                    <p class="text-xs text-gray-500 mt-2">
-                        Aplicaste el
-                        {{
-                            moment(applicant?.created_at).format(
-                                "D [de] MMMM [del] YYYY"
-                            )
-                        }}
-                    </p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-gray-500 mt-2">
+                                Aplicaste el
+                                {{
+                                    moment(applicant?.created_at).format(
+                                        "D [de] MMMM [del] YYYY"
+                                    )
+                                }}
+                            </p>
+                        </div>
+                        <div
+                            v-for="interview in applicant.interviews"
+                            :key="interview.id"
+                        >
+                            <div v-if="interview">
+                                <span
+                                    @click="toggleModal(interview)"
+                                    class="text-xs underline hover:cursor-pointer text-blue-500"
+                                    >Ver más</span
+                                >
+                            </div>
+
+                            <div
+                                v-show="interview.isOpen"
+                                class="fixed inset-0 flex items-center justify-center z-50"
+                            >
+                                <!-- Fondo obscuro -->
+                                <div
+                                    class="fixed inset-0 bg-black opacity-50"
+                                ></div>
+
+                                <!-- Contenido del modal -->
+                                <div
+                                    class="bg-white w-full md:w-1/2 p-4 mx-4 rounded-md relative"
+                                >
+                                    <!-- Botón para cerrar el modal -->
+                                    <button
+                                        @click="toggleModal(interview)"
+                                        class="absolute text-lg cursor-pointer top-2 right-2 text-gray-600 bg-gray-100 rounded-md"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            fill="currentColor"
+                                            class="bi bi-x"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Contenido del modal -->
+                                    <h2
+                                        class="font-semibold text-gray-700 mb-2"
+                                    >
+                                        {{ interview?.interviewer_name }}
+                                        <span class="capitalize"
+                                            >({{
+                                                interview?.interview_type ===
+                                                "presential"
+                                                    ? "presencial"
+                                                    : "virtual"
+                                            }})</span
+                                        >
+                                    </h2>
+                                    <div class="text-sm text-gray-500 gap-1">
+                                        <p class="">
+                                            Confirmacion:
+                                            {{
+                                                moment(
+                                                    interview?.created_at
+                                                ).format(
+                                                    "D [de] MMMM [del] YYYY"
+                                                )
+                                            }}.
+                                        </p>
+                                        <p>
+                                            Entrevista:
+                                            {{
+                                                moment(
+                                                    interview?.interview_date
+                                                ).format(
+                                                    "D [de] MMMM [del] YYYY [a la] hh:mm a"
+                                                )
+                                            }}.
+                                        </p>
+                                        <p>
+                                            Duración:
+                                            {{ interview?.interview_duration }}
+                                            {{
+                                                interview?.interview_duration <
+                                                "01:00:00"
+                                                    ? "Minuto(s)"
+                                                    : "Hora(s)"
+                                            }}
+                                        </p>
+                                        <p>
+                                            {{
+                                                interview?.interview_type ===
+                                                "presential"
+                                                    ? "Ubicacion:"
+                                                    : "Link de entrevista:"
+                                            }}
+                                            <a
+                                                :href="`${interview?.interview_link}`"
+                                                class="text-blue-500 underline"
+                                                >Ver más</a
+                                            >
+                                        </p>
+                                        <span
+                                            >Estatus: Entrevista
+                                            {{
+                                                changeStatusText(
+                                                    interview?.status
+                                                )
+                                            }}</span
+                                        >
+                                        <div
+                                            class="mt-2"
+                                            v-if="
+                                                interview?.interview_observation
+                                            "
+                                        >
+                                            <h1 class="font-medium">
+                                                Observaciones
+                                            </h1>
+                                            <div
+                                                class="bg-gray-100 w-full p-2 rounded-sm mt-1"
+                                            >
+                                                <p>
+                                                    {{
+                                                        interview?.interview_observation
+                                                    }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div
+                                            v-if="interview?.interview_feedback"
+                                            class="mt-2"
+                                        >
+                                            <p>
+                                                *
+                                                {{
+                                                    interview?.interview_feedback
+                                                }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </Box>
         </div>
@@ -270,8 +418,8 @@ const jobTitleColorIfFeatured = (job) => {
     }
 };
 
-const toggleModal = () => {
-    isOpen.value = !isOpen.value;
+const toggleModal = (interview) => {
+    interview.isOpen = !interview.isOpen;
 };
 </script>
 <script>
