@@ -23,4 +23,9 @@ class Applicant extends Model
     {
         return $this->belongsTo(Job::class);
     }
+
+    public function interviews()
+    {
+        return $this->hasMany(Interviews::class);
+    }
 }

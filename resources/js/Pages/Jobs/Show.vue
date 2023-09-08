@@ -64,35 +64,21 @@
             </div>
             <div class="gap-2 hidden md:flex items-center">
                 <div>
-                    <button
-                        class="rounded-md p-2 border border-red-300 text-red-500 hover:bg-red-300 hover:text-red-600 transition-all duration-300 ease-in-out"
-                        type=""
+                    <a
+                        :href="`${job.apply_on}`"
+                        target="_blank"
+                        class="border border-indigo-500 rounded-md text-indigo-500 transition-all duration-300 ease-in-out px-4 py-2"
+                        >Aplicar en la pagina</a
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-heart-fill"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                            />
-                        </svg>
-                    </button>
                 </div>
                 <div>
-                    <a :href="`${job.apply_on}`" target="_blank">
-                        <button
-                            @click="shareProfile(props.job.id)"
-                            target="_blank"
-                            class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
-                        >
-                            Aplicar ahora
-                        </button>
-                    </a>
+                    <button
+                        @click="shareProfile(props.job.id)"
+                        target="_blank"
+                        class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
+                    >
+                        Aplicar ahora
+                    </button>
                 </div>
             </div>
         </div>
@@ -221,35 +207,21 @@
             </div>
         </div>
         <div class="flex md:hidden items-center gap-3 mt-5 px-4">
-            <div>
-                <button
-                    class="rounded-md p-2 border border-red-300 text-red-500 hover:bg-red-300 hover:text-red-600 transition-all duration-300 ease-in-out"
-                    type=""
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-heart-fill"
-                        viewBox="0 0 16 16"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                        />
-                    </svg>
-                </button>
-            </div>
-            <a :href="`${job.apply_on}`" target="_blank" class="w-full">
-                <button
-                    @click="shareProfile(props.job.id)"
-                    target="_blank"
-                    class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
-                >
-                    Aplicar ahora
-                </button>
-            </a>
+            <button
+                @click="shareProfile(props.job.id)"
+                target="_blank"
+                class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
+            >
+                Aplicar ahora
+            </button>
+        </div>
+        <div class="flex md:hidden items-center text-center mx-4 mt-3">
+            <a
+                :href="`${job.apply_on}`"
+                target="_blank"
+                class="w-full border border-indigo-500 rounded-md py-2 text-indigo-500 transition-all duration-300 ease-in-out"
+                >Aplicar en la pagina</a
+            >
         </div>
         <div v-if="similares.length > 0" class="mt-6 px-4">
             <h1

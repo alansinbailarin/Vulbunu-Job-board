@@ -62,9 +62,12 @@ class HandleInertiaRequests extends Middleware
                 'state' => $request->user()->state,
                 'city_id' => $request->user()->city_id,
                 'city' => $request->user()->city,
+                'skills' => $request->user()->skill,
+                'applications' => $request->user()->applicant,
             ] : null,
             'flash' => fn () => [
-                'success' => session('success')
+                'success' => session('success'),
+                'error' => session('error'),
             ],
         ]);
     }

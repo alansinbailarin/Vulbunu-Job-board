@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Applicant;
 use App\Models\Job;
 use App\Models\User;
+use Carbon\Carbon;
 
 class ApplicantController extends Controller
 {
@@ -21,18 +22,96 @@ class ApplicantController extends Controller
                 ->first();
 
             if ($existingApplicant) {
-                return redirect()->back()->with('success', 'Tu perfil ya fue compartido antes.');
+                return redirect()->back()->with('success', 'Ya haz aplicado antes a la vacante');
             } else {
                 // El perfil no ha sido compartido antes, crea un nuevo registro
                 Applicant::create([
                     'user_id' => $user->id,
-                    'job_id' => $jobId
+                    'job_id' => $jobId,
+                    'status' => 'pending'
                 ]);
 
-                return redirect()->back()->with('success', 'Perfil compartido con el anunciante!');
+                return redirect()->back()->with('success', 'Haz aplicado satisfactoriamente');
             }
         } else {
-            return redirect()->back()->with('success', 'Debes iniciar sesión para compartir tu perfil!');
+            return redirect()->back()->with('success', 'Debes iniciar sesión para compartir tu perfil');
+        }
+    }
+
+    public function myApplications()
+    {
+        $user = auth()->user();
+
+        if ($user) {
+            $oneWeekAgo = Carbon::now()->subWeek();
+
+            // Graficamos nuestras aplicaciones de la última semana
+            $lastWeekApplications = Applicant::where('user_id', $user->id)
+                ->where('created_at', '>=', $oneWeekAgo)
+                ->count();
+
+            $lastWeekPendingApps = Applicant::where('user_id', $user->id)
+                ->where('created_at', '>=', $oneWeekAgo)
+                ->where('status', 'pending')
+                ->count();
+
+            $lastWeekApprovedApps = Applicant::where('user_id', $user->id)
+                ->where('created_at', '>=', $oneWeekAgo)
+                ->where('status', 'approved')
+                ->count();
+
+            $lastWeekRejectedApps = Applicant::where('user_id', $user->id)
+                ->where('created_at', '>=', $oneWeekAgo)
+                ->where('status', 'rejected')
+                ->count();
+
+            $jobs = Job::whereHas('applicant', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->where('status', 'published')
+                ->with([
+                    'applicant' => function ($query) use ($user) {
+                        $query->where('user_id', $user->id);
+                    },
+                    'applicant.interviews', // Carga la relación 'interviews' de los solicitantes
+                    'user',
+                    'category',
+                ])->get();
+
+            $pendingAppsCount = Applicant::where('user_id', $user->id)
+                ->where('status', 'pending')
+                ->count();
+
+            $approvedAppsCount = Applicant::where('user_id', $user->id)
+                ->where('status', 'approved')
+                ->count();
+
+            $totalAppsCount = Applicant::where('user_id', $user->id)
+                ->count();
+
+            $rejectedAppsCount = Applicant::where('user_id', $user->id)
+                ->where('status', 'rejected')
+                ->count();
+
+            // Calcula el porcentaje
+            $percentajeTotalLastWeek = ($lastWeekApplications / $totalAppsCount) * 100;
+            $percentajePendingLastWeek = ($lastWeekPendingApps / $totalAppsCount) * 100;
+            $percentajeApprovedLastWeek = ($lastWeekApprovedApps / $totalAppsCount) * 100;
+            $percentajeRejectedLastWeek = ($lastWeekRejectedApps / $totalAppsCount) * 100;
+
+
+            return inertia('User/MyApplications', [
+                'jobs' => $jobs,
+                'totalAppsCount' => $totalAppsCount,
+                'pendingAppsCount' => $pendingAppsCount,
+                'approvedAppsCount' => $approvedAppsCount,
+                'percentajeTotalLastWeek' => $percentajeTotalLastWeek,
+                'percentajePendingLastWeek' => $percentajePendingLastWeek,
+                'percentajeApprovedLastWeek' => $percentajeApprovedLastWeek,
+                'percentajeRejectedLastWeek' => $percentajeRejectedLastWeek,
+                'rejectedAppsCount' => $rejectedAppsCount,
+            ]);
+        } else {
+            return redirect()->back()->with('success', 'Debes iniciar sesión para ver tus aplicaciones');
         }
     }
 }

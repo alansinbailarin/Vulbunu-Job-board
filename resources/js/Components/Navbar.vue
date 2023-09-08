@@ -127,12 +127,24 @@
                                             >Configuración</Link
                                         >
                                     </div>
-                                    <div>
+                                    <div class="my-2">
                                         <Link
                                             href="/dashboard"
                                             @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
                                             >Administración</Link
+                                        >
+                                    </div>
+                                    <div
+                                        v-if="
+                                            props.user.applications.length > 0
+                                        "
+                                    >
+                                        <Link
+                                            href="/my-applications"
+                                            @click="isMenuOpen = false"
+                                            class="text-gray-700 font-normal"
+                                            >Mis aplicaciones</Link
                                         >
                                     </div>
                                     <div class="mt-3 font-normal">
@@ -259,7 +271,7 @@
                                     </p>
                                 </Link>
                                 <hr class="my-2" />
-                                <div class="mb-1">
+                                <div class="my-2">
                                     <Link
                                         href="/user-account/configuration"
                                         class="text-gray-700 font-normal"
@@ -267,12 +279,20 @@
                                         >Configuración</Link
                                     >
                                 </div>
-                                <div>
+                                <div class="my-2">
                                     <Link
                                         href="/dashboard"
                                         class="text-gray-700 font-normal"
                                         @click="showUserMenu = false"
                                         >Administración</Link
+                                    >
+                                </div>
+                                <div v-if="props.user.applications.length > 0">
+                                    <Link
+                                        href="/my-applications"
+                                        class="text-gray-700 font-normal"
+                                        @click="showUserMenu = false"
+                                        >Mis aplicaciones</Link
                                     >
                                 </div>
                                 <hr class="my-2" />

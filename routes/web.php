@@ -66,3 +66,4 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('aut
 
 // Share profile with the job poster
 Route::post('/share-profile', [ApplicantController::class, 'shareProfile'])->name('share-profile')->middleware('auth');
+Route::get('/my-applications', [ApplicantController::class, 'myApplications'])->name('my-applications')->middleware('auth');
