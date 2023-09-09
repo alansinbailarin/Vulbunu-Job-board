@@ -33,14 +33,14 @@
                     <div>
                         <p class="text-3xl">{{ totalAppsCount }}</p>
                     </div>
-                    <div v-if="percentajeTotalLastWeek > 0.0">
+                    <div v-if="percentajeTotal > 0.0">
                         <p class="text-2xl font-extralight text-green-400">
-                            + {{ percentajeTotalLastWeek.toFixed(1) }} %
+                            {{ percentajeTotal.toFixed(1) }} %
                         </p>
                     </div>
-                    <div v-else-if="percentajeTotalLastWeek < 0.0">
+                    <div v-else-if="percentajeTotal < 0.0">
                         <p class="text-2xl font-extralight text-red-400">
-                            - {{ percentajeTotalLastWeek.toFixed(1) }} %
+                            {{ percentajeTotal.toFixed(1) }} %
                         </p>
                     </div>
                 </div>
@@ -77,14 +77,14 @@
                     <div>
                         <p class="text-3xl">{{ pendingAppsCount }}</p>
                     </div>
-                    <div v-if="percentajePendingLastWeek > 0.0">
+                    <div v-if="percentajePending > 0.0">
                         <p class="text-2xl font-extralight text-green-400">
-                            + {{ percentajePendingLastWeek.toFixed(1) }} %
+                            {{ percentajePending.toFixed(1) }} %
                         </p>
                     </div>
-                    <div v-else-if="percentajePendingLastWeek < 0.0">
+                    <div v-else-if="percentajePending < 0.0">
                         <p class="text-2xl font-extralight text-red-400">
-                            - {{ percentajePendingLastWeek.toFixed(1) }} %
+                            {{ percentajePending.toFixed(1) }} %
                         </p>
                     </div>
                 </div>
@@ -121,14 +121,14 @@
                     <div>
                         <p class="text-3xl">{{ approvedAppsCount }}</p>
                     </div>
-                    <div v-if="percentajeApprovedLastWeek > 0.0">
+                    <div v-if="percentajeApproved > 0.0">
                         <p class="text-2xl font-extralight text-green-400">
-                            + {{ percentajeApprovedLastWeek.toFixed(1) }} %
+                            {{ percentajeApproved.toFixed(1) }} %
                         </p>
                     </div>
-                    <div v-else-if="percentajeApprovedLastWeek < 0.0">
+                    <div v-else-if="percentajeApproved < 0.0">
                         <p class="text-2xl font-extralight text-red-400">
-                            - {{ percentajeApprovedLastWeek.toFixed(1) }} %
+                            {{ percentajeApproved.toFixed(1) }} %
                         </p>
                     </div>
                 </div>
@@ -165,17 +165,37 @@
                     <div>
                         <p class="text-3xl">{{ rejectedAppsCount }}</p>
                     </div>
-                    <div v-if="percentajeRejectedLastWeek > 0.0">
+                    <div v-if="percentajeRejected > 0.0">
                         <p class="text-2xl font-extralight text-green-400">
-                            + {{ percentajeRejectedLastWeek.toFixed(1) }} %
+                            {{ percentajeRejected.toFixed(1) }} %
                         </p>
                     </div>
-                    <div v-else-if="percentajeRejectedLastWeek < 0.0">
+                    <div v-else-if="percentajeRejected < 0.0">
                         <p class="text-2xl font-extralight text-red-400">
-                            - {{ percentajeRejectedLastWeek.toFixed(1) }} %
+                            {{ percentajeRejected.toFixed(1) }} %
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 my-4">
+            <div class="bg-white rounded-md p-4">
+                <Chart
+                    :type="'doughnut'"
+                    :title="'Aplicaciones con relacion a la ultima semana'"
+                    :percentajePending="percentajePendingLastWeek"
+                    :percentajeApproved="percentajeApprovedLastWeek"
+                    :percentajeRejected="percentajeRejectedLastWeek"
+                ></Chart>
+            </div>
+            <div class="bg-white rounded-md p-4">
+                <Chart
+                    :type="'doughnut'"
+                    :title="'Aplicaciones desde el principio'"
+                    :percentajePending="pendingCount"
+                    :percentajeApproved="approvedCount"
+                    :percentajeRejected="rejectedCount"
+                ></Chart>
             </div>
         </div>
         <div class="grid md:grid-cols-3 grid-cols-1 md:gap-4">
@@ -245,7 +265,7 @@
                                     <!-- Botón para cerrar el modal -->
                                     <button
                                         @click="toggleModal(interview)"
-                                        class="absolute text-lg cursor-pointer top-2 right-2 text-gray-600 bg-gray-100 rounded-md"
+                                        class="absolute text-lg cursor-pointer top-2 right-2 text-gray-600 hover:bg-gray-100 rounded-md"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -315,6 +335,7 @@
                                             }}
                                             <a
                                                 :href="`${interview?.interview_link}`"
+                                                target="_blank"
                                                 class="text-blue-500 underline"
                                                 >Ver más</a
                                             >
@@ -388,6 +409,14 @@ const props = defineProps({
     percentajePendingLastWeek: Number,
     percentajeApprovedLastWeek: Number,
     percentajeRejectedLastWeek: Number,
+    percentajeTotal: Number,
+    percentajePending: Number,
+    percentajeApproved: Number,
+    percentajeRejected: Number,
+    totalCount: Number,
+    pendingCount: Number,
+    approvedCount: Number,
+    rejectedCount: Number,
 });
 
 const isOpen = ref(false);

@@ -93,10 +93,21 @@ class ApplicantController extends Controller
                 ->count();
 
             // Calcula el porcentaje
-            $percentajeTotalLastWeek = ($lastWeekApplications / $totalAppsCount) * 100;
-            $percentajePendingLastWeek = ($lastWeekPendingApps / $totalAppsCount) * 100;
-            $percentajeApprovedLastWeek = ($lastWeekApprovedApps / $totalAppsCount) * 100;
-            $percentajeRejectedLastWeek = ($lastWeekRejectedApps / $totalAppsCount) * 100;
+            $percentajeTotalLastWeek = $lastWeekApplications;
+            $percentajePendingLastWeek = $lastWeekPendingApps;
+            $percentajeApprovedLastWeek = $lastWeekApprovedApps;
+            $percentajeRejectedLastWeek = $lastWeekRejectedApps;
+
+            // Calcular porcentaje total de las aplicaciones que no sea semanal
+            $percentajeTotal = ($totalAppsCount / $totalAppsCount) * 100;
+            $percentajePending = ($pendingAppsCount / $totalAppsCount) * 100;
+            $percentajeApproved = ($approvedAppsCount / $totalAppsCount) * 100;
+            $percentajeRejected = ($rejectedAppsCount / $totalAppsCount) * 100;
+
+            $totalCount = $totalAppsCount;
+            $pendingCount = $pendingAppsCount;
+            $approvedCount = $approvedAppsCount;
+            $rejectedCount = $rejectedAppsCount;
 
 
             return inertia('User/MyApplications', [
@@ -109,6 +120,14 @@ class ApplicantController extends Controller
                 'percentajeApprovedLastWeek' => $percentajeApprovedLastWeek,
                 'percentajeRejectedLastWeek' => $percentajeRejectedLastWeek,
                 'rejectedAppsCount' => $rejectedAppsCount,
+                'percentajeTotal' => $percentajeTotal,
+                'percentajePending' => $percentajePending,
+                'percentajeApproved' => $percentajeApproved,
+                'percentajeRejected' => $percentajeRejected,
+                'totalCount' => $totalCount,
+                'pendingCount' => $pendingCount,
+                'approvedCount' => $approvedCount,
+                'rejectedCount' => $rejectedCount,
             ]);
         } else {
             return redirect()->back()->with('success', 'Debes iniciar sesión para ver tus aplicaciones');
