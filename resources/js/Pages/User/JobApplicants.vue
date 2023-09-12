@@ -252,7 +252,7 @@
                     <button
                         @click="downloadCV(applicant.user?.cv)"
                         v-if="applicant.user?.cv"
-                        class="w-1/2 text-center border border-dashed py-1.5 rounded-md text-gray-500 font-medium text-sm"
+                        class="w-1/2 text-center border border-dashed border-indigo-500 py-1.5 rounded-md text-indigo-500 font-medium text-sm"
                     >
                         Descargar cv
                     </button>
