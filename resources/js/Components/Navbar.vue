@@ -136,6 +136,7 @@
                                         >
                                     </div>
                                     <div
+                                        class="my-2"
                                         v-if="
                                             props.user.applications.length > 0
                                         "
@@ -145,6 +146,14 @@
                                             @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
                                             >Mis aplicaciones</Link
+                                        >
+                                    </div>
+                                    <div v-if="props.user.userJobs.length > 0">
+                                        <Link
+                                            href="/my-published-jobs"
+                                            @click="isMenuOpen = false"
+                                            class="text-gray-700 font-normal"
+                                            >Empleos publicados</Link
                                         >
                                     </div>
                                     <div class="mt-3 font-normal">
@@ -287,12 +296,23 @@
                                         >Administración</Link
                                     >
                                 </div>
-                                <div v-if="props.user.applications.length > 0">
+                                <div
+                                    class="my-2"
+                                    v-if="props.user.applications.length > 0"
+                                >
                                     <Link
                                         href="/my-applications"
                                         class="text-gray-700 font-normal"
                                         @click="showUserMenu = false"
                                         >Mis aplicaciones</Link
+                                    >
+                                </div>
+                                <div v-if="props.user.userJobs.length > 0">
+                                    <Link
+                                        href="/my-published-jobs"
+                                        class="text-gray-700 font-normal"
+                                        @click="showUserMenu = false"
+                                        >Empleos publicados</Link
                                     >
                                 </div>
                                 <hr class="my-2" />

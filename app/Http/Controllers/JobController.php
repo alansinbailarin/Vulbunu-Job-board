@@ -23,7 +23,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
-use Termwind\Components\Dd;
 
 class JobController extends Controller
 {
@@ -277,5 +276,91 @@ class JobController extends Controller
         $successMessage = 'El empleo fue publicado satisfactoriamente, ID: <a class="text-blue-600 font-semibold underline" href="' . route('jobs.show', $job->slug) . '">' . $job->id . '</a>';
 
         return redirect()->route('jobs.index')->with('success', $successMessage);
+    }
+
+    public function myPublishedJobs()
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            if ($user->jobs->count() > 0) {
+                $oneWeekAgo = Carbon::now()->subWeek();
+                $totalJobsCount = Job::where('user_id', $user->id)->count();
+                $draftJobsCount = Job::where('user_id', $user->id)->where('status', 'draft')->count();
+                $publishedJobsCount = Job::where('user_id', $user->id)->where('status', 'published')->count();
+                $archivedJobsCount = Job::where('user_id', $user->id)->where('status', 'archived')->count();
+
+                $percentajeDraft = ($draftJobsCount * 100) / $totalJobsCount;
+                $percentajePublished = ($publishedJobsCount * 100) / $totalJobsCount;
+                $percentajeArchived = ($archivedJobsCount * 100) / $totalJobsCount;
+
+                // Obtenemos nuestros trabajos publicados con los aplicantes
+                $jobs = Job::where('user_id', $user->id)
+                    ->orderBy('status', 'desc')
+                    ->get();
+
+                return inertia('User/MyJobs', [
+                    'jobs' => $jobs,
+                    'totalJobsCount' => $totalJobsCount,
+                    'draftJobsCount' => $draftJobsCount,
+                    'publishedJobsCount' => $publishedJobsCount,
+                    'archivedJobsCount' => $archivedJobsCount,
+                    'percentajeDraft' => $percentajeDraft,
+                    'percentajePublished' => $percentajePublished,
+                    'percentajeArchived' => $percentajeArchived,
+                ]);
+            } else {
+                abort(403, 'Aun no has publicado ningun empleo.');
+            }
+        }
+    }
+
+    public function jobsApplicants(Job $job)
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            if (auth()->user()->id !== $job->user_id) {
+                // Si no es el propietario, muestra un error o redirige a una página de acceso no autorizado
+                abort(403, 'No tienes permiso para acceder a estos datos.');
+            }
+
+            // El usuario autenticado es el propietario del trabajo, puedes continuar con el código para obtener la información del trabajo y sus aplicantes
+            $jobWithApplicantsAndInterviews = Job::where('id', $job->id)
+                ->with(['applicant.interviews', 'applicant.user'])
+                ->firstOrFail();
+
+            $totalAppsCount = $jobWithApplicantsAndInterviews->applicant->count();
+            $pendingAppsCount = $jobWithApplicantsAndInterviews->applicant->where('status', 'pending')->count();
+            $approvedAppsCount = $jobWithApplicantsAndInterviews->applicant->where('status', 'approved')->count();
+            $rejectedAppsCount = $jobWithApplicantsAndInterviews->applicant->where('status', 'rejected')->count();
+
+            if ($totalAppsCount > 0) {
+                $percentajeTotal = ($totalAppsCount / $totalAppsCount) * 100;
+                $percentajePending = ($pendingAppsCount / $totalAppsCount) * 100;
+                $percentajeApproved = ($approvedAppsCount / $totalAppsCount) * 100;
+                $percentajeRejected = ($rejectedAppsCount / $totalAppsCount) * 100;
+            } else {
+                // Manejar el caso en el que no hay aplicantes (por ejemplo, establecer los porcentajes en cero)
+                $percentajeTotal = 0;
+                $percentajePending = 0;
+                $percentajeApproved = 0;
+                $percentajeRejected = 0;
+            }
+
+            $applicantPerJob = $jobWithApplicantsAndInterviews->applicant->count();
+
+            return inertia('User/JobApplicants', [
+                'job' => $jobWithApplicantsAndInterviews,
+                'totalAppsCount' => $totalAppsCount,
+                'pendingAppsCount' => $pendingAppsCount,
+                'approvedAppsCount' => $approvedAppsCount,
+                'rejectedAppsCount' => $rejectedAppsCount,
+                'percentajeTotal' => $percentajeTotal,
+                'percentajePending' => $percentajePending,
+                'percentajeApproved' => $percentajeApproved,
+                'percentajeRejected' => $percentajeRejected,
+            ]);
+        }
     }
 }

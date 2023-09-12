@@ -33,7 +33,7 @@
                     <div>
                         <p class="text-3xl">{{ totalAppsCount }}</p>
                     </div>
-                    <div v-if="percentajeTotal > 0.0">
+                    <!-- <div v-if="percentajeTotal > 0.0">
                         <p class="text-2xl font-extralight text-green-400">
                             {{ percentajeTotal.toFixed(1) }} %
                         </p>
@@ -42,7 +42,7 @@
                         <p class="text-2xl font-extralight text-red-400">
                             {{ percentajeTotal.toFixed(1) }} %
                         </p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div
@@ -70,7 +70,7 @@
                         </svg>
                     </div>
                 </div>
-                <p class="text-blue-100 text-sm">
+                <p class="text-yellow-100 text-sm">
                     Conteo de tus aplicaciones pendientes.
                 </p>
                 <div class="mt-2 flex items-center gap-4">
@@ -114,7 +114,7 @@
                         </svg>
                     </div>
                 </div>
-                <p class="text-blue-100 text-sm">
+                <p class="text-green-100 text-sm">
                     Conteo de tus aplicaciones aprobadas.
                 </p>
                 <div class="mt-2 flex items-center gap-4">
@@ -158,7 +158,7 @@
                         </svg>
                     </div>
                 </div>
-                <p class="text-blue-100 text-sm">
+                <p class="text-red-100 text-sm">
                     Conteo de tus aplicaciones rechazadas.
                 </p>
                 <div class="mt-2 flex items-center gap-4">
@@ -178,7 +178,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid grid-cols-2 gap-4 my-4">
+        <!-- <div class="grid grid-cols-2 gap-4 my-4">
             <div class="bg-white rounded-md p-4">
                 <Chart
                     :type="'doughnut'"
@@ -197,7 +197,7 @@
                     :percentajeRejected="rejectedCount"
                 ></Chart>
             </div>
-        </div>
+        </div> -->
         <div class="grid md:grid-cols-3 grid-cols-1 md:gap-4">
             <Box v-for="job in props.jobs" :key="job.id">
                 <div v-for="applicant in job.applicant" :key="applicant.id">
@@ -210,7 +210,7 @@
                                 >{{ job.title }}</a
                             >
                         </div>
-                        <div>
+                        <div class="">
                             <span :class="getStatusColor(applicant.status)">{{
                                 changeStatusText(applicant.status)
                             }}</span>
@@ -255,6 +255,7 @@
                             >
                                 <!-- Fondo obscuro -->
                                 <div
+                                    @click="toggleModal(interview)"
                                     class="fixed inset-0 bg-black opacity-50"
                                 ></div>
 
@@ -341,7 +342,7 @@
                                             >
                                         </p>
                                         <span
-                                            >Estatus: Entrevista
+                                            >Estatus de la entrevista:
                                             {{
                                                 changeStatusText(
                                                     interview?.status
@@ -383,6 +384,14 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div v-if="applicant.status != 'cancelled'" class="mt-3">
+                        <button
+                            type="button"
+                            class="w-full text-xs text-red-500 rounded-md border py-1.5 border-dashed border-red-500"
+                        >
+                            Cancelar aplicación
+                        </button>
+                    </div> -->
                 </div>
             </Box>
         </div>
@@ -423,11 +432,13 @@ const isOpen = ref(false);
 
 const getStatusColor = (status) => {
     if (status === "pending") {
-        return "bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded";
+        return "bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded";
     } else if (status === "approved") {
-        return "bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded";
+        return "bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded";
     } else if (status === "rejected") {
-        return "bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded";
+        return "bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded";
+    } else if (status === "cancelled") {
+        return "bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded";
     }
 };
 
@@ -438,6 +449,8 @@ const changeStatusText = (status) => {
         return "Aprobado";
     } else if (status === "rejected") {
         return "Rechazado";
+    } else if (status === "cancelled") {
+        return "Cancelado";
     }
 };
 

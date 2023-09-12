@@ -38,6 +38,10 @@ Route::get('/jobs/{job}', [IndexController::class, 'show'])->name('jobs.show');
 Route::get('/publish-job', [JobController::class, 'create'])->name('jobs.create')->middleware('auth');
 Route::post('/publish-job', [JobController::class, 'store'])->name('jobs.store')->middleware('auth');
 
+// Job poster dashboard
+Route::get('/my-published-jobs', [JobController::class, 'myPublishedJobs'])->name('my-published-jobs')->middleware('auth');
+Route::get('/my-published-jobs/{job}', [JobController::class, 'jobsApplicants'])->name('my-published-jobs.applicants')->middleware('auth');
+
 // Rutas para logearse
 Route::get('login', [AuthController::class, 'create'])->name('login')->middleware('guest');
 Route::post('login', [AuthController::class, 'store'])->name('login.store');
@@ -48,6 +52,7 @@ Route::delete('logout', [AuthController::class, 'destroy'])->name('login.destroy
 // Ruta para crear perfil
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store'])->middleware('guest');
 
+// Rutas para configurar el perfil
 Route::get('/user-account/configuration', [UserAccountController::class, 'index'])->name('user-account.index')->middleware('auth');
 Route::put('/user-account/configuration', [UserAccountController::class, 'update'])->name('user-account.update')->middleware('auth');
 Route::delete('/user-account/configuration/{itemToDelete}', [UserAccountController::class, 'deleteItem'])->where('itemToDelete', 'avatar|cv')->name('user-account.destroy')->middleware('auth');
@@ -66,4 +71,6 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('aut
 
 // Share profile with the job poster
 Route::post('/share-profile', [ApplicantController::class, 'shareProfile'])->name('share-profile')->middleware('auth');
+
+// My applications
 Route::get('/my-applications', [ApplicantController::class, 'myApplications'])->name('my-applications')->middleware('auth');
