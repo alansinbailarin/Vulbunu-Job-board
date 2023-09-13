@@ -5,7 +5,7 @@
             'bg-white bg-opacity-80 backdrop-filter backdrop-blur transition-all duration-300 ease-in-out':
                 isTransparent,
         }"
-        class="bg-white shadow-sm sticky top-0 z-10 w-full"
+        class="bg-white shadow-sm sticky top-0 z-20 w-full"
     >
         <div class="container mx-auto">
             <nav class="md:flex md:items-center md:justify-between p-4">

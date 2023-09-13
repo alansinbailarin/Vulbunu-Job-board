@@ -363,7 +363,6 @@
                             >
                             <select
                                 id="jobModalities"
-                                form=""
                                 v-model="form.job_modality_id"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                             >
@@ -400,7 +399,6 @@
                             >
                             <select
                                 id="gender"
-                                form=""
                                 v-model="form.gender_id"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                             >
@@ -439,7 +437,6 @@
                             >
                             <select
                                 id="looking_for_job"
-                                form=""
                                 v-model="form.looking_for_job"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                             >

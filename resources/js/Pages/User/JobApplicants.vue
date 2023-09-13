@@ -3,9 +3,69 @@
         <Head :title="`Aplicantes de ${job.title}`"> </Head>
     </div>
     <div class="container my-1 p-4 mx-auto">
-        <h1 class="text-2xl font-medium" :style="jobTitleColorIfFeatured(job)">
-            {{ job.title }}
-        </h1>
+        <div class="flex items-center justify-between">
+            <div>
+                <h1
+                    class="text-2xl font-medium"
+                    :style="jobTitleColorIfFeatured(job)"
+                >
+                    {{ job.title }}
+                </h1>
+            </div>
+            <div class="relative inline-block text-left">
+                <div>
+                    <button
+                        @click="isOpen = !isOpen"
+                        type="button"
+                        class="inline-flex w-full justify-center gap-x-1.5 text-gray-900"
+                        id="menu-button"
+                        aria-expanded="true"
+                        aria-haspopup="true"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-three-dots-vertical"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                            />
+                        </svg>
+                    </button>
+                </div>
+                <div
+                    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white"
+                    :class="{ hidden: !isOpen }"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="menu-button"
+                    tabindex="-1"
+                >
+                    <div class="py-1" role="none">
+                        <a
+                            href="#"
+                            class="text-gray-700 block px-4 py-2 text-sm"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="menu-item-0"
+                            >Editar empleo</a
+                        >
+                        <a
+                            href="#"
+                            class="text-gray-700 block px-4 py-2 text-sm"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="menu-item-1"
+                            >Eliminar empleo</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <h1 class="font-medium text-lg mt-1">Lista de aspirantes</h1>
         <div class="grid grid-cols-2 md:grid-cols-4 md:gap-4 gap-2 my-4">
             <div
@@ -235,6 +295,7 @@
                 </div>
                 <div class="mt-3 flex text-sm gap-2">
                     <button
+                        @click="toggleModal(applicant)"
                         v-if="applicant.interviews?.length === 0"
                         class="text-center bg-indigo-600 text-white py-1.5 rounded-md font-semibold text-sm"
                         :class="applicant.user?.cv ? 'w-1/2' : 'w-full'"
@@ -257,7 +318,261 @@
                         Descargar cv
                     </button>
                 </div>
+                <div
+                    v-show="applicant.isOpen"
+                    class="fixed inset-0 flex items-center justify-center z-50"
+                >
+                    <!-- Fondo obscuro -->
+                    <div
+                        @click="toggleModal(applicant)"
+                        class="fixed inset-0 bg-black opacity-50"
+                    ></div>
 
+                    <!-- Contenido del modal -->
+                    <div
+                        class="bg-white w-full md:w-1/2 p-4 mx-4 rounded-md relative"
+                    >
+                        <!-- Botón para cerrar el modal -->
+                        <button
+                            @click="toggleModal(applicant)"
+                            class="absolute text-lg cursor-pointer top-2 right-2 text-gray-600 hover:bg-gray-100 rounded-md"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="currentColor"
+                                class="bi bi-x"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                                />
+                            </svg>
+                        </button>
+
+                        <!-- Contenido del modal -->
+                        <h1 class="font-medium text-gray-700">
+                            {{ applicant.user?.name }}
+                            {{ applicant.user?.last_name }}
+                        </h1>
+                        <p class="text-sm text-gray-500">
+                            {{
+                                form.interview_type === "virtual"
+                                    ? "Crea un link de https://meet.google.com/ para que el aplicante pueda acceder el dia de la entrevista."
+                                    : "Accede a https://maps.google.com/ busca la dirección en la que el aplicante se debe de presentar para la entrevista."
+                            }}
+                        </p>
+                        <form class="mt-2" @submit.prevent="publish">
+                            <div
+                                class="overflow-y-auto h-[32rem] grid grid-cols-1 md:grid-cols-2 gap-3"
+                            >
+                                <div class="col-span-2 md:col-span-1">
+                                    <label
+                                        for="interview_type"
+                                        class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                        >Tipo de entrevista</label
+                                    >
+                                    <select
+                                        id="interview_type"
+                                        v-model="form.interview_type"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                                    >
+                                        <option value="presential">
+                                            Presencial
+                                        </option>
+                                        <option value="virtual">Virtual</option>
+                                    </select>
+                                    <div
+                                        v-if="form.errors.interview_type"
+                                        class="px-2 py-2 rounded-md"
+                                    >
+                                        <div class="flex items-center">
+                                            <div>
+                                                <p
+                                                    class="text-sm text-red-600 text-left"
+                                                >
+                                                    {{
+                                                        form.errors
+                                                            .interview_type
+                                                    }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 md:col-span-1">
+                                    <label
+                                        for="interview_link"
+                                        class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                        >Enlace para la entrevista
+                                    </label>
+                                    <input
+                                        id="interview_link"
+                                        v-model="form.interview_link"
+                                        type="text"
+                                        autocomplete="link"
+                                        :placeholder="
+                                            form.interview_type === 'virtual'
+                                                ? 'https://meet.google.com/...'
+                                                : 'https://maps.google.com/...'
+                                        "
+                                        class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                                    />
+                                    <div
+                                        v-if="form.errors.interview_link"
+                                        class="px-2 py-2 rounded-md"
+                                    >
+                                        <div class="flex items-center">
+                                            <div>
+                                                <p
+                                                    class="text-sm text-red-600 text-left"
+                                                >
+                                                    {{
+                                                        form.errors
+                                                            .interview_link
+                                                    }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 md:col-span-1">
+                                    <label
+                                        for="interview_date"
+                                        class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                        >Fecha y hora de la entrevista</label
+                                    >
+                                    <input
+                                        id="interview_date"
+                                        v-model="form.interview_date"
+                                        type="datetime-local"
+                                        class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                                    />
+                                    <div
+                                        v-if="form.errors.interview_date"
+                                        class="px-2 py-2 rounded-md"
+                                    >
+                                        <div class="flex items-center">
+                                            <div>
+                                                <p
+                                                    class="text-sm text-red-600 text-left"
+                                                >
+                                                    {{
+                                                        form.errors
+                                                            .interview_date
+                                                    }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 md:col-span-1">
+                                    <label
+                                        for="interview_duration"
+                                        class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                        >Duración de la entrevista</label
+                                    >
+                                    <select
+                                        id="interview_duration"
+                                        v-model="form.interview_duration"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                                    >
+                                        <option value="00:30:00">
+                                            30 minutos
+                                        </option>
+                                        <option value="01:00:00">1 hora</option>
+                                        <option value="01:30:00">
+                                            1 hora 30 minutos
+                                        </option>
+                                        <option value="02:00:00">
+                                            2 horas
+                                        </option>
+                                    </select>
+                                    <div
+                                        v-if="form.errors.interview_duration"
+                                        class="px-2 py-2 rounded-md"
+                                    >
+                                        <div class="flex items-center">
+                                            <div>
+                                                <p
+                                                    class="text-sm text-red-600 text-left"
+                                                >
+                                                    {{
+                                                        form.errors
+                                                            .interview_duration
+                                                    }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-2">
+                                    <label
+                                        for="interview_observation"
+                                        class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                        >Observaciones para la entrevista</label
+                                    >
+                                    <textarea
+                                        name="interview_observation"
+                                        id="interview_observation"
+                                        v-model="form.interview_observation"
+                                        cols="30"
+                                        rows="7"
+                                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                                        placeholder="Por favor, llegar 30 minutos antes a la entrevista para poder realizar el proceso de registro..."
+                                    ></textarea>
+                                    <div
+                                        v-if="form.errors.interview_observation"
+                                        class="px-2 py-2 rounded-md"
+                                    >
+                                        <div class="flex items-center">
+                                            <div>
+                                                <p
+                                                    class="text-sm text-red-600 text-left"
+                                                >
+                                                    {{
+                                                        form.errors
+                                                            .interview_observation
+                                                    }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-span-2">
+                                    <label
+                                        for="interview_feedback"
+                                        class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                        >Comentarios acerca de la
+                                        entrevista</label
+                                    >
+                                    <textarea
+                                        name="interview_feedback"
+                                        id="interview_feedback"
+                                        v-model="form.interview_feedback"
+                                        cols="30"
+                                        rows="7"
+                                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                                        placeholder="El aplicante llego 1 hora tarde a la entrevista..."
+                                    ></textarea>
+                                </div> -->
+                            </div>
+                            <div class="mt-6">
+                                <Button
+                                    type="submit"
+                                    :class="{
+                                        'opacity-25':
+                                            form.processing || !form.isDirty,
+                                    }"
+                                    :disabled="form.processing || !form.isDirty"
+                                    class="w-full bg-indigo-600 text-white py-1.5 rounded-md font-semibold"
+                                    >Agendar entrevista</Button
+                                >
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <button
                     type="submit"
                     class="w-full text-center mt-3 text-blue-500 underline text-sm"
@@ -291,10 +606,11 @@
     </div>
 </template>
 <script setup>
-import { Head } from "@inertiajs/vue3";
+import { Head, useForm, router } from "@inertiajs/vue3";
 import Box from "@/UI/Box.vue";
 import moment from "moment";
 import "moment/dist/locale/es";
+import { ref, computed } from "vue";
 
 const props = defineProps({
     job: Object,
@@ -307,6 +623,28 @@ const props = defineProps({
     percentajeApproved: Number,
     percentajeRejected: Number,
 });
+
+console.log(props.job);
+
+const form = useForm({
+    applicant_id: "",
+    interview_type: "presential",
+    interview_link: "",
+    interview_date: "",
+    interview_duration: "00:30:00",
+    interview_observation: "",
+});
+
+const isOpen = ref(false);
+
+const publish = () => {
+    form.post(route("create-interview"));
+};
+
+const toggleModal = (applicant) => {
+    form.applicant_id = applicant.id;
+    applicant.isOpen = !applicant.isOpen;
+};
 
 const jobTitleColorIfFeatured = (job) => {
     if (job.featured === 1) {
@@ -352,7 +690,6 @@ const downloadCV = (url) => {
             link.remove();
         });
 };
-console.log(props.job);
 </script>
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";

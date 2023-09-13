@@ -23,6 +23,10 @@ class ApplicantController extends Controller
 
             if ($existingApplicant) {
                 return redirect()->back()->with('success', 'Ya haz aplicado antes a la vacante');
+            }
+            // Si el trabajo pertenece a la persona logeada, no puede aplicar
+            else if ($user->id == Job::find($jobId)->user_id) {
+                return redirect()->back()->with('success', 'No puedes aplicar a tu propia vacante');
             } else {
                 // El perfil no ha sido compartido antes, crea un nuevo registro
                 Applicant::create([

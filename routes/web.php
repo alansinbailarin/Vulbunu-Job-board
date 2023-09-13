@@ -11,6 +11,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\UserLocation;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\InterviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,4 @@ Route::post('/share-profile', [ApplicantController::class, 'shareProfile'])->nam
 
 // My applications
 Route::get('/my-applications', [ApplicantController::class, 'myApplications'])->name('my-applications')->middleware('auth');
+Route::post('/my-applications/create-interview', [InterviewController::class, 'createInterview'])->name('create-interview')->middleware('auth');

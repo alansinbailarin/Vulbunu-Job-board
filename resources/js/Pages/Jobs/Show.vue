@@ -54,11 +54,12 @@
                         <h1 class="font-medium text-lg md:text-2xl lg:text-3xl">
                             {{ job.title }}
                         </h1>
-                        <p
-                            class="text-gray-500 text-sm md:text-base lg:text-lg"
+                        <Link
+                            :href="`/talents/${job.user.slug}`"
+                            class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1"
                         >
                             {{ job.user.name }} {{ job.user.last_name }}
-                        </p>
+                        </Link>
                     </div>
                 </div>
             </div>
