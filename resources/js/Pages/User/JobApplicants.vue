@@ -59,7 +59,7 @@
                             role="menuitem"
                             tabindex="-1"
                             id="menu-item-1"
-                            >Poner como borrador</a
+                            >Cambiar a borrador</a
                         >
                         <a
                             href="#"
@@ -589,13 +589,13 @@
                         </form>
                     </div>
                 </div>
-                <button
-                    type="submit"
-                    class="w-full text-center mt-3 text-blue-500 underline text-sm"
+                <Link
+                    :href="`/my-applications/interview/${applicant.interviews[0].id}/edit`"
+                    class="w-full inline-block text-center mt-3 text-blue-500 underline text-sm"
                     v-if="applicant.interviews?.length > 0"
                 >
                     Informacion de entrevista
-                </button>
+                </Link>
             </Box>
         </div>
         <div
@@ -622,7 +622,7 @@
     </div>
 </template>
 <script setup>
-import { Head, useForm, router } from "@inertiajs/vue3";
+import { Head, useForm, router, Link } from "@inertiajs/vue3";
 import Box from "@/UI/Box.vue";
 import moment from "moment";
 import "moment/dist/locale/es";
@@ -640,7 +640,7 @@ const props = defineProps({
     percentajeRejected: Number,
 });
 
-console.log(props.job);
+console.log(props.job.applicant);
 
 const form = useForm({
     applicant_id: "",

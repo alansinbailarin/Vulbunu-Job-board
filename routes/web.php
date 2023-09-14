@@ -76,3 +76,5 @@ Route::post('/share-profile', [ApplicantController::class, 'shareProfile'])->nam
 // My applications
 Route::get('/my-applications', [ApplicantController::class, 'myApplications'])->name('my-applications')->middleware('auth');
 Route::post('/my-applications/create-interview', [InterviewController::class, 'createInterview'])->name('create-interview')->middleware('auth');
+Route::get('/my-applications/interview/{interview}/edit', [InterviewController::class, 'edit'])->name('edit-interview')->middleware('auth');
+Route::put('/my-applications/interview/{interview}', [InterviewController::class, 'update'])->name('update-interview')->middleware('auth');
