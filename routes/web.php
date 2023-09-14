@@ -42,6 +42,7 @@ Route::post('/publish-job', [JobController::class, 'store'])->name('jobs.store')
 // Job poster dashboard
 Route::get('/my-published-jobs', [JobController::class, 'myPublishedJobs'])->name('my-published-jobs')->middleware('auth');
 Route::get('/my-published-jobs/{job}', [JobController::class, 'jobsApplicants'])->name('my-published-jobs.applicants')->middleware('auth');
+Route::put('/my-published-jobs/update-application-status/{applicant}/{status}', [ApplicantController::class, 'updateApplicationStatus'])->name('update-application-status')->middleware('auth');
 
 // Rutas para logearse
 Route::get('login', [AuthController::class, 'create'])->name('login')->middleware('guest');

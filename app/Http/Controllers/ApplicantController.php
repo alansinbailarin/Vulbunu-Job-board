@@ -7,6 +7,7 @@ use App\Models\Applicant;
 use App\Models\Job;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicantController extends Controller
 {
@@ -135,6 +136,21 @@ class ApplicantController extends Controller
             ]);
         } else {
             return redirect()->back()->with('success', 'Debes iniciar sesión para ver tus aplicaciones');
+        }
+    }
+
+    public function updateApplicationStatus(Applicant $applicant, $status)
+    {
+        $user = auth()->user();
+
+        if ($user) {
+            $applicant->status = $status;
+
+            $applicant->save();
+
+            return redirect()->back()->with('success', 'Estado de la aplicación actualizado satisfactoriamente');
+        } else {
+            return redirect()->back()->with('success', 'Debes iniciar sesión para actualizar el estado de la aplicación');
         }
     }
 }

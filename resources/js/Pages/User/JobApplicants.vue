@@ -12,74 +12,6 @@
                     {{ job.title }}
                 </h1>
             </div>
-            <div class="relative inline-block text-left">
-                <div>
-                    <button
-                        @click="isOpen = !isOpen"
-                        type="button"
-                        class="inline-flex w-full justify-center gap-x-1.5 text-gray-900"
-                        id="menu-button"
-                        aria-expanded="true"
-                        aria-haspopup="true"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-three-dots-vertical"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
-                            />
-                        </svg>
-                    </button>
-                </div>
-                <div
-                    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white"
-                    :class="{ hidden: !isOpen }"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="menu-button"
-                    tabindex="-1"
-                >
-                    <div class="py-1 font-medium" role="none">
-                        <a
-                            href="#"
-                            class="text-gray-700 block px-4 py-2 text-sm"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-0"
-                            >Editar empleo</a
-                        >
-                        <a
-                            href="#"
-                            class="text-gray-700 block px-4 py-2 text-sm"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-1"
-                            >Cambiar a borrador</a
-                        >
-                        <a
-                            href="#"
-                            class="text-gray-700 block px-4 py-2 text-sm"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-1"
-                            >Archivar empleo</a
-                        >
-                        <a
-                            href="#"
-                            class="text-gray-700 block px-4 py-2 text-sm"
-                            role="menuitem"
-                            tabindex="-1"
-                            id="menu-item-1"
-                            >Eliminar empleo</a
-                        >
-                    </div>
-                </div>
-            </div>
         </div>
 
         <h1 class="font-medium text-lg mt-1">Lista de aspirantes</h1>
@@ -273,10 +205,86 @@
                             {{ applicant.user.last_name }}
                         </a>
                     </div>
-                    <div>
+                    <div class="items-center flex">
                         <span :class="getStatusColor(applicant.status)">{{
                             changeStatusText(applicant.status)
                         }}</span>
+                        <div
+                            class="relative inline-block text-left pt-0.5 ml-1"
+                        >
+                            <div>
+                                <button
+                                    @click="toggleDropdown(applicant)"
+                                    type="button"
+                                    class="inline-flex w-full justify-center gap-x-1.5 text-gray-900"
+                                    id="menu-button"
+                                    aria-expanded="true"
+                                    aria-haspopup="true"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="16"
+                                        height="16"
+                                        fill="currentColor"
+                                        class="bi bi-three-dots-vertical"
+                                        viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div
+                                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white border border-gray-200"
+                                v-show="applicant.dropdownOpen"
+                                role="menu"
+                                aria-orientation="vertical"
+                                aria-labelledby="menu-button"
+                                tabindex="-1"
+                            >
+                                <div class="" role="none">
+                                    <button
+                                        type="submit"
+                                        @click="
+                                            updateApplicationStatus(
+                                                applicant,
+                                                'approved'
+                                            )
+                                        "
+                                        :disabled="
+                                            applicant.status != 'pending'
+                                        "
+                                        class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        :class="{
+                                            'bg-gray-50 ':
+                                                applicant.status != 'pending',
+                                        }"
+                                    >
+                                        Aprobar aplicación
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        @click="
+                                            updateApplicationStatus(
+                                                applicant,
+                                                'rejected'
+                                            )
+                                        "
+                                        :disabled="
+                                            applicant.status != 'pending'
+                                        "
+                                        class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        :class="{
+                                            'bg-gray-50 ':
+                                                applicant.status != 'pending',
+                                        }"
+                                    >
+                                        Rechazar aplicación
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -652,14 +660,29 @@ const form = useForm({
 });
 
 const isOpen = ref(false);
+const dropdownOpen = ref(false);
 
 const publish = () => {
     form.post(route("create-interview"));
 };
 
+const updateApplicationStatus = (appplicant, status) => {
+    form.put(
+        route("update-application-status", {
+            applicant: appplicant.id,
+            status: status,
+        })
+    );
+};
+
 const toggleModal = (applicant) => {
     form.applicant_id = applicant.id;
     applicant.isOpen = !applicant.isOpen;
+};
+
+const toggleDropdown = (applicant) => {
+    form.applicant_id = applicant.id;
+    applicant.dropdownOpen = !applicant.dropdownOpen;
 };
 
 const jobTitleColorIfFeatured = (job) => {
