@@ -670,7 +670,7 @@ const isOpen = ref(false);
 const dropdownOpen = ref(false);
 
 const publish = () => {
-    form.post(route("create-interview"));
+    form.post(route("create-interview"), { preserveScroll: true });
 };
 
 const updateApplicationStatus = (appplicant, status) => {
@@ -678,7 +678,8 @@ const updateApplicationStatus = (appplicant, status) => {
         route("update-application-status", {
             applicant: appplicant.id,
             status: status,
-        })
+        }),
+        { preserveScroll: true }
     );
 };
 

@@ -503,7 +503,8 @@ const updateApplicationStatus = (appplicant, status) => {
         route("update-application-status", {
             applicant: appplicant.id,
             status: status,
-        })
+        }),
+        { preserveScroll: true }
     );
 };
 
