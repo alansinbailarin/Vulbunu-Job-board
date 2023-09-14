@@ -44,7 +44,7 @@
                     aria-labelledby="menu-button"
                     tabindex="-1"
                 >
-                    <div class="py-1" role="none">
+                    <div class="py-1 font-medium" role="none">
                         <a
                             href="#"
                             class="text-gray-700 block px-4 py-2 text-sm"
@@ -52,6 +52,22 @@
                             tabindex="-1"
                             id="menu-item-0"
                             >Editar empleo</a
+                        >
+                        <a
+                            href="#"
+                            class="text-gray-700 block px-4 py-2 text-sm"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="menu-item-1"
+                            >Poner como borrador</a
+                        >
+                        <a
+                            href="#"
+                            class="text-gray-700 block px-4 py-2 text-sm"
+                            role="menuitem"
+                            tabindex="-1"
+                            id="menu-item-1"
+                            >Archivar empleo</a
                         >
                         <a
                             href="#"
@@ -365,7 +381,7 @@
                         </p>
                         <form class="mt-2" @submit.prevent="publish">
                             <div
-                                class="overflow-y-auto h-[32rem] grid grid-cols-1 md:grid-cols-2 gap-3"
+                                class="overflow-y-auto h-[26rem] grid grid-cols-1 md:grid-cols-2 gap-3"
                             >
                                 <div class="col-span-2 md:col-span-1">
                                     <label
