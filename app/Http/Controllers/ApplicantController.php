@@ -148,7 +148,7 @@ class ApplicantController extends Controller
 
             $applicant->save();
 
-            return redirect()->back()->with('success', 'Estado de la aplicación actualizado satisfactoriamente');
+            return redirect()->back()->with('success', 'Estado de la aplicación actualizado');
         } else {
             return redirect()->back()->with('success', 'Debes iniciar sesión para actualizar el estado de la aplicación');
         }
