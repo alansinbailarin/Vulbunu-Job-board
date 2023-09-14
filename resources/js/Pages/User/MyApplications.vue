@@ -214,6 +214,64 @@
                             <span :class="getStatusColor(applicant.status)">{{
                                 changeStatusText(applicant.status)
                             }}</span>
+                            <div
+                                class="relative inline-block text-left pt-0.5 ml-1"
+                            >
+                                <div>
+                                    <button
+                                        @click="toggleDropdown(applicant)"
+                                        type="button"
+                                        class="inline-flex w-full justify-center gap-x-1.5 text-gray-900"
+                                        id="menu-button"
+                                        aria-expanded="true"
+                                        aria-haspopup="true"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            class="bi bi-three-dots-vertical"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div
+                                    class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white border border-gray-200"
+                                    v-show="applicant.dropdownOpen"
+                                    role="menu"
+                                    aria-orientation="vertical"
+                                    aria-labelledby="menu-button"
+                                    tabindex="-1"
+                                >
+                                    <div class="" role="none">
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateApplicationStatus(
+                                                    applicant,
+                                                    'cancelled'
+                                                )
+                                            "
+                                            :disabled="
+                                                applicant.status != 'pending'
+                                            "
+                                            class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    applicant.status !=
+                                                    'pending',
+                                            }"
+                                        >
+                                            Cancelar mi aplicación
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <h1 class="text-xs text-gray-700">
@@ -399,7 +457,7 @@
 </template>
 
 <script setup>
-import { Head } from "@inertiajs/vue3";
+import { Head, useForm } from "@inertiajs/vue3";
 import Box from "@/UI/Box.vue";
 import { ref } from "vue";
 import moment from "moment";
@@ -428,7 +486,26 @@ const props = defineProps({
     rejectedCount: Number,
 });
 
+const form = useForm({
+    applicant_id: "",
+});
+
 const isOpen = ref(false);
+
+const toggleDropdown = (applicant) => {
+    form.applicant_id = applicant.id;
+
+    applicant.dropdownOpen = !applicant.dropdownOpen;
+};
+
+const updateApplicationStatus = (appplicant, status) => {
+    form.put(
+        route("update-application-status", {
+            applicant: appplicant.id,
+            status: status,
+        })
+    );
+};
 
 const getStatusColor = (status) => {
     if (status === "pending") {

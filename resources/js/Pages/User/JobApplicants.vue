@@ -321,15 +321,22 @@
                     <button
                         @click="toggleModal(applicant)"
                         v-if="applicant.interviews?.length === 0"
+                        :disabled="applicant.status !== 'pending'"
                         class="text-center bg-indigo-600 text-white py-1.5 rounded-md font-semibold text-sm"
-                        :class="applicant.user?.cv ? 'w-1/2' : 'w-full'"
+                        :class="[
+                            applicant.user?.cv ? 'w-1/2' : 'w-full',
+                            applicant.status !== 'pending'
+                                ? 'opacity-50 cursor-not-allowed'
+                                : '',
+                        ]"
                     >
                         Agendar entrevista
                     </button>
+
                     <button
                         v-else
                         disabled
-                        class="text-center bg-indigo-300 text-white py-1.5 rounded-md font-semibold text-sm"
+                        class="text-center bg-indigo-600 opacity-50 text-white py-1.5 rounded-md font-semibold text-sm"
                         :class="applicant.user?.cv ? 'w-1/2' : 'w-full'"
                     >
                         Entrevista agendada
