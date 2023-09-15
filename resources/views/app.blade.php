@@ -10,7 +10,7 @@
     @inertiaHead
 </head>
 
-<body class="bg-gray-100 text-gray-800 mb-0">
+<body class=" text-gray-800 mb-0">
     @inertia
 </body>
 
