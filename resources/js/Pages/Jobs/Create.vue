@@ -10,30 +10,29 @@
     <div class="container mx-auto px-4 mt-4">
         <div class="">
             <h1 class="font-bold text-xl md:text-2xl text-gray-700">
-                Describe el empleo a publicar
+                Describe the job to be posted
             </h1>
             <p class="text-sm md:text-base">
-                Introduce la mayor cantidad de datos acerca de el empleo a
-                publicar para poder hacer match con más aplicantes.
+                Provide as much information as possible about the job you want
+                to post to match with more applicants
             </p>
 
             <div
                 class="bg-blue-100 px-4 py-2 rounded-md my-4 text-sm text-blue-700 gap-2"
             >
                 <p class="">
-                    Por favor, recuerda que todos los campos marcados con
-                    asterisco(<span class="text-lg text-red-600">*</span>) son
-                    campos obligatorios.
+                    Please remember that all fields marked with an
+                    asterisk(<span class="text-lg text-red-600">*</span>) are
+                    required fields
                 </p>
                 <p class="flex items-center mt-2">
-                    Recuerda que por fines de optimización, peso de las imagenes
-                    no debe de ser mayor a 1 MB.
+                    Please note that for optimization purposes, image file size
+                    should not exceed 1 MB
                 </p>
                 <p class="flex items-center mt-2">
-                    Recuerda usar los campos de texto en formato de lista para
-                    los campos de requerimientos y responsabilidades para
-                    obtener una lista de requerimientos y responsabilidades
-                    mejor adaptada.
+                    Please use text fields in list format for the requirements
+                    and responsibilities sections to obtain a more
+                    well-structured list of requirements and responsibilities
                 </p>
             </div>
         </div>
@@ -44,7 +43,7 @@
                         <label
                             for="title"
                             class="flex mb-2 font-medium text-left items-center"
-                            >Titulo
+                            >Title
                             <span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +81,7 @@
                         <label
                             for="category"
                             class="flex mb-2 font-medium items-center"
-                            >Categoria<span class="text-lg text-red-600"
+                            >Category<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -101,9 +100,7 @@
                             v-model="form.category_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona una categoria
-                            </option>
+                            <option value="" hidden>Select a category</option>
                             <option
                                 v-for="category in categories"
                                 :key="category.id"
@@ -131,7 +128,7 @@
                         <label
                             for="apply_on"
                             class="flex items-center mb-2 font-medium"
-                            >Aplica en<span class="text-lg text-red-600"
+                            >Apply on<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -207,8 +204,7 @@
                         <label
                             for="status"
                             class="flex items-center mb-2 font-medium"
-                            >Estado del trabajo<span
-                                class="text-lg text-red-600"
+                            >Job status<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -227,13 +223,11 @@
                             v-model="form.status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona un estado
-                            </option>
+                            <option value="" hidden>Select a status</option>
 
-                            <option value="draft">Borrador</option>
-                            <option value="published">Publicado</option>
-                            <option value="archived">Archivado</option>
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                            <option value="archived">Archived</option>
                         </select>
                         <div
                             v-if="form.errors.status"
@@ -295,7 +289,7 @@
                         <label
                             for="jobModalities"
                             class="flex items-center mb-2 font-medium"
-                            >Tipo de modalidad<span class="text-lg text-red-600"
+                            >Modality type<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -314,9 +308,7 @@
                             v-model="form.job_modality_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona una modalidad
-                            </option>
+                            <option value="" hidden>Select a modality</option>
 
                             <option
                                 v-for="modality in jobModalities"
@@ -343,7 +335,7 @@
                         <label
                             for="workdays"
                             class="flex items-center mb-2 font-medium"
-                            >Tipo de puesto<span class="text-lg text-red-600"
+                            >Job type<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -362,9 +354,7 @@
                             v-model="form.workday_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona un tiempo
-                            </option>
+                            <option value="" hidden>Select a type</option>
 
                             <option
                                 v-for="workday in workdays"
@@ -391,7 +381,7 @@
                         <label
                             for="priority"
                             class="flex items-center mb-2 font-medium"
-                            >Prioridad<span class="text-lg text-red-600"
+                            >Priority<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -410,9 +400,7 @@
                             v-model="form.priority_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona una prioridad
-                            </option>
+                            <option value="" hidden>Select a priority</option>
 
                             <option
                                 v-for="priority in priorities"
@@ -439,7 +427,7 @@
                         <label
                             for="country"
                             class="flex items-center mb-2 font-medium"
-                            >Pais<span class="text-lg text-red-600"
+                            >Country<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -459,7 +447,7 @@
                             @change="getStates"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>Selecciona un pais</option>
+                            <option value="" hidden>Select a country</option>
                             <option
                                 v-for="country in countries"
                                 :key="country.id"
@@ -486,7 +474,7 @@
                         <label
                             for="state"
                             class="flex items-center mb-2 font-medium"
-                            >Estado<span class="text-lg text-red-600"
+                            >State<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -507,9 +495,7 @@
                             @change="getCities"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona un estado
-                            </option>
+                            <option value="" hidden>Select a state</option>
                             <option
                                 v-for="state in states"
                                 :key="state.id"
@@ -535,7 +521,7 @@
                         <label
                             for="city"
                             class="flex items-center mb-2 font-medium"
-                            >Ciudad<span class="text-lg text-red-600"
+                            >City<span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="8"
@@ -555,9 +541,7 @@
                             :disabled="!selectedState"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona una ciudad
-                            </option>
+                            <option value="" hidden>Select a city</option>
                             <option
                                 v-for="city in cities"
                                 :key="city.id"
@@ -583,7 +567,7 @@
                 <div class="md:grid grid-cols-7 mb-4 gap-4 text-sm">
                     <div class="col-span-2">
                         <p class="flex items-center font-medium mb-2">
-                            Selecciona hasta 6 tags
+                            Select up to 6 tags
                             <span class="text-lg text-red-600"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -665,7 +649,7 @@
                     </div>
                     <div class="col-span-5 mt-4 md:mt-0">
                         <p class="font-medium mb-2">
-                            Tags seleccionados: {{ selectedTagsCount }}
+                            Selected tags: {{ selectedTagsCount }}
                         </p>
                         <div
                             class="bg-gray-50 rounded-md border border-gray-300 px-2 flex flex-wrap items-center py-0.5"
@@ -698,16 +682,14 @@
                 <div class="md:grid grid-cols-8 mb-4 gap-4 text-sm">
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="currency" class="block mb-2 font-medium"
-                            >Moneda</label
+                            >Currency</label
                         >
                         <select
                             id="currency"
                             v-model="form.currency_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona un tipo de moneda
-                            </option>
+                            <option value="" hidden>Select a currency</option>
 
                             <option
                                 v-for="currency in currencies"
@@ -733,7 +715,7 @@
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="min" class="block mb-2 font-medium"
-                            >Desde</label
+                            >From</label
                         >
                         <input
                             type="number"
@@ -759,7 +741,7 @@
                     </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="max" class="block mb-2 font-medium"
-                            >Hasta</label
+                            >To</label
                         >
                         <input
                             type="number"
@@ -785,7 +767,7 @@
                     </div>
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="periodicity" class="block mb-2 font-medium"
-                            >Cada</label
+                            >Each</label
                         >
                         <select
                             id="periodicity"
@@ -793,7 +775,7 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
-                                Selecciona una periodicidad
+                                Select a periodicity
                             </option>
                             <option
                                 v-for="periodicity in periodicities"
@@ -818,7 +800,7 @@
                     </div>
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="salary_type" class="block mb-2 font-medium"
-                            >Por</label
+                            >For</label
                         >
                         <select
                             id="salary_type"
@@ -826,7 +808,7 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
-                                Selecciona un tipo de salario
+                                Select a salary type
                             </option>
                             <option
                                 v-for="salaryT in salariesTypes"
@@ -851,18 +833,16 @@
                     </div>
                     <div class="col-span-1 mt-4 md:mt-0">
                         <label for="salary_type" class="block mb-2 font-medium"
-                            >Mostrar salario</label
+                            >Show salary</label
                         >
                         <select
                             id="salary_type"
                             v-model="form.show"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                         >
-                            <option value="" hidden>
-                                Selecciona una opción
-                            </option>
-                            <option :value="0">No mostrar</option>
-                            <option :value="1">Mostrar</option>
+                            <option value="" hidden>Select an option</option>
+                            <option :value="0">Don't show</option>
+                            <option :value="1">Show</option>
                         </select>
                         <div
                             v-if="form.errors.show"
@@ -882,7 +862,7 @@
                     <label
                         for="description"
                         class="flex items-center mb-2 font-medium text-left"
-                        >Descripción<span class="text-lg text-red-600"
+                        >Description<span class="text-lg text-red-600"
                             ><svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="8"
@@ -919,8 +899,7 @@
                     <label
                         for="extra_info"
                         class="flex items-center mb-2 mt-2 font-medium text-left"
-                        >Información sobre la empresa<span
-                            class="text-lg text-red-600"
+                        >About the company<span class="text-lg text-red-600"
                             ><svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="8"
@@ -959,7 +938,7 @@
                     <h1
                         class="my-2 flex items-center font-medium text-left text-sm"
                     >
-                        Requerimientos<span class="text-lg text-red-600"
+                        Requirements<span class="text-lg text-red-600"
                             ><svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="8"
@@ -996,7 +975,7 @@
                     <h1
                         class="my-2 flex items-center font-medium text-left text-sm"
                     >
-                        Responsabilidades<span class="text-lg text-red-600"
+                        Responsabilities<span class="text-lg text-red-600"
                             ><svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="8"
@@ -1035,7 +1014,7 @@
                     :disabled="form.processing || !form.isDirty"
                     type="submit"
                 >
-                    Publicar empleo
+                    Publish job offer
                 </button>
             </form>
         </div>

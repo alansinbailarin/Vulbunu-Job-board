@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <p class="text-blue-100 text-sm">
-                    Conteo total de tus aplicaciones.
+                    Total count of your applications
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -50,7 +50,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Pendientes</h1>
+                        <h1 class="font-semibold">Pending</h1>
                     </div>
                     <div>
                         <svg
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <p class="text-yellow-100 text-sm">
-                    Conteo de tus aplicaciones pendientes.
+                    Count of your pending applications
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -94,7 +94,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Aprobadas</h1>
+                        <h1 class="font-semibold">Approved</h1>
                     </div>
                     <div>
                         <svg
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <p class="text-green-100 text-sm">
-                    Conteo de tus aplicaciones aprobadas.
+                    Count of your approved applications
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -138,7 +138,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Rechazadas</h1>
+                        <h1 class="font-semibold">Rejected</h1>
                     </div>
                     <div>
                         <svg
@@ -159,7 +159,7 @@
                     </div>
                 </div>
                 <p class="text-red-100 text-sm">
-                    Conteo de tus aplicaciones rechazadas.
+                    Count of your rejected applications
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -267,7 +267,7 @@
                                                     'pending',
                                             }"
                                         >
-                                            Cancelar mi aplicación
+                                            Cancel application
                                         </button>
                                     </div>
                                 </div>
@@ -287,7 +287,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs text-gray-500 mt-2">
-                                Aplicaste el
+                                Apply on
                                 {{
                                     moment(applicant?.created_at).format(
                                         "D [de] MMMM [del] YYYY"
@@ -303,7 +303,7 @@
                                 <span
                                     @click="toggleModal(interview)"
                                     class="text-xs underline hover:cursor-pointer text-blue-500"
-                                    >Ver más</span
+                                    >Show more</span
                                 >
                             </div>
 
@@ -356,7 +356,7 @@
                                     </h2>
                                     <div class="text-sm text-gray-500 gap-1">
                                         <p class="">
-                                            Confirmacion:
+                                            Confirmation:
                                             {{
                                                 moment(
                                                     interview?.created_at
@@ -366,7 +366,7 @@
                                             }}.
                                         </p>
                                         <p>
-                                            Entrevista:
+                                            Interview on:
                                             {{
                                                 moment(
                                                     interview?.interview_date
@@ -376,7 +376,7 @@
                                             }}.
                                         </p>
                                         <p>
-                                            Duración:
+                                            Duration:
                                             {{ interview?.interview_duration }}
                                             {{
                                                 interview?.interview_duration <
@@ -396,16 +396,12 @@
                                                 :href="`${interview?.interview_link}`"
                                                 target="_blank"
                                                 class="text-blue-500 underline"
-                                                >Ver más</a
+                                                >See</a
                                             >
                                         </p>
                                         <span
-                                            >Estatus de la entrevista:
-                                            {{
-                                                changeStatusText(
-                                                    interview?.status
-                                                )
-                                            }}</span
+                                            >Interview status:
+                                            {{ interview?.status }}</span
                                         >
                                         <div
                                             class="mt-2"
@@ -414,7 +410,7 @@
                                             "
                                         >
                                             <h1 class="font-medium">
-                                                Observaciones
+                                                Observations
                                             </h1>
                                             <div
                                                 class="bg-gray-100 w-full p-2 rounded-sm mt-1"
@@ -522,13 +518,13 @@ const getStatusColor = (status) => {
 
 const changeStatusText = (status) => {
     if (status === "pending") {
-        return "Pendiente";
+        return "Pending";
     } else if (status === "approved") {
-        return "Aprobado";
+        return "Approved";
     } else if (status === "rejected") {
-        return "Rechazado";
+        return "Rejected";
     } else if (status === "cancelled") {
-        return "Cancelado";
+        return "Cancelled";
     }
 };
 

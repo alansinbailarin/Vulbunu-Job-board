@@ -7,20 +7,18 @@
                 <span
                     class="text-indigo-400 font-medium uppercase text-sm md:text-base"
                 >
-                    Sabemos que tu tiempo es importante!
+                    We know that your time matters
                 </span>
                 <h1
                     class="text-white font-semibold mt-1 text-2xl md:text-4xl lg:text-6xl"
                 >
-                    Mantente informado sobre nuevos empleos publicados
-                    diariamente
+                    Stay informed about new jobs posted daily
                 </h1>
                 <p class="text-gray-400 mt-2 text-sm md:text-lg mb-6">
-                    <a href="/" class="text-gray-200">miprimerempleo.lat</a> te
-                    ofrece los mejores trabajos publicados diariamente a un solo
-                    click de distancia, mantente informado anotándote en nuestra
-                    base de datos de candidatos que quieren recibir alertas
-                    diariamente.
+                    <a href="/" class="text-gray-200">Vulbunu</a>
+                    offers you the best jobs published daily just a click away,
+                    stay informed by signing up for our database of candidates
+                    who want to receive daily alerts.
                 </p>
                 <form name="subscribeToAlerts" @submit.prevent="publish">
                     <div class="relative">
@@ -48,14 +46,14 @@
                             id="email"
                             v-model="form.email"
                             class="block w-full p-4 pl-10 text-sm text-gray-300 rounded-lg bg-gray-700 focus:ring-indigo-500 focus:border-indigo-500"
-                            placeholder="Ingresa tu email..."
+                            placeholder="example@example.com"
                             required
                         />
                         <button
                             type="submit"
-                            class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+                            class="text-white absolute right-2.5 bottom-2.5 bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2"
                         >
-                            Suscribete
+                            Subscribe
                         </button>
                     </div>
                     <div v-if="form.errors.email" class="mt-2">

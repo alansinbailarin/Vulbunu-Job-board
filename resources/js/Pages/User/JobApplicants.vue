@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <h1 class="font-medium text-lg mt-1">Lista de aspirantes</h1>
+        <h1 class="font-medium text-lg mt-1">List of Applicants</h1>
         <div class="grid grid-cols-2 md:grid-cols-4 md:gap-4 gap-2 my-4">
             <div
                 class="rounded-md bg-gradient-to-r from-blue-500 to-blue-700 text-white p-4"
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <p class="text-blue-100 text-sm">
-                    Conteo total de tus aspirantes.
+                    Total count of your pplicants
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -62,7 +62,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Pendientes</h1>
+                        <h1 class="font-semibold">Pending</h1>
                     </div>
                     <div>
                         <svg
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <p class="text-yellow-100 text-sm">
-                    Conteo de tus aspirantes pendientes.
+                    Count of your pending applicants
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -106,7 +106,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Aprobadas</h1>
+                        <h1 class="font-semibold">Approved</h1>
                     </div>
                     <div>
                         <svg
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <p class="text-green-100 text-sm">
-                    Conteo de tus aspirantes aprobados.
+                    Count of your approved applicants
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -150,7 +150,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Rechazadas</h1>
+                        <h1 class="font-semibold">Rejected</h1>
                     </div>
                     <div>
                         <svg
@@ -171,7 +171,7 @@
                     </div>
                 </div>
                 <p class="text-red-100 text-sm">
-                    Conteo de tus aspirantes rechazados.
+                    Count of your rejected applicants
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -261,7 +261,7 @@
                                                 applicant.status != 'pending',
                                         }"
                                     >
-                                        Aprobar aplicación
+                                        Approve application
                                     </button>
                                     <button
                                         type="submit"
@@ -280,7 +280,7 @@
                                                 applicant.status != 'pending',
                                         }"
                                     >
-                                        Rechazar aplicación
+                                        Reject application
                                     </button>
                                 </div>
                             </div>
@@ -304,12 +304,12 @@
                         {{ applicant.user?.about_me }}
                     </p>
                     <p v-else class="mt-2 text-gray-600 text-xs">
-                        Este usuario no cuenta con una descripcion de perfil.
+                        This user does not have a profile description
                     </p>
                 </div>
                 <div class="mt-2">
                     <p class="text-gray-400 text-xs">
-                        Aplicó el
+                        Apply on
                         {{
                             moment(applicant?.created_at).format(
                                 "D [de] MMMM [del] YYYY"
@@ -330,7 +330,7 @@
                                 : '',
                         ]"
                     >
-                        Agendar entrevista
+                        Schedule an Interview
                     </button>
 
                     <button
@@ -339,14 +339,14 @@
                         class="text-center bg-indigo-600 opacity-50 text-white py-1.5 rounded-md font-semibold text-sm"
                         :class="applicant.user?.cv ? 'w-1/2' : 'w-full'"
                     >
-                        Entrevista agendada
+                        Scheduled Interview
                     </button>
                     <button
                         @click="downloadCV(applicant.user?.cv)"
                         v-if="applicant.user?.cv"
                         class="w-1/2 text-center border border-dashed border-indigo-500 py-1.5 rounded-md text-indigo-500 font-medium text-sm"
                     >
-                        Descargar cv
+                        Download cv
                     </button>
                 </div>
                 <div
@@ -402,7 +402,7 @@
                                     <label
                                         for="interview_type"
                                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                                        >Tipo de entrevista</label
+                                        >Interview type</label
                                     >
                                     <select
                                         id="interview_type"
@@ -410,7 +410,7 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                                     >
                                         <option value="presential">
-                                            Presencial
+                                            Presential
                                         </option>
                                         <option value="virtual">Virtual</option>
                                     </select>
@@ -436,7 +436,7 @@
                                     <label
                                         for="interview_link"
                                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                                        >Enlace para la entrevista
+                                        >Interview url
                                     </label>
                                     <input
                                         id="interview_link"
@@ -472,7 +472,7 @@
                                     <label
                                         for="interview_date"
                                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                                        >Fecha y hora de la entrevista</label
+                                        >Date and time of the interview</label
                                     >
                                     <input
                                         id="interview_date"
@@ -502,7 +502,7 @@
                                     <label
                                         for="interview_duration"
                                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                                        >Duración de la entrevista</label
+                                        >Interview duration</label
                                     >
                                     <select
                                         id="interview_duration"
@@ -510,14 +510,14 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                                     >
                                         <option value="00:30:00">
-                                            30 minutos
+                                            30 minutes
                                         </option>
-                                        <option value="01:00:00">1 hora</option>
+                                        <option value="01:00:00">1 hour</option>
                                         <option value="01:30:00">
-                                            1 hora 30 minutos
+                                            1 hour 30 minutes
                                         </option>
                                         <option value="02:00:00">
-                                            2 horas
+                                            2 hours
                                         </option>
                                     </select>
                                     <div
@@ -542,7 +542,7 @@
                                     <label
                                         for="interview_observation"
                                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                                        >Observaciones para la entrevista</label
+                                        >Interview observations</label
                                     >
                                     <textarea
                                         name="interview_observation"
@@ -551,7 +551,7 @@
                                         cols="30"
                                         rows="7"
                                         class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
-                                        placeholder="Por favor, llegar 30 minutos antes a la entrevista para poder realizar el proceso de registro..."
+                                        placeholder="Please arrive 30 minutes early for the interview to complete the registration process..."
                                     ></textarea>
                                     <div
                                         v-if="form.errors.interview_observation"
@@ -598,7 +598,7 @@
                                     }"
                                     :disabled="form.processing || !form.isDirty"
                                     class="w-full bg-indigo-600 text-white py-1.5 rounded-md font-semibold"
-                                    >Agendar entrevista</Button
+                                    >Schedule an Interview</Button
                                 >
                             </div>
                         </form>
@@ -609,7 +609,7 @@
                     class="w-full inline-block text-center mt-3 text-blue-500 underline text-sm"
                     v-if="applicant.interviews?.length > 0"
                 >
-                    Informacion de entrevista
+                    Interview information
                 </Link>
             </Box>
         </div>
@@ -619,11 +619,11 @@
         >
             <div>
                 <h1 class="text-4xl font-semibold">
-                    Ups, parece que todavía no hay ningún aplicante...
+                    Oops, it looks like there are no applicants yet...
                 </h1>
                 <p class="mt-2 text-gray-500 text-lg">
-                    No te preocupes, pronto comenzarán a llegar aplicantes
-                    interesados en tu oferta laboral. ¡Mantén la expectativa!
+                    Don't worry, applicants interested in your job offer will
+                    start coming soon. Keep your hopes up!
                 </p>
             </div>
             <div>
@@ -654,8 +654,6 @@ const props = defineProps({
     percentajeApproved: Number,
     percentajeRejected: Number,
 });
-
-console.log(props.job.applicant);
 
 const form = useForm({
     applicant_id: "",
@@ -713,13 +711,13 @@ const getStatusColor = (status) => {
 
 const changeStatusText = (status) => {
     if (status === "pending") {
-        return "Pendiente";
+        return "Pending";
     } else if (status === "approved") {
-        return "Aprobado";
+        return "Approved";
     } else if (status === "rejected") {
-        return "Rechazado";
+        return "Rejected";
     } else if (status === "cancelled") {
-        return "Cancelado";
+        return "Cancelled";
     }
 };
 

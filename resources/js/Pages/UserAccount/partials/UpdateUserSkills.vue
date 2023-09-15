@@ -1,19 +1,19 @@
 <template>
-    <div class="p-4 rounded-md">
-        <h1 class="font-semibold text-xl mb-2">Agrega tus habilidades</h1>
+    <div class="p-4 rounded-md bg-white">
+        <h1 class="font-semibold text-xl mb-2">Add your main skills</h1>
 
         <form class="" @submit.prevent="addSkills">
             <div class="md:grid grid-cols-7 mb-4 gap-4 text-sm">
                 <div class="col-span-2">
                     <p class="flex items-center font-medium mb-2">
-                        Selecciona tus 10 habilidades principales
+                        Select your top 10 skills
                     </p>
                     <button
                         @click="open = !open"
                         type="button"
                         class="rounded-md w-full bg-gray-50 px-4 py-2.5 border border-gray-300 flex items-center justify-between"
                     >
-                        Habilidades
+                        skills
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="13"
@@ -84,12 +84,12 @@
                 </div>
                 <div class="col-span-5 mt-4 md:mt-0">
                     <p class="font-medium mb-2">
-                        Skills seleccionados: {{ selectedSkillsCount }}
+                        Selected skills: {{ selectedSkillsCount }}
                     </p>
                     <div
                         class="bg-gray-50 rounded-md border border-gray-300 px-2 flex flex-wrap items-center py-0.5"
                     >
-                        <p class="py-2 mr-2">Selección:</p>
+                        <p class="py-2 mr-2">Selection:</p>
                         <button
                             v-for="(selectedSkill, index) in selectedSkills"
                             :key="index"
@@ -120,7 +120,7 @@
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                     >
-                        Guardar cambios
+                        Save changes
                     </button>
                 </div>
             </div>

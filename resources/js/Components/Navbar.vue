@@ -16,7 +16,7 @@
                         ><span
                             class="font-bold text-transparent text-xl bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-600"
                         >
-                            primer empleo latam
+                            Vulbunu
                         </span></Link
                     >
 
@@ -55,7 +55,7 @@
                                                 $page.url === '/',
                                         }"
                                         @click="isMenuOpen = false"
-                                        >Inicio</Link
+                                        >Home</Link
                                     >
                                 </li>
                                 <li>
@@ -67,7 +67,7 @@
                                                 $page.url.includes('/jobs'),
                                         }"
                                         @click="isMenuOpen = false"
-                                        >Trabajos</Link
+                                        >Jobs</Link
                                     >
                                 </li>
                                 <li>
@@ -79,7 +79,7 @@
                                                 $page.url.includes('/talents'),
                                         }"
                                         @click="isMenuOpen = false"
-                                        >Talentos</Link
+                                        >Talents</Link
                                     >
                                 </li>
                                 <!-- <li>
@@ -103,7 +103,7 @@
                                                 $page.url === '/salarios',
                                         }"
                                         @click="isMenuOpen = false"
-                                        >Salarios</Link
+                                        >Salaries</Link
                                     >
                                 </li>
                                 <div v-if="user" class="py-2 px-4 text-base">
@@ -124,7 +124,7 @@
                                             href="/user-account/configuration"
                                             @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
-                                            >Configuración</Link
+                                            >Settings</Link
                                         >
                                     </div>
                                     <div class="my-2">
@@ -132,7 +132,7 @@
                                             href="/dashboard"
                                             @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
-                                            >Administración</Link
+                                            >Dashboard</Link
                                         >
                                     </div>
                                     <div
@@ -145,15 +145,18 @@
                                             href="/my-applications"
                                             @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
-                                            >Mis aplicaciones</Link
+                                            >My applications</Link
                                         >
                                     </div>
-                                    <div v-if="props.user.userJobs.length > 0">
+                                    <div
+                                        class="my-2"
+                                        v-if="props.user.userJobs.length > 0"
+                                    >
                                         <Link
                                             href="/my-published-jobs"
                                             @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
-                                            >Empleos publicados</Link
+                                            >My jobs</Link
                                         >
                                     </div>
                                     <div class="mt-3 font-normal">
@@ -162,7 +165,7 @@
                                             href="/logout"
                                             method="DELETE"
                                             as="button"
-                                            >Cerrar sesión</Link
+                                            >Log Out</Link
                                         >
                                     </div>
                                 </div>
@@ -175,7 +178,7 @@
                                                 'text-indigo-500':
                                                     $page.url === '/salarios',
                                             }"
-                                            >Inicia sesión</Link
+                                            >Log in</Link
                                         >
                                     </li>
                                     <li>
@@ -187,7 +190,7 @@
                                                     $page.url ===
                                                     '/user-account/create',
                                             }"
-                                            >Registrate</Link
+                                            >Sign Up</Link
                                         >
                                     </li>
                                 </div>
@@ -197,7 +200,7 @@
                                     class="block bg-gray-100 w-full py-3 px-4 rounded-md text-gray-700 hover:bg-gray-200 transition duration-200 ease-in-out font-semibold"
                                     href="#"
                                 >
-                                    Contrata talento
+                                    Hire talent
                                 </Link>
                             </div>
                         </div></Transition
@@ -208,7 +211,7 @@
                         <span
                             class="font-bold text-transparent text-xl bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-600"
                         >
-                            Primer empleo latam
+                            Vulbunu
                         </span>
                     </Link>
                 </div>
@@ -216,24 +219,24 @@
                     <Link
                         href="/"
                         :class="{ 'text-indigo-500': $page.url === '/' }"
-                        >Inicio</Link
+                        >Home</Link
                     >
                     <Link
                         href="/jobs"
                         :class="{
                             'text-indigo-500': $page.url.includes('/jobs'),
                         }"
-                        >Trabajos</Link
+                        >Jobs</Link
                     >
                     <Link
                         href="/talents"
                         :class="{
                             'text-indigo-500': $page.url.includes('/talents'),
                         }"
-                        >Talentos</Link
+                        >Talents</Link
                     >
                     <!-- <Link href="#">Alertas</Link> -->
-                    <Link href="#">Salarios</Link>
+                    <Link href="#">Salaries</Link>
                 </div>
                 <div
                     class="hidden md:flex flex-row gap-4 text-sm items-center font-medium"
@@ -285,7 +288,7 @@
                                         href="/user-account/configuration"
                                         class="text-gray-700 font-normal"
                                         @click="showUserMenu = false"
-                                        >Configuración</Link
+                                        >Settings</Link
                                     >
                                 </div>
                                 <div class="my-2">
@@ -293,7 +296,7 @@
                                         href="/dashboard"
                                         class="text-gray-700 font-normal"
                                         @click="showUserMenu = false"
-                                        >Administración</Link
+                                        >Dashboard</Link
                                     >
                                 </div>
                                 <div
@@ -304,15 +307,18 @@
                                         href="/my-applications"
                                         class="text-gray-700 font-normal"
                                         @click="showUserMenu = false"
-                                        >Mis aplicaciones</Link
+                                        >My applications</Link
                                     >
                                 </div>
-                                <div v-if="props.user.userJobs.length > 0">
+                                <div
+                                    class="my-2"
+                                    v-if="props.user.userJobs.length > 0"
+                                >
                                     <Link
                                         href="/my-published-jobs"
                                         class="text-gray-700 font-normal"
                                         @click="showUserMenu = false"
-                                        >Empleos publicados</Link
+                                        >My jobs</Link
                                     >
                                 </div>
                                 <hr class="my-2" />
@@ -322,7 +328,7 @@
                                         href="/logout"
                                         method="DELETE"
                                         as="button"
-                                        >Cerrar sesión</Link
+                                        >Log Out</Link
                                     >
                                 </div>
                             </div></Transition
@@ -331,18 +337,18 @@
                     <Link
                         class="bg-gray-100 rounded-md text-gray-700 px-4 py-2 hover:bg-gray-200 transition duration-200 ease-in-out font-semibold"
                         href="/talents"
-                        >Contrata talento</Link
+                        >Hire talent</Link
                     >
                     <div v-if="!user">
                         <Link
                             class="bg-indigo-600 rounded-md text-white px-4 py-2 hover:bg-indigo-700 transition duration-200 ease-in-out font-semibold"
                             href="/login"
-                            >Inicia sesión</Link
+                            >Log In</Link
                         >
                         <Link
                             class="px-4 py-2 rounded-md text-gray-700 hover:text-gray-500 transition-all duration-300 ease-in-out font-semibold"
                             href="/user-account/create"
-                            >Registrate</Link
+                            >Sign Up</Link
                         >
                     </div>
                 </div>

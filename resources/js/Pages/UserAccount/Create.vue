@@ -1,5 +1,5 @@
 <template>
-    <Head title="Premlat - Registro">
+    <Head title="Vulbunu - Registro">
         <meta
             name="description"
             content="Únete a la comunidad de Premlat y comienza a explorar oportunidades laborales. Regístrate para acceder a una amplia gama de trabajos y conectarte con empresas en búsqueda de talento como tú."
@@ -14,7 +14,7 @@
                         href="/"
                         class="tracking-widest text-blue-500 font-bold"
                     >
-                        Primer empleo latam
+                        Vulbunu
                     </Link>
                 </div>
 
@@ -23,14 +23,14 @@
                         <h1
                             class="text-5xl text-gray-700 font-semibold tracking-wider"
                         >
-                            Estas a unos pocos pasos de empezar tu nueva
-                            busqueda de empleo, no te quedes afuera!
+                            You are just a few steps away from starting your new
+                            job search, don't miss out!
                         </h1>
                     </div>
                     <div class="mb-8">
                         <p class="text-lg text-gray-600 font-light">
-                            Los obstaculos son esas cosas espantosas que ves
-                            cuando quitas la vista de tus metas.
+                            Obstacles are those frightful things you see when
+                            you take your eyes off your goals.
                         </p>
                         <p class="mt-3 text-sm">- Henry Ford</p>
                     </div>
@@ -84,10 +84,10 @@
             <div class="container mx-auto p-6 text-center">
                 <div class="mb-6">
                     <h2 class="text-2xl font-bold mb-4 text-gray-800">
-                        Registrate
+                        Sign Up
                     </h2>
 
-                    <p class="text-gray-400 text-sm">Con tus redes sociales</p>
+                    <p class="text-gray-400 text-sm">With your social media</p>
                 </div>
                 <div class="mb-7 gap-2">
                     <a
@@ -108,18 +108,18 @@
                                 />
                             </svg>
                         </span>
-                        <span>Iniciar sesión con Google</span>
+                        <span>Log In with Google</span>
                     </a>
                 </div>
                 <div class="mb-4">
-                    <p class="text-gray-400 text-sm">O con tu email</p>
+                    <p class="text-gray-400 text-sm">Or with your email</p>
                 </div>
                 <form @submit.prevent="register" class="grid grid-cols-2 gap-3">
                     <div class="mb-4">
                         <label
-                            for="email"
+                            for="name"
                             class="block mb-2 text-sm font-medium text-left"
-                            >Nombre</label
+                            >Name</label
                         >
                         <input
                             type="text"
@@ -158,9 +158,9 @@
                     </div>
                     <div class="mb-4">
                         <label
-                            for="email"
+                            for="last_name"
                             class="block mb-2 text-sm font-medium text-left"
-                            >Apellido</label
+                            >Last name</label
                         >
                         <input
                             type="text"
@@ -201,13 +201,13 @@
                         <label
                             for="email"
                             class="block mb-2 text-sm font-medium text-left"
-                            >Correo Electrónico</label
+                            >Email</label
                         >
                         <input
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="micorreo@proveedor.com"
+                            placeholder="example@example.com"
                             v-model="form.email"
                             class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-indigo-500 text-gray-600"
                         />
@@ -242,7 +242,7 @@
                         <label
                             for="password"
                             class="block mb-2 text-sm font-medium text-left"
-                            >Contraseña</label
+                            >Password</label
                         >
                         <input
                             type="password"
@@ -257,7 +257,7 @@
                         <label
                             for="password"
                             class="block mb-2 text-sm font-medium text-left"
-                            >Confirma tu contraseña</label
+                            >Confirm password</label
                         >
                         <input
                             type="password"
@@ -325,15 +325,15 @@
                             type="submit"
                             class="w-full px-4 py-3 bg-indigo-500 text-white font-semibold rounded-lg hover:bg-indigo-600 transition-all duration-300 ease-in-out"
                         >
-                            Crear cuenta
+                            Create account
                         </button>
                     </div>
                 </form>
                 <div class="mt-6">
                     <p class="text-gray-400 text-sm">
-                        Ya tienes una cuenta?
+                        Already have an account?
                         <Link href="/login" class="text-indigo-400 font-medium"
-                            >Inicia sesión</Link
+                            >Log In</Link
                         >
                     </p>
                 </div>

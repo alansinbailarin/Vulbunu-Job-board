@@ -3,7 +3,7 @@
         <Head :title="`${talent.name} ${talent.last_name}`"></Head>
     </div>
     <div class="container mx-auto p-4">
-        <h1 class="text-xl font-semibold mb-2">Perfil del usuario</h1>
+        <h1 class="text-xl font-semibold mb-2">User Profile</h1>
         <div class="bg-white rounded-md mb-4">
             <div class="p-4">
                 <div class="flex items-center justify-between">
@@ -27,7 +27,7 @@
                                 </h1>
                                 <span
                                     class="text-gray-500 text-xs rounded-md font-medium"
-                                    >Miembro desde el
+                                    >Member since
                                     {{
                                         moment(talent.created_at).format(
                                             "D [de] MMMM [del] YYYY"
@@ -148,7 +148,7 @@
                                                 />
                                             </svg>
                                         </span>
-                                        Otro
+                                        Other
                                     </p>
                                     <p
                                         v-else-if="
@@ -171,7 +171,7 @@
                                                 />
                                             </svg>
                                         </span>
-                                        Masculino
+                                        Male
                                     </p>
                                     <p
                                         v-else-if="
@@ -194,7 +194,7 @@
                                                 />
                                             </svg>
                                         </span>
-                                        Femenino
+                                        Female
                                     </p>
                                     <p
                                         v-else-if="
@@ -327,13 +327,13 @@
                                                 d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
                                             />
                                         </svg>
-                                        <span>Descargar curriculum</span>
+                                        <span>Download cv</span>
                                     </button>
                                     <Link
                                         v-if="talent.looking_for_job"
                                         class="hover:bg-indigo-600 mt-2 bg-indigo-500 text-white font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
                                         href="#"
-                                        >Contactar</Link
+                                        >Connect</Link
                                     >
                                 </div>
                             </div>
@@ -344,7 +344,7 @@
         </div>
 
         <div v-if="talent.education && talent.education.length > 0">
-            <h1 class="text-xl font-semibold mb-2">Educación</h1>
+            <h1 class="text-xl font-semibold mb-2">Education</h1>
             <div class="bg-white rounded-md">
                 <div class="p-4">
                     <ul
@@ -377,7 +377,7 @@
             </div>
         </div>
         <div v-if="talent.experience && talent.experience.length > 0">
-            <h1 class="text-xl font-semibold my-2">Trayecto laboral</h1>
+            <h1 class="text-xl font-semibold my-2">Work History</h1>
             <div class="bg-white rounded-md">
                 <div class="p-4">
                     <ul v-for="job in talent.experience" :key="job.id">

@@ -1,6 +1,6 @@
 <template>
-    <div class="p-4 rounded-md">
-        <h1 class="font-semibold text-xl mb-2">Información del perfil</h1>
+    <div class="p-4 bg-white rounded-md">
+        <h1 class="font-semibold text-xl mb-2">Profile information</h1>
         <form @submit.prevent="updateProfileInformation" class="">
             <div class="flex flex-col items-center gap-4">
                 <input
@@ -40,7 +40,7 @@
                         @click.prevent="selectNewPhoto"
                         class="absolute bottom-0 py-2 font-semibold opacity-50 bg-white text-xs w-full left-1/2 transform -translate-x-1/2"
                     >
-                        Cambiar
+                        Change
                     </button>
                 </div>
 
@@ -49,7 +49,7 @@
                     class="mt-2 border-2 border-red-500 hover:bg-red-50 transition-all ease-in-out duration-150 px-3 py-1 rounded-md text-red-500 text-sm"
                     @click="showDeleteAlert('avatar')"
                 >
-                    Eliminar imagen
+                    Delete image
                 </button>
                 <div v-if="form.errors.avatar" class="px-2 py-2 rounded-md">
                     <div class="flex items-center">
@@ -65,7 +65,7 @@
             <div class="md:grid grid-cols-2 gap-4 mt-6">
                 <div>
                     <div class="mb-1.5">
-                        <label for="name" value="Name">Nombre </label>
+                        <label for="name" value="Name">Name </label>
                         <input
                             id="name"
                             v-model="form.name"
@@ -89,7 +89,7 @@
                     </div>
                     <div class="mb-1.5">
                         <label for="username" value="User Name"
-                            >Nombre de usuario</label
+                            >User name</label
                         >
                         <input
                             id="username"
@@ -114,13 +114,13 @@
 
                     <div class="mb-1.5">
                         <label for="birthdate" value="birthdate"
-                            >Fecha de nacimiento</label
+                            >Birth date</label
                         >
                         <input
                             id="birthdate"
                             v-model="form.birthdate"
                             type="date"
-                            placeholder="Fecha de nacimiento"
+                            placeholder="Birth date"
                             class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="birthdate"
                         />
@@ -139,13 +139,13 @@
                     </div>
                     <div class="mb-1.5">
                         <label for="linkedin" value="linkedin"
-                            >Url de linkedin</label
+                            >Linkedin url</label
                         >
                         <input
                             id="linkedin"
                             v-model="form.linkedin"
                             type="url"
-                            placeholder="https://www.linkedin.com/in/usuario"
+                            placeholder="https://www.linkedin.com/in/user"
                             class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="linkedin"
                         />
@@ -163,7 +163,7 @@
                         </div>
                     </div>
                     <div class="mb-1.5">
-                        <label for="cv" value="cv">Hoja de vida</label>
+                        <label for="cv" value="cv">Resume</label>
                         <div
                             class="w-full items-center mt-2 text-xs px-2 md:px-0 py-1.5 md:py-0 rounded-md border md:border-none border-gray-200"
                         >
@@ -181,7 +181,7 @@
                                             d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
                                         />
                                     </svg>
-                                    <span>Descargar curriculum</span>
+                                    <span>Download cv</span>
                                 </button>
                                 <button
                                     @click="showDeleteAlert('cv')"
@@ -196,7 +196,7 @@
                                             d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
                                         />
                                     </svg>
-                                    <span>Eliminar CV</span>
+                                    <span>Delete cv</span>
                                 </button>
                             </div>
                             <div v-else>
@@ -225,7 +225,7 @@
                 <div>
                     <div class="mb-1.5">
                         <label for="last_name" value="Last Name">
-                            Apellido
+                            Last name
                         </label>
                         <input
                             id="last_name"
@@ -249,11 +249,11 @@
                         </div>
                     </div>
                     <div class="mb-1.5">
-                        <label for="slug" value="slug">Enlace al perfil</label>
+                        <label for="slug" value="slug">Profile url</label>
                         <div class="relative mb-4 flex flex-wrap items-stretch">
                             <span
                                 class="bg-gray-100 items-center whitespace-nowrap rounded-l border border-r-0 border-solid border-neutral-300 px-3 py-1.5 text-center mt-1 font-normal leading-[1.6] text-gray-500 text-sm"
-                                >https://primerempleo.lat/talents/</span
+                                >https://vulbunu.com/talents/</span
                             >
 
                             <input
@@ -278,14 +278,12 @@
                         </div>
                     </div>
                     <div class="mb-1.5">
-                        <label for="email" value="email"
-                            >Correo electrónico</label
-                        >
+                        <label for="email" value="email">Email</label>
                         <input
                             id="email"
                             v-model="form.email"
                             type="text"
-                            placeholder="Ejemplo@primerempleo.lat"
+                            placeholder="example@example.com"
                             class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="email"
                         />
@@ -304,7 +302,7 @@
                     </div>
                     <div class="mb-1.5">
                         <label for="job_title" value="job_title"
-                            >Ocupación de trabajo</label
+                            >Job title</label
                         >
                         <input
                             id="job_title"
@@ -328,9 +326,7 @@
                         </div>
                     </div>
                     <div class="mb-1.5">
-                        <label for="phone" value="phone"
-                            >Número de telefono</label
-                        >
+                        <label for="phone" value="phone">Phone number</label>
                         <input
                             id="phone"
                             v-model="form.phone"
@@ -359,7 +355,7 @@
                             <label
                                 for="jobModalities"
                                 class="flex items-center mb-2"
-                                >Tipo de modalidad</label
+                                >Preferred job modality</label
                             >
                             <select
                                 id="jobModalities"
@@ -367,7 +363,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                             >
                                 <option value="" hidden>
-                                    Selecciona una modalidad
+                                    Select a modality
                                 </option>
 
                                 <option
@@ -395,7 +391,7 @@
                         </div>
                         <div class="mt-1">
                             <label for="gender" class="flex items-center mb-2"
-                                >Genero</label
+                                >Gender</label
                             >
                             <select
                                 id="gender"
@@ -403,7 +399,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                             >
                                 <option value="" hidden>
-                                    Selecciona tu genero
+                                    Select your gender
                                 </option>
 
                                 <option
@@ -433,7 +429,7 @@
                             <label
                                 for="looking_for_job"
                                 class="flex items-center mb-2"
-                                >Estas buscando trabajo?</label
+                                >Are you looking for a job?</label
                             >
                             <select
                                 id="looking_for_job"
@@ -441,15 +437,11 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                             >
                                 <option value="" hidden>
-                                    Selecciona una opción
+                                    Select an option
                                 </option>
 
-                                <option value="1">
-                                    Estoy en busqueda de empleo
-                                </option>
-                                <option value="0">
-                                    No estoy en busqueda de empleo
-                                </option>
+                                <option value="1">I'm looking for a job</option>
+                                <option value="0">I don't want a job</option>
                             </select>
                             <div
                                 v-if="form.errors.looking_for_job"
@@ -470,13 +462,13 @@
                 </div>
                 <div class="col-span-2 mt-2 md:mt-0">
                     <label for="about_me" value="about_me"
-                        >Información personal</label
+                        >Personal information</label
                     >
                     <textarea
                         v-model="form.about_me"
                         name="about_me"
                         id="about_me"
-                        placeholder="Soy un ingeniero quimico con 5 años de experiencia en el sector de la industria farmaceutica..."
+                        placeholder="I am a chemical engineer with 5 years of experience in the pharmaceutical industry..."
                         class="w-full my-1 rounded-md border border-gray-200 bg-gray-50 text-sm placeholder:text-gray-300"
                         cols="100"
                         rows="10"
@@ -503,7 +495,7 @@
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Guardar cambios
+                    Save changes
                 </button>
             </div>
         </form>

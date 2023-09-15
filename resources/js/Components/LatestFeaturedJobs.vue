@@ -1,12 +1,12 @@
 <template>
     <div class="text-center my-8 px-4">
         <h1 class="text-2xl md:text-5xl font-bold mb-3">
-            Ofertas de empleo <span class="text-indigo-500">patrocinadas</span>
+            <span class="text-indigo-500">Highlighted</span> job offers
         </h1>
         <span class="text-gray-500">
-            Quieres que tu oferta de empleo aparezca en esta sección?
+            Would you like your job listing to appear in this section?
             <Link href="/publish-job" class="underline text-blue-500"
-                >publicate</Link
+                >Post it</Link
             >
         </span>
     </div>

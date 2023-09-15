@@ -14,7 +14,7 @@
                         href="/"
                         class="tracking-widest text-blue-500 font-bold"
                     >
-                        Primer empleo latam
+                        Vulbunu
                     </Link>
                 </div>
 
@@ -23,15 +23,15 @@
                         <h1
                             class="text-5xl text-gray-700 font-semibold tracking-wider"
                         >
-                            Te ayudamos a encontrar el empleo de tus sueños, o
-                            si estas buscando personal, a encontrarlo.
+                            We help you find your dream job, or if you're
+                            looking for personnel, to find them
                         </h1>
                     </div>
                     <div class="mb-8">
                         <p class="text-lg text-gray-600 font-light">
-                            Con nuestros algoritmos inteligentes, te ayudamos a
-                            encontrar el empleo de tus sueños o el empleado
-                            ideal para que forme parte de tu empresa.
+                            With our intelligent algorithms, we help you find
+                            your dream job or the ideal employee to join your
+                            company.
                         </p>
                     </div>
                     <div class="mt-20">
@@ -84,10 +84,10 @@
             <div class="container mx-auto p-6 text-center">
                 <div class="mb-6">
                     <h2 class="text-2xl font-bold mb-4 text-gray-800">
-                        Inicia sesión
+                        Log In
                     </h2>
 
-                    <p class="text-gray-400 text-sm">Con tus redes sociales</p>
+                    <p class="text-gray-400 text-sm">With your social media</p>
                 </div>
                 <div class="mb-7 gap-2">
                     <a
@@ -108,24 +108,24 @@
                                 />
                             </svg>
                         </span>
-                        <span>Iniciar sesión con Google</span>
+                        <span>Log in with Google</span>
                     </a>
                 </div>
                 <div class="mb-4">
-                    <p class="text-gray-400 text-sm">O con tu email</p>
+                    <p class="text-gray-400 text-sm">Or with your Email</p>
                 </div>
                 <form @submit.prevent="login" class="text-left">
                     <div class="mb-4">
                         <label
                             for="email"
                             class="block mb-2 text-sm font-medium"
-                            >Correo electrónico</label
+                            >Email</label
                         >
                         <input
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="micorreo@proveedor.com"
+                            placeholder="example@example.com"
                             v-model="form.email"
                             class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-0 text-gray-600"
                         />
@@ -161,12 +161,12 @@
                             <label
                                 for="password"
                                 class="block text-sm font-medium"
-                                >Contraseña</label
+                                >Password</label
                             >
                             <Link
                                 href="#"
                                 class="text-indigo-500 font-medium text-sm"
-                                >Olvidaste tu contraseña?</Link
+                                >Forgot your password?</Link
                             >
                         </div>
                         <input
@@ -235,17 +235,17 @@
                             type="submit"
                             class="w-full px-4 py-3 bg-indigo-500 text-white font-semibold rounded-lg hover:bg-indigo-600 transition-all duration-300 ease-in-out"
                         >
-                            Iniciar Sesión
+                            Log In
                         </button>
                     </div>
                 </form>
                 <div class="mt-6">
                     <p class="text-gray-400 text-sm">
-                        Aun no eres miembro?
+                        Not a member yet?
                         <Link
                             href="/user-account/create"
                             class="text-indigo-400 font-medium"
-                            >Crea una cuenta</Link
+                            >Create an account</Link
                         >
                     </p>
                 </div>

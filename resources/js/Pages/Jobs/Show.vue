@@ -69,7 +69,7 @@
                         :href="`${job.apply_on}`"
                         target="_blank"
                         class="border border-indigo-500 rounded-md text-indigo-500 transition-all duration-300 ease-in-out px-4 py-2"
-                        >Aplicar en la pagina</a
+                        >Apply in the page</a
                     >
                 </div>
                 <div>
@@ -78,7 +78,7 @@
                         target="_blank"
                         class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
                     >
-                        Aplicar ahora
+                        Quick application
                     </button>
                 </div>
             </div>
@@ -113,24 +113,23 @@
             <div class="flex items-center gap-2">
                 <div v-if="job.priority.title == 'Alta'">
                     <p class="text-red-500">
-                        {{ job.priority.title }} prioridad
+                        {{ job.priority.title }} priority
                     </p>
                 </div>
                 <div v-else-if="job.priority.title == 'Media'">
                     <p class="text-orange-500">
-                        {{ job.priority.title }} prioridad
+                        {{ job.priority.title }} priority
                     </p>
                 </div>
                 <div v-else-if="job.priority.title == 'Baja'">
                     <p class="text-green-500">
-                        {{ job.priority.title }} prioridad
+                        {{ job.priority.title }} priority
                     </p>
                 </div>
                 <p class="text-gray-500">-</p>
                 <div class="text-gray-500">
-                    Visto por
+                    Viewed by
                     <span class="font-medium text-gray-700">{{ visits }}</span>
-                    personas
                 </div>
             </div>
         </div>
@@ -147,7 +146,7 @@
             </div>
             <div v-else>
                 <p class="text-gray-500 text-sm font-medium">
-                    Salario no mostrado por la empresa
+                    Salary not disclosed by the company
                 </p>
             </div>
         </div>
@@ -163,20 +162,20 @@
 
         <div class="mt-6 px-4">
             <h1 class="text-gray-900 text-sm md:text-base font-bold">
-                Sobre la empresa
+                About the company
             </h1>
             <p class="text-gray-600 text-sm md:text-base">
                 {{ job.extra_info }}
             </p>
             <h1 class="text-gray-900 text-sm md:text-base font-bold mt-2">
-                Descripcion del empleo
+                Job description
             </h1>
             <p class="text-gray-600 text-sm md:text-base">
                 {{ job.description }}
             </p>
             <div v-if="job.requirement && job.requirement.length > 0">
                 <h1 class="text-gray-900 text-sm md:text-base font-bold mt-4">
-                    Requerimientos
+                    Requirements
                 </h1>
                 <ul class="">
                     <li
@@ -192,7 +191,7 @@
             </div>
             <div v-if="job.responsability && job.responsability.length > 0">
                 <h1 class="text-gray-900 text-sm md:text-base font-bold mt-4">
-                    Responsabilidades
+                    Responsabilities
                 </h1>
                 <ul class="">
                     <li
@@ -213,7 +212,7 @@
                 target="_blank"
                 class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
             >
-                Aplicar ahora
+                Quick apply
             </button>
         </div>
         <div class="flex md:hidden items-center text-center mx-4 mt-3">
@@ -221,14 +220,14 @@
                 :href="`${job.apply_on}`"
                 target="_blank"
                 class="w-full border border-indigo-500 rounded-md py-2 text-indigo-500 transition-all duration-300 ease-in-out"
-                >Aplicar en la pagina</a
+                >Apply in the page</a
             >
         </div>
         <div v-if="similares.length > 0" class="mt-6 px-4">
             <h1
                 class="text-gray-800 text-lg font-semibold mb-4 text-center md:text-left"
             >
-                Te podria interesar
+                You might be interested in
             </h1>
             <div
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 container mx-auto"

@@ -1,7 +1,7 @@
 <template>
     <Head title="Configuración del perfil"></Head>
     <div class="container mx-auto my-4 px-4">
-        <div class="bg-white p-4 rounded-md">
+        <div class="p-4 gap-4 rounded-md">
             <UpdateProfileInformationForm
                 :user="page.props.user"
                 :jobModalities="props.jobModalities"

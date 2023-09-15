@@ -17,15 +17,15 @@
                     <h1
                         class="text-white text-2xl md:text-4xl lg:text-5xl font-bold"
                     >
-                        Contamos con una comunidad amplia de profesionales para
-                        que formen parte de tu empresa
+                        We have a broad community of professionals to join your
+                        company
                     </h1>
                     <p
                         class="text-sm md:text-base lg:text-lg text-gray-200 mt-4"
                     >
-                        En esta sección, encontraras a los nuevos profesionales
-                        mejor calificados para ocupar el puesto de trabajo que
-                        estas promocionando, a unos pocos clicks.
+                        In this section, you will find the newly top-rated
+                        professionals for the job position you are promoting,
+                        just a few clicks away
                     </p>
                 </div>
                 <div class="col-span-1 hidden md:block">
@@ -95,7 +95,7 @@
                                 >{{ talent.email }}</a
                             >
                             <p class="text-gray-500 font-medium text-xs mb-2">
-                                Se unió el
+                                Joined on
                                 {{
                                     moment(talent.created_at).format(
                                         "D [de] MMMM [del] YYYY"
@@ -109,15 +109,15 @@
                                 {{ talent.shortDescription }}...
                             </p>
                             <p v-else class="text-gray-500 text-xs">
-                                Esta persona no cuenta con una descripción
-                                disponible en estos momentos.
+                                This person does not have a description
+                                available at the moment
                             </p>
                         </div>
                     </div>
                     <div v-else class="col-span-3 text-center my-12">
                         <h1 class="text-2xl font-bold">Lo sentimos</h1>
                         <p class="text-gray-500">
-                            No se han encontrado resultados para tu busqueda.
+                            We couldn't find any results for your search
                         </p>
                     </div>
                 </div>
@@ -135,11 +135,8 @@
 import Filter from "./Components/Filter.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
-import "moment/dist/locale/es";
 import Pagination from "@/UI/Pagination.vue";
 import { Head } from "@inertiajs/vue3";
-
-moment.locale("es");
 
 const props = defineProps({
     talents: { type: [Array, Object] },

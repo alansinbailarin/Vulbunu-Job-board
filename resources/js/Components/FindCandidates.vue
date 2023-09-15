@@ -4,13 +4,12 @@
     >
         <div>
             <h1 class="text-gray-800 font-semibold text-2xl md:text-5xl">
-                <span class="text-indigo-500">Encuentra</span> a los mejores
-                candidatos para que formen parte de tu empresa
+                <span class="text-indigo-500">Find</span> the best candidates to
+                be part of your company
             </h1>
             <p class="text-gray-500 mt-6">
-                Con nuestra base de datos personalizada, encontraras a los
-                candidatos que se ajusten mejor a los valores y necesidades de
-                tu empresa.
+                With our personalized database, you will find the candidates
+                that best fit the values ​​and needs of your company.
             </p>
         </div>
         <div class="items-center mt-8 md:mt0">

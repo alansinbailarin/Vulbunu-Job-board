@@ -9,37 +9,36 @@
             <div>
                 <span
                     class="bg-indigo-100 py-1.5 px-3 text-sm text-indigo-600 rounded-md"
-                    >La oferta correcta para ti, esta aqui</span
+                    >The right offer for you is here</span
                 >
                 <h1
                     class="font-bold text-gray-900 text-3xl md:text-4xl mt-3 lg:text-6xl md:mt-3"
                 >
-                    Ofertas de
+                    Job
                     <span
                         class="font-bold text-transparent text-3xl md:text-4xl lg:text-6xl bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-600"
                     >
-                        empleo
+                        offers
                     </span>
-                    para recién graduados, internos y personas que buscan su
-                    primer empleo
+                    for recent graduates, interns, and people seeking their
+                    first job
                 </h1>
 
                 <p class="text-gray-500 mt-2 mb-8">
-                    Encuentra tu primer empleo, trabajo de medio tiempo,
-                    contrato de prácticas o cualquier otro empleo en general.
-                    Aquí, encontrarás las mejores ofertas que se ajusten a tus
-                    necesidades.
+                    Find your first job, part-time job, internship, or any other
+                    job in general. Here, you'll find the best offers that fit
+                    your needs.
                 </p>
                 <div class="hidden md:flex gap-4">
                     <Link
                         href="/publish-job"
                         class="bg-gray-950 rounded-md text-xs lg:text-base font-medium text-white py-3 px-5 shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-800"
-                        >Publica una vacante gratis
+                        >Post a job for free
                     </Link>
                     <Link
                         href="/talents"
                         class="font-medium text-xs rounded-md lg:text-base text-gray-700 py-3 px-5 border-2 border-gray-600 transition-all duration-300 ease-in-out"
-                        >Contrata talento</Link
+                        >Hire talent</Link
                     >
                 </div>
                 <div class="block md:hidden">
@@ -47,14 +46,14 @@
                         <Link
                             href="/publish-job"
                             class="bg-gray-950 rounded-md text-sm lg:text-base font-medium text-white py-3 px-8 shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-800"
-                            >Publica una vacante gratis
+                            >Post a job for free
                         </Link>
                     </div>
                     <div>
                         <Link
                             href="/talents"
                             class="font-medium text-sm w-full rounded-md lg:text-base text-gray-700 py-3 px-8 border-2 border-gray-600 transition-all duration-300 ease-in-out"
-                            >Contrata talento</Link
+                            >Hire talent</Link
                         >
                     </div>
                 </div>

@@ -2,7 +2,7 @@
     <Head title="Entrevista"></Head>
     <div class="container my-1 p-4 mx-auto">
         <h1 class="mb-3 font-medium text-gray-700 text-xl">
-            Editar información de la entrevista
+            Edit Interview Information
         </h1>
         <div class="bg-white p-4 rounded-md">
             <form
@@ -13,7 +13,7 @@
                     <label
                         for="interview_link"
                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                        >Nombre del entrevistador
+                        >Interviewer name
                     </label>
                     <input
                         id="interviewer_name"
@@ -40,14 +40,14 @@
                     <label
                         for="interview_type"
                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                        >Tipo de entrevista</label
+                        >Interview type</label
                     >
                     <select
                         id="interview_type"
                         v-model="form.interview_type"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                     >
-                        <option value="presential">Presencial</option>
+                        <option value="presential">Presential</option>
                         <option value="virtual">Virtual</option>
                     </select>
                     <div
@@ -67,7 +67,7 @@
                     <label
                         for="interview_link"
                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                        >Enlace para la entrevista
+                        >Interview link
                     </label>
                     <input
                         id="interview_link"
@@ -98,7 +98,7 @@
                     <label
                         for="interview_date"
                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                        >Fecha y hora de la entrevista</label
+                        >Date and time for the interview</label
                     >
                     <input
                         id="interview_date"
@@ -123,17 +123,17 @@
                     <label
                         for="interview_duration"
                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                        >Duración de la entrevista</label
+                        >Interview duration</label
                     >
                     <select
                         id="interview_duration"
                         v-model="form.interview_duration"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                     >
-                        <option value="00:30:00">30 minutos</option>
-                        <option value="01:00:00">1 hora</option>
-                        <option value="01:30:00">1 hora 30 minutos</option>
-                        <option value="02:00:00">2 horas</option>
+                        <option value="00:30:00">30 minutes</option>
+                        <option value="01:00:00">1 hour</option>
+                        <option value="01:30:00">1 hour 30 minutes</option>
+                        <option value="02:00:00">2 hour</option>
                     </select>
                     <div
                         v-if="form.errors.interview_duration"
@@ -152,16 +152,16 @@
                     <label
                         for="status"
                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                        >Estatus de la entrevista</label
+                        >Interview status</label
                     >
                     <select
                         id="status"
                         v-model="form.status"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
                     >
-                        <option value="approved">Aprobado</option>
-                        <option value="pending">Pendiente</option>
-                        <option value="rejected">Rechazado</option>
+                        <option value="approved">Approved</option>
+                        <option value="pending">Pending</option>
+                        <option value="rejected">Rejected</option>
                     </select>
                     <div v-if="form.errors.status" class="px-2 py-2 rounded-md">
                         <div class="flex items-center">
@@ -177,7 +177,7 @@
                     <label
                         for="interview_observation"
                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                        >Observaciones para la entrevista</label
+                        >Interview observations</label
                     >
                     <textarea
                         name="interview_observation"
@@ -205,7 +205,7 @@
                     <label
                         for="interview_feedback"
                         class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                        >Comentarios acerca de la entrevista</label
+                        >Comments about the interview</label
                     >
                     <textarea
                         name="interview_feedback"
@@ -237,7 +237,7 @@
                         }"
                         :disabled="form.processing || !form.isDirty"
                         class="w-full bg-indigo-600 text-white py-1.5 rounded-md font-semibold"
-                        >Editar información</Button
+                        >Edit information</Button
                     >
                 </div>
             </form>

@@ -1,13 +1,12 @@
 <template>
     <div class="text-center my-8 px-4">
         <h1 class="text-2xl md:text-5xl font-bold mb-3">
-            Descubre el
-            <span class="text-indigo-500">salario</span> del trabajo de tus
-            sueños
+            Discover the
+            <span class="text-indigo-500">salary</span> of your dream job
         </h1>
         <span class="text-gray-500">
-            Con unos pocos clicks, puedes obtener información del salario que
-            ganan las diferentes profesiones.
+            With just a few clicks, you can obtain salary information for
+            various professions
         </span>
 
         <div>
@@ -22,7 +21,7 @@
                 class="bg-indigo-500 text-white py-3 px-6 rounded-md font-medium"
                 href="#"
             >
-                Publica tu salario anónimamente
+                Post your salary anonymously
             </Link>
         </div>
     </div>

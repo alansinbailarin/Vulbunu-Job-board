@@ -16,13 +16,13 @@
                     <h1
                         class="text-white text-2xl md:text-4xl lg:text-5xl font-bold"
                     >
-                        Encuentra tu primer empleo
+                        Find your first job
                     </h1>
                     <p
                         class="text-sm md:text-base lg:text-lg text-gray-200 mt-4"
                     >
-                        Busca en nuestra basta lista de empleos publicados
-                        diariamente, encuentra el que mejor se adapte a ti.
+                        Search through our extensive list of job postings
+                        published daily, and find the one that suits you best
                     </p>
                 </div>
                 <div class="col-span-1 hidden md:block">
@@ -60,9 +60,9 @@
                         /></Link>
                     </Box>
                     <div v-else class="col-span-3 text-center my-12">
-                        <h1 class="text-2xl font-bold">Lo sentimos</h1>
+                        <h1 class="text-2xl font-bold">We're sorry</h1>
                         <p class="text-gray-500">
-                            No se han encontrado resultados para tu busqueda.
+                            No results found for your search
                         </p>
                     </div>
                 </div>

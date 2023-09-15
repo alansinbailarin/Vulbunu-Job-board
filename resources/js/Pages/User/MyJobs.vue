@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <p class="text-green-100 text-sm">
-                    Conteo total de tus empleos publicados.
+                    Total count of your published jobs
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -50,7 +50,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Borradores</h1>
+                        <h1 class="font-semibold">Draft</h1>
                     </div>
                     <div>
                         <svg
@@ -70,9 +70,7 @@
                         </svg>
                     </div>
                 </div>
-                <p class="text-gray-100 text-sm">
-                    Conteo de tus empleos en borrador.
-                </p>
+                <p class="text-gray-100 text-sm">Count of your draft jobs</p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
                         <p class="text-3xl">{{ draftJobsCount }}</p>
@@ -94,7 +92,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Publicados</h1>
+                        <h1 class="font-semibold">Published</h1>
                     </div>
                     <div>
                         <svg
@@ -115,7 +113,7 @@
                     </div>
                 </div>
                 <p class="text-blue-100 text-sm">
-                    Conteo de tus empleos publicados.
+                    Count of your published jobs
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -138,7 +136,7 @@
             >
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="font-semibold">Archivados</h1>
+                        <h1 class="font-semibold">Archived</h1>
                     </div>
                     <div>
                         <svg
@@ -156,7 +154,7 @@
                     </div>
                 </div>
                 <p class="text-orange-100 text-sm">
-                    Conteo de tus empleos archivados.
+                    Count of your archived jobs
                 </p>
                 <div class="mt-2 flex items-center gap-4">
                     <div>
@@ -246,11 +244,11 @@ const getStatusColor = (status) => {
 
 const changeStatusText = (status) => {
     if (status === "draft") {
-        return "Borrador";
+        return "Draft";
     } else if (status === "published") {
-        return "Publicado";
+        return "Published";
     } else if (status === "archived") {
-        return "Archivado";
+        return "Archived";
     }
 };
 

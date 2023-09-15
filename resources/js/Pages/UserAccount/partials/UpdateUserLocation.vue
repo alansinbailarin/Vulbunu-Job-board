@@ -1,6 +1,6 @@
 <template>
-    <div class="p-4 rounded-md">
-        <h1 class="font-semibold text-xl mb-2">Información de la ubicación</h1>
+    <div class="p-4 rounded-md bg-white my-4">
+        <h1 class="font-semibold text-xl mb-2">Location information</h1>
 
         <form @submit.prevent="updateUserLocation" class="">
             <div class="md:grid grid-cols-3 gap-4">
@@ -8,7 +8,7 @@
                     <label
                         for="country"
                         class="flex items-center mb-2 font-medium"
-                        >País</label
+                        >Country</label
                     >
                     <select
                         id="country"
@@ -44,7 +44,7 @@
                     <label
                         for="state"
                         class="flex items-center mb-2 font-medium"
-                        >Estado</label
+                        >State</label
                     >
                     <select
                         id="state"
@@ -78,7 +78,7 @@
                 </div>
                 <div class="mt-4 md:mt-0">
                     <label for="city" class="flex items-center mb-2 font-medium"
-                        >Ciudad</label
+                        >City</label
                     >
                     <select
                         id="city"
@@ -117,7 +117,7 @@
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Guardar cambios
+                    Save changes
                 </button>
             </div>
         </form>

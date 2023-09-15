@@ -12,7 +12,7 @@
         </div>
         <div v-else>
             <p class="text-gray-500 text-xs font-medium md:text-md">
-                Salario no mostrado por la empresa
+                Salary not disclosed
             </p>
         </div>
     </div>
