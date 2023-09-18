@@ -106,7 +106,7 @@
         </div>
         <div class="px-4 mt-2">
             <time class="text-gray-500 text-sm"
-                >Publicado {{ moment(job.created_at).fromNow() }}</time
+                >Published {{ moment(job.created_at).fromNow() }}</time
             >
         </div>
         <div class="mt-2 text-sm px-4">
@@ -260,9 +260,8 @@ import JobAditionals from "@/Components/JobAditionals.vue";
 import Salary from "@/Components/Salary.vue";
 import { computed } from "vue";
 import moment from "moment";
-import "moment/dist/locale/es";
 
-moment.locale("es");
+moment.locale("en");
 
 const props = defineProps({
     job: { type: Object },

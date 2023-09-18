@@ -199,12 +199,8 @@
                 </p>
                 <div>
                     <p class="text-xs text-gray-500 mt-2">
-                        Publicado el
-                        {{
-                            moment(job?.created_at).format(
-                                "D [de] MMMM [del] YYYY"
-                            )
-                        }}
+                        Published on
+                        {{ moment(job?.created_at).format("MMMM Do YYYY") }}
                     </p>
                 </div>
             </Box>
@@ -219,7 +215,7 @@ import moment from "moment";
 import "moment/dist/locale/es";
 import Chart from "./components/Chart.vue";
 
-moment.locale("es");
+moment.locale("en");
 
 const props = defineProps({
     jobs: Array,

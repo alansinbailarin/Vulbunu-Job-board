@@ -24,7 +24,7 @@ class AuthController extends Controller
             'password.required' => 'El campo de contraseña es requerido',
         ]), true)) {
             throw ValidationException::withMessages([
-                'sessionError' => 'Las credenciales proporcionadas no coinciden con ningun registro.'
+                'sessionError' => 'The provided credentials do not match any record'
             ]);
         }
 

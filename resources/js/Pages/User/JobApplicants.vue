@@ -309,11 +309,9 @@
                 </div>
                 <div class="mt-2">
                     <p class="text-gray-400 text-xs">
-                        Apply on
+                        Applied
                         {{
-                            moment(applicant?.created_at).format(
-                                "D [de] MMMM [del] YYYY"
-                            )
+                            moment(applicant?.created_at).format("MMMM Do YYYY")
                         }}
                     </p>
                 </div>
@@ -642,6 +640,8 @@ import Box from "@/UI/Box.vue";
 import moment from "moment";
 import "moment/dist/locale/es";
 import { ref, computed } from "vue";
+
+moment.locale("en");
 
 const props = defineProps({
     job: Object,

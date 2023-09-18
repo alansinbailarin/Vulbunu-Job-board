@@ -17,9 +17,6 @@ class SkillsController extends Controller
 
         $validateData = $request->validate([
             'skill_id' => 'required|exists:skills,id'
-        ], [
-            'skill_id.required' => 'Registros de skills requeridos.',
-            'skill_id.exists' => 'Los skills no son existentes.'
         ]);
 
         $skillsId = $request->input('skill_id', []);
@@ -50,13 +47,13 @@ class SkillsController extends Controller
 
                 DB::commit();
 
-                return redirect()->back()->with('success', 'Skills actualizadas correctamente');
+                return redirect()->back()->with('success', 'Skills updated');
             } else {
-                return redirect()->back()->with('success', 'El conteo de skills maximo es de 10 y cuentas con: ' . $skillsCount);
+                return redirect()->back()->with('success', 'Max count of skills is 10, you have: ' . $skillsCount);
             }
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Error al actualizar skills');
+            return redirect()->back()->with('success', 'Error updating skills');
         }
     }
 
@@ -68,6 +65,6 @@ class SkillsController extends Controller
         // Verifica si la habilidad está asociada al usuario y elimínala
         $user->skill()->detach($skillId);
 
-        return redirect()->back()->with('success', 'Skills eliminada correctamente');
+        return redirect()->back()->with('success', 'Skill deleted');
     }
 }

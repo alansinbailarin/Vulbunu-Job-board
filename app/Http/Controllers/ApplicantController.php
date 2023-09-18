@@ -23,11 +23,11 @@ class ApplicantController extends Controller
                 ->first();
 
             if ($existingApplicant) {
-                return redirect()->back()->with('success', 'Ya haz aplicado antes a la vacante');
+                return redirect()->back()->with('success', 'You have applied to this job vacancy before');
             }
             // Si el trabajo pertenece a la persona logeada, no puede aplicar
             else if ($user->id == Job::find($jobId)->user_id) {
-                return redirect()->back()->with('success', 'No puedes aplicar a tu propia vacante');
+                return redirect()->back()->with('success', 'You cannot apply to your own job vacancy');
             } else {
                 // El perfil no ha sido compartido antes, crea un nuevo registro
                 Applicant::create([
@@ -36,10 +36,10 @@ class ApplicantController extends Controller
                     'status' => 'pending'
                 ]);
 
-                return redirect()->back()->with('success', 'Haz aplicado satisfactoriamente');
+                return redirect()->back()->with('success', 'You have successfully applied');
             }
         } else {
-            return redirect()->back()->with('success', 'Debes iniciar sesión para compartir tu perfil');
+            return redirect()->back()->with('success', 'You must log in to share your profile');
         }
     }
 
@@ -135,7 +135,7 @@ class ApplicantController extends Controller
                 'rejectedCount' => $rejectedCount,
             ]);
         } else {
-            return redirect()->back()->with('success', 'Debes iniciar sesión para ver tus aplicaciones');
+            return redirect()->back()->with('success', 'You must log in to view your applications');
         }
     }
 
@@ -148,9 +148,9 @@ class ApplicantController extends Controller
 
             $applicant->save();
 
-            return redirect()->back()->with('success', 'Estado de la aplicación actualizado');
+            return redirect()->back()->with('success', 'Application status updated');
         } else {
-            return redirect()->back()->with('success', 'Debes iniciar sesión para actualizar el estado de la aplicación');
+            return redirect()->back()->with('success', 'You must log in to update the application status');
         }
     }
 }

@@ -308,7 +308,7 @@
                             id="job_title"
                             v-model="form.job_title"
                             type="text"
-                            placeholder="Ingeniero quimico"
+                            placeholder="Software engineer"
                             class="w-full my-1 text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                             autocomplete="job_title"
                         />

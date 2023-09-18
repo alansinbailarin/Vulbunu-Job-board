@@ -61,7 +61,7 @@
                             type="text"
                             id="title"
                             v-model="form.title"
-                            placeholder="Ej. Tecnico en mantenimiento..."
+                            placeholder="Example, software engineer..."
                             class="w-full text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
                         />
                         <div
@@ -654,7 +654,7 @@
                         <div
                             class="bg-gray-50 rounded-md border border-gray-300 px-2 flex flex-wrap items-center py-0.5"
                         >
-                            <p class="py-2 mr-2">Selección:</p>
+                            <p class="py-2 mr-2">Selection:</p>
                             <button
                                 v-for="(selectedTag, index) in selectedTags"
                                 :key="index"
@@ -721,7 +721,7 @@
                             type="number"
                             id="min"
                             v-model="form.min"
-                            placeholder="Minimo"
+                            placeholder="Min"
                             min="1"
                             pattern="^[0-9]+"
                             class="w-full placeholder:text-gray-300 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
@@ -747,7 +747,7 @@
                             type="number"
                             id="max"
                             v-model="form.max"
-                            placeholder="Maximo"
+                            placeholder="Max"
                             min="1"
                             pattern="^[0-9]+"
                             class="w-full text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
@@ -882,7 +882,7 @@
                         class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
                         cols="30"
                         rows="4"
-                        placeholder="Escribe una descripción del empleo..."
+                        placeholder="Job description..."
                     ></textarea>
                     <div
                         v-if="form.errors.description"
@@ -919,7 +919,7 @@
                         class="w-full placeholder:text-gray-300 text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
                         cols="30"
                         rows="3"
-                        placeholder="Escribe una descripción de la empresa..."
+                        placeholder="Extra info..."
                     ></textarea>
                     <div
                         v-if="form.errors.extra_info"

@@ -98,7 +98,7 @@
                                 Joined on
                                 {{
                                     moment(talent.created_at).format(
-                                        "D [de] MMMM [del] YYYY"
+                                        "MMMM Do YYYY"
                                     )
                                 }}
                             </p>
@@ -135,8 +135,11 @@
 import Filter from "./Components/Filter.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
+import "moment/dist/locale/es";
 import Pagination from "@/UI/Pagination.vue";
 import { Head } from "@inertiajs/vue3";
+
+moment.locale("en");
 
 const props = defineProps({
     talents: { type: [Array, Object] },

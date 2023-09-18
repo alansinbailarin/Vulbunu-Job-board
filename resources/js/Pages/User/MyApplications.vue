@@ -254,20 +254,44 @@
                                             @click="
                                                 updateApplicationStatus(
                                                     applicant,
+                                                    // Si esta en approved o pending, mostrar boton para cancelar
                                                     'cancelled'
                                                 )
                                             "
                                             :disabled="
-                                                applicant.status != 'pending'
+                                                applicant.status != 'pending' &&
+                                                applicant.status != 'approved'
                                             "
                                             class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
                                             :class="{
                                                 'bg-gray-50 ':
                                                     applicant.status !=
-                                                    'pending',
+                                                        'pending' &&
+                                                    applicant.status !=
+                                                        'approved',
                                             }"
                                         >
                                             Cancel application
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateApplicationStatus(
+                                                    applicant,
+                                                    'pending'
+                                                )
+                                            "
+                                            :disabled="
+                                                applicant.status != 'cancelled'
+                                            "
+                                            class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    applicant.status !=
+                                                    'cancelled',
+                                            }"
+                                        >
+                                            Rctivate application
                                         </button>
                                     </div>
                                 </div>
@@ -287,10 +311,10 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs text-gray-500 mt-2">
-                                Apply on
+                                Applied on
                                 {{
                                     moment(applicant?.created_at).format(
-                                        "D [de] MMMM [del] YYYY"
+                                        "MMMM Do YYYY"
                                     )
                                 }}
                             </p>
@@ -349,7 +373,7 @@
                                             >({{
                                                 interview?.interview_type ===
                                                 "presential"
-                                                    ? "presencial"
+                                                    ? "presential"
                                                     : "virtual"
                                             }})</span
                                         >
@@ -360,9 +384,7 @@
                                             {{
                                                 moment(
                                                     interview?.created_at
-                                                ).format(
-                                                    "D [de] MMMM [del] YYYY"
-                                                )
+                                                ).format("MMMM Do YYYY")
                                             }}.
                                         </p>
                                         <p>
@@ -371,7 +393,7 @@
                                                 moment(
                                                     interview?.interview_date
                                                 ).format(
-                                                    "D [de] MMMM [del] YYYY [a la] hh:mm a"
+                                                    "MMMM Do YYYY hh:mm a"
                                                 )
                                             }}.
                                         </p>
@@ -381,16 +403,16 @@
                                             {{
                                                 interview?.interview_duration <
                                                 "01:00:00"
-                                                    ? "Minuto(s)"
-                                                    : "Hora(s)"
+                                                    ? "Minute(s)"
+                                                    : "Hour(s)"
                                             }}
                                         </p>
                                         <p>
                                             {{
                                                 interview?.interview_type ===
                                                 "presential"
-                                                    ? "Ubicacion:"
-                                                    : "Link de entrevista:"
+                                                    ? "Location:"
+                                                    : "Interview url:"
                                             }}
                                             <a
                                                 :href="`${interview?.interview_link}`"
@@ -460,7 +482,7 @@ import moment from "moment";
 import "moment/dist/locale/es";
 import Chart from "./components/Chart.vue";
 
-moment.locale("es");
+moment.locale("en");
 
 const props = defineProps({
     jobs: Array,

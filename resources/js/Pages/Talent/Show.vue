@@ -30,7 +30,7 @@
                                     >Member since
                                     {{
                                         moment(talent.created_at).format(
-                                            "D [de] MMMM [del] YYYY"
+                                            "MMMM Do YYYY"
                                         )
                                     }}
                                 </span>
@@ -355,13 +355,13 @@
                             <time class="text-xs text-gray-400">
                                 {{
                                     moment(education.start_date).format(
-                                        "D [de] MMMM [del] YYYY"
+                                        "MMMM Do YYYY"
                                     )
                                 }}
                                 -
                                 {{
                                     moment(education.end_date).format(
-                                        "D [de] MMMM [del] YYYY"
+                                        "MMMM Do YYYY"
                                     )
                                 }}
                             </time>
@@ -385,14 +385,12 @@
                             <time class="text-xs text-gray-400"
                                 >{{
                                     moment(job.start_date).format(
-                                        "D [de] MMMM [del] YYYY"
+                                        "MMMM Do YYYY"
                                     )
                                 }}
                                 -
                                 {{
-                                    moment(job.end_date).format(
-                                        "D [de] MMMM [del] YYYY"
-                                    )
+                                    moment(job.end_date).format("MMMM Do YYYY")
                                 }}</time
                             >
                             <p class="font-semibold text-gray-700">
@@ -414,7 +412,7 @@ import { Link, Head } from "@inertiajs/vue3";
 import moment from "moment";
 import "moment/dist/locale/es";
 
-moment.locale("es");
+moment.locale("en");
 
 defineProps({
     talent: Object,

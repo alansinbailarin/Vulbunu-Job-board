@@ -69,10 +69,6 @@ class IndexController extends Controller
     {
         $validateEmail = $request->validate([
             'email' => 'required|email|unique:subscribers,email'
-        ], [
-            'email.required' => 'El campo email es obligatorio',
-            'email.email' => 'El campo email debe ser un email válido',
-            'email.unique' => 'El email ya se encuentra registrado'
         ]);
 
         $subscriber = Subscriber::create($validateEmail);

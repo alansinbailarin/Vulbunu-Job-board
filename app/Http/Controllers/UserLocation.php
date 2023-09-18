@@ -15,10 +15,6 @@ class UserLocation extends Controller
             'country_id' => 'required|exists:countries,id',
             'state_id' => 'required_with:country_id',
             'city_id' => 'nullable',
-        ], [
-            'country_id.required' => 'El campo de pais es requerido.',
-            'country_id.exists' => 'El campo pais debe contener un pais existente.',
-            'state_id.required_with' => 'El campo de estado es requerido',
         ]);
 
         $user->country_id = $validateData['country_id'];
@@ -27,6 +23,6 @@ class UserLocation extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Ubicacion actualizada correctamente');
+        return redirect()->back()->with('success', 'Location updated');
     }
 }

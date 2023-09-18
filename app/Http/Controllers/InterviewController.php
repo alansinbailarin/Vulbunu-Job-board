@@ -20,15 +20,6 @@ class InterviewController extends Controller
             'interview_link' => 'url|required',
             'interview_duration' => 'required',
             'interview_observation' => 'required|string|max:255',
-        ], [
-            'interview_date.after' => 'La fecha de la entrevista no puede ser anterior a hoy',
-            'interview_date.required' => 'La fecha de la entrevista es requerida',
-            'interview_date.date' => 'La fecha de la entrevista debe ser una fecha válida',
-            'interview_link.url' => 'El link de la entrevista debe ser una url válida',
-            'interview_link.required' => 'El link de la entrevista es requerido',
-            'interview_type.required' => 'El tipo de entrevista es requerido',
-            'interview_duration.required' => 'La duración de la entrevista es requerida',
-            'interview_observation.required' => 'La observación de la entrevista es requerida',
         ]);
 
         $interview = Interviews::create($validateData);
@@ -39,7 +30,7 @@ class InterviewController extends Controller
 
         $interview->save();
 
-        return redirect()->back()->with('success', 'Entrevista agendada satisfactoriamente');
+        return redirect()->back()->with('success', 'Interview created');
     }
 
     public function edit(Interviews $interview)
@@ -62,19 +53,10 @@ class InterviewController extends Controller
             'interview_observation' => 'required|string|max:255',
             'status' => 'required|string|max:255',
             'interview_feedback' => 'nullable|string|max:255',
-        ], [
-            'interviewer_name.required' => 'El nombre del entrevistador es requerido',
-            'interview_date.date' => 'La fecha de la entrevista debe ser una fecha válida',
-            'interview_link.url' => 'El link de la entrevista debe ser una url válida',
-            'interview_link.required' => 'El link de la entrevista es requerido',
-            'interview_type.required' => 'El tipo de entrevista es requerido',
-            'interview_duration.required' => 'La duración de la entrevista es requerida',
-            'interview_observation.required' => 'La observación de la entrevista es requerida',
-            'status.required' => 'El estado de la entrevista es requerido',
         ]);
 
         $interview->update($validateData);
 
-        return redirect()->back()->with('success', 'Entrevista actualizada satisfactoriamente');
+        return redirect()->back()->with('success', 'Interview updated');
     }
 }

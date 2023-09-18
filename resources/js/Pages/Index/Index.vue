@@ -1,5 +1,5 @@
 <template>
-    <Head title="Premlat - Inicio">
+    <Head title="Vulbunu - Home">
         <meta
             name="description"
             content="Busca en nuestra basta lista de empleos publicados diariamente y de talentos disponibles, encuentra el que mejor se adapte a ti."

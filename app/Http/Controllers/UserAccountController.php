@@ -53,16 +53,6 @@ class UserAccountController extends Controller
                 'slug' => 'string|unique:users',
                 'email' => 'required|string|email|unique:users',
                 'password' => 'required|min:8|confirmed|string'
-            ],
-            [
-                'name.required' => 'El nombre es un campo requerido',
-                'last_name.required' => 'El apellido es un campo requerido',
-                'email.required' => 'El correo electrónico es un campo requerido',
-                'email.email' => 'El correo electrónico debe ser válido',
-                'email.unique' => 'El correo electrónico ya está en uso',
-                'password.required' => 'La contraseña es un campo requerido',
-                'password.min' => 'La contraseña debe tener al menos 8 caracteres',
-                'password.confirmed' => 'Las contraseñas no coinciden',
             ]
         );
 
@@ -99,34 +89,6 @@ class UserAccountController extends Controller
             'job_modality_id' => 'nullable|exists:job_modalities,id',
             'gender_id' => 'nullable|exists:genders,id',
             'looking_for_job' => 'nullable|boolean'
-        ], [
-            'name.required' => 'El nombre es un campo requerido',
-            'name.min' => 'El nombre es demasiado corto',
-            'last_name.required' => 'El apellido es un campo requerido',
-            'last_name.min' => 'El apellido es demasiado corto',
-            'username.min' => 'El nombre de usuario es demasiado corto',
-            'username.unique' => 'El nombre de usuario ya está en uso',
-            'email.required' => 'El correo electrónico es un campo requerido',
-            'email.email' => 'El correo electrónico debe ser válido',
-            'email.unique' => 'El correo electrónico ya está en uso',
-            'avatar.mimes' => 'El archivo debe ser una imagen jpeg o png',
-            'avatar.max' => 'El archivo no debe pesar más de 1MB',
-            'avatar.uploaded' => 'El archivo no es valido',
-            'birthdate.required' => 'La fecha de nacimiento es un campo requerido',
-            'birthdate.date' => 'La fecha de nacimiento debe ser válida',
-            'birthdate.before' => 'No tienes la edad suficiente para registrarte en esta plataforma',
-            'about_me.max' => 'La descripción debe tener menos de 1000 caracteres',
-            'slug.min' => 'El slug es demasiado corto',
-            'slug.unique' => 'El slug ya está en uso',
-            'slug.alpha_dash' => 'El slug solo puede contener letras, números, guiones y guiones bajos',
-            'job_title.max' => 'El puesto de trabajo debe tener menos de 100 caracteres',
-            'phone.max' => 'El teléfono debe contener 10 caracteres',
-            'phone.min' => 'El teléfono debe contener 10 caracteres',
-            'linkedin.url' => 'El perfil de LinkedIn debe ser una URL válida',
-            'cv.max' => 'El CV no debe pesar más de 1MB',
-            'job_modality_id.exists' => 'El campo modalidad de trabajo debe contener una modalidad existente',
-            'gender_id.exists' => 'El campo género debe contener un género existente',
-            'looking_for_job.boolean' => 'El campo de busco trabajo debe ser booleano'
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -165,7 +127,7 @@ class UserAccountController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Perfil actualizado correctamente');
+        return redirect()->back()->with('success', 'Profile updated');
     }
 
     public function deleteItem($itemToDelete)
@@ -184,7 +146,7 @@ class UserAccountController extends Controller
             $user->avatar = null;
             $user->save();
 
-            return redirect()->route('user-account.index')->with('success', 'Imagen eliminada correctamente');
+            return redirect()->route('user-account.index')->with('success', 'Image deleted');
         }
 
         if ($itemToDelete == 'cv') {
@@ -199,7 +161,7 @@ class UserAccountController extends Controller
             $user->cv = null;
             $user->save();
 
-            return redirect()->route('user-account.index')->with('success', 'CV eliminado correctamente');
+            return redirect()->route('user-account.index')->with('success', 'Resume deleted');
         }
     }
 }

@@ -175,56 +175,6 @@ class JobController extends Controller
                 'requirements' => 'required|string|min:20|max:1000',
                 'responsabilities' => 'required|string|min:20|max:1000',
                 'logo' => 'required|mimes:jpg,png,jpeg|max:1024'
-            ],
-            [
-                'title.required' => 'El titulo es requerido.',
-                'title.max' => 'La longitud máxima del campo titulo es de 255 caracteres.',
-                'category_id.required' => 'El campo de categoria es requerido.',
-                'category_id.exists' => 'El campo de categoria debe de contener una categoria existente.',
-                'category_id.integer' => 'El campo categoria debe de ser un numero.',
-                'apply_on.url' => 'El campo de aplicación debe de ser un campo valido de url.',
-                'apply_on.required' => 'El campo de aplicación es un campo requerido.',
-                'status.required' => 'El campo estatus es requerido.',
-                'job_modality_id.required' => 'El campo de modalidad es requerido.',
-                'job_modality_id.integer' => 'El campo de modalidad debe de ser numerico',
-                'job_modality_id.exists' => 'El campo modalidad debe contener una modalidad existente.',
-                'workday_id.required' => 'El campo de tipo de puesto es requerido.',
-                'workday_id.integer' => 'El campo de tipo de puesto debe de ser numerico',
-                'workday_id.exists' => 'El campo tipo de puesto debe contener un tipo de puesto existente.',
-                'priority_id.required' => 'El campo de prioridad es requerido.',
-                'priority_id.integer' => 'El campo de prioridad debe de ser numerico',
-                'priority_id.exists' => 'El campo prioridad debe contener una prioridad existente.',
-                'country_id.required' => 'El campo de pais es requerido.',
-                'country_id.exists' => 'El campo pais debe contener un pais existente.',
-                'state_id.required_with' => 'El campo de estado es requerido',
-                'tag_id.required' => 'Por favor, selecciona al menos un tag.',
-                'min.integer' => 'El campo minimo necesita ser un campo numerico.',
-                'min.min' => 'El minimo para este campo es 1.',
-                'min.gt' => 'El campo minimo debe de ser mayor a 0',
-                'max.integer' => 'El campo maximo necesita ser un campo numerico.',
-                'max.max' => 'El maximo para este campo es 300,000',
-                'max.gt' => 'El campo maximo debe de ser mayor al campo minimo',
-                'max.required_with' => 'Este campo es necesario cuando el campo minimo esta presente.',
-                'show.required_with' => 'Este campo es necesario cuando el campo minimo esta presente.',
-                'show.boolean' => 'Este campo debe de ser verdadero o falso.',
-                'currency_id.required_with' => 'Por favor, selecciona una opción.',
-                'salary_type_id.required_with' => 'Por favor, selecciona una opción.',
-                'periodicity_id.required_with' => 'Por favor, selecciona una opción.',
-                'description.required' => 'El campo de descripción es requerido.',
-                'description.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
-                'description.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
-                'extra_info.required' => 'El campo de información es requerido.',
-                'extra_info.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
-                'extra_info.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
-                'requirements.required' => 'El campo de requerimientos es requerido.',
-                'requirements.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
-                'requirements.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
-                'responsabilities.required' => 'El campo de requerimientos es requerido.',
-                'responsabilities.min' => 'El minimo de caracteres para este campo es de 20 caracteres.',
-                'responsabilities.max' => 'El maximo de caracteres para este campo es de 1000 caracteres.',
-                'logo.required' => 'El logo es requerido.',
-                'logo.mimes' => 'Solo son aceptados archivos con terminacion JPG, PNG o JPEG.',
-                'logo.max' => 'El logo no debe de pesar mas de 1024 KB.'
             ]
         );
 
@@ -273,7 +223,7 @@ class JobController extends Controller
         $requirements->save();
         $responsabilities->save();
 
-        $successMessage = 'El empleo fue publicado satisfactoriamente, ID: <a class="text-blue-600 font-semibold underline" href="' . route('jobs.show', $job->slug) . '">' . $job->id . '</a>';
+        $successMessage = 'Job published successfuly, ID: <a class="text-blue-600 font-semibold underline" href="' . route('jobs.show', $job->slug) . '">' . $job->id . '</a>';
 
         return redirect()->route('jobs.index')->with('success', $successMessage);
     }
@@ -310,7 +260,7 @@ class JobController extends Controller
                     'percentajeArchived' => $percentajeArchived,
                 ]);
             } else {
-                abort(403, 'Aun no has publicado ningun empleo.');
+                abort(403, 'No one job published');
             }
         }
     }
@@ -322,7 +272,7 @@ class JobController extends Controller
         if ($user) {
             if (auth()->user()->id !== $job->user_id) {
                 // Si no es el propietario, muestra un error o redirige a una página de acceso no autorizado
-                abort(403, 'No tienes permiso para acceder a estos datos.');
+                abort(403, 'You dont have access to this data.');
             }
 
             // El usuario autenticado es el propietario del trabajo, puedes continuar con el código para obtener la información del trabajo y sus aplicantes

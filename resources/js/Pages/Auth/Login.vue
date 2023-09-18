@@ -1,8 +1,8 @@
 <template>
-    <Head title="Premlat - login">
+    <Head title="Vulbunu - login">
         <meta
             name="description"
-            content="Encuentra oportunidades de trabajo y conecta con empresas líderes. Inicia sesión en Premlat para acceder a tu cuenta y explorar las ofertas laborales que se ajustan a tus habilidades y preferencias."
+            content="Encuentra oportunidades de trabajo y conecta con empresas líderes. Inicia sesión en Vulbunu para acceder a tu cuenta y explorar las ofertas laborales que se ajustan a tus habilidades y preferencias."
         />
     </Head>
 

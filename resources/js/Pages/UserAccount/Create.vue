@@ -1,8 +1,8 @@
 <template>
-    <Head title="Vulbunu - Registro">
+    <Head title="Vulbunu - Sign up">
         <meta
             name="description"
-            content="Únete a la comunidad de Premlat y comienza a explorar oportunidades laborales. Regístrate para acceder a una amplia gama de trabajos y conectarte con empresas en búsqueda de talento como tú."
+            content="Únete a la comunidad de Vulbunu y comienza a explorar oportunidades laborales. Regístrate para acceder a una amplia gama de trabajos y conectarte con empresas en búsqueda de talento como tú."
         />
     </Head>
 
