@@ -3,7 +3,7 @@
         class="grid grid-cols-1 p-4 text-center md:text-left md:p-0 md:grid-cols-2 mx-auto container my-4 md:my-12 items-center"
     >
         <div>
-            <h1 class="text-gray-800 font-semibold text-2xl md:text-5xl">
+            <h1 class="text-gray-800 font-bold text-2xl md:text-5xl">
                 <span class="text-indigo-500">Find</span> the best candidates to
                 be part of your company
             </h1>

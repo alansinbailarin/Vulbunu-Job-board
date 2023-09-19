@@ -13,12 +13,8 @@
                     class="max-w-screen-xl md:hidden flex flex-wrap items-center justify-between mx-auto"
                 >
                     <Link href="/" class="" @click="isMenuOpen = false"
-                        ><span
-                            class="font-bold text-transparent text-xl bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-600"
-                        >
-                            Vulbunu
-                        </span></Link
-                    >
+                        ><img src="../../img/logo.png" alt="" class="w-24"
+                    /></Link>
 
                     <button
                         @click="toggleMenu"
@@ -208,11 +204,7 @@
                 </div>
                 <div class="text-xl font-bold hidden md:block">
                     <Link href="/" class="">
-                        <span
-                            class="font-bold text-transparent text-xl bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-600"
-                        >
-                            Vulbunu
-                        </span>
+                        <img src="../../img/logo.png" alt="" class="w-28" />
                     </Link>
                 </div>
                 <div class="flex-row gap-8 text-sm font-medium hidden md:flex">

@@ -14,7 +14,7 @@
                         href="/"
                         class="tracking-widest text-blue-500 font-bold"
                     >
-                        Vulbunu
+                        <img src="../../../img/logo.png" alt="" class="w-24" />
                     </Link>
                 </div>
 
