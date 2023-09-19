@@ -62,7 +62,7 @@
                             id="title"
                             v-model="form.title"
                             placeholder="Example, software engineer..."
-                            class="w-full text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.title"
@@ -98,7 +98,7 @@
                             form="createJob"
                             id="category"
                             v-model="form.category_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a category</option>
                             <option
@@ -146,7 +146,7 @@
                             id="apply_on"
                             v-model="form.apply_on"
                             placeholder="https://www.ejemplo.com/apply/on/..."
-                            class="w-full placeholder:text-gray-300 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full placeholder:text-gray-300 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.apply_on"
@@ -178,7 +178,7 @@
                             id="color"
                             form="createJob"
                             v-model="form.color"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Selecciona un color</option>
                             <option value="gray">Gris</option>
@@ -221,7 +221,7 @@
                             id="status"
                             form="createJob"
                             v-model="form.status"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a status</option>
 
@@ -306,7 +306,7 @@
                             id="jobModalities"
                             form="createJob"
                             v-model="form.job_modality_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a modality</option>
 
@@ -352,7 +352,7 @@
                             id="workdays"
                             form="createJob"
                             v-model="form.workday_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a type</option>
 
@@ -398,7 +398,7 @@
                             id="priority"
                             form="createJob"
                             v-model="form.priority_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a priority</option>
 
@@ -445,7 +445,7 @@
                             form="createJob"
                             v-model="selectedCountry"
                             @change="getStates"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a country</option>
                             <option
@@ -493,7 +493,7 @@
                             v-model="selectedState"
                             :disabled="!selectedCountry"
                             @change="getCities"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a state</option>
                             <option
@@ -539,7 +539,7 @@
                             v-model="selectedCity"
                             form="createJob"
                             :disabled="!selectedState"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a city</option>
                             <option
@@ -687,7 +687,7 @@
                         <select
                             id="currency"
                             v-model="form.currency_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select a currency</option>
 
@@ -724,7 +724,7 @@
                             placeholder="Min"
                             min="1"
                             pattern="^[0-9]+"
-                            class="w-full placeholder:text-gray-300 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full placeholder:text-gray-300 text-sm px-5 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.min"
@@ -750,7 +750,7 @@
                             placeholder="Max"
                             min="1"
                             pattern="^[0-9]+"
-                            class="w-full text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.max"
@@ -772,7 +772,7 @@
                         <select
                             id="periodicity"
                             v-model="form.periodicity_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
                                 Select a periodicity
@@ -805,7 +805,7 @@
                         <select
                             id="salary_type"
                             v-model="form.salary_type_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>
                                 Select a salary type
@@ -838,7 +838,7 @@
                         <select
                             id="salary_type"
                             v-model="form.show"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                         >
                             <option value="" hidden>Select an option</option>
                             <option :value="0">Don't show</option>
@@ -879,7 +879,7 @@
                     <textarea
                         v-model="form.description"
                         id="description"
-                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                         cols="30"
                         rows="4"
                         placeholder="Job description..."
@@ -916,7 +916,7 @@
                     <textarea
                         v-model="form.extra_info"
                         id="extra_info"
-                        class="w-full placeholder:text-gray-300 text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                        class="w-full placeholder:text-gray-300 text-sm rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                         cols="30"
                         rows="3"
                         placeholder="Extra info..."
@@ -1009,7 +1009,7 @@
                     </div>
                 </div>
                 <button
-                    class="bg-indigo-600 w-full mt-4 rounded-md px-4 py-2 text-white font-semibold hover:bg-indigo-500 transition duration-200 ease-in-out"
+                    class="bg-blue-600 w-full mt-4 rounded-md px-4 py-2 text-white font-semibold hover:bg-blue-500 transition duration-200 ease-in-out"
                     :class="{ 'opacity-25': form.processing || !form.isDirty }"
                     :disabled="form.processing || !form.isDirty"
                     type="submit"

@@ -68,7 +68,7 @@
                     <a
                         :href="`${job.apply_on}`"
                         target="_blank"
-                        class="border border-indigo-500 rounded-md text-indigo-500 transition-all duration-300 ease-in-out px-4 py-2"
+                        class="border border-blue-500 rounded-md text-blue-500 transition-all duration-300 ease-in-out px-4 py-2"
                         >Apply in the page</a
                     >
                 </div>
@@ -76,7 +76,7 @@
                     <button
                         @click="shareProfile(props.job.id)"
                         target="_blank"
-                        class="bg-indigo-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-indigo-600"
+                        class="bg-blue-500 text-white py-2 px-4 rounded-md transition-all duration-300 ease-in-out hover:bg-blue-600"
                     >
                         Quick application
                     </button>
@@ -87,10 +87,9 @@
         <div
             class="mt-4 text-xs flex items-center gap-2 px-4 overflow-x-scroll flex-wrap"
         >
-            <span
-                class="text-indigo-600 bg-indigo-100 px-1 py-0.5 rounded-md"
-                >{{ job.category.title }}</span
-            >
+            <span class="text-blue-600 bg-blue-100 px-1 py-0.5 rounded-md">{{
+                job.category.title
+            }}</span>
 
             <span class="text-blue-600 bg-blue-100 px-1 py-0.5 rounded-md">{{
                 job.jobmodality.title
@@ -210,7 +209,7 @@
             <button
                 @click="shareProfile(props.job.id)"
                 target="_blank"
-                class="block bg-indigo-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-indigo-600"
+                class="block bg-blue-500 p-2 w-full rounded-md text-white text-center transition-all duration-300 ease-in-out hover:bg-blue-600"
             >
                 Quick apply
             </button>
@@ -219,7 +218,7 @@
             <a
                 :href="`${job.apply_on}`"
                 target="_blank"
-                class="w-full border border-indigo-500 rounded-md py-2 text-indigo-500 transition-all duration-300 ease-in-out"
+                class="w-full border border-blue-500 rounded-md py-2 text-blue-500 transition-all duration-300 ease-in-out"
                 >Apply in the page</a
             >
         </div>

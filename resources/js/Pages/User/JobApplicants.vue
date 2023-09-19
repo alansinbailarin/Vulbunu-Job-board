@@ -320,7 +320,7 @@
                         @click="toggleModal(applicant)"
                         v-if="applicant.interviews?.length === 0"
                         :disabled="applicant.status !== 'pending'"
-                        class="text-center bg-indigo-600 text-white py-1.5 rounded-md font-semibold text-sm"
+                        class="text-center bg-blue-600 text-white py-1.5 rounded-md font-semibold text-sm"
                         :class="[
                             applicant.user?.cv ? 'w-1/2' : 'w-full',
                             applicant.status !== 'pending'
@@ -334,7 +334,7 @@
                     <button
                         v-else
                         disabled
-                        class="text-center bg-indigo-600 opacity-50 text-white py-1.5 rounded-md font-semibold text-sm"
+                        class="text-center bg-blue-600 opacity-50 text-white py-1.5 rounded-md font-semibold text-sm"
                         :class="applicant.user?.cv ? 'w-1/2' : 'w-full'"
                     >
                         Scheduled Interview
@@ -342,7 +342,7 @@
                     <button
                         @click="downloadCV(applicant.user?.cv)"
                         v-if="applicant.user?.cv"
-                        class="w-1/2 text-center border border-dashed border-indigo-500 py-1.5 rounded-md text-indigo-500 font-medium text-sm"
+                        class="w-1/2 text-center border border-dashed border-blue-500 py-1.5 rounded-md text-blue-500 font-medium text-sm"
                     >
                         Download cv
                     </button>
@@ -405,7 +405,7 @@
                                     <select
                                         id="interview_type"
                                         v-model="form.interview_type"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                                     >
                                         <option value="presential">
                                             Presential
@@ -446,7 +446,7 @@
                                                 ? 'https://meet.google.com/...'
                                                 : 'https://maps.google.com/...'
                                         "
-                                        class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                                        class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                     />
                                     <div
                                         v-if="form.errors.interview_link"
@@ -476,7 +476,7 @@
                                         id="interview_date"
                                         v-model="form.interview_date"
                                         type="datetime-local"
-                                        class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                                        class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                     />
                                     <div
                                         v-if="form.errors.interview_date"
@@ -505,7 +505,7 @@
                                     <select
                                         id="interview_duration"
                                         v-model="form.interview_duration"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                                     >
                                         <option value="00:30:00">
                                             30 minutes
@@ -548,7 +548,7 @@
                                         v-model="form.interview_observation"
                                         cols="30"
                                         rows="7"
-                                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                                         placeholder="Please arrive 30 minutes early for the interview to complete the registration process..."
                                     ></textarea>
                                     <div
@@ -582,7 +582,7 @@
                                         v-model="form.interview_feedback"
                                         cols="30"
                                         rows="7"
-                                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                                         placeholder="El aplicante llego 1 hora tarde a la entrevista..."
                                     ></textarea>
                                 </div> -->
@@ -595,7 +595,7 @@
                                             form.processing || !form.isDirty,
                                     }"
                                     :disabled="form.processing || !form.isDirty"
-                                    class="w-full bg-indigo-600 text-white py-1.5 rounded-md font-semibold"
+                                    class="w-full bg-blue-600 text-white py-1.5 rounded-md font-semibold"
                                     >Schedule an Interview</Button
                                 >
                             </div>

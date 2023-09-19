@@ -8,9 +8,7 @@
         </Head>
     </div>
     <div class="container mx-auto px-4 mt-4">
-        <div
-            class="bg-gradient-to-r to-gray-800 from-indigo-950 p-6 rounded-md"
-        >
+        <div class="bg-gradient-to-r to-gray-800 from-blue-950 p-6 rounded-md">
             <div class="md:grid grid-cols-3 gap-4 items-center">
                 <div class="col-span-2">
                     <h1

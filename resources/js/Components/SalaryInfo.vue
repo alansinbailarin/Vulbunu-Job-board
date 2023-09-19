@@ -2,7 +2,7 @@
     <div class="text-center my-8 px-4">
         <h1 class="text-2xl md:text-5xl font-bold mb-3">
             Discover the
-            <span class="text-indigo-500">salary</span> of your dream job
+            <span class="text-blue-500">salary</span> of your dream job
         </h1>
         <span class="text-gray-500">
             With just a few clicks, you can obtain salary information for
@@ -18,7 +18,7 @@
         </div>
         <div class="">
             <Link
-                class="bg-indigo-500 text-white py-3 px-6 rounded-md font-medium"
+                class="bg-blue-500 text-white py-3 px-6 rounded-md font-medium"
                 href="#"
             >
                 Post your salary anonymously

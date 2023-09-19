@@ -165,7 +165,7 @@
                             >
                             <Link
                                 href="#"
-                                class="text-indigo-500 font-medium text-sm"
+                                class="text-blue-500 font-medium text-sm"
                                 >Forgot your password?</Link
                             >
                         </div>
@@ -233,7 +233,7 @@
                     <div class="mt-10">
                         <button
                             type="submit"
-                            class="w-full px-4 py-3 bg-indigo-500 text-white font-semibold rounded-lg hover:bg-indigo-600 transition-all duration-300 ease-in-out"
+                            class="w-full px-4 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-all duration-300 ease-in-out"
                         >
                             Log In
                         </button>
@@ -244,7 +244,7 @@
                         Not a member yet?
                         <Link
                             href="/user-account/create"
-                            class="text-indigo-400 font-medium"
+                            class="text-blue-400 font-medium"
                             >Create an account</Link
                         >
                     </p>

@@ -22,16 +22,31 @@
                         class="inline-flex items-center p-2 ml-3 text-sm text-gray-700 md:hidden"
                     >
                         <svg
-                            class="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
+                            v-if="!isMenuOpen"
                             xmlns="http://www.w3.org/2000/svg"
+                            width="29"
+                            height="29"
+                            fill="currentColor"
+                            class="bi bi-list"
+                            viewBox="0 0 16 16"
                         >
                             <path
                                 fill-rule="evenodd"
-                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                clip-rule="evenodd"
-                            ></path>
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                            />
+                        </svg>
+                        <svg
+                            v-else
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="29"
+                            height="29"
+                            fill="currentColor"
+                            class="bi bi-x"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                            />
                         </svg>
                     </button>
                     <Transition
@@ -47,8 +62,7 @@
                                         href="/"
                                         class="text-base py-3 px-4 flex"
                                         :class="{
-                                            'text-indigo-500':
-                                                $page.url === '/',
+                                            'text-blue-500': $page.url === '/',
                                         }"
                                         @click="isMenuOpen = false"
                                         >Home</Link
@@ -59,7 +73,7 @@
                                         href="/jobs"
                                         class="text-base py-3 px-4 flex"
                                         :class="{
-                                            'text-indigo-500':
+                                            'text-blue-500':
                                                 $page.url.includes('/jobs'),
                                         }"
                                         @click="isMenuOpen = false"
@@ -71,7 +85,7 @@
                                         href="/talents"
                                         class="text-base py-2 px-4 flex"
                                         :class="{
-                                            'text-indigo-500':
+                                            'text-blue-500':
                                                 $page.url.includes('/talents'),
                                         }"
                                         @click="isMenuOpen = false"
@@ -83,7 +97,7 @@
                                         href="#"
                                         class="text-base py-2 px-4 flex"
                                         :class="{
-                                            'text-indigo-500':
+                                            'text-blue-500':
                                                 $page.url === '/alertas',
                                         }"
                                         @click="isMenuOpen = false"
@@ -95,7 +109,7 @@
                                         href="#"
                                         class="text-base py-2 px-4 flex border-b border-gray-100"
                                         :class="{
-                                            'text-indigo-500':
+                                            'text-blue-500':
                                                 $page.url === '/salarios',
                                         }"
                                         @click="isMenuOpen = false"
@@ -171,7 +185,7 @@
                                             href="/login"
                                             class="text-base py-2 px-4 flex"
                                             :class="{
-                                                'text-indigo-500':
+                                                'text-blue-500':
                                                     $page.url === '/salarios',
                                             }"
                                             >Log in</Link
@@ -182,7 +196,7 @@
                                             href="/user-account/create"
                                             class="text-base py-2 px-4 flex"
                                             :class="{
-                                                'text-indigo-500':
+                                                'text-blue-500':
                                                     $page.url ===
                                                     '/user-account/create',
                                             }"
@@ -210,20 +224,20 @@
                 <div class="flex-row gap-8 text-sm font-medium hidden md:flex">
                     <Link
                         href="/"
-                        :class="{ 'text-indigo-500': $page.url === '/' }"
+                        :class="{ 'text-blue-500': $page.url === '/' }"
                         >Home</Link
                     >
                     <Link
                         href="/jobs"
                         :class="{
-                            'text-indigo-500': $page.url.includes('/jobs'),
+                            'text-blue-500': $page.url.includes('/jobs'),
                         }"
                         >Jobs</Link
                     >
                     <Link
                         href="/talents"
                         :class="{
-                            'text-indigo-500': $page.url.includes('/talents'),
+                            'text-blue-500': $page.url.includes('/talents'),
                         }"
                         >Talents</Link
                     >
@@ -333,7 +347,7 @@
                     >
                     <div v-if="!user">
                         <Link
-                            class="bg-indigo-600 rounded-md text-white px-4 py-2 hover:bg-indigo-700 transition duration-200 ease-in-out font-semibold"
+                            class="bg-blue-600 rounded-md text-white px-4 py-2 hover:bg-blue-700 transition duration-200 ease-in-out font-semibold"
                             href="/login"
                             >Log In</Link
                         >

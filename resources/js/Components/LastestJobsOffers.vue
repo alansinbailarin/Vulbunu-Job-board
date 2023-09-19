@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-indigo-500 my-8 py-6 px-4">
+    <div class="bg-blue-500 my-8 py-6 px-4">
         <div
             class="md:grid grid-cols-3 items-center justify-between container mx-auto"
         >

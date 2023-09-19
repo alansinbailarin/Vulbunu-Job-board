@@ -8,7 +8,7 @@
             </div>
             <div>
                 <span
-                    class="bg-indigo-100 py-1.5 px-3 text-sm text-indigo-600 rounded-md"
+                    class="bg-blue-100 py-1.5 px-3 text-sm text-blue-600 rounded-md"
                     >The right offer for you is here</span
                 >
                 <h1
@@ -16,7 +16,7 @@
                 >
                     Job
                     <span
-                        class="font-bold text-transparent text-3xl md:text-4xl lg:text-6xl bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-600"
+                        class="font-bold text-transparent text-3xl md:text-4xl lg:text-6xl bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600"
                     >
                         offers
                     </span>

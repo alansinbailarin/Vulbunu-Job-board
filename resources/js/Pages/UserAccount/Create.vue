@@ -127,7 +127,7 @@
                             name="name"
                             placeholder="Miguel"
                             v-model="form.name"
-                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-indigo-500 text-gray-600"
+                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.name"
@@ -168,7 +168,7 @@
                             name="last_name"
                             placeholder="Martinez"
                             v-model="form.last_name"
-                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-indigo-500 text-gray-600"
+                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.last_name"
@@ -209,7 +209,7 @@
                             name="email"
                             placeholder="example@example.com"
                             v-model="form.email"
-                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-indigo-500 text-gray-600"
+                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.email"
@@ -250,7 +250,7 @@
                             name="password"
                             placeholder="••••••••••••"
                             v-model="form.password"
-                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-indigo-500 text-gray-600"
+                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-blue-500 text-gray-600"
                         />
                     </div>
                     <div class="mb-4 md:mb-0">
@@ -265,7 +265,7 @@
                             name="password_confirmation"
                             placeholder="••••••••••••"
                             v-model="form.password_confirmation"
-                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-indigo-500 text-gray-600"
+                            class="w-full px-5 py-2.5 placeholder:text-gray-400 bg-gray-100 rounded-lg border-none focus:ring-2 focus:ring-blue-500 text-gray-600"
                         />
                     </div>
                     <div
@@ -323,7 +323,7 @@
                     <div class="col-span-2 mt-4">
                         <button
                             type="submit"
-                            class="w-full px-4 py-3 bg-indigo-500 text-white font-semibold rounded-lg hover:bg-indigo-600 transition-all duration-300 ease-in-out"
+                            class="w-full px-4 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-all duration-300 ease-in-out"
                         >
                             Create account
                         </button>
@@ -332,7 +332,7 @@
                 <div class="mt-6">
                     <p class="text-gray-400 text-sm">
                         Already have an account?
-                        <Link href="/login" class="text-indigo-400 font-medium"
+                        <Link href="/login" class="text-blue-400 font-medium"
                             >Log In</Link
                         >
                     </p>

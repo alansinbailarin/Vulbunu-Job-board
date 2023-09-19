@@ -72,7 +72,7 @@
                             type="text"
                             autocomplete="name"
                             placeholder="Miguel"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.name"
@@ -96,7 +96,7 @@
                             v-model="form.username"
                             type="text"
                             placeholder="destructor30029"
-                            class="w-full my-1 text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full my-1 text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                         />
                         <div
                             v-if="form.errors.username"
@@ -121,7 +121,7 @@
                             v-model="form.birthdate"
                             type="date"
                             placeholder="Birth date"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                             autocomplete="birthdate"
                         />
                         <div
@@ -146,7 +146,7 @@
                             v-model="form.linkedin"
                             type="url"
                             placeholder="https://www.linkedin.com/in/user"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                             autocomplete="linkedin"
                         />
                         <div
@@ -232,7 +232,7 @@
                             v-model="form.last_name"
                             type="text"
                             placeholder="Gutierrez"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                             autocomplete="last_name"
                         />
                         <div
@@ -284,7 +284,7 @@
                             v-model="form.email"
                             type="text"
                             placeholder="example@example.com"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                             autocomplete="email"
                         />
                         <div
@@ -309,7 +309,7 @@
                             v-model="form.job_title"
                             type="text"
                             placeholder="Software engineer"
-                            class="w-full my-1 text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full my-1 text-sm px-5 placeholder:text-gray-300 bg-gray-50 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                             autocomplete="job_title"
                         />
                         <div
@@ -332,7 +332,7 @@
                             v-model="form.phone"
                             type="tel"
                             placeholder="6632883212"
-                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                            class="w-full my-1 text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                             autocomplete="phone"
                         />
                         <div
@@ -360,7 +360,7 @@
                             <select
                                 id="jobModalities"
                                 v-model="form.job_modality_id"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                             >
                                 <option value="" hidden>
                                     Select a modality
@@ -396,7 +396,7 @@
                             <select
                                 id="gender"
                                 v-model="form.gender_id"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                             >
                                 <option value="" hidden>
                                     Select your gender
@@ -434,7 +434,7 @@
                             <select
                                 id="looking_for_job"
                                 v-model="form.looking_for_job"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                             >
                                 <option value="" hidden>
                                     Select an option
@@ -491,7 +491,7 @@
             <div class="md:flex items-center gap-3 mt-4">
                 <button
                     type="submit"
-                    class="bg-indigo-600 w-full md:w-auto rounded-md px-4 py-2 text-white font-semibold hover:bg-indigo-500 transition duration-200 ease-in-out"
+                    class="bg-blue-600 w-full md:w-auto rounded-md px-4 py-2 text-white font-semibold hover:bg-blue-500 transition duration-200 ease-in-out"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >

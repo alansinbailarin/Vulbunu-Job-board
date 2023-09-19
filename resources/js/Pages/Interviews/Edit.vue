@@ -21,7 +21,7 @@
                         type="text"
                         autocomplete="name"
                         placeholder="Martin Gimenez"
-                        class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                        class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
                     <div
                         v-if="form.errors.interviewer_name"
@@ -45,7 +45,7 @@
                     <select
                         id="interview_type"
                         v-model="form.interview_type"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
                         <option value="presential">Presential</option>
                         <option value="virtual">Virtual</option>
@@ -79,7 +79,7 @@
                                 ? 'https://meet.google.com/...'
                                 : 'https://maps.google.com/...'
                         "
-                        class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                        class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
                     <div
                         v-if="form.errors.interview_link"
@@ -104,7 +104,7 @@
                         id="interview_date"
                         v-model="form.interview_date"
                         type="datetime-local"
-                        class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600"
+                        class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
                     <div
                         v-if="form.errors.interview_date"
@@ -128,7 +128,7 @@
                     <select
                         id="interview_duration"
                         v-model="form.interview_duration"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
                         <option value="00:30:00">30 minutes</option>
                         <option value="01:00:00">1 hour</option>
@@ -157,7 +157,7 @@
                     <select
                         id="status"
                         v-model="form.status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full py-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
                         <option value="approved">Approved</option>
                         <option value="pending">Pending</option>
@@ -185,7 +185,7 @@
                         v-model="form.interview_observation"
                         cols="30"
                         rows="7"
-                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                         placeholder="Por favor, llegar 30 minutos antes a la entrevista para poder realizar el proceso de registro..."
                     ></textarea>
                     <div
@@ -213,7 +213,7 @@
                         v-model="form.interview_feedback"
                         cols="30"
                         rows="7"
-                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-indigo-500 text-gray-600 bg-gray-50"
+                        class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                         placeholder="El aplicante no se presentó a la entrevista..."
                     ></textarea>
                     <div
@@ -236,7 +236,7 @@
                             'opacity-25': form.processing || !form.isDirty,
                         }"
                         :disabled="form.processing || !form.isDirty"
-                        class="w-full bg-indigo-600 text-white py-1.5 rounded-md font-semibold"
+                        class="w-full bg-blue-600 text-white py-1.5 rounded-md font-semibold"
                         >Edit information</Button
                     >
                 </div>

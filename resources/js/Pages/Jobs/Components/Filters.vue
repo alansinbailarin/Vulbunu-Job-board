@@ -22,7 +22,7 @@
                     v-model="filterForm.title"
                     type="search"
                     placeholder="Id, keyword, job title..."
-                    class="placeholder:text-gray-400 pl-8 text-gray-600 bg-gray-100 border border-gray-200 w-full rounded-md px-3 focus:ring-1 ring-indigo-300 text-sm"
+                    class="placeholder:text-gray-400 pl-8 text-gray-600 bg-gray-100 border border-gray-200 w-full rounded-md px-3 focus:ring-1 ring-blue-300 text-sm"
                 />
             </div>
             <div class="relative text-gray-400 col-span-2">
@@ -47,7 +47,7 @@
                     v-model="filterForm.location"
                     type="search"
                     placeholder="Guadalajara, Buenos Aires..."
-                    class="placeholder:text-gray-400 pl-8 text-gray-600 bg-gray-100 border border-gray-200 w-full rounded-md px-3 focus:ring-1 ring-indigo-300 text-sm"
+                    class="placeholder:text-gray-400 pl-8 text-gray-600 bg-gray-100 border border-gray-200 w-full rounded-md px-3 focus:ring-1 ring-blue-300 text-sm"
                 />
             </div>
             <select
@@ -97,7 +97,7 @@
             </select>
             <button
                 type="submit"
-                class="text-white rounded-md bg-indigo-500 px-4 py-2 text-sm font-medium"
+                class="text-white rounded-md bg-blue-500 px-4 py-2 text-sm font-medium"
             >
                 Search
             </button>

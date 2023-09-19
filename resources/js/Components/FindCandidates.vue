@@ -4,7 +4,7 @@
     >
         <div>
             <h1 class="text-gray-800 font-bold text-2xl md:text-5xl">
-                <span class="text-indigo-500">Find</span> the best candidates to
+                <span class="text-blue-500">Find</span> the best candidates to
                 be part of your company
             </h1>
             <p class="text-gray-500 mt-6">
