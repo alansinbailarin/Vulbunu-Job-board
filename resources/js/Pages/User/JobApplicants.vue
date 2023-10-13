@@ -326,15 +326,34 @@
                                             )
                                         "
                                         :disabled="
-                                            applicant.status != 'pending'
+                                            applicant.status == 'approved'
                                         "
                                         class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
                                         :class="{
                                             'bg-gray-50 ':
-                                                applicant.status != 'pending',
+                                                applicant.status == 'approved',
                                         }"
                                     >
                                         Approve application
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        @click="
+                                            updateApplicationStatus(
+                                                applicant,
+                                                'pending'
+                                            )
+                                        "
+                                        :disabled="
+                                            applicant.status == 'pending'
+                                        "
+                                        class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        :class="{
+                                            'bg-gray-50 ':
+                                                applicant.status == 'pending',
+                                        }"
+                                    >
+                                        Change to pending
                                     </button>
                                     <button
                                         type="submit"
@@ -345,12 +364,12 @@
                                             )
                                         "
                                         :disabled="
-                                            applicant.status != 'pending'
+                                            applicant.status == 'rejected'
                                         "
                                         class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
                                         :class="{
                                             'bg-gray-50 ':
-                                                applicant.status != 'pending',
+                                                applicant.status == 'rejected',
                                         }"
                                     >
                                         Reject application
@@ -410,7 +429,7 @@
                         class="text-center bg-blue-600 opacity-50 text-white py-1.5 rounded-md font-semibold text-sm"
                         :class="applicant.user?.cv ? 'w-1/2' : 'w-full'"
                     >
-                        Scheduled Interview
+                        Interview scheduled
                     </button>
                     <button
                         @click="downloadCV(applicant.user?.cv)"

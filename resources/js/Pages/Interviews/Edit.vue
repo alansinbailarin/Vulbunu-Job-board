@@ -1,9 +1,12 @@
 <template>
     <Head title="Entrevista"></Head>
     <div class="container my-1 p-4 mx-auto">
-        <h1 class="mb-3 font-medium text-gray-700 text-xl">
+        <h1 class="font-medium text-gray-700 text-xl">
             Edit Interview Information
         </h1>
+        <p class="mb-3 text-gray-500">
+            You can change the interview information by filling out the form
+        </p>
         <div class="bg-white p-4 rounded-md">
             <form
                 @submit.prevent="update()"
