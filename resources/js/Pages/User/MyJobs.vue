@@ -177,6 +177,7 @@
             <div class="w-full gap-3">
                 <h1 class="text-lg font-semibold mb-3">Published jobs</h1>
                 <Box
+                    v-if="publishedJobs.length > 0"
                     v-for="job in publishedJobs"
                     :key="job.id"
                     class="mb-4 md:mb-4"
@@ -228,7 +229,62 @@
                                     aria-labelledby="menu-button"
                                     tabindex="-1"
                                 >
-                                    <div class="" role="none">asd</div>
+                                    <div
+                                        class="mx-2 my-1 text-base"
+                                        role="none"
+                                    >
+                                        <Link
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                            >Edit</Link
+                                        >
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(job, 'draft')
+                                            "
+                                            :disabled="job.status == 'draft'"
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'draft',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to draft
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(job, 'archived')
+                                            "
+                                            :disabled="job.status == 'archived'"
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'archived',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to archived
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(
+                                                    job,
+                                                    'published'
+                                                )
+                                            "
+                                            :disabled="
+                                                job.status == 'published'
+                                            "
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'published',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to published
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -247,10 +303,22 @@
                         </p>
                     </div>
                 </Box>
+                <div class="bg-gray-50 text-sm p-4 rounded-md" v-else>
+                    <div>
+                        <h1 class="font-medium">
+                            There is no jobs in published status
+                        </h1>
+                        <p class="text-gray-500">
+                            You can change the job status by clicking the dot
+                            button
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="w-full">
                 <h1 class="text-lg font-semibold mb-3">Jobs in draft</h1>
                 <Box
+                    v-if="draftJobs.length > 0"
                     v-for="job in draftJobs"
                     :key="job.id"
                     class="mb-4 md:mb-4"
@@ -268,6 +336,98 @@
                             <span :class="getStatusColor(job.status)">{{
                                 changeStatusText(job.status)
                             }}</span>
+                            <div
+                                class="relative inline-block text-left pt-0.5 ml-1"
+                            >
+                                <div>
+                                    <button
+                                        @click="toggleDropdown(job)"
+                                        type="button"
+                                        class="inline-flex w-full justify-center gap-x-1.5 text-gray-900"
+                                        id="menu-button"
+                                        aria-expanded="true"
+                                        aria-haspopup="true"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            class="bi bi-three-dots-vertical"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div
+                                    class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white border border-gray-200"
+                                    v-show="job.dropdownOpen"
+                                    role="menu"
+                                    aria-orientation="vertical"
+                                    aria-labelledby="menu-button"
+                                    tabindex="-1"
+                                >
+                                    <div
+                                        class="mx-2 my-1 text-base"
+                                        role="none"
+                                    >
+                                        <Link
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                            >Edit</Link
+                                        >
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(job, 'draft')
+                                            "
+                                            :disabled="job.status == 'draft'"
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'draft',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to draft
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(job, 'archived')
+                                            "
+                                            :disabled="job.status == 'archived'"
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'archived',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to archived
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(
+                                                    job,
+                                                    'published'
+                                                )
+                                            "
+                                            :disabled="
+                                                job.status == 'published'
+                                            "
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'published',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to published
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <p class="text-xs mt-2 font-light text-gray-500">
@@ -284,10 +444,22 @@
                         </p>
                     </div>
                 </Box>
+                <div class="bg-gray-50 text-sm p-4 rounded-md" v-else>
+                    <div>
+                        <h1 class="font-medium">
+                            There is no jobs in draft status
+                        </h1>
+                        <p class="text-gray-500">
+                            You can change the job status by clicking the dot
+                            button
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="w-full">
                 <h1 class="text-lg font-semibold mb-3">Archived jobs</h1>
                 <Box
+                    v-if="archivedJobs.length > 0"
                     v-for="job in archivedJobs"
                     :key="job.id"
                     class="mb-4 md:mb-4"
@@ -305,6 +477,98 @@
                             <span :class="getStatusColor(job.status)">{{
                                 changeStatusText(job.status)
                             }}</span>
+                            <div
+                                class="relative inline-block text-left pt-0.5 ml-1"
+                            >
+                                <div>
+                                    <button
+                                        @click="toggleDropdown(job)"
+                                        type="button"
+                                        class="inline-flex w-full justify-center gap-x-1.5 text-gray-900"
+                                        id="menu-button"
+                                        aria-expanded="true"
+                                        aria-haspopup="true"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            class="bi bi-three-dots-vertical"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div
+                                    class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white border border-gray-200"
+                                    v-show="job.dropdownOpen"
+                                    role="menu"
+                                    aria-orientation="vertical"
+                                    aria-labelledby="menu-button"
+                                    tabindex="-1"
+                                >
+                                    <div
+                                        class="mx-2 my-1 text-base"
+                                        role="none"
+                                    >
+                                        <Link
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                            >Edit</Link
+                                        >
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(job, 'draft')
+                                            "
+                                            :disabled="job.status == 'draft'"
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'draft',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to draft
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(job, 'archived')
+                                            "
+                                            :disabled="job.status == 'archived'"
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'archived',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to archived
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            @click="
+                                                updateJobStatus(
+                                                    job,
+                                                    'published'
+                                                )
+                                            "
+                                            :disabled="
+                                                job.status == 'published'
+                                            "
+                                            :class="{
+                                                'bg-gray-50 ':
+                                                    job.status == 'published',
+                                            }"
+                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
+                                        >
+                                            Change to published
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <p class="text-xs mt-2 font-light text-gray-500">
@@ -321,6 +585,17 @@
                         </p>
                     </div>
                 </Box>
+                <div class="bg-gray-50 text-sm p-4 rounded-md" v-else>
+                    <div>
+                        <h1 class="font-medium">
+                            There is no jobs in archived status
+                        </h1>
+                        <p class="text-gray-500">
+                            You can change the job status by clicking the dot
+                            button
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -336,7 +611,7 @@ import Chart from "./components/Chart.vue";
 moment.locale("en");
 
 const form = useForm({
-    job_id: "",
+    slug: "",
 });
 
 const props = defineProps({
@@ -354,9 +629,19 @@ const props = defineProps({
 });
 
 const toggleDropdown = (job) => {
-    form.job_id = job.id;
+    form.slug = job.slug;
 
     job.dropdownOpen = !job.dropdownOpen;
+};
+
+const updateJobStatus = (job, status) => {
+    form.put(
+        route("update-job-status", {
+            job: job.slug,
+            status: status,
+        }),
+        { preserveScroll: true }
+    );
 };
 
 const getStatusColor = (status) => {

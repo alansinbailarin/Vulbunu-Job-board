@@ -198,6 +198,7 @@
                 ></Chart>
             </div>
         </div> -->
+
         <div class="grid md:grid-cols-3 grid-cols-1 md:gap-4">
             <Box v-for="job in props.jobs" :key="job.id">
                 <div v-for="applicant in job.applicant" :key="applicant.id">
@@ -291,7 +292,7 @@
                                                     'cancelled',
                                             }"
                                         >
-                                            Rctivate application
+                                            Reactivate application
                                         </button>
                                     </div>
                                 </div>
@@ -323,7 +324,11 @@
                             v-for="interview in applicant.interviews"
                             :key="interview.id"
                         >
-                            <div v-if="interview">
+                            <div
+                                v-if="
+                                    interview && applicant.status != 'cancelled'
+                                "
+                            >
                                 <span
                                     @click="toggleModal(interview)"
                                     class="text-xs underline hover:cursor-pointer text-blue-500"

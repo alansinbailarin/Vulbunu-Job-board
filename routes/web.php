@@ -12,6 +12,7 @@ use App\Http\Controllers\UserLocation;
 use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\JobDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::post('/publish-job', [JobController::class, 'store'])->name('jobs.store')
 Route::get('/my-published-jobs', [JobController::class, 'myPublishedJobs'])->name('my-published-jobs')->middleware('auth');
 Route::get('/my-published-jobs/{job}', [JobController::class, 'jobsApplicants'])->name('my-published-jobs.applicants')->middleware('auth');
 Route::put('/my-published-jobs/update-application-status/{applicant}/{status}', [ApplicantController::class, 'updateApplicationStatus'])->name('update-application-status')->middleware('auth');
+
+Route::put('/my-published-jobs/{job}/{status}', [JobDetailController::class, 'updateJobStatus'])->name('update-job-status')->middleware('auth');
 
 // Rutas para logearse
 Route::get('login', [AuthController::class, 'create'])->name('login')->middleware('guest');

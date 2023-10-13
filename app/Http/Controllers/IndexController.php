@@ -83,25 +83,29 @@ class IndexController extends Controller
         $authUser = auth()->user();
         $jobId = $job->id;
 
-        $similares = Job::where('category_id', $job->category_id)
-            ->where('id', '!=', $job->id)
-            ->where('status', 'published')
-            ->latest('id')
-            ->take(6)
-            ->get();
+        if ($job->status != 'published') {
+            return redirect()->back();
+        } else {
+            $similares = Job::where('category_id', $job->category_id)
+                ->where('id', '!=', $job->id)
+                ->where('status', 'published')
+                ->latest('id')
+                ->take(6)
+                ->get();
 
-        $similares->transform(function ($job) {
-            $job->shortDescription = substr($job->description, 0, 70);
-            return $job;
-        });
+            $similares->transform(function ($job) {
+                $job->shortDescription = substr($job->description, 0, 70);
+                return $job;
+            });
 
-        $job->increment('clicks');
+            $job->increment('clicks');
 
-        return inertia('Jobs/Show', [
-            'job' => $job->load('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city'),
-            'similares' => $similares->load('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city'),
-            'authUser' => $authUser,
-            'jobId' => $jobId
-        ]);
+            return inertia('Jobs/Show', [
+                'job' => $job->load('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city'),
+                'similares' => $similares->load('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city'),
+                'authUser' => $authUser,
+                'jobId' => $jobId
+            ]);
+        }
     }
 }
