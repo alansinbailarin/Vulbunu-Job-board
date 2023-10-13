@@ -36,9 +36,12 @@ class InterviewController extends Controller
     public function edit(Interviews $interview)
     {
         $interview = Interviews::find($interview->id);
+        // get the application information
+        $applicant = Applicant::find($interview->applicant_id);
 
         return inertia('Interviews/Edit', [
             'interview' => $interview,
+            'applicant' => $applicant,
         ]);
     }
 

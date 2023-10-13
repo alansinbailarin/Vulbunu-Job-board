@@ -518,13 +518,13 @@ const photoInput = ref(null);
 
 const showDeleteAlert = (itemToDelete) => {
     Swal.fire({
-        title: "Seguro que deseas eliminarlo?",
-        text: "No podrás revertir esta acción!",
+        title: "Are you sure you want to delete it?",
+        text: "You cannot revert this action!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "0E70FF",
-        confirmButtonText: "Eliminar!",
-        cancelButtonText: "Eancelar!",
+        confirmButtonText: "Delete!",
+        cancelButtonText: "Cancel!",
     }).then((result) => {
         if (result.isConfirmed) {
             deleteItem(itemToDelete);

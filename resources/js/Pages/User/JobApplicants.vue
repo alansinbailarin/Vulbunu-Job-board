@@ -283,6 +283,7 @@
                             changeStatusText(applicant.status)
                         }}</span>
                         <div
+                            v-if="applicant.status === 'pending'"
                             class="relative inline-block text-left pt-0.5 ml-1"
                         >
                             <div>
@@ -319,12 +320,7 @@
                                 <div class="" role="none">
                                     <button
                                         type="submit"
-                                        @click="
-                                            updateApplicationStatus(
-                                                applicant,
-                                                'approved'
-                                            )
-                                        "
+                                        @click="showApproveSwal(applicant)"
                                         :disabled="
                                             applicant.status == 'approved'
                                         "
@@ -336,7 +332,7 @@
                                     >
                                         Approve application
                                     </button>
-                                    <button
+                                    <!-- <button
                                         type="submit"
                                         @click="
                                             updateApplicationStatus(
@@ -354,15 +350,10 @@
                                         }"
                                     >
                                         Change to pending
-                                    </button>
+                                    </button> -->
                                     <button
                                         type="submit"
-                                        @click="
-                                            updateApplicationStatus(
-                                                applicant,
-                                                'rejected'
-                                            )
-                                        "
+                                        @click="showRejectSwal(applicant)"
                                         :disabled="
                                             applicant.status == 'rejected'
                                         "
@@ -732,6 +723,7 @@ import Box from "@/UI/Box.vue";
 import moment from "moment";
 import "moment/dist/locale/es";
 import { ref, computed } from "vue";
+import Swal from "sweetalert2";
 
 moment.locale("en");
 
@@ -781,6 +773,38 @@ const updateJobStatus = (job, status) => {
         }),
         { preserveScroll: true }
     );
+};
+
+const showRejectSwal = (applicant) => {
+    Swal.fire({
+        title: "Are you sure you want to reject this application?",
+        text: "You cannot revert this action!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "0E70FF",
+        confirmButtonText: "Reject",
+        cancelButtonText: "Cancel",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            updateApplicationStatus(applicant, "rejected");
+        }
+    });
+};
+
+const showApproveSwal = (applicant) => {
+    Swal.fire({
+        title: "You want to proceed approving this application?",
+        text: "You cannot revert this action!",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "0E70FF",
+        confirmButtonText: "Approve",
+        cancelButtonText: "Cancel",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            updateApplicationStatus(applicant, "approved");
+        }
+    });
 };
 
 const toggleModal = (applicant) => {

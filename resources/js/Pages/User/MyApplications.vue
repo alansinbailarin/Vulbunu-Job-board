@@ -216,6 +216,10 @@
                                 changeStatusText(applicant.status)
                             }}</span>
                             <div
+                                v-if="
+                                    applicant.status != 'rejected' &&
+                                    applicant.status != 'approved'
+                                "
                                 class="relative inline-block text-left pt-0.5 ml-1"
                             >
                                 <div>

@@ -4,7 +4,17 @@
         <h1 class="font-medium text-gray-700 text-xl">
             Edit Interview Information
         </h1>
-        <p class="mb-3 text-gray-500">
+        <p
+            v-if="
+                props.applicant.status === 'rejected' ||
+                props.applicant.status === 'cancelled'
+            "
+            class="mb-3 text-gray-500"
+        >
+            You cannot change interview information because the application is
+            in rejected or cancelled status.
+        </p>
+        <p v-else class="mb-3 text-gray-500">
             You can change the interview information by filling out the form
         </p>
         <div class="bg-white p-4 rounded-md">
@@ -20,10 +30,19 @@
                     </label>
                     <input
                         id="interviewer_name"
+                        :disabled="
+                            props.applicant.status === 'rejected' ||
+                            props.applicant.status === 'cancelled'
+                        "
                         v-model="form.interviewer_name"
                         type="text"
                         autocomplete="name"
                         placeholder="Martin Gimenez"
+                        :class="{
+                            'cursor-not-allowed ':
+                                props.applicant.status === 'rejected' ||
+                                props.applicant.status === 'cancelled',
+                        }"
                         class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
                     <div
@@ -48,6 +67,15 @@
                     <select
                         id="interview_type"
                         v-model="form.interview_type"
+                        :disabled="
+                            props.applicant.status === 'rejected' ||
+                            props.applicant.status === 'cancelled'
+                        "
+                        :class="{
+                            'cursor-not-allowed ':
+                                props.applicant.status === 'rejected' ||
+                                props.applicant.status === 'cancelled',
+                        }"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
                         <option value="presential">Presential</option>
@@ -82,6 +110,15 @@
                                 ? 'https://meet.google.com/...'
                                 : 'https://maps.google.com/...'
                         "
+                        :disabled="
+                            props.applicant.status === 'rejected' ||
+                            props.applicant.status === 'cancelled'
+                        "
+                        :class="{
+                            'cursor-not-allowed ':
+                                props.applicant.status === 'rejected' ||
+                                props.applicant.status === 'cancelled',
+                        }"
                         class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
                     <div
@@ -107,6 +144,15 @@
                         id="interview_date"
                         v-model="form.interview_date"
                         type="datetime-local"
+                        :disabled="
+                            props.applicant.status === 'rejected' ||
+                            props.applicant.status === 'cancelled'
+                        "
+                        :class="{
+                            'cursor-not-allowed ':
+                                props.applicant.status === 'rejected' ||
+                                props.applicant.status === 'cancelled',
+                        }"
                         class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
                     <div
@@ -131,6 +177,15 @@
                     <select
                         id="interview_duration"
                         v-model="form.interview_duration"
+                        :disabled="
+                            props.applicant.status === 'rejected' ||
+                            props.applicant.status === 'cancelled'
+                        "
+                        :class="{
+                            'cursor-not-allowed ':
+                                props.applicant.status === 'rejected' ||
+                                props.applicant.status === 'cancelled',
+                        }"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
                         <option value="00:30:00">30 minutes</option>
@@ -160,6 +215,15 @@
                     <select
                         id="status"
                         v-model="form.status"
+                        :disabled="
+                            props.applicant.status === 'rejected' ||
+                            props.applicant.status === 'cancelled'
+                        "
+                        :class="{
+                            'cursor-not-allowed ':
+                                props.applicant.status === 'rejected' ||
+                                props.applicant.status === 'cancelled',
+                        }"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
                         <option value="approved">Approved</option>
@@ -188,6 +252,15 @@
                         v-model="form.interview_observation"
                         cols="30"
                         rows="7"
+                        :disabled="
+                            props.applicant.status === 'rejected' ||
+                            props.applicant.status === 'cancelled'
+                        "
+                        :class="{
+                            'cursor-not-allowed ':
+                                props.applicant.status === 'rejected' ||
+                                props.applicant.status === 'cancelled',
+                        }"
                         class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                         placeholder="Por favor, llegar 30 minutos antes a la entrevista para poder realizar el proceso de registro..."
                     ></textarea>
@@ -262,6 +335,7 @@ const form = useForm({
     status: props.interview.status,
 });
 const props = defineProps({
+    applicant: { Object },
     interview: { Object },
 });
 
