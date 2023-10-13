@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function dashboard()
-    {
-        return inertia('Admin/Dashboard');
-    }
+    // public function dashboard()
+    // {
+    //     return inertia('Admin/Dashboard');
+    // }
 }

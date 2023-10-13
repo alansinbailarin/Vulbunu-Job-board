@@ -137,14 +137,14 @@
                                             >Settings</Link
                                         >
                                     </div>
-                                    <div class="my-2">
+                                    <!-- <div class="my-2">
                                         <Link
                                             href="/dashboard"
                                             @click="isMenuOpen = false"
                                             class="text-gray-700 font-normal"
                                             >Dashboard</Link
                                         >
-                                    </div>
+                                    </div> -->
                                     <div
                                         class="my-2"
                                         v-if="
@@ -297,14 +297,14 @@
                                         >Settings</Link
                                     >
                                 </div>
-                                <div class="my-2">
+                                <!-- <div class="my-2">
                                     <Link
                                         href="/dashboard"
                                         class="text-gray-700 font-normal"
                                         @click="showUserMenu = false"
                                         >Dashboard</Link
                                     >
-                                </div>
+                                </div> -->
                                 <div
                                     class="my-2"
                                     v-if="props.user.applications.length > 0"

@@ -249,6 +249,21 @@ class JobController extends Controller
                     ->orderBy('status', 'desc')
                     ->get();
 
+                $publishedJobs = Job::where('user_id', $user->id)
+                    ->where('status', 'published')
+                    ->orderBy('status', 'desc')
+                    ->get();
+
+                $draftJobs = Job::where('user_id', $user->id)
+                    ->where('status', 'draft')
+                    ->orderBy('status', 'desc')
+                    ->get();
+
+                $archivedJobs = Job::where('user_id', $user->id)
+                    ->where('status', 'archived')
+                    ->orderBy('status', 'desc')
+                    ->get();
+
                 return inertia('User/MyJobs', [
                     'jobs' => $jobs,
                     'totalJobsCount' => $totalJobsCount,
@@ -258,6 +273,9 @@ class JobController extends Controller
                     'percentajeDraft' => $percentajeDraft,
                     'percentajePublished' => $percentajePublished,
                     'percentajeArchived' => $percentajeArchived,
+                    'publishedJobs' => $publishedJobs,
+                    'draftJobs' => $draftJobs,
+                    'archivedJobs' => $archivedJobs,
                 ]);
             } else {
                 abort(403, 'No one job published');

@@ -39,6 +39,7 @@ Route::get('/jobs/{job}', [IndexController::class, 'show'])->name('jobs.show');
 Route::get('/publish-job', [JobController::class, 'create'])->name('jobs.create')->middleware('auth');
 Route::post('/publish-job', [JobController::class, 'store'])->name('jobs.store')->middleware('auth');
 
+
 // Job poster dashboard
 Route::get('/my-published-jobs', [JobController::class, 'myPublishedJobs'])->name('my-published-jobs')->middleware('auth');
 Route::get('/my-published-jobs/{job}', [JobController::class, 'jobsApplicants'])->name('my-published-jobs.applicants')->middleware('auth');
@@ -69,7 +70,7 @@ Route::get('/talents', [TalentController::class, 'index'])->name('talents.index'
 Route::get('/talents/{talent}', [TalentController::class, 'show'])->name('talents.show');
 
 // Admin dashboard
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth');
+// Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth');
 
 // Share profile with the job poster
 Route::post('/share-profile', [ApplicantController::class, 'shareProfile'])->name('share-profile')->middleware('auth');

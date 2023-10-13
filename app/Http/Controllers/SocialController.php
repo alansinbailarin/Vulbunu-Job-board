@@ -73,9 +73,8 @@ class SocialController extends Controller
                 'provider_refresh_token' => $socialUser->refreshToken
             ]);
         }
-        // login user
         auth()->login($user);
-        // redirect to the dashboard
+
         return redirect('/');
     }
 }

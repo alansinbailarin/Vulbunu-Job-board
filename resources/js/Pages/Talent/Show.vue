@@ -329,12 +329,12 @@
                                         </svg>
                                         <span>Download cv</span>
                                     </button>
-                                    <Link
+                                    <!-- <Link
                                         v-if="talent.looking_for_job"
                                         class="hover:bg-blue-600 mt-2 bg-blue-500 text-white font-medium py-2 px-4 rounded-md inline-flex items-center text-sm transition-all ease-in-out duration-300"
                                         href="#"
                                         >Connect</Link
-                                    >
+                                    > -->
                                 </div>
                             </div>
                         </div>
