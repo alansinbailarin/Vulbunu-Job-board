@@ -7,7 +7,8 @@
         <p
             v-if="
                 props.applicant.status === 'rejected' ||
-                props.applicant.status === 'cancelled'
+                props.applicant.status === 'cancelled' ||
+                props.applicant.status === 'approved'
             "
             class="mb-3 text-gray-500"
         >
@@ -32,7 +33,8 @@
                         id="interviewer_name"
                         :disabled="
                             props.applicant.status === 'rejected' ||
-                            props.applicant.status === 'cancelled'
+                            props.applicant.status === 'cancelled' ||
+                            props.applicant.status === 'approved'
                         "
                         v-model="form.interviewer_name"
                         type="text"
@@ -41,7 +43,8 @@
                         :class="{
                             'cursor-not-allowed ':
                                 props.applicant.status === 'rejected' ||
-                                props.applicant.status === 'cancelled',
+                                props.applicant.status === 'cancelled' ||
+                                props.applicant.status === 'approved',
                         }"
                         class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
@@ -69,12 +72,14 @@
                         v-model="form.interview_type"
                         :disabled="
                             props.applicant.status === 'rejected' ||
-                            props.applicant.status === 'cancelled'
+                            props.applicant.status === 'cancelled' ||
+                            props.applicant.status === 'approved'
                         "
                         :class="{
                             'cursor-not-allowed ':
                                 props.applicant.status === 'rejected' ||
-                                props.applicant.status === 'cancelled',
+                                props.applicant.status === 'cancelled' ||
+                                props.applicant.status === 'approved',
                         }"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
@@ -112,12 +117,14 @@
                         "
                         :disabled="
                             props.applicant.status === 'rejected' ||
-                            props.applicant.status === 'cancelled'
+                            props.applicant.status === 'cancelled' ||
+                            props.applicant.status === 'approved'
                         "
                         :class="{
                             'cursor-not-allowed ':
                                 props.applicant.status === 'rejected' ||
-                                props.applicant.status === 'cancelled',
+                                props.applicant.status === 'cancelled' ||
+                                props.applicant.status === 'approved',
                         }"
                         class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
@@ -146,12 +153,14 @@
                         type="datetime-local"
                         :disabled="
                             props.applicant.status === 'rejected' ||
-                            props.applicant.status === 'cancelled'
+                            props.applicant.status === 'cancelled' ||
+                            props.applicant.status === 'approved'
                         "
                         :class="{
                             'cursor-not-allowed ':
                                 props.applicant.status === 'rejected' ||
-                                props.applicant.status === 'cancelled',
+                                props.applicant.status === 'cancelled' ||
+                                props.applicant.status === 'approved',
                         }"
                         class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                     />
@@ -179,12 +188,14 @@
                         v-model="form.interview_duration"
                         :disabled="
                             props.applicant.status === 'rejected' ||
-                            props.applicant.status === 'cancelled'
+                            props.applicant.status === 'cancelled' ||
+                            props.applicant.status === 'approved'
                         "
                         :class="{
                             'cursor-not-allowed ':
                                 props.applicant.status === 'rejected' ||
-                                props.applicant.status === 'cancelled',
+                                props.applicant.status === 'cancelled' ||
+                                props.applicant.status === 'approved',
                         }"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
@@ -217,17 +228,18 @@
                         v-model="form.status"
                         :disabled="
                             props.applicant.status === 'rejected' ||
-                            props.applicant.status === 'cancelled'
+                            props.applicant.status === 'cancelled' ||
+                            props.applicant.status === 'approved'
                         "
                         :class="{
                             'cursor-not-allowed ':
                                 props.applicant.status === 'rejected' ||
-                                props.applicant.status === 'cancelled',
+                                props.applicant.status === 'cancelled' ||
+                                props.applicant.status === 'approved',
                         }"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     >
                         <option value="approved">Approved</option>
-                        <option value="pending">Pending</option>
                         <option value="rejected">Rejected</option>
                     </select>
                     <div v-if="form.errors.status" class="px-2 py-2 rounded-md">
@@ -254,15 +266,17 @@
                         rows="7"
                         :disabled="
                             props.applicant.status === 'rejected' ||
-                            props.applicant.status === 'cancelled'
+                            props.applicant.status === 'cancelled' ||
+                            props.applicant.status === 'approved'
                         "
                         :class="{
                             'cursor-not-allowed ':
                                 props.applicant.status === 'rejected' ||
-                                props.applicant.status === 'cancelled',
+                                props.applicant.status === 'cancelled' ||
+                                props.applicant.status === 'approved',
                         }"
                         class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
-                        placeholder="Por favor, llegar 30 minutos antes a la entrevista para poder realizar el proceso de registro..."
+                        placeholder="Please arrive 30 minutes before the interview to be able to complete the registration process...."
                     ></textarea>
                     <div
                         v-if="form.errors.interview_observation"
@@ -290,7 +304,7 @@
                         cols="30"
                         rows="7"
                         class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
-                        placeholder="El aplicante no se presentó a la entrevista..."
+                        placeholder="The applicant did not show up for the interview..."
                     ></textarea>
                     <div
                         v-if="form.errors.interview_feedback"
@@ -343,7 +357,7 @@ const currentDate = new Date();
 const interviewDate = new Date(props.interview.interview_date);
 
 const compareDates = computed(() => {
-    if (currentDate > interviewDate) {
+    if (currentDate > interviewDate || props.interview.status === "rejected") {
         return "visible";
     } else {
         return "hidden";

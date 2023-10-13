@@ -251,17 +251,20 @@ class JobController extends Controller
 
                 $publishedJobs = Job::where('user_id', $user->id)
                     ->where('status', 'published')
-                    ->orderBy('status', 'desc')
+                    ->with('applicant')
+                    ->orderBy('updated_at', 'desc')
                     ->get();
 
                 $draftJobs = Job::where('user_id', $user->id)
                     ->where('status', 'draft')
-                    ->orderBy('status', 'desc')
+                    ->with('applicant')
+                    ->orderBy('updated_at', 'desc')
                     ->get();
 
                 $archivedJobs = Job::where('user_id', $user->id)
                     ->where('status', 'archived')
-                    ->orderBy('status', 'desc')
+                    ->with('applicant')
+                    ->orderBy('updated_at', 'desc')
                     ->get();
 
                 return inertia('User/MyJobs', [

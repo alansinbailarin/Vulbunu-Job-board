@@ -149,9 +149,13 @@ class ApplicantController extends Controller
             $applicant->save();
 
             // If status change to reject, also change interview status to rejected
-            if ($status == 'rejected') {
+            if ($status == 'rejected' || $status == 'cancelled') {
                 $applicant->interviews()->update([
                     'status' => 'rejected'
+                ]);
+            } else if ($status == 'approved') {
+                $applicant->interviews()->update([
+                    'status' => 'approved'
                 ]);
             }
 

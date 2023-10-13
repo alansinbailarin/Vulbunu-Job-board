@@ -378,7 +378,7 @@
                         {{ applicant.user?.job_title }}
                     </p>
                     <p v-else class="text-sm text-gray-600 font-medium">
-                        Aplicante sin titulo
+                        This user does not have a job title
                     </p>
                     <p
                         v-if="applicant.user?.about_me"

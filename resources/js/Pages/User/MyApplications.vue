@@ -218,7 +218,8 @@
                             <div
                                 v-if="
                                     applicant.status != 'rejected' &&
-                                    applicant.status != 'approved'
+                                    applicant.status != 'approved' &&
+                                    applicant.status != 'cancelled'
                                 "
                                 class="relative inline-block text-left pt-0.5 ml-1"
                             >
@@ -257,10 +258,8 @@
                                         <button
                                             type="submit"
                                             @click="
-                                                updateApplicationStatus(
-                                                    applicant,
-                                                    // Si esta en approved o pending, mostrar boton para cancelar
-                                                    'cancelled'
+                                                swalChangeToCancelStatus(
+                                                    applicant
                                                 )
                                             "
                                             :disabled="
@@ -277,26 +276,6 @@
                                             }"
                                         >
                                             Cancel application
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            @click="
-                                                updateApplicationStatus(
-                                                    applicant,
-                                                    'pending'
-                                                )
-                                            "
-                                            :disabled="
-                                                applicant.status != 'cancelled'
-                                            "
-                                            class="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
-                                            :class="{
-                                                'bg-gray-50 ':
-                                                    applicant.status !=
-                                                    'cancelled',
-                                            }"
-                                        >
-                                            Reactivate application
                                         </button>
                                     </div>
                                 </div>
@@ -336,7 +315,7 @@
                                 <span
                                     @click="toggleModal(interview)"
                                     class="text-xs underline hover:cursor-pointer text-blue-500"
-                                    >Show more</span
+                                    >Interview information</span
                                 >
                             </div>
 
@@ -490,6 +469,7 @@ import { ref } from "vue";
 import moment from "moment";
 import "moment/dist/locale/es";
 import Chart from "./components/Chart.vue";
+import Swal from "sweetalert2";
 
 moment.locale("en");
 
@@ -523,6 +503,22 @@ const toggleDropdown = (applicant) => {
     form.applicant_id = applicant.id;
 
     applicant.dropdownOpen = !applicant.dropdownOpen;
+};
+
+const swalChangeToCancelStatus = (applicant) => {
+    Swal.fire({
+        title: "You want to cancel your application?",
+        text: "You cannot revert this action!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "0E70FF",
+        confirmButtonText: "Cancel application",
+        cancelButtonText: "Close",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            updateApplicationStatus(applicant, "cancelled");
+        }
+    });
 };
 
 const updateApplicationStatus = (appplicant, status) => {
@@ -571,6 +567,7 @@ const toggleModal = (interview) => {
 </script>
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import Swal from "sweetalert2";
 export default {
     layout: MainLayout,
 };

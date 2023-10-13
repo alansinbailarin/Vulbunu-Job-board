@@ -30,7 +30,7 @@ class InterviewController extends Controller
 
         $interview->save();
 
-        return redirect()->back()->with('success', 'Interview created');
+        return redirect()->back()->with('success', 'Interview scheduled');
     }
 
     public function edit(Interviews $interview)

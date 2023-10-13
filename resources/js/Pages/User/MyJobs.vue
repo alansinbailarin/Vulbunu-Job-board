@@ -301,6 +301,14 @@
                             Published on
                             {{ moment(job?.created_at).format("MMMM Do YYYY") }}
                         </p>
+                        <div>
+                            <p class="mt-2 text-gray-400 text-xs">
+                                Applicants:
+                                <span class="font-medium text-gray-600">{{
+                                    job.applicant.length
+                                }}</span>
+                            </p>
+                        </div>
                     </div>
                 </Box>
                 <div class="bg-gray-50 text-sm p-4 rounded-md" v-else>
@@ -442,6 +450,14 @@
                             Published on
                             {{ moment(job?.created_at).format("MMMM Do YYYY") }}
                         </p>
+                        <div>
+                            <p class="mt-2 text-gray-400 text-xs">
+                                Applicants:
+                                <span class="font-medium text-gray-600">{{
+                                    job.applicant.length
+                                }}</span>
+                            </p>
+                        </div>
                     </div>
                 </Box>
                 <div class="bg-gray-50 text-sm p-4 rounded-md" v-else>
@@ -583,6 +599,14 @@
                             Published on
                             {{ moment(job?.created_at).format("MMMM Do YYYY") }}
                         </p>
+                        <div>
+                            <p class="mt-2 text-gray-400 text-xs">
+                                Applicants:
+                                <span class="font-medium text-gray-600">{{
+                                    job.applicant.length
+                                }}</span>
+                            </p>
+                        </div>
                     </div>
                 </Box>
                 <div class="bg-gray-50 text-sm p-4 rounded-md" v-else>
