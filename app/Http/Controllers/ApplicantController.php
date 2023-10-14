@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Applicant;
 use App\Models\Job;
 use App\Models\User;
+use App\Notifications\NewApplicantNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,8 @@ class ApplicantController extends Controller
     {
         $user = auth()->user();
         $jobId = request()->input('job_id');
+
+        $publisher = User::find(Job::find($jobId)->user_id);
 
         if ($user) {
             // Verificar si el perfil ya ha sido compartido anteriormente
@@ -35,6 +38,9 @@ class ApplicantController extends Controller
                     'job_id' => $jobId,
                     'status' => 'pending'
                 ]);
+
+                // Send email to publisher with the applicant information and job information
+                $publisher->notify(new NewApplicantNotification());
 
                 return redirect()->back()->with('success', 'You have successfully applied');
             }
