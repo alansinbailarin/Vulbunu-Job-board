@@ -31,6 +31,8 @@ return new class extends Migration
             $table->date('birthdate')->nullable();
             $table->binary('cv')->nullable();
 
+            $table->integer('notification')->default(0);
+
             $table->unsignedBigInteger('job_modality_id')->nullable();
             $table->unsignedBigInteger('gender_id')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();

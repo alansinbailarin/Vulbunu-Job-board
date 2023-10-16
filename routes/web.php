@@ -13,6 +13,7 @@ use App\Http\Controllers\SkillsController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\JobDetailController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,7 @@ Route::get('/my-applications', [ApplicantController::class, 'myApplications'])->
 Route::post('/my-applications/create-interview', [InterviewController::class, 'createInterview'])->name('create-interview')->middleware('auth');
 Route::get('/my-applications/interview/{interview}/edit', [InterviewController::class, 'edit'])->name('edit-interview')->middleware('auth');
 Route::put('/my-applications/interview/{interview}', [InterviewController::class, 'update'])->name('update-interview')->middleware('auth');
+
+// Notifications
+Route::put('/my-notifications/{id}/read', [NotificationController::class, 'notificationReaded'])->name('notification-readed')->middleware('auth');
+Route::put('/my-notifications/reset', [NotificationController::class, 'resetNotifications'])->name('reset-notifications')->middleware('auth');

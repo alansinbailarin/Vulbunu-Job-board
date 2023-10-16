@@ -16,8 +16,8 @@ class ApplicantController extends Controller
     {
         $user = auth()->user();
         $jobId = request()->input('job_id');
-
         $publisher = User::find(Job::find($jobId)->user_id);
+        $job = Job::find($jobId);
 
         if ($user) {
             // Verificar si el perfil ya ha sido compartido anteriormente
@@ -40,7 +40,7 @@ class ApplicantController extends Controller
                 ]);
 
                 // Send email to publisher with the applicant information and job information
-                $publisher->notify(new NewApplicantNotification());
+                $publisher->notify(new NewApplicantNotification($job));
 
                 return redirect()->back()->with('success', 'You have successfully applied');
             }

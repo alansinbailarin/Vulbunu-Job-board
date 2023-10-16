@@ -16,39 +16,76 @@
                         ><img src="../../img/logo.png" alt="" class="w-24"
                     /></Link>
 
-                    <button
-                        @click="toggleMenu"
-                        type="button"
-                        class="inline-flex items-center p-2 ml-3 text-sm text-gray-700 md:hidden"
-                    >
-                        <svg
-                            v-if="!isMenuOpen"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="29"
-                            height="29"
-                            fill="currentColor"
-                            class="bi bi-list"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                    <div class="md:hidden flex items-center">
+                        <div class="relative" v-if="props.user">
+                            <button
+                                type="button"
+                                @click="
+                                    toggleNotifications();
+                                    resetNotificationsCount();
+                                "
+                                class="relative inline-flex items-center p-3 text-sm font-medium text-center text-gray-600"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="22"
+                                    height="22"
+                                    fill="currentColor"
+                                    class="bi bi-bell-fill"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
+                                    />
+                                </svg>
+                                <div
+                                    v-if="props.user?.notification > 0"
+                                    class="absolute inline-flex items-center justify-center w-6 h-6 text-[0.70rem] text-white bg-red-500 rounded-full -top-1 -right-1"
+                                >
+                                    {{ manageNotificationsCount }}
+                                </div>
+                            </button>
+                            <Notifications
+                                @click="notificationsOpen = false"
+                                :user="props.user"
+                                class="absolute right-0 z-10 mt-2 w-72 origin-top-right overflow-y-auto"
+                                v-show="notificationsOpen"
                             />
-                        </svg>
-                        <svg
-                            v-else
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="29"
-                            height="29"
-                            fill="currentColor"
-                            class="bi bi-x"
-                            viewBox="0 0 16 16"
+                        </div>
+                        <button
+                            @click="toggleMenu"
+                            type="button"
+                            class="inline-flex items-center p-2 ml-1 text-sm text-gray-700"
                         >
-                            <path
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                            />
-                        </svg>
-                    </button>
+                            <svg
+                                v-if="!isMenuOpen"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="29"
+                                height="29"
+                                fill="currentColor"
+                                class="bi bi-list"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                                />
+                            </svg>
+                            <svg
+                                v-else
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="29"
+                                height="29"
+                                fill="currentColor"
+                                class="bi bi-x"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
                     <Transition
                         ><div
                             v-show="isMenuOpen"
@@ -213,8 +250,8 @@
                                     Hire talent
                                 </Link>
                             </div>
-                        </div></Transition
-                    >
+                        </div>
+                    </Transition>
                 </div>
                 <div class="text-xl font-bold hidden md:block">
                     <Link href="/" class="">
@@ -364,16 +401,35 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
-import { ref, onMounted, Transition } from "vue";
+import { Link, router } from "@inertiajs/vue3";
+import { ref, onMounted, Transition, computed } from "vue";
 import { vOnClickOutside } from "@vueuse/components";
+import Notifications from "./Notifications.vue";
 
 const isMenuOpen = ref(false);
+const notificationsOpen = ref(false);
 const isTransparent = ref(false);
 const showUserMenu = ref(false);
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
+};
+
+const manageNotificationsCount = computed(() => {
+    if (props.user?.notification > 9) {
+        return "+9";
+    }
+    return props.user?.notification;
+});
+
+const resetNotificationsCount = () => {
+    router.put(route("reset-notifications"), {
+        preserveScroll: true,
+    });
+};
+
+const toggleNotifications = () => {
+    notificationsOpen.value = !notificationsOpen.value;
 };
 
 const closeMenu = () => {

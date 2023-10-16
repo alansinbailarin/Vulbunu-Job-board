@@ -65,6 +65,8 @@ class HandleInertiaRequests extends Middleware
                 'skills' => $request->user()->skill,
                 'applications' => $request->user()->applicant,
                 'userJobs' => $request->user()->jobs,
+                'notifications' => $request->user()->notifications,
+                'notification' => $request->user()->notification,
             ] : null,
             'flash' => fn () => [
                 'success' => session('success'),

@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -10,12 +11,14 @@ class NewApplicantNotification extends Notification
 {
     use Queueable;
 
+    public $job;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($job)
     {
-        //
+        $this->job = $job;
     }
 
     /**
@@ -25,7 +28,7 @@ class NewApplicantNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -33,11 +36,15 @@ class NewApplicantNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $jobInfo = $this->job;
+        $sender = Auth::user();
+
+        $url = url('/my-published-jobs/' . $jobInfo->slug);
 
         return (new MailMessage())
             ->greeting('Hello!')
-            ->line('You have a new applicant for your job vacancy')
-            ->action('Check your published jobs', url('/my-published-jobs'))
+            ->line($sender->name . ' ' . $sender->last_name . ' has applied to your job vacancy ' . $jobInfo->title)
+            ->action('Check your applicants', url($url))
             ->line('Thank you for using our application!');
     }
 
@@ -46,10 +53,19 @@ class NewApplicantNotification extends Notification
      *
      * @return array<string, mixed>
      */
-    public function toArray(object $notifiable): array
+    public function toDatabase(object $notifiable): array
     {
+
+        $notifiable->notification += 1;
+        $notifiable->save();
+
+        $sender = Auth::user();
+
         return [
-            //
+            'url' => '/my-published-jobs/' . $this->job->slug,
+            'sender' => $sender->name . ' ' . $sender->last_name,
+            'senderTitle' => $sender->job_title,
+            'message' => ' has applied to your job vacancy ' . $this->job->title,
         ];
     }
 }
