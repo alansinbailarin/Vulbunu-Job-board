@@ -13,7 +13,9 @@ class NotificationController extends Controller
 
     public function resetNotifications()
     {
-        auth()->user()->notification = 0;
-        auth()->user()->save();
+        if (auth()->user()->notification > 0) {
+            auth()->user()->notification = 0;
+            auth()->user()->save();
+        }
     }
 }
