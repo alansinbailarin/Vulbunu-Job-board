@@ -18,17 +18,17 @@
                 }"
             >
                 <Link :href="notification.data.url">
-                    <span
-                        @click="markNotificationAsReaded(notification.id)"
-                        class="font-semibold w-full text-gray-700"
-                        >{{ notification.data.sender }}
-                        <span class="font-normal">{{
-                            notification.data.message
-                        }}</span>
-                        <p class="font-medium text-gray-700">
-                            {{ moment(notification.created_at).fromNow() }}
-                        </p>
-                    </span>
+                    <div @click="markNotificationAsReaded(notification.id)">
+                        <span class="font-semibold w-full text-gray-700">
+                            {{ notification.data.sender }}
+                            <span class="font-normal">{{
+                                notification.data.message
+                            }}</span>
+                            <p class="font-medium text-gray-700">
+                                {{ moment(notification.created_at).fromNow() }}
+                            </p>
+                        </span>
+                    </div>
                 </Link>
             </div>
         </div>
