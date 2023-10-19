@@ -310,11 +310,11 @@
                             </svg>
                             <div
                                 v-if="props.user?.notifications?.length > 0"
-                                class="absolute inline-flex items-center justify-center w-6 h-6 text-[0.70rem] text-white rounded-full top-0 right-0.5 border border-white"
+                                class="absolute inline-flex items-center justify-center w-6 h-6 text-[0.70rem] text-white rounded-full top-0 right-0.5"
                                 :class="{
                                     'bg-transparent':
                                         manageNotificationsCount === 0,
-                                    'bg-red-500':
+                                    'bg-red-500 border border-white':
                                         manageNotificationsCount !== 0,
                                 }"
                             >
@@ -510,20 +510,11 @@ const props = defineProps({
 });
 
 onBeforeMount(() => {
-    window.Echo.private(`App.Models.User.${props.user.id}`).notification(
-        (notification) => {
-            switch (
-                notification.type // No uses dos puntos aquí
-            ) {
-                case "App\\Notifications\\NewApplicantNotification": // Sin dos puntos
-                    console.log(notification);
-                    manageNotificationsCount++;
-                    break;
-                default:
-                    console.log("No notification");
-            }
-        }
-    );
+    if (props.user) {
+        window.Echo.private(`App.Models.User.${props.user.id}`).notification(
+            (notification) => {}
+        );
+    }
 });
 </script>
 
