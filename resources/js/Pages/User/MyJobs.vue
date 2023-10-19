@@ -460,7 +460,7 @@
                         </div>
                     </div>
                 </Box>
-                <div class="bg-gray-50 text-sm p-4 rounded-md" v-else>
+                <div class="bg-gray-50 text-sm p-4 rounded-md mb-3" v-else>
                     <div>
                         <h1 class="font-medium">
                             There is no jobs in draft status
