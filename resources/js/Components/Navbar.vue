@@ -15,15 +15,11 @@
                     <Link href="/" class="" @click="isMenuOpen = false"
                         ><img src="../../img/logo.png" alt="" class="w-24"
                     /></Link>
-
                     <div class="md:hidden flex items-center">
                         <div class="relative" v-if="props.user">
                             <button
                                 type="button"
-                                @click="
-                                    toggleNotifications();
-                                    resetNotificationsCount();
-                                "
+                                @click="toggleNotifications()"
                                 class="relative inline-flex items-center p-3 text-sm font-medium text-center text-gray-600"
                             >
                                 <svg
@@ -39,10 +35,20 @@
                                     />
                                 </svg>
                                 <div
-                                    v-if="props.user?.notification > 0"
-                                    class="absolute inline-flex items-center justify-center w-6 h-6 text-[0.70rem] text-white bg-red-500 rounded-full -top-1 -right-1"
+                                    v-if="props.user?.notifications?.length > 0"
+                                    class="absolute inline-flex items-center justify-center w-5 h-5 text-[0.60rem] text-white rounded-full top-0.5 right-1 border border-white"
+                                    :class="{
+                                        'bg-transparent':
+                                            manageNotificationsCount === 0,
+                                        'bg-red-500':
+                                            manageNotificationsCount !== 0,
+                                    }"
                                 >
-                                    {{ manageNotificationsCount }}
+                                    {{
+                                        manageNotificationsCount !== 0
+                                            ? manageNotificationsCount
+                                            : ""
+                                    }}
                                 </div>
                             </button>
                             <Notifications
@@ -284,6 +290,48 @@
                 <div
                     class="hidden md:flex flex-row gap-4 text-sm items-center font-medium"
                 >
+                    <div class="relative" v-if="props.user">
+                        <button
+                            type="button"
+                            @click="toggleNotifications()"
+                            class="relative inline-flex items-center p-3 text-sm font-medium text-center text-gray-600"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="22"
+                                height="22"
+                                fill="currentColor"
+                                class="bi bi-bell-fill"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
+                                />
+                            </svg>
+                            <div
+                                v-if="props.user?.notifications?.length > 0"
+                                class="absolute inline-flex items-center justify-center w-6 h-6 text-[0.70rem] text-white rounded-full top-0 right-0.5 border border-white"
+                                :class="{
+                                    'bg-transparent':
+                                        manageNotificationsCount === 0,
+                                    'bg-red-500':
+                                        manageNotificationsCount !== 0,
+                                }"
+                            >
+                                {{
+                                    manageNotificationsCount !== 0
+                                        ? manageNotificationsCount
+                                        : ""
+                                }}
+                            </div>
+                        </button>
+                        <Notifications
+                            @click="notificationsOpen = false"
+                            :user="props.user"
+                            class="absolute right-0 z-10 mt-2 w-72 origin-top-right overflow-y-auto"
+                            v-show="notificationsOpen"
+                        />
+                    </div>
                     <div v-if="user" class="mr-2">
                         <button
                             @click="showUserMenu = !showUserMenu"
@@ -402,7 +450,7 @@
 
 <script setup>
 import { Link, router } from "@inertiajs/vue3";
-import { ref, onMounted, Transition, computed } from "vue";
+import { ref, onMounted, Transition, computed, onBeforeMount } from "vue";
 import { vOnClickOutside } from "@vueuse/components";
 import Notifications from "./Notifications.vue";
 
@@ -416,10 +464,19 @@ const toggleMenu = () => {
 };
 
 const manageNotificationsCount = computed(() => {
-    if (props.user?.notification > 9) {
+    if (!props.user?.notifications) {
+        return 0;
+    }
+
+    const unreadNotifications = props.user.notifications.filter(
+        (notification) => notification.read_at === null
+    );
+
+    if (unreadNotifications.length >= 9) {
         return "+9";
     }
-    return props.user?.notification;
+
+    return unreadNotifications.length;
 });
 
 const resetNotificationsCount = () => {
@@ -450,6 +507,23 @@ const handleScroll = () => {
 
 const props = defineProps({
     user: Object,
+});
+
+onBeforeMount(() => {
+    window.Echo.private(`App.Models.User.${props.user.id}`).notification(
+        (notification) => {
+            switch (
+                notification.type // No uses dos puntos aquí
+            ) {
+                case "App\\Notifications\\NewApplicantNotification": // Sin dos puntos
+                    console.log(notification);
+                    manageNotificationsCount++;
+                    break;
+                default:
+                    console.log("No notification");
+            }
+        }
+    );
 });
 </script>
 

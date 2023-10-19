@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4 rounded-md bg-white">
+    <div class="p-4 rounded-md bg-white my-4">
         <h1 class="font-semibold text-xl mb-2">Add your main skills</h1>
 
         <form class="" @submit.prevent="addSkills">

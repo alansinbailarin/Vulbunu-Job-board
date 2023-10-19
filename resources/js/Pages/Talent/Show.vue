@@ -35,7 +35,7 @@
                                     }}
                                 </span>
                             </div>
-                            <div class="md:flex items-center gap-3 flex-nowrap">
+                            <div class="md:flex items-center gap-3 flex-wrap">
                                 <span
                                     v-if="talent.job_title"
                                     class="flex items-center gap-2 text-gray-500 text-sm"
@@ -359,11 +359,7 @@
                                     )
                                 }}
                                 -
-                                {{
-                                    moment(education.end_date).format(
-                                        "MMMM Do YYYY"
-                                    )
-                                }}
+                                {{ formattedEndDate(education.end_date) }}
                             </time>
                             <p class="font-semibold text-gray-700">
                                 {{ education.name }}
@@ -389,9 +385,7 @@
                                     )
                                 }}
                                 -
-                                {{
-                                    moment(job.end_date).format("MMMM Do YYYY")
-                                }}</time
+                                {{ formattedEndDate(job.end_date) }}</time
                             >
                             <p class="font-semibold text-gray-700">
                                 {{ job.name }}
@@ -417,6 +411,14 @@ moment.locale("en");
 defineProps({
     talent: Object,
 });
+
+function formattedEndDate(date) {
+    if (date !== null) {
+        return moment(date).format("MMMM D, YYYY");
+    } else {
+        return "Present";
+    }
+}
 
 const downloadCV = (url) => {
     fetch(url)

@@ -35,7 +35,7 @@
         <div v-else>
             <div class="px-4 py-2">
                 <h1 class="text-sm font-semibold text-gray-600">We sorry</h1>
-                <p class="text-sm leading-5 text-gray-500">
+                <p class="text-sm font-normal text-gray-500">
                     There seems to be no notification here
                 </p>
             </div>
@@ -56,7 +56,7 @@ const props = defineProps({
 });
 
 const notifications = computed((count) => {
-    return props.user?.notifications.slice(0, count);
+    return props.user?.notifications;
 });
 
 const markNotificationAsReaded = (id) => {

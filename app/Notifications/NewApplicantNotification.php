@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class NewApplicantNotification extends Notification
 {
@@ -28,7 +29,7 @@ class NewApplicantNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'broadcast'];
     }
 
     /**
@@ -56,8 +57,8 @@ class NewApplicantNotification extends Notification
     public function toDatabase(object $notifiable): array
     {
 
-        $notifiable->notification += 1;
-        $notifiable->save();
+        // $notifiable->notification += 1;
+        // $notifiable->save();
 
         $sender = Auth::user();
 
@@ -67,5 +68,18 @@ class NewApplicantNotification extends Notification
             'senderTitle' => $sender->job_title,
             'message' => ' has applied to your job vacancy ' . $this->job->title,
         ];
+    }
+
+    /**
+     * Get the broadcastable representation of the notification.
+     *
+     * @return BroadcastMessage<mixed>
+     */
+
+    public function toBroadcast(object $notifiable): BroadcastMessage
+    {
+        $sender = Auth::user();
+
+        return new BroadcastMessage([]);
     }
 }

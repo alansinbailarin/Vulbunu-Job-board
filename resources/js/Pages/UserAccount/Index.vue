@@ -13,6 +13,10 @@
                 :skills="props.skills"
                 :userSkills="props.userSkills"
             />
+            <UpdateEducationInformation
+                :user="page.props.user"
+                :education="props.education"
+            />
         </div>
     </div>
 </template>
@@ -23,12 +27,14 @@ import { usePage } from "@inertiajs/vue3";
 import UpdateProfileInformationForm from "@/Pages/UserAccount/partials/UpdateProfileInformation.vue";
 import UpdateUserLocation from "./partials/UpdateUserLocation.vue";
 import UpdateUserSkills from "./partials/UpdateUserSkills.vue";
+import UpdateEducationInformation from "./partials/UpdateEducationInformation.vue";
 
 const props = defineProps({
     jobModalities: Array,
     genders: Array,
     skills: Array,
     userSkills: Array,
+    education: Array || Object,
 });
 
 console.log(props.userSkills.value);

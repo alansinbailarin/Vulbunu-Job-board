@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
 use App\Models\Gender;
 use App\Models\JobModality;
 use App\Models\Skill;
@@ -19,13 +20,19 @@ class UserAccountController extends Controller
         $jobModalities = JobModality::all();
         $genders = Gender::all();
         $skills = Skill::all();
+        $education = $user->education()
+            ->orderByRaw('ISNULL(end_date) DESC') // Registros con "end_date" nulo primero
+            ->orderBy('end_date', 'desc') // Registros con fechas más recientes después
+            ->get();
+
         $userSkills = $user->skill()->get();
 
         return inertia('UserAccount/Index', [
             'jobModalities' => $jobModalities,
             'genders' => $genders,
             'skills' => $skills,
-            'userSkills' => $userSkills
+            'userSkills' => $userSkills,
+            'education' => $education
         ]);
     }
 
@@ -163,5 +170,23 @@ class UserAccountController extends Controller
 
             return redirect()->route('user-account.index')->with('success', 'Resume deleted');
         }
+    }
+
+    public function deleteEducationRecord($id)
+    {
+        $user = Auth::user();
+        $education = Education::find($id);
+
+        if (!$education) {
+            return redirect()->route('user-account.index')->with('error', 'Education record not found.');
+        }
+
+        if ($education->user_id !== $user->id) {
+            return redirect()->route('user-account.index')->with('error', 'You are not authorized to delete this education record.');
+        }
+
+        $education->delete();
+
+        return redirect()->route('user-account.index')->with('success', 'Deleted successfully');
     }
 }

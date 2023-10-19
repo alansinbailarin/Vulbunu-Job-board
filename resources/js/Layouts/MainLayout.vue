@@ -13,7 +13,7 @@
 import Navbar from "@/Components/Navbar.vue";
 import Footer from "../Components/Footer.vue";
 import ToastList from "../Components/ToastList.vue";
-import { computed, ref } from "vue";
+import { computed, ref, onBeforeMount } from "vue";
 import { usePage } from "@inertiajs/vue3";
 import Banner from "@/Components/Banner.vue";
 
