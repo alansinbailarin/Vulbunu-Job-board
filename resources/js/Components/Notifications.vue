@@ -17,22 +17,33 @@
                     'bg-gray-100 ': !notification.read_at,
                 }"
             >
-                <Link :href="notification.data.url">
-                    <button
-                        class="text-left"
-                        @click="markNotificationAsReaded(notification.id)"
+                <div>
+                    <Link
+                        :href="notification.data.url"
+                        class="font-semibold w-full text-gray-700"
                     >
-                        <span class="font-semibold w-full text-gray-700">
-                            {{ notification.data.sender }}
-                            <span class="font-normal">{{
-                                notification.data.message
-                            }}</span>
-                            <p class="font-medium text-gray-700">
+                        {{ notification.data.sender }}
+                        <span class="font-normal">{{
+                            notification.data.message
+                        }}</span>
+                    </Link>
+                    <div class="flex items-center justify-between mt-1.5">
+                        <div>
+                            <p class="text-sm text-gray-500">
                                 {{ moment(notification.created_at).fromNow() }}
                             </p>
-                        </span>
-                    </button>
-                </Link>
+                        </div>
+                        <div>
+                            <button
+                                @click="
+                                    markNotificationAsReaded(notification.id)
+                                "
+                            >
+                                Mark as read
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div v-else>
