@@ -36,11 +36,11 @@
                                 </svg>
                                 <div
                                     v-if="props.user?.notifications?.length > 0"
-                                    class="absolute inline-flex items-center justify-center w-5 h-5 text-[0.60rem] text-white rounded-full top-0.5 right-1 border border-white"
+                                    class="absolute inline-flex items-center justify-center w-5 h-5 text-[0.60rem] text-white rounded-full top-0.5 right-1"
                                     :class="{
                                         'bg-transparent':
                                             manageNotificationsCount === 0,
-                                        'bg-red-500':
+                                        'bg-red-500 border border-white':
                                             manageNotificationsCount !== 0,
                                     }"
                                 >
