@@ -17,11 +17,11 @@
                     'bg-gray-100 ': !notification.read_at,
                 }"
             >
-                <Link
-                    :href="notification.data.url"
-                    @click="markNotificationAsReaded(notification.id)"
-                >
-                    <div>
+                <Link :href="notification.data.url">
+                    <button
+                        class="text-left"
+                        @click="markNotificationAsReaded(notification.id)"
+                    >
                         <span class="font-semibold w-full text-gray-700">
                             {{ notification.data.sender }}
                             <span class="font-normal">{{
@@ -31,7 +31,7 @@
                                 {{ moment(notification.created_at).fromNow() }}
                             </p>
                         </span>
-                    </div>
+                    </button>
                 </Link>
             </div>
         </div>
