@@ -17,8 +17,11 @@
                     'bg-gray-100 ': !notification.read_at,
                 }"
             >
-                <Link :href="notification.data.url">
-                    <div @click="markNotificationAsReaded(notification.id)">
+                <Link
+                    :href="notification.data.url"
+                    @click.prevent="markNotificationAsReaded(notification.id)"
+                >
+                    <div>
                         <span class="font-semibold w-full text-gray-700">
                             {{ notification.data.sender }}
                             <span class="font-normal">{{
