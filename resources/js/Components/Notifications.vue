@@ -19,7 +19,7 @@
             >
                 <Link
                     :href="notification.data.url"
-                    @click.prevent="markNotificationAsReaded(notification.id)"
+                    @click="markNotificationAsReaded(notification.id)"
                 >
                     <div>
                         <span class="font-semibold w-full text-gray-700">
