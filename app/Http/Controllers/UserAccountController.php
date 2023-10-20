@@ -212,4 +212,35 @@ class UserAccountController extends Controller
 
         return redirect()->back()->with('success', 'Education record added successfully');
     }
+
+    public function updateEducationRecord(Request $request)
+    {
+        $user = Auth::user();
+
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'description' => 'nullable|string'
+        ]);
+
+        $education = Education::find($request->id);
+
+        if (!$education) {
+            return redirect()->route('user-account.index')->with('error', 'Education record not found.');
+        }
+
+        if ($education->user_id !== $user->id) {
+            return redirect()->route('user-account.index')->with('error', 'You are not authorized to update this education record.');
+        }
+
+        $education->name = $validatedData['name'];
+        $education->start_date = $validatedData['start_date'];
+        $education->end_date = $validatedData['end_date'];
+        $education->description = $validatedData['description'];
+
+        $education->save();
+
+        return redirect()->back()->with('success', 'Education record updated successfully');
+    }
 }
