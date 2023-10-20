@@ -66,6 +66,7 @@ Route::delete('/user-account/configuration/{itemToDelete}', [UserAccountControll
 Route::put('/user-account/configuration/location', [UserLocation::class, 'update'])->name('location.update')->middleware('auth');
 Route::put('/user-account/configuration/skills', [SkillsController::class, 'update'])->name('skills.update')->middleware('auth');
 Route::delete('/user-account/configuration/deleteSkill', [SkillsController::class, 'deleteSkill'])->name('skill.destroy')->middleware('auth');
+Route::post('/user-account/configuration/add-education-record', [UserAccountController::class, 'addNewEducationRecord'])->name('education-record.store')->middleware('auth');
 Route::delete('/user-account/configuration/delete-education-record/{id}', [UserAccountController::class, 'deleteEducationRecord'])->name('education-record.destroy')->middleware('auth');
 
 // Route::delete('/user-account/configuration', [UserAccountController::class, 'deleteCV'])->name('user-account.deleteCV')->middleware('auth');

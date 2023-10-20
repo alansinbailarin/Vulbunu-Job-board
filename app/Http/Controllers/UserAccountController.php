@@ -189,4 +189,27 @@ class UserAccountController extends Controller
 
         return redirect()->route('user-account.index')->with('success', 'Deleted successfully');
     }
+
+    public function addNewEducationRecord(Request $request)
+    {
+        $user = Auth::user();
+
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'description' => 'nullable|string'
+        ]);
+
+        $education = new Education();
+        $education->name = $validatedData['name'];
+        $education->start_date = $validatedData['start_date'];
+        $education->end_date = $validatedData['end_date'];
+        $education->description = $validatedData['description'];
+        $education->user_id = $user->id;
+
+        $education->save();
+
+        return redirect()->back()->with('success', 'Education record added successfully');
+    }
 }

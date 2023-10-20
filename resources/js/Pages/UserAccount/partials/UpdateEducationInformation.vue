@@ -8,6 +8,7 @@
             </div>
             <div>
                 <button
+                    @click="isOpen = true"
                     class="border flex items-center border-blue-500 px-2 py-1.5 rounded-md text-blue-500 font-medium hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out"
                 >
                     <svg
@@ -23,6 +24,127 @@
                         />
                     </svg>
                 </button>
+            </div>
+            <div
+                v-show="isOpen"
+                class="fixed inset-0 flex items-center justify-center z-50"
+            >
+                <!-- Fondo obscuro -->
+                <div
+                    @click="isOpen = false"
+                    class="fixed inset-0 bg-black opacity-50"
+                ></div>
+
+                <!-- Contenido del modal -->
+                <div
+                    class="bg-white w-full md:w-1/2 p-4 mx-4 rounded-md relative"
+                >
+                    <!-- Botón para cerrar el modal -->
+                    <button
+                        @click="isOpen = false"
+                        class="absolute text-lg cursor-pointer top-2 right-2 text-gray-600 hover:bg-gray-100 rounded-md"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="currentColor"
+                            class="bi bi-x"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                            />
+                        </svg>
+                    </button>
+
+                    <!-- Contenido del modal -->
+                    <h1 class="font-medium text-gray-700">
+                        New education record
+                    </h1>
+                    <p class="text-sm text-gray-500">
+                        Add information about your education
+                    </p>
+                    <form
+                        @submit.prevent="addNewEducationRecord()"
+                        class="mt-2"
+                    >
+                        <div
+                            class="overflow-y-auto h-[26rem] grid grid-cols-1 md:grid-cols-2 gap-3"
+                        >
+                            <div class="col-span-2">
+                                <label
+                                    for="name"
+                                    class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                    >Institution name
+                                </label>
+                                <input
+                                    id="name"
+                                    type="text"
+                                    v-model="form.name"
+                                    autocomplete="name"
+                                    placeholder="University of..."
+                                    class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
+                                />
+                            </div>
+                            <div class="col-span-2 md:col-span-1">
+                                <label
+                                    for="start_date"
+                                    class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                    >Start date</label
+                                >
+                                <input
+                                    id="start_date"
+                                    type="date"
+                                    v-model="form.start_date"
+                                    class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
+                                />
+                            </div>
+                            <div class="col-span-2 md:col-span-1">
+                                <label
+                                    for="end_date"
+                                    class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                    >End date</label
+                                >
+                                <input
+                                    id="end_date"
+                                    type="date"
+                                    v-model="form.end_date"
+                                    class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
+                                />
+                            </div>
+                            <div class="col-span-2">
+                                <label
+                                    for="description"
+                                    class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                    >Description</label
+                                >
+                                <textarea
+                                    name="description"
+                                    id="description"
+                                    v-model="form.description"
+                                    cols="30"
+                                    rows="7"
+                                    class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
+                                    placeholder="Student in the best school from..."
+                                ></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button
+                                type="submit"
+                                :class="{
+                                    'opacity-25':
+                                        form.processing || !form.isDirty,
+                                }"
+                                :disabled="form.processing || !form.isDirty"
+                                class="w-full bg-blue-600 text-white py-1.5 rounded-md font-semibold"
+                            >
+                                Save education record
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -94,11 +216,29 @@
 </template>
 <script setup>
 import moment from "moment";
-import { computed } from "vue";
-import { router } from "@inertiajs/vue3";
+import { computed, ref } from "vue";
+import { router, useForm } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 
 moment.locale("en");
+
+const props = defineProps({
+    user: Object,
+    education: Array || Object,
+});
+
+const form = useForm({
+    name: "",
+    description: "",
+    start_date: "",
+    end_date: null,
+});
+
+const isOpen = ref(false);
+
+const toggleModal = () => {
+    isOpen = !isOpen;
+};
 
 function formattedEndDate(date) {
     if (date !== null) {
@@ -124,14 +264,19 @@ const showDeleteAlert = (itemToDelete) => {
     });
 };
 
+const addNewEducationRecord = () => {
+    form.post(route("education-record.store"), {
+        preserveScroll: true,
+        onSuccess: () => {
+            isOpen.value = false;
+            form.reset();
+        },
+    });
+};
+
 const deleteItem = (id) => {
     router.delete(route("education-record.destroy", { id }), {
         preserveScroll: true,
     });
 };
-
-const props = defineProps({
-    user: Object,
-    education: Array || Object,
-});
 </script>
