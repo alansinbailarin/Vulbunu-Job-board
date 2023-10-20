@@ -17,6 +17,10 @@
                 :user="page.props.user"
                 :education="props.education"
             />
+            <UpdateWorkInformation
+                :user="page.props.user"
+                :works="props.works"
+            />
         </div>
     </div>
 </template>
@@ -28,6 +32,7 @@ import UpdateProfileInformationForm from "@/Pages/UserAccount/partials/UpdatePro
 import UpdateUserLocation from "./partials/UpdateUserLocation.vue";
 import UpdateUserSkills from "./partials/UpdateUserSkills.vue";
 import UpdateEducationInformation from "./partials/UpdateEducationInformation.vue";
+import UpdateWorkInformation from "./partials/UpdateWorkInformation.vue";
 
 const props = defineProps({
     jobModalities: Array,
@@ -35,6 +40,7 @@ const props = defineProps({
     skills: Array,
     userSkills: Array,
     education: Array || Object,
+    works: Array || Object,
 });
 
 console.log(props.userSkills.value);

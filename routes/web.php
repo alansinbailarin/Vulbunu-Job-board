@@ -67,8 +67,11 @@ Route::put('/user-account/configuration/location', [UserLocation::class, 'update
 Route::put('/user-account/configuration/skills', [SkillsController::class, 'update'])->name('skills.update')->middleware('auth');
 Route::delete('/user-account/configuration/deleteSkill', [SkillsController::class, 'deleteSkill'])->name('skill.destroy')->middleware('auth');
 Route::post('/user-account/configuration/add-education-record', [UserAccountController::class, 'addNewEducationRecord'])->name('education-record.store')->middleware('auth');
+Route::post('/user-account/configuration/add-work-record', [UserAccountController::class, 'addNewWorkRecord'])->name('work-record.store')->middleware('auth');
 Route::put('/user-account/configuration/update-education-record/{id}', [UserAccountController::class, 'updateEducationRecord'])->name('education-record.update')->middleware('auth');
+Route::put('/user-account/configuration/update-work-record/{id}', [UserAccountController::class, 'updateWorkRecord'])->name('work-record.update')->middleware('auth');
 Route::delete('/user-account/configuration/delete-education-record/{id}', [UserAccountController::class, 'deleteEducationRecord'])->name('education-record.destroy')->middleware('auth');
+Route::delete('/user-account/configuration/delete-work-record/{id}', [UserAccountController::class, 'deleteWorkRecord'])->name('work-record.destroy')->middleware('auth');
 
 // Route::delete('/user-account/configuration', [UserAccountController::class, 'deleteCV'])->name('user-account.deleteCV')->middleware('auth');
 

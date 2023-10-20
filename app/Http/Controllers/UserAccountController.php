@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Education;
+use App\Models\Experience;
 use App\Models\Gender;
 use App\Models\JobModality;
 use App\Models\Skill;
@@ -25,6 +26,11 @@ class UserAccountController extends Controller
             ->orderBy('end_date', 'desc') // Registros con fechas más recientes después
             ->get();
 
+        $works = $user->experience()
+            ->orderByRaw('ISNULL(end_date) DESC') // Registros con "end_date" nulo primero
+            ->orderBy('end_date', 'desc') // Registros con fechas más recientes después
+            ->get();
+
         $userSkills = $user->skill()->get();
 
         return inertia('UserAccount/Index', [
@@ -32,7 +38,8 @@ class UserAccountController extends Controller
             'genders' => $genders,
             'skills' => $skills,
             'userSkills' => $userSkills,
-            'education' => $education
+            'education' => $education,
+            'works' => $works
         ]);
     }
 
@@ -190,6 +197,24 @@ class UserAccountController extends Controller
         return redirect()->route('user-account.index')->with('success', 'Deleted successfully');
     }
 
+    public function deleteWorkRecord($id)
+    {
+        $user = Auth::user();
+        $work = Experience::find($id);
+
+        if (!$work) {
+            return redirect()->route('user-account.index')->with('error', 'Work record not found.');
+        }
+
+        if ($work->user_id !== $user->id) {
+            return redirect()->route('user-account.index')->with('error', 'You are not authorized to delete this work record.');
+        }
+
+        $work->delete();
+
+        return redirect()->route('user-account.index')->with('success', 'Deleted successfully');
+    }
+
     public function addNewEducationRecord(Request $request)
     {
         $user = Auth::user();
@@ -211,6 +236,29 @@ class UserAccountController extends Controller
         $education->save();
 
         return redirect()->back()->with('success', 'Education record added successfully');
+    }
+
+    public function addNewWorkRecord(Request $request)
+    {
+        $user = Auth::user();
+
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'description' => 'nullable|string'
+        ]);
+
+        $work = new Experience();
+        $work->name = $validatedData['name'];
+        $work->start_date = $validatedData['start_date'];
+        $work->end_date = $validatedData['end_date'];
+        $work->description = $validatedData['description'];
+        $work->user_id = $user->id;
+
+        $work->save();
+
+        return redirect()->back()->with('success', 'Work record added successfully');
     }
 
     public function updateEducationRecord(Request $request)
@@ -242,5 +290,36 @@ class UserAccountController extends Controller
         $education->save();
 
         return redirect()->back()->with('success', 'Education record updated successfully');
+    }
+
+    public function updateWorkRecord(Request $request)
+    {
+        $user = Auth::user();
+
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'description' => 'nullable|string'
+        ]);
+
+        $work = Experience::find($request->id);
+
+        if (!$work) {
+            return redirect()->route('user-account.index')->with('error', 'Work record not found.');
+        }
+
+        if ($work->user_id !== $user->id) {
+            return redirect()->route('user-account.index')->with('error', 'You are not authorized to update this work record.');
+        }
+
+        $work->name = $validatedData['name'];
+        $work->start_date = $validatedData['start_date'];
+        $work->end_date = $validatedData['end_date'];
+        $work->description = $validatedData['description'];
+
+        $work->save();
+
+        return redirect()->back()->with('success', 'Work record updated successfully');
     }
 }

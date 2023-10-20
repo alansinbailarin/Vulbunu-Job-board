@@ -1,9 +1,9 @@
 <template>
-    <div class="p-4 bg-white rounded-md my-4">
+    <div class="p-4 bg-white rounded-md">
         <div class="flex items-center justify-between mb-3">
             <div>
                 <h1 class="font-semibold text-xl mb-2">
-                    Education information
+                    Work history information
                 </h1>
             </div>
             <div>
@@ -59,16 +59,11 @@
                     </button>
 
                     <!-- Contenido del modal -->
-                    <h1 class="font-medium text-gray-700">
-                        New education record
-                    </h1>
+                    <h1 class="font-medium text-gray-700">New work record</h1>
                     <p class="text-sm text-gray-500">
-                        Add information about your education
+                        Add information about your work
                     </p>
-                    <form
-                        @submit.prevent="addNewEducationRecord()"
-                        class="mt-2"
-                    >
+                    <form @submit.prevent="addNewWorkRecord()" class="mt-2">
                         <div
                             class="overflow-y-auto h-[26rem] grid grid-cols-1 md:grid-cols-2 gap-3"
                         >
@@ -76,7 +71,7 @@
                                 <label
                                     for="name"
                                     class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                                    >Institution name
+                                    >Company name
                                 </label>
                                 <input
                                     id="name"
@@ -188,7 +183,7 @@
                                 :disabled="form.processing || !form.isDirty"
                                 class="w-full bg-blue-600 text-white py-1.5 rounded-md font-semibold"
                             >
-                                Save education record
+                                Save work record
                             </button>
                         </div>
                     </form>
@@ -198,17 +193,17 @@
 
         <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
             <div
-                v-for="edu in props.education"
-                :key="edu.id"
+                v-for="work in props.works"
+                :key="work.id"
                 class="border border-gray-200 rounded-md px-4 py-2 bg-gray-50"
             >
                 <div class="flex items-center justify-between mb-2">
                     <div>
-                        <h1 class="font-medium">{{ edu.name }}</h1>
+                        <h1 class="font-medium">{{ work.name }}</h1>
                     </div>
                     <div class="flex items-center gap-2">
                         <button
-                            @click="toggleModal(edu)"
+                            @click="toggleModal(work)"
                             class="border border-blue-500 bg-white px-2 py-1 text-blue-500 rounded-md"
                         >
                             <span
@@ -227,7 +222,7 @@
                             </span>
                         </button>
                         <button
-                            @click="showDeleteAlert(edu.id)"
+                            @click="showDeleteAlert(work.id)"
                             class="border border-red-500 px-2 py-1 text-red-500 rounded-md"
                         >
                             <span
@@ -247,12 +242,12 @@
                         </button>
                     </div>
                     <div
-                        v-show="edu.editModalOpen"
+                        v-show="work.editModalOpen"
                         class="fixed inset-0 flex items-center justify-center z-50"
                     >
                         <!-- Fondo obscuro -->
                         <div
-                            @click="toggleModal(edu)"
+                            @click="toggleModal(work)"
                             class="fixed inset-0 bg-black opacity-50"
                         ></div>
 
@@ -262,7 +257,7 @@
                         >
                             <!-- Botón para cerrar el modal -->
                             <button
-                                @click="toggleModal(edu)"
+                                @click="toggleModal(work)"
                                 class="absolute text-lg cursor-pointer top-2 right-2 text-gray-600 hover:bg-gray-100 rounded-md"
                             >
                                 <svg
@@ -281,14 +276,14 @@
 
                             <!-- Contenido del modal -->
                             <h1 class="font-medium text-gray-700">
-                                {{ edu.name }}
+                                {{ work.name }}
                             </h1>
                             <p class="text-sm text-gray-500">
                                 Edit the information about your job
                             </p>
                             <form
                                 class="mt-2"
-                                @submit.prevent="updateEducationRecord(edu.id)"
+                                @submit.prevent="updateWorkRecord(work.id)"
                             >
                                 <div
                                     class="overflow-y-auto h-[26rem] grid grid-cols-1 md:grid-cols-2 gap-3"
@@ -307,6 +302,22 @@
                                             placeholder="University of..."
                                             class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                         />
+                                        <div
+                                            v-if="editForm.errors.name"
+                                            class="mt-2"
+                                        >
+                                            <div class="flex items-center">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-red-500 text-left"
+                                                    >
+                                                        {{
+                                                            editForm.errors.name
+                                                        }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-span-2 md:col-span-1">
                                         <label
@@ -320,6 +331,23 @@
                                             v-model="editForm.start_date"
                                             class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                         />
+                                        <div
+                                            v-if="editForm.errors.start_date"
+                                            class="mt-2"
+                                        >
+                                            <div class="flex items-center">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-red-500 text-left"
+                                                    >
+                                                        {{
+                                                            editForm.errors
+                                                                .start_date
+                                                        }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-span-2 md:col-span-1">
                                         <label
@@ -333,6 +361,23 @@
                                             v-model="editForm.end_date"
                                             class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                         />
+                                        <div
+                                            v-if="editForm.errors.end_date"
+                                            class="mt-2"
+                                        >
+                                            <div class="flex items-center">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-red-500 text-left"
+                                                    >
+                                                        {{
+                                                            editForm.errors
+                                                                .end_date
+                                                        }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-span-2">
                                         <label
@@ -349,6 +394,23 @@
                                             class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                                             placeholder="Student in the best school from..."
                                         ></textarea>
+                                        <div
+                                            v-if="editForm.errors.description"
+                                            class="mt-2"
+                                        >
+                                            <div class="flex items-center">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-red-500 text-left"
+                                                    >
+                                                        {{
+                                                            editForm.errors
+                                                                .description
+                                                        }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="mt-6">
@@ -365,7 +427,7 @@
                                         "
                                         class="w-full bg-blue-600 text-white py-1.5 rounded-md font-semibold"
                                     >
-                                        Save education record
+                                        Save Work record
                                     </button>
                                 </div>
                             </form>
@@ -374,20 +436,20 @@
                 </div>
                 <div>
                     <p
-                        v-if="edu.description !== null"
+                        v-if="work.description !== null"
                         class="text-gray-500 text-sm line-clamp-2"
                     >
-                        {{ edu.description }}
+                        {{ work.description }}
                     </p>
                     <p v-else class="text-gray-500 text-sm line-clamp-2">
-                        No description for this education record
+                        No description for this work record
                     </p>
                     <div class="mt-2 text-xs text-gray-400">
                         <span>
-                            {{ moment(edu.start_date).format("MMMM D, YYYY") }}
+                            {{ moment(work.start_date).format("MMMM D, YYYY") }}
                         </span>
                         -
-                        <span>{{ formattedEndDate(edu.end_date) }} </span>
+                        <span>{{ formattedEndDate(work.end_date) }} </span>
                     </div>
                 </div>
             </div>
@@ -407,7 +469,7 @@ const editModalOpen = ref(false);
 
 const props = defineProps({
     user: Object,
-    education: Array || Object,
+    works: Array || Object,
 });
 
 const form = useForm({
@@ -418,21 +480,21 @@ const form = useForm({
 });
 
 const editForm = useForm({
-    id: props.education.id,
-    name: props.education.name,
-    description: props.education.description,
-    start_date: props.education.start_date,
-    end_date: props.education.end_date,
+    id: props.works.id,
+    name: props.works.name,
+    description: props.works.description,
+    start_date: props.works.start_date,
+    end_date: props.works.end_date,
 });
 
-const toggleModal = (education) => {
-    editForm.id = education.id;
-    editForm.name = education.name;
-    editForm.description = education.description;
-    editForm.start_date = education.start_date;
-    editForm.end_date = education.end_date;
+const toggleModal = (works) => {
+    editForm.id = works.id;
+    editForm.name = works.name;
+    editForm.description = works.description;
+    editForm.start_date = works.start_date;
+    editForm.end_date = works.end_date;
 
-    education.editModalOpen = !education.editModalOpen;
+    works.editModalOpen = !works.editModalOpen;
 };
 
 function formattedEndDate(date) {
@@ -459,8 +521,8 @@ const showDeleteAlert = (itemToDelete) => {
     });
 };
 
-const addNewEducationRecord = () => {
-    form.post(route("education-record.store"), {
+const addNewWorkRecord = () => {
+    form.post(route("work-record.store"), {
         preserveScroll: true,
         onSuccess: () => {
             isOpen.value = false;
@@ -469,17 +531,17 @@ const addNewEducationRecord = () => {
     });
 };
 
-const updateEducationRecord = (id) => {
-    editForm.put(route("education-record.update", { id: editForm.id }), {
+const updateWorkRecord = (id) => {
+    editForm.put(route("work-record.update", { id: editForm.id }), {
         preserveScroll: true,
         onSuccess: () => {
-            editModalOpen.value = false;
+            isOpen.value = false;
         },
     });
 };
 
 const deleteItem = (id) => {
-    router.delete(route("education-record.destroy", { id }), {
+    router.delete(route("work-record.destroy", { id }), {
         preserveScroll: true,
     });
 };
