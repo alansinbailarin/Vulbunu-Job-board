@@ -56,10 +56,6 @@ class NewApplicantNotification extends Notification
      */
     public function toDatabase(object $notifiable): array
     {
-
-        // $notifiable->notification += 1;
-        // $notifiable->save();
-
         $sender = Auth::user();
 
         return [
@@ -78,8 +74,6 @@ class NewApplicantNotification extends Notification
 
     public function toBroadcast(object $notifiable): BroadcastMessage
     {
-        $sender = Auth::user();
-
         return new BroadcastMessage([]);
     }
 }

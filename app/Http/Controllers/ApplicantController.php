@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Applicant;
 use App\Models\Job;
 use App\Models\User;
+use App\Notifications\ApplicationStatusNotification;
 use App\Notifications\NewApplicantNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -150,16 +151,24 @@ class ApplicantController extends Controller
         $user = auth()->user();
 
         if ($user) {
-            $applicant->status = $status;
 
+            $applicant->status = $status;
             $applicant->save();
 
-            // If status change to reject, also change interview status to rejected
-            if ($status == 'rejected' || $status == 'cancelled') {
+            if ($status == 'cancelled') {
+                $applicant->job->user->notify(new ApplicationStatusNotification($applicant));
+            } else if ($status == 'rejected') {
+                $applicant->user->notify(new ApplicationStatusNotification($applicant));
+            } else if ($status == 'approved') {
+                $applicant->user->notify(new ApplicationStatusNotification($applicant));
+            }
+
+            // Resto del código para otros estados
+            if ($status == 'rejected') {
                 $applicant->interviews()->update([
                     'status' => 'rejected'
                 ]);
-            } else if ($status == 'approved') {
+            } elseif ($status == 'approved') {
                 $applicant->interviews()->update([
                     'status' => 'approved'
                 ]);

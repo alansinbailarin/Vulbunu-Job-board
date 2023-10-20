@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use App\Models\Interviews;
+use App\Notifications\InterviewNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +13,8 @@ class InterviewController extends Controller
     public function createInterview(Request $request)
     {
         $user = Auth::user();
+        $applicant = Applicant::find($request->applicant_id);
+        $applicant_user = $applicant->user;
 
         $validateData = $request->validate([
             'applicant_id' => 'required|integer|exists:applicants,id',
@@ -28,7 +31,10 @@ class InterviewController extends Controller
         $interview->confirmation_date = $interview->created_at;
         $interview->status = 'approved';
 
+        $applicant_user->notify(new InterviewNotification($interview));
+
         $interview->save();
+
 
         return redirect()->back()->with('success', 'Interview scheduled');
     }
