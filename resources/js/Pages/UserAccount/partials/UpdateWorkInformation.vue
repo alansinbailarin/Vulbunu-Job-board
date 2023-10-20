@@ -119,12 +119,33 @@
                                 </div>
                             </div>
                             <div class="col-span-2 md:col-span-1">
-                                <label
-                                    for="end_date"
-                                    class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                                    >End date</label
-                                >
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <label
+                                            for="end_date"
+                                            class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                            >End date</label
+                                        >
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center mb-4">
+                                            <input
+                                                id="default-checkbox"
+                                                type="checkbox"
+                                                v-model="form.present"
+                                                value=""
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                                            />
+                                            <label
+                                                for="default-checkbox"
+                                                class="ml-2 text-sm font-medium text-gray-700"
+                                                >Present</label
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
                                 <input
+                                    :disabled="form.present"
                                     id="end_date"
                                     type="date"
                                     v-model="form.end_date"
@@ -350,12 +371,39 @@
                                         </div>
                                     </div>
                                     <div class="col-span-2 md:col-span-1">
-                                        <label
-                                            for="end_date"
-                                            class="flex items-center mb-2 text-sm font-medium text-gray-700"
-                                            >End date</label
+                                        <div
+                                            class="flex items-center justify-between"
                                         >
+                                            <div>
+                                                <label
+                                                    for="end_date"
+                                                    class="flex items-center mb-2 text-sm font-medium text-gray-700"
+                                                    >End date</label
+                                                >
+                                            </div>
+                                            <div>
+                                                <div
+                                                    class="flex items-center mb-4"
+                                                >
+                                                    <input
+                                                        id="default-checkbox"
+                                                        type="checkbox"
+                                                        v-model="
+                                                            editForm.present
+                                                        "
+                                                        value=""
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                                                    />
+                                                    <label
+                                                        for="default-checkbox"
+                                                        class="ml-2 text-sm font-medium text-gray-700"
+                                                        >Present</label
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
                                         <input
+                                            :disabled="editForm.present"
                                             id="end_date"
                                             type="date"
                                             v-model="editForm.end_date"
@@ -458,7 +506,7 @@
 </template>
 <script setup>
 import moment from "moment";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { router, useForm } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 
@@ -477,6 +525,7 @@ const form = useForm({
     description: "",
     start_date: "",
     end_date: null,
+    present: ref(false),
 });
 
 const editForm = useForm({
@@ -485,6 +534,7 @@ const editForm = useForm({
     description: props.works.description,
     start_date: props.works.start_date,
     end_date: props.works.end_date,
+    present: ref(false),
 });
 
 const toggleModal = (works) => {
@@ -504,6 +554,24 @@ function formattedEndDate(date) {
         return "Present";
     }
 }
+
+watch(
+    () => form.present,
+    (newPresentValue) => {
+        if (newPresentValue) {
+            form.end_date = null;
+        }
+    }
+);
+
+watch(
+    () => editForm.present,
+    (newPresentValue) => {
+        if (newPresentValue) {
+            editForm.end_date = null;
+        }
+    }
+);
 
 const showDeleteAlert = (itemToDelete) => {
     Swal.fire({
