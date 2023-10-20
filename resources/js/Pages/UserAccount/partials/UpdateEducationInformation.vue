@@ -86,7 +86,19 @@
                                     placeholder="University of..."
                                     class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                 />
+                                <div v-if="form.errors.name" class="mt-2">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p
+                                                class="text-sm text-red-500 text-left"
+                                            >
+                                                {{ form.errors.name }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="col-span-2 md:col-span-1">
                                 <label
                                     for="start_date"
@@ -99,6 +111,17 @@
                                     v-model="form.start_date"
                                     class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                 />
+                                <div v-if="form.errors.start_date" class="mt-2">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p
+                                                class="text-sm text-red-500 text-left"
+                                            >
+                                                {{ form.errors.start_date }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-span-2 md:col-span-1">
                                 <label
@@ -112,6 +135,17 @@
                                     v-model="form.end_date"
                                     class="w-full text-sm px-5 bg-gray-50 py-2.5 placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                 />
+                                <div v-if="form.errors.end_date" class="mt-2">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p
+                                                class="text-sm text-red-500 text-left"
+                                            >
+                                                {{ form.errors.end_date }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-span-2">
                                 <label
@@ -128,6 +162,20 @@
                                     class="w-full text-sm placeholder:text-gray-300 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600 bg-gray-50"
                                     placeholder="Student in the best school from..."
                                 ></textarea>
+                                <div
+                                    v-if="form.errors.description"
+                                    class="mt-2"
+                                >
+                                    <div class="flex items-center">
+                                        <div>
+                                            <p
+                                                class="text-sm text-red-500 text-left"
+                                            >
+                                                {{ form.errors.description }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-6">
@@ -152,7 +200,7 @@
             <div
                 v-for="edu in props.education"
                 :key="edu.id"
-                class="border border-gray-200 rounded-md p-4 bg-gray-50"
+                class="border border-gray-200 rounded-md px-4 py-2 bg-gray-50"
             >
                 <div class="flex items-center justify-between mb-2">
                     <div>
@@ -325,10 +373,16 @@
                     </div>
                 </div>
                 <div>
-                    <p class="text-gray-500 text-sm line-clamp-2">
+                    <p
+                        v-if="edu.description !== null"
+                        class="text-gray-500 text-sm line-clamp-2"
+                    >
                         {{ edu.description }}
                     </p>
-                    <div class="mt-2 text-sm text-gray-400">
+                    <p v-else class="text-gray-500 text-sm line-clamp-2">
+                        No description for this education record
+                    </p>
+                    <div class="mt-2 text-xs text-gray-400">
                         <span>
                             {{ moment(edu.start_date).format("MMMM D, YYYY") }}
                         </span>
