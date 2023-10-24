@@ -151,9 +151,24 @@ class ApplicantController extends Controller
         $user = auth()->user();
 
         if ($user) {
-
             $applicant->status = $status;
             $applicant->save();
+
+            // Only can update the status the publisher of the job or the applicant, but the applicant only can cancel the application
+            if ($user->id != $applicant->job->user_id && $status != 'cancelled') {
+                return redirect()->back()->with('error', 'You are not authorized to update this application status');
+            }
+
+            // Limit the status change based on user role
+            if ($user->id == $applicant->job->user_id) {
+                if ($status != 'approved' && $status != 'rejected') {
+                    return redirect()->back()->with('error', 'You are not authorized to update the application status to this value');
+                }
+            } else {
+                if ($status != 'cancelled') {
+                    return redirect()->back()->with('error', 'You are not authorized to update the application status to this value');
+                }
+            }
 
             if ($status == 'cancelled') {
                 $applicant->job->user->notify(new ApplicationStatusNotification($applicant));

@@ -45,6 +45,11 @@ class InterviewController extends Controller
         // get the application information
         $applicant = Applicant::find($interview->applicant_id);
 
+        // Only can view the interview the publisher of the job
+        if (Auth::user()->id != $applicant->job->user_id) {
+            return redirect()->back()->with('error', 'You are not authorized to view this interview');
+        }
+
         return inertia('Interviews/Edit', [
             'interview' => $interview,
             'applicant' => $applicant,
@@ -63,6 +68,11 @@ class InterviewController extends Controller
             'status' => 'required|string|max:255',
             'interview_feedback' => 'nullable|string|max:255',
         ]);
+
+        // Only can update the publisher of the job
+        if (Auth::user()->id != $interview->applicant->job->user_id) {
+            return redirect()->back()->with('error', 'You are not authorized to update this interview');
+        }
 
         $interview->update($validateData);
 

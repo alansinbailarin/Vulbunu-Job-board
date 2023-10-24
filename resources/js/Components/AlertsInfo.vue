@@ -95,10 +95,6 @@ const publish = () => {
     form.post(route("index.store"), {
         preserveScroll: true,
         onSuccess: () => {
-            Toast.fire({
-                icon: "success",
-                title: "¡Te has suscrito a las alertas de empleo!",
-            });
             form.reset();
         },
     });

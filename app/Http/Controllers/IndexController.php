@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Subscriber;
+use App\Notifications\NewSubscriberNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,7 +76,10 @@ class IndexController extends Controller
 
         $subscriber->save();
 
-        return redirect()->back();
+        // send email when user suscribe
+        $subscriber->notify(new NewSubscriberNotification($subscriber));
+
+        return redirect()->back()->with('success', 'You have successfully subscribed to our newsletter');
     }
 
     public function show(Job $job)

@@ -19,9 +19,9 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string'
         ], [
-            'email.required' => 'El campo de email es requerido',
-            'email.email' => 'El campo de email debe de ser un campo valido.',
-            'password.required' => 'El campo de contraseña es requerido',
+            'email.required' => 'E-mail field is required',
+            'email.email' => 'E-mail field must be a valid e-mail address',
+            'password.required' => 'Password field is required',
         ]), true)) {
             throw ValidationException::withMessages([
                 'sessionError' => 'The provided credentials do not match any record'
