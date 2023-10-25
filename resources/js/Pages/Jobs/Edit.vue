@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Head title="Publish a job">
+        <Head title="Edit the job information">
             <meta
                 name="description"
                 content="Publish a job to find the best talent for your company"
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="bg-white rounded-md md:p-6 p-3">
-            <form name="createJob" @submit.prevent="publish">
+            <form name="createJob" @submit.prevent="edit">
                 <div class="md:grid grid-cols-6 gap-4 w-full text-sm">
                     <div class="mb-4 col-span-5">
                         <label
@@ -1020,6 +1020,7 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
 import { Head } from "@inertiajs/vue3";
@@ -1058,170 +1059,55 @@ const props = defineProps({
     tags: {
         type: Array,
     },
+    salary: {
+        type: Object,
+    },
+    currency : {
+        type: Object,
+    },
+    asignedTags: {
+        type: Array,
+    },
+    job: {
+        type: Object,
+    },
 });
+
+console.log(props.job);
 
 const form = useForm({
     user_id: props.user_id,
-    title: "",
-    logo: null,
-    category_id: "",
-    apply_on: "",
-    color: "#272727",
-    status: "",
-    job_modality_id: "",
-    workday_id: "",
-    priority_id: "",
-    country_id: "",
-    state_id: "",
-    city_id: "",
-    tag_id: [],
-    min: "",
-    max: "",
-    currency_id: "",
-    salary_type_id: "",
-    show: "",
-    periodicity_id: "",
-    description: "",
-    extra_info: "",
-    requirements: "",
-    responsabilities: "",
+    title: props.job.title,
+    logo: props.job.logo,
+    category_id: props.job.category_id,
+    apply_on: props.job.apply_on,
+    color: props.job.color,
+    status: props.job.status,
+    job_modality_id: props.job.job_modality_id,
+    workday_id: props.job.workday_id,
+    priority_id: props.job.priority_id,
+    country_id: props.job.country_id,
+    state_id: props.job.state_id,
+    city_id: props.job.city_id,
+    tag_id: props.asignedTags,
+    min: props.salary.min,
+    max: props.salary.max,
+    currency_id: props.salary.currency_id,
+    salary_type_id: props.salary.salary_type_id,
+    show: props.salary.show,
+    periodicity_id: props.salary.periodicity_id,
+    description: props.job.description,
+    extra_info: props.job.extra_info,
+    requirements: props.job.requirements,
+    responsabilities: props.job.responsabilities,
 });
-
-watch(
-    [
-        () => form.title,
-        () => form.category_id,
-        () => form.apply_on,
-        () => form.color,
-        () => form.status,
-        () => form.job_modality_id,
-        () => form.workday_id,
-        () => form.priority_id,
-        () => form.min,
-        () => form.max,
-        () => form.currency_id,
-        () => form.salary_type_id,
-        () => form.periodicity_id,
-        () => form.description,
-        () => form.extra_info,
-    ],
-    ([
-        newTitle,
-        newCategory,
-        newApplyOn,
-        newColor,
-        newStatus,
-        newJobModality,
-        newWorkday,
-        newPriority,
-        newMin,
-        newMax,
-        newCurrency,
-        newSalaryType,
-        newPeriodicity,
-        newDescription,
-        newExtraInfo,
-    ]) => {
-        localStorage.setItem("title", newTitle);
-        localStorage.setItem("category_id", newCategory);
-        localStorage.setItem("apply_on", newApplyOn);
-        localStorage.setItem("color", newColor);
-        localStorage.setItem("status", newStatus);
-        localStorage.setItem("job_modality_id", newJobModality);
-        localStorage.setItem("workday_id", newWorkday);
-        localStorage.setItem("priority_id", newPriority);
-        localStorage.setItem("min", newMin);
-        localStorage.setItem("max", newMax);
-        localStorage.setItem("currency_id", newCurrency);
-        localStorage.setItem("salary_type_id", newSalaryType);
-        localStorage.setItem("periodicity_id", newPeriodicity);
-        localStorage.setItem("description", newDescription);
-        localStorage.setItem("extra_info", newExtraInfo);
-    }
-);
 
 onMounted(() => {
     getCountries();
-
-    let savedTitle = localStorage.getItem("title");
-    let savedCategory = localStorage.getItem("category_id");
-    let savedApplyOn = localStorage.getItem("apply_on");
-    let savedColor = localStorage.getItem("color");
-    let savedStatus = localStorage.getItem("status");
-    let savedJobModality = localStorage.getItem("job_modality_id");
-    let savedWorkday = localStorage.getItem("workday_id");
-    let savedPriority = localStorage.getItem("priority_id");
-    let savedMin = localStorage.getItem("min");
-    let savedMax = localStorage.getItem("max");
-    let savedCurrency = localStorage.getItem("currency_id");
-    let savedSalaryType = localStorage.getItem("salary_type_id");
-    let savedPeriodicity = localStorage.getItem("periodicity_id");
-    let savedDescription = localStorage.getItem("description");
-    let savedExtraInfo = localStorage.getItem("extra_info");
-
-    if (savedCategory) {
-        form.category_id = savedCategory;
-    }
-    if (savedTitle) {
-        form.title = savedTitle;
-    }
-
-    if (savedApplyOn) {
-        form.apply_on = savedApplyOn;
-    }
-
-    if (savedColor) {
-        form.color = savedColor;
-    }
-
-    if (savedStatus) {
-        form.status = savedStatus;
-    }
-
-    if (savedJobModality) {
-        form.job_modality_id = savedJobModality;
-    }
-
-    if (savedWorkday) {
-        form.workday_id = savedWorkday;
-    }
-
-    if (savedPriority) {
-        form.priority_id = savedPriority;
-    }
-
-    if (savedMin) {
-        form.min = savedMin;
-    }
-
-    if (savedMax) {
-        form.max = savedMax;
-    }
-
-    if (savedCurrency) {
-        form.currency_id = savedCurrency;
-    }
-
-    if (savedSalaryType) {
-        form.salary_type_id = savedSalaryType;
-    }
-
-    if (savedPeriodicity) {
-        form.periodicity_id = savedPeriodicity;
-    }
-
-    if (savedDescription) {
-        form.description = savedDescription;
-    }
-
-    if (savedExtraInfo) {
-        form.extra_info = savedExtraInfo;
-    }
 });
 
-const publish = () => {
-    form.post(route("jobs.store"));
-    window.localStorage.clear();
+const edit = () => {
+    form.put(route("my-published-jobs.update", props.job.slug));
 };
 
 const open = ref(false);
@@ -1373,6 +1259,7 @@ const getButtonClass = (value) => {
         "cursor-not-allowed": isSelected(value) || selectedTagsCount.value >= 6,
     };
 };
+
 </script>
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";

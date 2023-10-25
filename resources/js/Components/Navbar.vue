@@ -507,6 +507,7 @@ const handleScroll = () => {
 
 const props = defineProps({
     user: Object,
+    jobs: Array,
 });
 
 onBeforeMount(() => {

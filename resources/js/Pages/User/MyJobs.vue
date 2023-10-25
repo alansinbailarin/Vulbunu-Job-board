@@ -233,10 +233,7 @@
                                         class="mx-2 my-1 text-base"
                                         role="none"
                                     >
-                                        <Link
-                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
-                                            >Edit</Link
-                                        >
+                                        
                                         <button
                                             type="submit"
                                             @click="
@@ -382,10 +379,7 @@
                                         class="mx-2 my-1 text-base"
                                         role="none"
                                     >
-                                        <Link
-                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
-                                            >Edit</Link
-                                        >
+                                        
                                         <button
                                             type="submit"
                                             @click="
@@ -531,10 +525,7 @@
                                         class="mx-2 my-1 text-base"
                                         role="none"
                                     >
-                                        <Link
-                                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
-                                            >Edit</Link
-                                        >
+                                        
                                         <button
                                             type="submit"
                                             @click="
@@ -625,7 +616,7 @@
     </div>
 </template>
 <script setup>
-import { Head, useForm, router } from "@inertiajs/vue3";
+import { Head, useForm, router, Link } from "@inertiajs/vue3";
 import Box from "@/UI/Box.vue";
 import { ref } from "vue";
 import moment from "moment";

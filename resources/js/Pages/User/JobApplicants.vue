@@ -45,10 +45,7 @@
                     tabindex="-1"
                 >
                     <div class="mx-2 my-1 text-base" role="none">
-                        <Link
-                            class="w-full text-left text-gray-700 block py-1 text-sm hover:bg-gray-50 transition duration-200 ease-in-out"
-                            >Edit</Link
-                        >
+                        
                         <button
                             type="submit"
                             @click="updateJobStatus(job, 'draft')"

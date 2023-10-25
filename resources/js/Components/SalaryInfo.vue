@@ -17,12 +17,11 @@
             />
         </div>
         <div class="">
-            <Link
+            <button 
                 class="bg-blue-500 text-white py-3 px-6 rounded-md font-medium"
-                href="#"
             >
                 Post your salary anonymously
-            </Link>
+            </button>
         </div>
     </div>
 </template>

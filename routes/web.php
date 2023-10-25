@@ -47,6 +47,10 @@ Route::get('/my-published-jobs', [JobController::class, 'myPublishedJobs'])->nam
 Route::get('/my-published-jobs/{job}', [JobController::class, 'jobsApplicants'])->name('my-published-jobs.applicants')->middleware('auth');
 Route::put('/my-published-jobs/update-application-status/{applicant}/{status}', [ApplicantController::class, 'updateApplicationStatus'])->name('update-application-status')->middleware('auth');
 
+// access to the edit job view by slug
+// Route::get('/my-published-jobs/{job}/edit', [JobDetailController::class, 'edit'])->name('my-published-jobs.edit')->middleware('auth');
+// Route::put('/my-published-jobs/{job}/update', [JobDetailController::class, 'update'])->name('my-published-jobs.update')->middleware('auth');
+
 Route::put('/my-published-jobs/{job}/{status}', [JobDetailController::class, 'updateJobStatus'])->name('update-job-status')->middleware('auth');
 
 // Rutas para logearse
