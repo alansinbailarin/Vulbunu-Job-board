@@ -4,7 +4,7 @@
             class="grid md:grid-cols-2 my-4 items-center text-center md:text-left md:p-0 mx-auto"
         >
             <div class="block md:hidden mx-auto p-3 text-center">
-                <img src="../../img/heroimg.png" alt="" class="" />
+                <img src="../../img/heroimg.svg" alt="" class="" />
             </div>
             <div>
                 <span
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="hidden md:block mx-auto">
-                <img src="../../img/heroimg.png" alt="" class="" />
+                <img src="../../img/heroimg.svg" alt="" class="" />
             </div>
         </div>
     </div>

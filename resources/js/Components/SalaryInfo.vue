@@ -11,7 +11,7 @@
 
         <div>
             <img
-                src="../../img/salaries.png"
+                src="../../img/salaries.svg"
                 alt=""
                 class="mx-auto w-96 md:w-[40rem] my-8"
             />

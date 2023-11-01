@@ -14,7 +14,7 @@
         </div>
         <div class="items-center mt-8 md:mt0">
             <img
-                src="../../img/findcandidates.png"
+                src="../../img/findcandidates.svg"
                 alt=""
                 class="w-72 md:w-[22rem] mx-auto"
             />
