@@ -9,13 +9,13 @@
                     v-if="job.img_path"
                     :src="`https://primerempleolat.s3.us-east-2.amazonaws.com/${job.img_path}`"
                     alt=""
-                    class="w-20 lg:w-24 rounded-md h-14 lg:h-16 object-cover"
+                    class="w-20 lg:w-24 rounded-lg h-14 lg:h-16 object-cover"
                 />
                 <img
                     v-else
                     src="../../../img/no-image.jpeg"
                     alt=""
-                    class="w-20 lg:w-24 rounded-md h-14 lg:h-16 object-cover"
+                    class="w-20 lg:w-24 rounded-lg h-14 lg:h-16 object-cover"
                 />
                 <div class="ml-4">
                     <div v-if="job.featured" class="items-center">
@@ -68,7 +68,7 @@
                     <a
                         :href="`${job.apply_on}`"
                         target="_blank"
-                        class="border border-blue-500 rounded-md text-blue-500 transition-all duration-300 ease-in-out px-4 py-2"
+                        class="border block border-blue-500 text-center rounded-md text-blue-500 transition-all duration-300 ease-in-out px-4 py-2"
                         >Apply in the page</a
                     >
                 </div>

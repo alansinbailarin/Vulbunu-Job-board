@@ -513,7 +513,9 @@ const props = defineProps({
 onBeforeMount(() => {
     if (props.user) {
         window.Echo.private(`App.Models.User.${props.user.id}`).notification(
-            (notification) => {}
+            (notification) => {
+                console.log(notification);
+            }
         );
     }
 });
