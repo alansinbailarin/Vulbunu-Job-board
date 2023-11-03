@@ -110,18 +110,28 @@
         </div>
         <div class="mt-2 text-sm px-4">
             <div class="flex items-center gap-2">
-                <div v-if="job.priority.title == 'Alta'">
+                <div v-if="job.priority.title == 'Immediate'">
                     <p class="text-red-500">
                         {{ job.priority.title }} priority
                     </p>
                 </div>
-                <div v-else-if="job.priority.title == 'Media'">
+                <div v-else-if="job.priority.title == 'Urgent'">
                     <p class="text-orange-500">
                         {{ job.priority.title }} priority
                     </p>
                 </div>
-                <div v-else-if="job.priority.title == 'Baja'">
+                <div v-else-if="job.priority.title == 'High'">
+                    <p class="text-yellow-500">
+                        {{ job.priority.title }} priority
+                    </p>
+                </div>
+                <div v-else-if="job.priority.title == 'Medium'">
                     <p class="text-green-500">
+                        {{ job.priority.title }} priority
+                    </p>
+                </div>
+                <div v-else-if="job.priority.title == 'Low'">
+                    <p class="text-blue-500">
                         {{ job.priority.title }} priority
                     </p>
                 </div>

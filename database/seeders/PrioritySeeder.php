@@ -13,6 +13,33 @@ class PrioritySeeder extends Seeder
      */
     public function run(): void
     {
-        $priority = Priority::factory(4)->create();
+        // $priority = Priority::factory(4)->create();
+
+        $priorities = [
+            [
+                'id' => 1,
+                'title' => 'Low',
+            ],
+            [
+                'id' => 2,
+                'title' => 'Medium',
+            ],
+            [
+                'id' => 3,
+                'title' => 'High',
+            ],
+            [
+                'id' => 4,
+                'title' => 'Urgent',
+            ],
+            [
+                'id' => 5,
+                'title' => 'Immediate',
+            ],
+        ];
+
+        foreach ($priorities as $priority) {
+            Priority::factory()->create($priority);
+        }
     }
 }

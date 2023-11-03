@@ -13,6 +13,31 @@ class CurrencySeeder extends Seeder
      */
     public function run(): void
     {
-        $currency = Currency::factory(4)->create();
+        // $currency = Currency::factory(4)->create();
+
+        $currencies = [
+            [
+                'id' => 1,
+                'code' => 'USD',
+                'name' => 'US Dollar',
+                'symbol' => '$',
+            ],
+            [
+                'id' => 2,
+                'code' => 'EUR',
+                'name' => 'Euro',
+                'symbol' => '€',
+            ],
+            [
+                'id' => 3,
+                'code' => 'MXN',
+                'name' => 'Mexican Peso',
+                'symbol' => '$',
+            ]
+        ];
+
+        foreach ($currencies as $currency) {
+            Currency::factory()->create($currency);
+        }
     }
 }

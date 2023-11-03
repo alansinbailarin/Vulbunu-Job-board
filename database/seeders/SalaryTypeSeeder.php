@@ -13,6 +13,29 @@ class SalaryTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $salaryType = SalaryType::factory(4)->create();
+        // $salaryType = SalaryType::factory(4)->create();
+
+        $salaries = [
+            [
+                'id' => 1,
+                'title' => 'Base salary',
+            ],
+            [
+                'id' => 2,
+                'title' => 'Commission',
+            ],
+            [
+                'id' => 3,
+                'title' => 'Sale',
+            ],
+            [
+                'id' => 4,
+                'title' => 'Hourly',
+            ]
+        ];
+
+        foreach ($salaries as $salary) {
+            SalaryType::factory()->create($salary);
+        }
     }
 }

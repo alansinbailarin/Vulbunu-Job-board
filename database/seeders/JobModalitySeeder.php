@@ -13,6 +13,28 @@ class JobModalitySeeder extends Seeder
      */
     public function run(): void
     {
-        $jobModality = JobModality::factory(4)->create();
+        // $jobModality = JobModality::factory(4)->create();
+
+        $jobModalities = [
+            [
+                'id' => 1,
+                'title' => 'Remote',
+                'description' => 'Remote job'
+            ],
+            [
+                'id' => 2,
+                'title' => 'Presential',
+                'description' => 'Presential job'
+            ],
+            [
+                'id' => 3,
+                'title' => 'Mixed',
+                'description' => 'Mixed job type'
+            ]
+        ];
+
+        foreach ($jobModalities as $jobModality) {
+            JobModality::factory()->create($jobModality);
+        }
     }
 }

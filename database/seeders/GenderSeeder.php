@@ -13,6 +13,28 @@ class GenderSeeder extends Seeder
      */
     public function run(): void
     {
-        $gender = Gender::factory(4)->create();
+        // $gender = Gender::factory(4)->create();
+
+        $genders = [
+            [
+                'id' => 1,
+                'name' => 'Male',
+                'description' => 'Male gender'
+            ],
+            [
+                'id' => 2,
+                'name' => 'Female',
+                'description' => 'Female gender'
+            ],
+            [
+                'id' => 3,
+                'name' => 'Other',
+                'description' => 'Other gender'
+            ]
+        ];
+
+        foreach ($genders as $gender) {
+            Gender::factory()->create($gender);
+        }
     }
 }
