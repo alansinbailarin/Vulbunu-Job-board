@@ -43,8 +43,6 @@ const props = defineProps({
     works: Array || Object,
 });
 
-console.log(props.userSkills.value);
-
 const page = usePage();
 </script>
 

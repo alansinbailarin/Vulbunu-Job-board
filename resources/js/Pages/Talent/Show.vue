@@ -308,7 +308,7 @@
                             </div>
 
                             <div>
-                                <p class="text-gray-400 text-sm">
+                                <p class="text-gray-400 text-sm whitespace-pre">
                                     {{ talent.about_me }}
                                 </p>
 

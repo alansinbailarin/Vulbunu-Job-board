@@ -1073,8 +1073,6 @@ const props = defineProps({
     },
 });
 
-console.log(props.job);
-
 const form = useForm({
     user_id: props.user_id,
     title: props.job.title,

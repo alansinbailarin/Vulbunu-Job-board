@@ -174,7 +174,7 @@ class JobController extends Controller
                 'extra_info' => 'required|string|min:20|max:1000',
                 'requirements' => 'required|string|min:20|max:1000',
                 'responsabilities' => 'required|string|min:20|max:1000',
-                'logo' => 'required|mimes:jpg,png,jpeg|max:1024'
+                'logo' => 'required|mimes:jpg,png,jpeg|max:2048'
             ]
         );
 

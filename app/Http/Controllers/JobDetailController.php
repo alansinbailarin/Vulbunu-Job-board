@@ -100,7 +100,7 @@ class JobDetailController extends Controller
             'extra_info' => 'required|string|min:20|max:1000',
             'requirements' => 'required|string|min:20|max:1000',
             'responsabilities' => 'required|string|min:20|max:1000',
-            'logo' => 'nullable|mimes:jpg,png,jpeg|max:1024'
+            'logo' => 'nullable|mimes:jpg,png,jpeg|max:2048'
         ]);
 
         if (!$job) {
