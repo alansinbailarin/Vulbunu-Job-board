@@ -2,7 +2,7 @@
     <Head title="Vulbunu - Sign up">
         <meta
             name="description"
-            content="Únete a la comunidad de Vulbunu y comienza a explorar oportunidades laborales. Regístrate para acceder a una amplia gama de trabajos y conectarte con empresas en búsqueda de talento como tú."
+            content="Join the Vulbunu community and start exploring job opportunities. Sign up to access a wide range of jobs and connect with companies looking for talent like you."
         />
     </Head>
 
