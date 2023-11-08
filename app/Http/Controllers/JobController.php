@@ -114,6 +114,7 @@ class JobController extends Controller
         $salariesTypes = SalaryType::all();
         $periodicities = Periodicity::all();
         $tags = Tag::all();
+        $paypalClientId = env('PAYPAL_CLIENT_ID');
 
         return Inertia::render('Jobs/Create', [
             'categories' => $categories,
@@ -125,6 +126,7 @@ class JobController extends Controller
             'periodicities' => $periodicities,
             'tags' => $tags,
             'user_id' => $user_id,
+            'paypalClientId' => $paypalClientId,
         ]);
     }
 
@@ -176,6 +178,7 @@ class JobController extends Controller
                 'responsabilities' => 'required|string|min:20|max:1000',
                 'logo' => 'required|mimes:jpg,png,jpeg|max:2048',
                 'anonymous' => 'required|boolean',
+                'featured' => 'required|boolean',
             ]
         );
 

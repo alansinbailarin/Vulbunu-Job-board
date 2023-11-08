@@ -35,6 +35,7 @@ class Job extends Model
         'extra_info',
         'color',
         'anonymous',
+        'featured'
     ];
 
     protected $uuidVersion = 4;

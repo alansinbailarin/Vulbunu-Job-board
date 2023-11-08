@@ -1057,6 +1057,11 @@
                 >
                     Publish job offer
                 </button>
+                <div class="text-center mt-3 flex text-gray-500 text-sm">
+                    <input id="featured" name="featured" type="checkbox" :disabled="form.featured == true" class="w-4 mt-0.5 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded" v-model="featuredAction" >
+                    <label for="featured">Do you want your job to be positioned in a better way, highlight it, make it last longer published and get more applicants? Do not hesitate to do so by checking this checkbox, so you can also help maintain the platform.</label>
+                </div>
+                <div id="paypal-button-container" class="mt-4"  :class="{ 'hidden': featuredAction == false || form.featured == true} "></div>
             </form>
         </div>
     </div>
@@ -1070,6 +1075,7 @@ import { useForm } from "@inertiajs/vue3";
 import { vOnClickOutside } from "@vueuse/components";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { component as CKEditor } from "@ckeditor/ckeditor5-vue";
+import Swal from "sweetalert2";
 
 const props = defineProps({
     categories: {
@@ -1099,7 +1105,54 @@ const props = defineProps({
     tags: {
         type: Array,
     },
+    paypalClientId: {
+        type: String,
+    },
 });
+
+const featuredAction = ref(false); 
+
+const initializePaypal = () => {
+    paypal_sdk.Buttons({
+      style: {
+        color: 'gold',
+        shape: 'rect',
+        label: 'pay',
+        layout: 'vertical'
+
+      },
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '12.99'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // Una vez que se haya aprobado el pago, puedes abrir un modal aquí
+                openModalWithPaymentConfirmation(details);
+
+                if (details.status == "COMPLETED") {
+                    form.featured = true;
+                } else {
+                    form.featured = false;
+                }
+            });
+        }
+    }).render('#paypal-button-container')
+}
+
+const openModalWithPaymentConfirmation = (details) => {
+    Swal.fire({
+        title: 'Payment successful',
+        text: 'Thanks for help the platform to be a betterplace for everyone!',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+    })
+}
 
 const form = useForm({
     user_id: props.user_id,
@@ -1127,6 +1180,7 @@ const form = useForm({
     requirements: "",
     responsabilities: "",
     anonymous: "",
+    featured: false,
 });
 
 watch(
@@ -1185,8 +1239,11 @@ watch(
     }
 );
 
+
+
 onMounted(() => {
     getCountries();
+    initializePaypal();
 
     let savedTitle = localStorage.getItem("title");
     let savedCategory = localStorage.getItem("category_id");
