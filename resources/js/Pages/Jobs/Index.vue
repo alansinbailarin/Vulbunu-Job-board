@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Head :title="`${count} Trabajos para ti`">
+        <Head :title="`${count} jobs for you`">
             <meta
                 name="description"
-                content="Busca en nuestra basta lista de empleos publicados diariamente, encuentra el que mejor se adapte a ti."
+                content="Search our vast list of jobs published daily, find the one that best suits you."
             />
         </Head>
     </div>
@@ -19,7 +19,7 @@
                     <p
                         class="text-sm md:text-base lg:text-lg text-gray-200 mt-4"
                     >
-                        Search through our extensive list of job postings
+                        Search through our list of job postings
                         published daily, and find the one that suits you best
                     </p>
                 </div>

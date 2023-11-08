@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Head title="Mis empleos publicados"> </Head>
+        <Head title="My published jobs"> </Head>
     </div>
     <div class="container my-1 p-4 mx-auto">
         <div class="grid grid-cols-2 md:grid-cols-4 md:gap-4 gap-2 my-4">

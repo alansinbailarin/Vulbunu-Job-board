@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Head :title="`Aplicantes de ${job.title}`"> </Head>
+        <Head :title="`Applicants for ${job.title}`"> </Head>
     </div>
     <div class="container my-1 p-4 mx-auto">
         <div class="flex items-center justify-between">

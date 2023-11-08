@@ -1,5 +1,5 @@
 <template>
-    <Head title="Configuración del perfil"></Head>
+    <Head title="Profile settings"></Head>
     <div class="container mx-auto my-4 px-4">
         <div class="p-4 gap-4 rounded-md">
             <UpdateProfileInformationForm

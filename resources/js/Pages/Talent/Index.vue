@@ -1,9 +1,9 @@
 <template>
     <div>
-        <Head :title="`${count} Talentos disponibles`">
+        <Head :title="`${count} available talents`">
             <meta
                 name="description"
-                content="Explora nuestra lista de talentos disponibles y encuentra candidatos calificados para tus necesidades de contratación. Encuentra profesionales en diversas áreas listos para contribuir a tu equipo."
+                content="Explore our list of available talent and find qualified candidates for your hiring needs. Find professionals in various areas ready to contribute to your team."
             />
         </Head>
     </div>

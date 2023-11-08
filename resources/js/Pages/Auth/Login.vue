@@ -1,8 +1,8 @@
 <template>
-    <Head title="Vulbunu - login">
+    <Head title="Vulbunu - Login">
         <meta
             name="description"
-            content="Encuentra oportunidades de trabajo y conecta con empresas líderes. Inicia sesión en Vulbunu para acceder a tu cuenta y explorar las ofertas laborales que se ajustan a tus habilidades y preferencias."
+            content="Find job opportunities and connect with leading companies. Log in to Vulbunu to access your account and explore job openings that match your skills and preferences."
         />
     </Head>
 

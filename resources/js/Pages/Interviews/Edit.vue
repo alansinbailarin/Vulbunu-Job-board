@@ -1,5 +1,5 @@
 <template>
-    <Head title="Entrevista"></Head>
+    <Head title="Interviews"></Head>
     <div class="container my-1 p-4 mx-auto">
         <h1 class="font-medium text-gray-700 text-xl">
             Edit Interview Information

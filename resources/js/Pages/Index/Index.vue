@@ -1,8 +1,8 @@
 <template>
-    <Head title="Vulbunu - Number 1 platform to find your first job">
+    <Head title="Vulbunu - Find the best offers that fit your needs">
         <meta
             name="description"
-            content="Busca en nuestra basta lista de empleos publicados diariamente y de talentos disponibles, encuentra el que mejor se adapte a ti."
+            content="Search our vast list of jobs published daily and available talents, find the one that best suits you"
         />
     </Head>
     <Hero />
