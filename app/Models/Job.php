@@ -33,11 +33,11 @@ class Job extends Model
         'city_id',
         'apply_on',
         'extra_info',
-        'color'
+        'color',
+        'anonymous',
     ];
 
     protected $uuidVersion = 4;
-
 
     public static function boot()
     {

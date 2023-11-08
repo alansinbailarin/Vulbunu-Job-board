@@ -267,8 +267,8 @@
                         >
                             <option value="" hidden>Select an option</option>
 
-                            <option :value="1">Show</option>
-                            <option :value="0">Don't show</option>
+                            <option :value="0">Show</option>
+                            <option :value="1">Don't show</option>
                         </select>
                         <div
                             v-if="form.errors.anonymous"
@@ -1126,7 +1126,7 @@ const form = useForm({
     extra_info: "",
     requirements: "",
     responsabilities: "",
-    anonymous: true,
+    anonymous: "",
 });
 
 watch(

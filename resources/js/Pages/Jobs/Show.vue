@@ -29,7 +29,7 @@
                                 {{ job.title }}
                             </span>
                         </div>
-                        <div v-if="job.anonymous != 1">
+                        <div v-if="job.anonymous == 0">
                             <Link
                                 :href="`/talents/${job.user.slug}`"
                                 class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1"
@@ -58,7 +58,7 @@
                         <h1 class="font-medium text-lg md:text-2xl lg:text-3xl">
                             {{ job.title }}
                         </h1>
-                        <Link v-if="job.anonymous != 1"
+                        <Link v-if="job.anonymous == 0"
                             :href="`/talents/${job.user.slug}`"
                             class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1"
                         >

@@ -184,7 +184,7 @@ class JobController extends Controller
         $slugWithoutNumbers = str_replace(' ', '-', $request->title);
         $slug = $slugWithoutNumbers . '-' . rand(1000, 9999);
         $job = Job::create($validateData);
-        $deathline = Carbon::now()->addDays($job->featured ? 45 : 25);
+        $deathline = Carbon::now()->addDays($job->featured ? 60 : 30);
         $job->slug = $slug;
         $job->img_path = $img_path;
         $job->deathline = $deathline;
