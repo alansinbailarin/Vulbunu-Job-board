@@ -267,8 +267,8 @@
                         >
                             <option value="" hidden>Select an option</option>
 
-                            <option :value="0">Show publisher</option>
-                            <option :value="1">Don't show</option>
+                            <option :value="1">Show publisher</option>
+                            <option :value="0">Don't show</option>
                         </select>
                         <div
                             v-if="form.errors.anonymous"
