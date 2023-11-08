@@ -53,7 +53,19 @@ class InterviewNotification extends Notification
      *
      * @return array<string, mixed>
      */
-    public function toArray(object $notifiable): array
+    public function toDatabase(object $notifiable): array
+    {
+        $interviewInfo = $this->interview;
+        $sender = auth()->user();
+
+        return [
+            'sender' => $sender->name . ' ' . $sender->last_name,
+            'url' => '/my-applications',
+            'message' => ' has invited you to an interview for the job vacancy ' . $interviewInfo->applicant->job->title,
+        ];
+    }
+
+    public function toArray($notifiable)
     {
         return [
             //
