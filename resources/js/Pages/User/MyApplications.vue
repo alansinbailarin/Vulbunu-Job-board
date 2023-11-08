@@ -282,8 +282,11 @@
                             </div>
                         </div>
                     </div>
-                    <h1 class="text-xs text-gray-700">
+                    <h1 v-if="job.anonymous != 1" class="text-xs text-gray-700">
                         {{ job.user.name }} {{ job.user.last_name }}
+                    </h1>
+                    <h1 v-else class="text-xs text-gray-700">
+                        Anonymous
                     </h1>
                     <p class="text-xs mt-2 font-light text-gray-500">
                         {{

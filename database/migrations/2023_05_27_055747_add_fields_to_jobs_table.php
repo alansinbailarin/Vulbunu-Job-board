@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('featured')->default(false);
             $table->string('img_path')->default('');
             $table->string('deathline')->nullable();
+            $table->boolean('anonymous')->default(false);
 
             $table->unsignedBigInteger('clicks')->default(0);
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');

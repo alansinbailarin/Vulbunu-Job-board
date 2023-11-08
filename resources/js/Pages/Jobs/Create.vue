@@ -200,7 +200,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-2 mt-4 md:mt-0">
+                    <div class="col-span-1 mt-4 md:mt-0">
                         <label
                             for="status"
                             class="flex items-center mb-2 font-medium"
@@ -242,6 +242,47 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-span-1 mt-4 md:mt-0">
+                        <label
+                            for="show_publisher"
+                            class="flex items-center mb-2 font-medium"
+                            >Show publisher<span class="text-lg text-red-600"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="8"
+                                    height="8"
+                                    fill="currentColor"
+                                    class="bi bi-asterisk ml-1"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
+                                    /></svg></span
+                        ></label>
+                        <select
+                            id="show_publisher"
+                            form="createJob"
+                            v-model="form.anonymous"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
+                        >
+                            <option value="" hidden>Select an option</option>
+
+                            <option :value="0">Show publisher</option>
+                            <option :value="1">Don't show</option>
+                        </select>
+                        <div
+                            v-if="form.errors.anonymous"
+                            class="px-2 py-2 rounded-md"
+                        >
+                            <div class="flex items-center">
+                                <div>
+                                    <p class="text-sm text-red-600 text-left">
+                                        {{ form.errors.anonymous }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-span-2 mt-4 md:mt-0">
                         <label for="color" class="flex items-center font-medium"
                             >Logo<span class="text-lg text-red-600"
@@ -267,7 +308,7 @@
                                 @input="form.logo = $event.target.files[0]"
                             />
                             <p class="text-[0.6rem] mt-1 text-gray-500">
-                                JPEG, JPG, PNG (Max. 1MB).
+                                JPEG, JPG, PNG (Max. 4MB).
                             </p>
                         </div>
                         <div
@@ -1085,6 +1126,7 @@ const form = useForm({
     extra_info: "",
     requirements: "",
     responsabilities: "",
+    anonymous: true,
 });
 
 watch(
@@ -1104,6 +1146,7 @@ watch(
         () => form.periodicity_id,
         () => form.description,
         () => form.extra_info,
+        () => form.anonymous
     ],
     ([
         newTitle,
@@ -1121,6 +1164,7 @@ watch(
         newPeriodicity,
         newDescription,
         newExtraInfo,
+        newAnonymous
     ]) => {
         localStorage.setItem("title", newTitle);
         localStorage.setItem("category_id", newCategory);
@@ -1137,6 +1181,7 @@ watch(
         localStorage.setItem("periodicity_id", newPeriodicity);
         localStorage.setItem("description", newDescription);
         localStorage.setItem("extra_info", newExtraInfo);
+        localStorage.setItem("anonymous", newAnonymous);
     }
 );
 
@@ -1158,6 +1203,7 @@ onMounted(() => {
     let savedPeriodicity = localStorage.getItem("periodicity_id");
     let savedDescription = localStorage.getItem("description");
     let savedExtraInfo = localStorage.getItem("extra_info");
+    let savedAnonymous = localStorage.getItem("anonymous");
 
     if (savedCategory) {
         form.category_id = savedCategory;
@@ -1216,6 +1262,10 @@ onMounted(() => {
 
     if (savedExtraInfo) {
         form.extra_info = savedExtraInfo;
+    }
+
+    if (savedAnonymous) {
+        form.anonymous = savedAnonymous;
     }
 });
 

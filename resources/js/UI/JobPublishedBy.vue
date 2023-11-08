@@ -21,14 +21,20 @@
                     >
                         {{ job.title }}
                     </span>
-                    <span class="text-gray-500 text-sm flex items-center gap-1"
+                    <span v-if="job.anonymous != 1" class="text-gray-500 text-sm flex items-center gap-1"
                         >{{ job.user.name }} {{ job.user.last_name }}
+                    </span>
+                    <span v-else class="text-gray-500 text-sm flex items-center gap-1"
+                        >Anonymous publisher
                     </span>
                 </div>
                 <div v-else>
                     <h1 class="font-medium">{{ job.title }}</h1>
-                    <p class="text-gray-500 text-sm">
+                    <p v-if="job.anonymous != 1" class="text-gray-500 text-sm">
                         {{ job.user.name }} {{ job.user.last_name }}
+                    </p>
+                    <p v-else class="text-gray-500 text-sm">
+                        Anonymous publisher
                     </p>
                 </div>
             </div>

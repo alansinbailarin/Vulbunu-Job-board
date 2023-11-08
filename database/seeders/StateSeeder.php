@@ -273,7 +273,7 @@ class StateSeeder extends Seeder
             ['id' => '1312', 'country_id' => '75', 'name' => 'vosges'],
             ['id' => '1313', 'country_id' => '75', 'name' => 'yonne'],
             ['id' => '1314', 'country_id' => '75', 'name' => 'yvelines'],
-            ['id' => '1354', 'country_id' => '82', 'name' => 'auvergne'],
+
             ['id' => '1355', 'country_id' => '82', 'name' => 'baden-wurttemberg'],
             ['id' => '1356', 'country_id' => '82', 'name' => 'bavaria'],
             ['id' => '1357', 'country_id' => '82', 'name' => 'bayern'],
