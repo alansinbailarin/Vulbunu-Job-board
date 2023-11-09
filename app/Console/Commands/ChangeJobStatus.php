@@ -32,6 +32,10 @@ class ChangeJobStatus extends Command
             if ($job->deathline != null) {
                 if (strtotime($job->deathline) < time()) {
                     $job->update(['status' => 'archived']);
+
+                    if ($job->featured == true) {
+                        $job->update(['featured' => false]);
+                    }
                 }
             }
         }
