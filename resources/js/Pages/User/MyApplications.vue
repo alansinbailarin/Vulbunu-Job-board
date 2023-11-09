@@ -463,7 +463,7 @@
             </Box>
         </div>
 
-        <div v-if="applicantInterviews" class="mt-4 ">
+        <div v-if="applicantInterviews.length > 0" class="mt-4 ">
             <h1 class="font-medium mb-3">Interviews</h1>
             <div class="grid md:grid-cols-4 grid-cols-1 md:gap-4 ">
                 <box v-for="interview in applicantInterviews" :key="interview.id" :class="interviewModalityColor(interview.interviews[0].interview_type)" >
