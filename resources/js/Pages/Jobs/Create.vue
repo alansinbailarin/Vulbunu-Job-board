@@ -562,19 +562,7 @@
                         <label
                             for="city"
                             class="flex items-center mb-2 font-medium"
-                            >City<span class="text-lg text-red-600"
-                                ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="8"
-                                    height="8"
-                                    fill="currentColor"
-                                    class="bi bi-asterisk ml-1"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path
-                                        d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"
-                                    /></svg></span
-                        ></label>
+                            >City</label>
                         <select
                             id="city"
                             v-model="selectedCity"
@@ -1059,7 +1047,7 @@
                 </button>
                 <div class="text-center mt-3 flex text-gray-500 text-sm">
                     <input id="featured" name="featured" type="checkbox" :disabled="form.featured == true" class="w-4 mt-0.5 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded" v-model="featuredAction" >
-                    <label for="featured">Do you want your job to be positioned in a better way, highlight it, make it last longer published and get more applicants? Do not hesitate to do so by checking this checkbox, so you can also help maintain the platform.</label>
+                    <label for="featured">Do you want your publication to be listed among the first? Do you want to get more clicks and more applicants for your publication? Do you want your publication to stand out among the others? May your publication last longer? and send your published jobs weekly to registered users on the platform? If so, do not hesitate to highlight your publication by clicking this text <span class="font-semibold text-gray-700">Only for 14.99</span>.</label>
                 </div>
                 <div id="paypal-button-container" class="mt-4"  :class="{ 'hidden': featuredAction == false || form.featured == true} "></div>
             </form>
@@ -1125,7 +1113,7 @@ const initializePaypal = () => {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '12.99'
+                        value: '14.99'
                     }
                 }]
             });
@@ -1200,7 +1188,8 @@ watch(
         () => form.periodicity_id,
         () => form.description,
         () => form.extra_info,
-        () => form.anonymous
+        () => form.anonymous,
+        () => form.featured
     ],
     ([
         newTitle,
@@ -1218,7 +1207,9 @@ watch(
         newPeriodicity,
         newDescription,
         newExtraInfo,
-        newAnonymous
+        newAnonymous,
+        newFeatured
+
     ]) => {
         localStorage.setItem("title", newTitle);
         localStorage.setItem("category_id", newCategory);
@@ -1236,10 +1227,17 @@ watch(
         localStorage.setItem("description", newDescription);
         localStorage.setItem("extra_info", newExtraInfo);
         localStorage.setItem("anonymous", newAnonymous);
+        localStorage.setItem("featured", newFeatured);
     }
 );
 
-
+const isFeatured = () => {
+    if (form.featured == true) {
+        featuredAction.value = true;
+    } else {
+        featuredAction.value = false;
+    }
+}
 
 onMounted(() => {
     getCountries();
@@ -1261,6 +1259,7 @@ onMounted(() => {
     let savedDescription = localStorage.getItem("description");
     let savedExtraInfo = localStorage.getItem("extra_info");
     let savedAnonymous = localStorage.getItem("anonymous");
+    let savedFeatured = localStorage.getItem("featured");
 
     if (savedCategory) {
         form.category_id = savedCategory;
@@ -1324,6 +1323,14 @@ onMounted(() => {
     if (savedAnonymous) {
         form.anonymous = savedAnonymous;
     }
+
+    if (savedFeatured) {
+    form.featured = JSON.parse(savedFeatured);
+    }
+
+    watch(form, () => {
+        isFeatured();
+    });
 });
 
 const publish = () => {
