@@ -462,13 +462,44 @@
                 </div>
             </Box>
         </div>
+
+        <div v-if="applicantInterviews" class="mt-4 ">
+            <h1 class="font-medium mb-3">Interviews</h1>
+            <div class="grid md:grid-cols-4 grid-cols-1 md:gap-4 ">
+                <box v-for="interview in applicantInterviews" :key="interview.id" :class="interviewModalityColor(interview.interviews[0].interview_type)" >
+                    <p class="text-sm font-medium text-gray-700">{{ formatInterviewDuration(interview.interviews[0].interview_duration) }}</p>
+                    <p class="text-xs text-gray-400">{{ interview.interviews[0].interviewer_name }}</p>
+
+                    <p class="text-xs text-gray-500 mt-1.5" v-if="interview.interviews[0].interview_observation">
+                        {{ interview.interviews[0].interview_observation  }}
+                    </p>
+                    <p v-else class="text-xs text-gray-400">No observations</p>
+
+                    <div v-if="interview.interviews[0].interview_type == 'presential'" class="mt-4">
+                        <a :href="interview.interviews[0].interview_link" target="_blank" class="text-sm text-indigo-500">See location</a>
+                    </div>
+                    <div v-else-if="interview.interviews[0].interview_type == 'virtual'" class="mt-4">
+                        <a :href="interview.interviews[0].interview_link" target="_blank" class="text-sm text-green-500">Go to the meeting</a>
+                    </div>           
+                    <hr class="mt-3 ">     
+                    <p class="text-gray-400 text-xs mt-1.5">{{
+                        moment(
+                            interview?.interviews[0].interview_date
+                        ).format(
+                            "MMMM Do YYYY hh:mm a"
+                        )
+                    }}.</p>
+                </box>
+            </div>
+        </div>
     </div>
+    
 </template>
 
 <script setup>
 import { Head, useForm } from "@inertiajs/vue3";
 import Box from "@/UI/Box.vue";
-import { ref } from "vue";
+import { ref, computed } from 'vue';
 import moment from "moment";
 import "moment/dist/locale/es";
 import Chart from "./components/Chart.vue";
@@ -494,11 +525,47 @@ const props = defineProps({
     pendingCount: Number,
     approvedCount: Number,
     rejectedCount: Number,
+    applicantInterviews: Array,
 });
 
 const form = useForm({
     applicant_id: "",
 });
+
+const interviewModalityColor = (modality) => {
+    if (modality === "presential") {
+        return "border-t-4 border-indigo-500";
+    } else if (modality === "virtual") {
+        return "border-t-4 border-green-500";
+    }
+}
+
+console.log(props.applicantInterviews);
+
+
+
+const formatInterviewDuration = (duration) => {
+    const parts = duration.split(':');
+      const hours = parseInt(parts[0]);
+      const minutes = parseInt(parts[1]);
+      const seconds = parseInt(parts[2]);
+
+      let formattedDuration = '';
+
+      if (hours > 0) {
+        formattedDuration += `${hours} hour `;
+      }
+
+      if (minutes > 0) {
+        formattedDuration += `${minutes} minutes`;
+      }
+
+      if (hours === 0 && minutes === 0) {
+        formattedDuration += `${seconds} seconds`;
+      }
+
+      return formattedDuration.trim();
+};
 
 const isOpen = ref(false);
 

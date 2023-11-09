@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.1",
         "fakerphp/faker": "^1.23",
+        "google/apiclient": "^2.15",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.9",
         "laravel/framework": "^10.10",
@@ -20,6 +21,7 @@
         "openai-php/laravel": "^0.6.0",
         "pusher/pusher-php-server": "^7.2",
         "ramsey/uuid": "^4.7",
+        "spatie/laravel-google-calendar": "^3.7",
         "tightenco/ziggy": "^1.6"
     },
     "require-dev": {

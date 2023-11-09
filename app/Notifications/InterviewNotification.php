@@ -43,6 +43,7 @@ class InterviewNotification extends Notification
         return (new MailMessage)
             ->greeting('Hello!')
             ->line('You have been invited to an interview for the job vacancy ' . $interviewInfo->applicant->job->title . ' by ' . $sender->name . ' ' . $sender->last_name)
+            ->line('Interview date: ' . $interviewInfo->interview_date)
             ->line('See all the interview information by clicking the "Interview information" button')
             ->action('Check your applications', url($url))
             ->line('Thank you for using our application!');

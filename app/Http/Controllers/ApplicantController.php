@@ -104,6 +104,20 @@ class ApplicantController extends Controller
                 ->where('status', 'rejected')
                 ->count();
 
+            // get the interviews by date asc
+            $applicantInterviews = Applicant::where('user_id', $user->id)
+                ->with([
+                    'interviews' => function ($query) {
+                        $query->orderBy('interview_date', 'asc')
+                            ->where('status', 'approved');
+                    }
+                ])->get();
+
+            // Get applicant interview only if the interview length is > 0
+            $applicantInterviews = $applicantInterviews->filter(function ($applicant) {
+                return $applicant->interviews->count() > 0;
+            });
+
             // Calcula el porcentaje
             $percentajeTotalLastWeek = $lastWeekApplications;
             $percentajePendingLastWeek = $lastWeekPendingApps;
@@ -140,8 +154,10 @@ class ApplicantController extends Controller
                 'pendingCount' => $pendingCount,
                 'approvedCount' => $approvedCount,
                 'rejectedCount' => $rejectedCount,
+                'applicantInterviews' => $applicantInterviews,
             ]);
         } else {
+
             return redirect()->back()->with('success', 'You must log in to view your applications');
         }
     }
