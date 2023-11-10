@@ -66,7 +66,6 @@ class TalentController extends Controller
                 ->whereNotNull('about_me')
                 ->whereNotNull('country_id')
                 ->whereNotNull('state_id')
-                ->whereNotNull('city_id')
                 ->orderBy('created_at', 'desc')
                 ->paginate()
                 ->withQueryString();
@@ -113,7 +112,6 @@ class TalentController extends Controller
                 ->whereNotNull('about_me')
                 ->whereNotNull('country_id')
                 ->whereNotNull('state_id')
-                ->whereNotNull('city_id')
                 ->orderBy('created_at', 'desc')
                 ->paginate()
                 ->withQueryString();
