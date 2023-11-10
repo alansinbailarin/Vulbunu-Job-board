@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command(ChangeJobStatus::class)->daily();
-        $schedule->command(SendJobsToCustomers::class)->everyMinute();
+        $schedule->command(SendJobsToCustomers::class)->weekly();
     }
 
     /**
