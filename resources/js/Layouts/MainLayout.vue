@@ -2,7 +2,7 @@
     <div class="bg-gray-100">
         <Navbar :user="user" />
         <ToastList class="" />
-        <main class="">
+        <main class="min-h-[78vh]">
             <slot>Default</slot>
         </main>
         <Footer />
