@@ -16,7 +16,11 @@
             <div class="ml-4 items-center">
                 <div v-if="job.featured">
                     <span
-                        :style="`color: ${job.color};`"
+                        :style="`color: ${job.color}; 
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;`"
                         :class="['font-medium flex items-center gap-1']"
                     >
                         {{ job.title }}
@@ -41,7 +45,7 @@
                     </span>
                 </div>
                 <div v-else>
-                    <h1 class="font-medium">{{ job.title }}</h1>
+                    <h1 class="font-medium line-clamp-2">{{ job.title }}</h1>
                     <p v-if="job.anonymous == 0" class="text-gray-500 text-sm">
                         {{ job.user.name }} {{ job.user.last_name }}
                     </p>

@@ -207,11 +207,11 @@
                             <a
                                 :href="`/jobs/${job.slug}`"
                                 :style="jobTitleColorIfFeatured(job)"
-                                class="font-medium"
+                                class="font-medium line-clamp-1"
                                 >{{ job.title }}</a
                             >
                         </div>
-                        <div class="">
+                        <div class="flex">
                             <span :class="getStatusColor(applicant.status)">{{
                                 changeStatusText(applicant.status)
                             }}</span>

@@ -187,11 +187,11 @@
                             <a
                                 :href="`/my-published-jobs/${job.slug}`"
                                 :style="jobTitleColorIfFeatured(job)"
-                                class="font-medium"
+                                class="font-medium line-clamp-1"
                                 >{{ job.title }}</a
                             >
                         </div>
-                        <div>
+                        <div class="flex">
                             <span :class="getStatusColor(job.status)">{{
                                 changeStatusText(job.status)
                             }}</span>
@@ -333,11 +333,11 @@
                             <a
                                 :href="`/my-published-jobs/${job.slug}`"
                                 :style="jobTitleColorIfFeatured(job)"
-                                class="font-medium"
+                                class="font-medium line-clamp-1"
                                 >{{ job.title }}</a
                             >
                         </div>
-                        <div>
+                        <div class="flex">
                             <span :class="getStatusColor(job.status)">{{
                                 changeStatusText(job.status)
                             }}</span>
@@ -479,11 +479,11 @@
                             <a
                                 :href="`/my-published-jobs/${job.slug}`"
                                 :style="jobTitleColorIfFeatured(job)"
-                                class="font-medium"
+                                class="font-medium line-clamp-1"
                                 >{{ job.title }}</a
                             >
                         </div>
-                        <div>
+                        <div class="flex">
                             <span :class="getStatusColor(job.status)">{{
                                 changeStatusText(job.status)
                             }}</span>

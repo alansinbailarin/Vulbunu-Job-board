@@ -23,6 +23,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Str;
 
 class JobController extends Controller
 {
@@ -184,7 +185,7 @@ class JobController extends Controller
 
         $folder = "images";
         $img_path = Storage::disk('s3')->put($folder, $request->logo, 'public');
-        $slugWithoutNumbers = str_replace(' ', '-', $request->title);
+        $slugWithoutNumbers = Str::slug($request->title);
         $slug = $slugWithoutNumbers . '-' . rand(1000, 9999);
         $job = Job::create($validateData);
         $deathline = Carbon::now()->addDays($job->featured ? 60 : 30);
