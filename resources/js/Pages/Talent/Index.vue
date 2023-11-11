@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <div v-else class="col-span-3 text-center my-12">
-                        <h1 class="text-2xl font-bold">Lo sentimos</h1>
+                        <h1 class="text-2xl font-bold">We sorry</h1>
                         <p class="text-gray-500">
                             We couldn't find any results for your search
                         </p>

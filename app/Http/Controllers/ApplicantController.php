@@ -106,16 +106,24 @@ class ApplicantController extends Controller
 
             // get the interviews by date asc
             $applicantInterviews = Applicant::where('user_id', $user->id)
+                ->has('interviews', '>', 0) // al menos una entrevista
+                ->whereHas('job', function ($query) {
+                    $query->where('status', 'published');
+                })
                 ->with([
                     'interviews' => function ($query) {
                         $query->orderBy('interview_date', 'asc')
                             ->where('status', 'approved');
+                    },
+                    'job' => function ($query) {
+                        $query->where('status', 'published');
                     }
-                ])->get();
+                ])
+                ->get();
 
-            // Get applicant interview only if the interview length is > 0
+            // Get applicant interview only if the interview length is > 0 and if the job status is published
             $applicantInterviews = $applicantInterviews->filter(function ($applicant) {
-                return $applicant->interviews->count() > 0;
+                return $applicant->interviews->count() > 0 && $applicant->job;
             });
 
             // Calcula el porcentaje
