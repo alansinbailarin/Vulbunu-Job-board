@@ -126,7 +126,7 @@
                                 <li>
                                     <Link
                                         href="/talents"
-                                        class="text-base py-2 px-4 flex"
+                                        class="text-base py-2 px-4 flex border-b border-gray-100"
                                         :class="{
                                             'text-blue-500':
                                                 $page.url.includes('/talents'),
@@ -147,7 +147,7 @@
                                         >Alertas</Link
                                     >
                                 </li> -->
-                                <li>
+                                <!-- <li>
                                     <Link
                                         href="#"
                                         class="text-base py-2 px-4 flex border-b border-gray-100"
@@ -158,7 +158,7 @@
                                         @click="isMenuOpen = false"
                                         >Salaries</Link
                                     >
-                                </li>
+                                </li> -->
                                 <div v-if="user" class="py-2 px-4 text-base">
                                     <Link
                                         :href="`/talents/${user.slug}`"
@@ -285,7 +285,7 @@
                         >Talents</Link
                     >
                     <!-- <Link href="#">Alertas</Link> -->
-                    <Link href="#">Salaries</Link>
+                    <!-- <Link href="#">Salaries</Link> -->
                 </div>
                 <div
                     class="hidden md:flex flex-row gap-4 text-sm items-center font-medium"

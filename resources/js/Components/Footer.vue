@@ -9,7 +9,7 @@
                     >Vulbunu</a
                 >. All rigths reserved.
             </span>
-            <ul
+            <!-- <ul
                 class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0"
             >
                 <li>
@@ -30,7 +30,7 @@
                 <li>
                     <a href="#" class="hover:underline">Contact</a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </footer>
 </template>
