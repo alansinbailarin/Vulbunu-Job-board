@@ -5,7 +5,7 @@
                 v-if="job.img_path"
                 :src="`https://primerempleolat.s3.us-east-2.amazonaws.com/${job.img_path}`"
                 alt=""
-                class="w-16 rounded-md h-11 object-cover"
+                class="w-16 rounded-md h-11 object-fill"
             />
             <img
                 v-else

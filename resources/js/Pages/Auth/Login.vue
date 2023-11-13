@@ -266,33 +266,30 @@ import { Head } from "@inertiajs/vue3";
 const opinions = [
     {
         avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-        user: "Juan Velez",
-        username: "@jvelez",
-        comment:
-            "Me encanta la página, encontré muchas ofertas de trabajo interesantes. ¡Gracias!",
+        user: "John Smith",
+        username: "@johnsmith",
+        comment: "I love the website, I found many interesting job offers. Thanks!",
     },
     {
         avatar: "https://randomuser.me/api/portraits/women/2.jpg",
-        user: "María Gómez",
-        username: "@mariag23",
-        comment:
-            "La página es muy fácil de usar y me ayudó a conseguir mi primer empleo. ¡La recomiendo!",
+        user: "Mary Johnson",
+        username: "@maryj23",
+        comment: "The website is very user-friendly and helped me land my first job. I highly recommend it!",
     },
     {
         avatar: "https://randomuser.me/api/portraits/men/3.jpg",
-        user: "Carlos Rodríguez",
-        username: "@rodriguezc01",
-        comment:
-            "Excelente sitio para buscar empleo, las opciones son variadas y actualizadas.",
+        user: "Charles Rogers",
+        username: "@rogersc01",
+        comment: "Excellent site for job hunting, the options are diverse and up-to-date.",
     },
     {
         avatar: "https://randomuser.me/api/portraits/women/4.jpg",
-        user: "Laura Martínez",
-        username: "@mtzlau94",
-        comment:
-            "La interfaz es muy amigable y me resultó útil para encontrar trabajo rápidamente.",
+        user: "Laura Martin",
+        username: "@lauram94",
+        comment: "The interface is very user-friendly, and it proved useful in finding a job quickly.",
     },
 ];
+
 
 const modules = [Autoplay, Pagination, Navigation];
 
