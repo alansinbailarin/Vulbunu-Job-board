@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-100">
+    <div class="bg-gray-50">
         <Navbar :user="user" />
         <ToastList class="" />
         <main class="min-h-[78vh]">
