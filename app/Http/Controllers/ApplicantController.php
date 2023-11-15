@@ -116,7 +116,8 @@ class ApplicantController extends Controller
                             ->where('status', 'approved');
                     },
                     'job' => function ($query) {
-                        $query->where('status', 'published');
+                        $query->where('status', 'published')
+                            ->with('user');
                     }
                 ])
                 ->get();

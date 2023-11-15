@@ -466,21 +466,45 @@
         <div v-if="applicantInterviews.length > 0" class="mt-4 ">
             <h1 class="font-medium mb-3">Interviews</h1>
             <div class="grid md:grid-cols-4 grid-cols-1 md:gap-4 ">
-                <box v-for="interview in applicantInterviews" :key="interview.id" :class="interviewModalityColor(interview.interviews[0].interview_type)" >
+                <box v-for="interview in applicantInterviews" :key="interview.id" :class="interviewModalityColor(interview.interviews[0].interview_type, interview.status, interview.interviews[0].interview_date)" >
                     <p class="text-sm font-medium text-gray-700">{{ formatInterviewDuration(interview.interviews[0].interview_duration) }}</p>
                     <p class="text-xs text-gray-400">{{ interview.interviews[0].interviewer_name }}</p>
 
-                    <p class="text-xs text-gray-500 mt-1.5" v-if="interview.interviews[0].interview_observation">
+                    <p class="text-xs text-gray-500 mt-1.5 line-clamp-2" v-if="interview.interviews[0].interview_observation">
                         {{ interview.interviews[0].interview_observation  }}
                     </p>
                     <p v-else class="text-xs text-gray-400">No observations</p>
+                    <p v-if="interview.status === 'approved'" class="text-xs mt-2">Application approved, please contact.</p>
+                    <p v-else-if="interview.status === 'rejecte'" class="text-xs mt-2">We sorry, your application has been rejected</p>
+                    <p v-else class="text-xs mt-2">Please, wait for updates</p>
+
 
                     <div v-if="interview.interviews[0].interview_type == 'presential'" class="mt-4">
-                        <a :href="interview.interviews[0].interview_link" target="_blank" class="text-sm text-indigo-500">See location</a>
+                        <a :href="interview.interviews[0].interview_link" target="_blank" class="text-sm" :disabled="{ 'text-gray-300': interview.status === 'approved' || interview.status === 'rejected' || isInterviewDatePassed(interview.interviews[0].interview_date)}" :class="{ 'text-gray-300': interview.status === 'approved' || interview.status === 'rejected' || isInterviewDatePassed(interview.interviews[0].interview_date), 'text-indigo-500': interview.status === 'pending'}">See location</a>
                     </div>
                     <div v-else-if="interview.interviews[0].interview_type == 'virtual'" class="mt-4">
-                        <a :href="interview.interviews[0].interview_link" target="_blank" class="text-sm text-green-500">Go to the meeting</a>
-                    </div>           
+                        <a :href="interview.interviews[0].interview_link" target="_blank" class="text-sm" :disabled="{ 'text-gray-300': interview.status === 'approved' || interview.status === 'rejected' || isInterviewDatePassed(interview.interviews[0].interview_date)}" :class="{ 'text-gray-300': interview.status === 'approved' || interview.status === 'rejected' || isInterviewDatePassed(interview.interviews[0].interview_date), 'text-green-500': interview.status === 'pending'}">Go to the meeting</a>
+                    </div>     
+                    <div class="flex justify-between items-center mt-2 font-medium w-full gap-3 text-xs text-center">
+                        <a :href="getLink(interview.job.user.phone)"
+                            :disabled="isButtonDisabled(interview.status) || interview.job.user.phone === null"
+                            class="border px-4 py-2 rounded-md w-full"
+                            :class="{
+                                'border-gray-300 text-gray-300 cursor-not-allowed': isButtonDisabled(interview.status) || interview.job.user.phone === null,
+                                'border-indigo-500 text-indigo-500': !isButtonDisabled(interview.status) && interview.job.user.phone !== null
+                            }"
+                            ref="phoneLink"
+                            >
+                            Phone call
+                        </a>
+                        <a :href="`mailto:${interview.job.user.email}`" :disabled="isButtonDisabled(interview.status)" 
+                        class="border px-4 py-2 rounded-md w-full" 
+                        :class="{'border-gray-300 text-gray-300 cursor-not-allowed': isButtonDisabled(interview.status), 
+                                 'border-indigo-500 text-indigo-500': !isButtonDisabled(interview.status)
+                            }">
+                            Send email
+                        </a>
+                    </div>      
                     <hr class="mt-3 ">     
                     <p class="text-gray-400 text-xs mt-1.5">{{
                         moment(
@@ -499,7 +523,7 @@
 <script setup>
 import { Head, useForm } from "@inertiajs/vue3";
 import Box from "@/UI/Box.vue";
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import moment from "moment";
 import "moment/dist/locale/es";
 import Chart from "./components/Chart.vue";
@@ -528,21 +552,49 @@ const props = defineProps({
     applicantInterviews: Array,
 });
 
+const isDisabled = ref(false);
+const phoneLink = ref(null);
+
 const form = useForm({
     applicant_id: "",
 });
 
-const interviewModalityColor = (modality) => {
-    if (modality === "presential") {
-        return "border-t-4 border-indigo-500";
-    } else if (modality === "virtual") {
-        return "border-t-4 border-green-500";
+const isInterviewDatePassed = (interviewDate) => {
+    const date = new Date();
+    const interviewDateFormatted = new Date(interviewDate);
+
+    return interviewDateFormatted < date;
+}
+
+const getLink = (phone) => {
+    if (phone === null || phone === "") {
+        return null;
+    } else {
+        return `tel:+${phone}`;
     }
 }
 
+const checkAncordDisabled = () => {
+    const anchorElement = phoneLink.value;
+
+    if (anchorElement.disabled) {
+        isDisabled.value = true;
+    } else {
+        isDisabled.value = false;
+    }
+}
+
+const interviewModalityColor = (modality, status, interviewDate) => {
+    if (status === 'approved' || status === 'rejected' || isInterviewDatePassed(interviewDate)) {
+        return 'border-t-4 border-gray-300';
+    } else if (modality === 'presential') {
+        return 'border-t-4 border-indigo-500';
+    } else if (modality === 'virtual') {
+        return 'border-t-4 border-green-500';
+    }
+};
+
 console.log(props.applicantInterviews);
-
-
 
 const formatInterviewDuration = (duration) => {
     const parts = duration.split(':');
@@ -568,6 +620,14 @@ const formatInterviewDuration = (duration) => {
 };
 
 const isOpen = ref(false);
+
+const isButtonDisabled = (status, phone) => {
+    if (status === 'approved' ) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 const toggleDropdown = (applicant) => {
     form.applicant_id = applicant.id;
@@ -634,6 +694,11 @@ const jobTitleColorIfFeatured = (job) => {
 const toggleModal = (interview) => {
     interview.isOpen = !interview.isOpen;
 };
+
+onMounted(() => {
+    checkAncordDisabled();
+})
+
 </script>
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
