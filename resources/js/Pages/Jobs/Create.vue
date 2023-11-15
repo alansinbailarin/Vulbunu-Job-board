@@ -1047,7 +1047,7 @@
                 </button>
                 <div class="text-center mt-3 flex text-gray-500 text-sm">
                     <input id="featured" name="featured" type="checkbox" :disabled="form.featured == true" class="w-4 mt-0.5 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded" v-model="featuredAction" >
-                    <label for="featured">Do you want your publication to be listed among the first? Do you want to get more clicks and more applicants for your publication? Do you want your publication to stand out among the others? May your publication last longer? and send your published jobs weekly to registered users on the platform? If so, do not hesitate to highlight your publication by clicking this text <span class="font-semibold text-gray-700">Only for 14.99</span>.</label>
+                    <label for="featured">Do you want your publication to be listed among the first? Do you want to get more clicks and more applicants for your publication? Do you want your publication to stand out among the others? May your publication last longer? and send your published jobs weekly to registered users on the platform? If so, do not hesitate to highlight your publication by clicking this text <span class="font-semibold text-gray-700">Only for 9.99</span>.</label>
                 </div>
                 <div id="paypal-button-container" class="mt-4"  :class="{ 'hidden': featuredAction == false || form.featured == true} "></div>
             </form>
@@ -1113,7 +1113,7 @@ const initializePaypal = () => {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '14.99'
+                        value: '9.99'
                     }
                 }]
             });
