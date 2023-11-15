@@ -570,7 +570,7 @@ const getLink = (phone) => {
     if (phone === null || phone === "") {
         return null;
     } else {
-        return `tel:+${phone}`;
+        return `tel:${phone}`;
     }
 }
 
