@@ -49,8 +49,10 @@
                                 </svg>
                             </Link>
                         </div>
-                        <p v-else 
-                        class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1">
+                        <p
+                            v-else
+                            class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1"
+                        >
                             Anonymous publisher
                         </p>
                     </div>
@@ -58,14 +60,17 @@
                         <h1 class="font-medium text-lg md:text-2xl lg:text-3xl">
                             {{ job.title }}
                         </h1>
-                        <Link v-if="job.anonymous == 0"
+                        <Link
+                            v-if="job.anonymous == 0"
                             :href="`/talents/${job.user.slug}`"
                             class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1"
                         >
                             {{ job.user.name }} {{ job.user.last_name }}
                         </Link>
-                        <p v-else                             
-                        class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1">
+                        <p
+                            v-else
+                            class="text-gray-500 text-sm md:text-base lg:text-lg flex items-center gap-1"
+                        >
                             Anonymous publisher
                         </p>
                     </div>

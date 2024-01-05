@@ -562,7 +562,8 @@
                         <label
                             for="city"
                             class="flex items-center mb-2 font-medium"
-                            >City</label>
+                            >City</label
+                        >
                         <select
                             id="city"
                             v-model="selectedCity"
@@ -1045,11 +1046,59 @@
                 >
                     Publish job offer
                 </button>
+                <!-- <div class="text-center mt-3 flex text-gray-500 text-sm">
+                    <input
+                        id="featured"
+                        name="featured"
+                        type="checkbox"
+                        :disabled="form.featured == true"
+                        class="w-4 mt-0.5 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                        v-model="featuredAction"
+                    />
+                    <label for="featured"
+                        >Do you want your publication to be listed among the
+                        first? Do you want to get more clicks and more
+                        applicants for your publication? Do you want your
+                        publication to stand out among the others? May your
+                        publication last longer? and send your published jobs
+                        weekly to registered users on the platform? If so, do
+                        not hesitate to highlight your publication by clicking
+                        this text
+                        <span class="font-semibold text-gray-700"
+                            >Only for 9.99</span
+                        >.</label
+                    >
+                </div> -->
                 <div class="text-center mt-3 flex text-gray-500 text-sm">
-                    <input id="featured" name="featured" type="checkbox" :disabled="form.featured == true" class="w-4 mt-0.5 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded" v-model="featuredAction" >
-                    <label for="featured">Do you want your publication to be listed among the first? Do you want to get more clicks and more applicants for your publication? Do you want your publication to stand out among the others? May your publication last longer? and send your published jobs weekly to registered users on the platform? If so, do not hesitate to highlight your publication by clicking this text <span class="font-semibold text-gray-700">Only for 9.99</span>.</label>
+                    <input
+                        id="featured"
+                        name="featured"
+                        type="checkbox"
+                        class="w-4 mt-0.5 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                        v-model="form.featured"
+                    />
+                    <label for="featured"
+                        >Do you want your publication to be listed among the
+                        first? Do you want to get more clicks and more
+                        applicants for your publication? Do you want your
+                        publication to stand out among the others? May your
+                        publication last longer? and send your published jobs
+                        weekly to registered users on the platform? If so, do
+                        not hesitate to highlight your publication by clicking
+                        this text
+                        <span class="font-semibold text-gray-700"
+                            >Only for 9.99</span
+                        >.</label
+                    >
                 </div>
-                <div id="paypal-button-container" class="mt-4"  :class="{ 'hidden': featuredAction == false || form.featured == true} "></div>
+                <!-- <div
+                    id="paypal-button-container"
+                    class="mt-4"
+                    :class="{
+                        hidden:
+                            featuredAction == false || form.featured == true,
+                    }"
+                ></div> -->
             </form>
         </div>
     </div>
@@ -1098,49 +1147,49 @@ const props = defineProps({
     },
 });
 
-const featuredAction = ref(false); 
+const featuredAction = ref(false);
 
-const initializePaypal = () => {
-    paypal_sdk.Buttons({
-      style: {
-        color: 'gold',
-        shape: 'rect',
-        label: 'pay',
-        layout: 'vertical'
+// const initializePaypal = () => {
+//     paypal_sdk.Buttons({
+//       style: {
+//         color: 'gold',
+//         shape: 'rect',
+//         label: 'pay',
+//         layout: 'vertical'
 
-      },
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '9.99'
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                // Una vez que se haya aprobado el pago, puedes abrir un modal aquí
-                openModalWithPaymentConfirmation(details);
+//       },
+//         createOrder: function(data, actions) {
+//             return actions.order.create({
+//                 purchase_units: [{
+//                     amount: {
+//                         value: '9.99'
+//                     }
+//                 }]
+//             });
+//         },
+//         onApprove: function(data, actions) {
+//             return actions.order.capture().then(function(details) {
+//                 // Una vez que se haya aprobado el pago, puedes abrir un modal aquí
+//                 openModalWithPaymentConfirmation(details);
 
-                if (details.status == "COMPLETED") {
-                    form.featured = true;
-                } else {
-                    form.featured = false;
-                }
-            });
-        }
-    }).render('#paypal-button-container')
-}
+//                 if (details.status == "COMPLETED") {
+//                     form.featured = true;
+//                 } else {
+//                     form.featured = false;
+//                 }
+//             });
+//         }
+//     }).render('#paypal-button-container')
+// }
 
-const openModalWithPaymentConfirmation = (details) => {
-    Swal.fire({
-        title: 'Payment successful',
-        text: 'Thanks for help the platform to be a betterplace for everyone!',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-    })
-}
+// const openModalWithPaymentConfirmation = (details) => {
+//     Swal.fire({
+//         title: 'Payment successful',
+//         text: 'Thanks for help the platform to be a betterplace for everyone!',
+//         icon: 'success',
+//         confirmButtonText: 'Ok'
+//     })
+// }
 
 const form = useForm({
     user_id: props.user_id,
@@ -1189,7 +1238,7 @@ watch(
         () => form.description,
         () => form.extra_info,
         () => form.anonymous,
-        () => form.featured
+        () => form.featured,
     ],
     ([
         newTitle,
@@ -1208,8 +1257,7 @@ watch(
         newDescription,
         newExtraInfo,
         newAnonymous,
-        newFeatured
-
+        newFeatured,
     ]) => {
         localStorage.setItem("title", newTitle);
         localStorage.setItem("category_id", newCategory);
@@ -1237,11 +1285,11 @@ const isFeatured = () => {
     } else {
         featuredAction.value = false;
     }
-}
+};
 
 onMounted(() => {
     getCountries();
-    initializePaypal();
+    //initializePaypal();
 
     let savedTitle = localStorage.getItem("title");
     let savedCategory = localStorage.getItem("category_id");
@@ -1325,7 +1373,7 @@ onMounted(() => {
     }
 
     if (savedFeatured) {
-    form.featured = JSON.parse(savedFeatured);
+        form.featured = JSON.parse(savedFeatured);
     }
 
     watch(form, () => {

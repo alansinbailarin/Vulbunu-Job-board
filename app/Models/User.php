@@ -118,6 +118,11 @@ class User extends Authenticatable
         return $this->hasMany(Applicant::class);
     }
 
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
