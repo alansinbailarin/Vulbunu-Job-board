@@ -679,10 +679,17 @@ const getLink = (phone) => {
 const checkAncordDisabled = () => {
     const anchorElement = phoneLink.value;
 
-    if (anchorElement.disabled) {
-        isDisabled.value = true;
-    } else {
-        isDisabled.value = false;
+    if (phoneLink.value !== null) {
+        if (anchorElement.classList.contains("cursor-not-allowed")) {
+            isDisabled.value = true;
+        } else {
+            isDisabled.value = false;
+        }
+        if (anchorElement.disabled) {
+            isDisabled.value = true;
+        } else {
+            isDisabled.value = false;
+        }
     }
 };
 
