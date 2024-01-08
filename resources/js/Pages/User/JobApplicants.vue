@@ -45,7 +45,6 @@
                     tabindex="-1"
                 >
                     <div class="mx-2 my-1 text-base" role="none">
-                        
                         <button
                             type="submit"
                             @click="updateJobStatus(job, 'draft')"
@@ -268,7 +267,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <a
-                            :href="`/talents/${applicant.user?.username}`"
+                            :href="`/talents/${applicant.user?.slug}`"
                             class="text-sm font-semibold text-gray-700"
                         >
                             {{ applicant.user.name }}
