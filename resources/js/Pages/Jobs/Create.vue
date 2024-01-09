@@ -1078,7 +1078,9 @@
                         v-model="form.featured"
                     />
                     <label for="featured"
-                        ><span> </span>Highlight my job offer</label
+                        ><span class="ml-2"
+                            >Highlight my job offer
+                        </span></label
                     >
                 </div>
                 <!-- <div
