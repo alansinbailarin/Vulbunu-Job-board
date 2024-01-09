@@ -1077,7 +1077,7 @@
                         class="w-4 mt-0.5 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
                         v-model="form.featured"
                     />
-                    <label for="featured">Publish you job for free</label>
+                    <label for="featured"> Publish you job for free</label>
                 </div>
                 <!-- <div
                     id="paypal-button-container"
