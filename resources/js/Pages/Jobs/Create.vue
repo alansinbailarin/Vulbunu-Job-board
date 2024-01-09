@@ -1077,19 +1077,7 @@
                         class="w-4 mt-0.5 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
                         v-model="form.featured"
                     />
-                    <label for="featured"
-                        >Do you want your publication to be listed among the
-                        first? Do you want to get more clicks and more
-                        applicants for your publication? Do you want your
-                        publication to stand out among the others? May your
-                        publication last longer? and send your published jobs
-                        weekly to registered users on the platform? If so, do
-                        not hesitate to highlight your publication by clicking
-                        this text
-                        <span class="font-semibold text-gray-700"
-                            >Only for 9.99</span
-                        >.</label
-                    >
+                    <label for="featured">Publish you job for free</label>
                 </div>
                 <!-- <div
                     id="paypal-button-container"

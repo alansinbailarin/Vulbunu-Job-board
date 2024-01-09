@@ -78,7 +78,7 @@
                                     type="text"
                                     v-model="form.name"
                                     autocomplete="name"
-                                    placeholder="University of..."
+                                    placeholder="Worker of..."
                                     class="w-full text-sm px-5 bg-gray-50 placeholder:text-gray-300 py-2.5 rounded-md border border-gray-200 focus:ring-1 focus:ring-blue-500 text-gray-600"
                                 />
                                 <div v-if="form.errors.name" class="mt-2">

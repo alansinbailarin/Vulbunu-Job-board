@@ -378,7 +378,7 @@
                     </p>
                     <p
                         v-if="applicant.user?.about_me"
-                        class="mt-2 text-gray-600 text-xs"
+                        class="mt-2 text-gray-600 text-xs line-clamp-2"
                     >
                         {{ applicant.user?.about_me }}
                     </p>
