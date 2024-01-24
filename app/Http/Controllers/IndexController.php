@@ -35,7 +35,7 @@ class IndexController extends Controller
         $popularJobs = Job::with('category', 'user', 'tag', 'seniority', 'jobmodality', 'workday', 'salary', 'salary.currency', 'salary.periodicity', 'priority', 'responsability', 'requirement', 'country', 'state', 'city')
             ->where('created_at', '>=', $fechaHace14Dias)
             ->where('status', 'published')
-            ->orderBy('clicks', 'desc')
+            ->orderByRaw('clicks / (TIMESTAMPDIFF(SECOND, created_at, NOW()) + 1) DESC')
             ->take(6)
             ->get();
 
