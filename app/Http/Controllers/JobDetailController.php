@@ -13,6 +13,7 @@ use App\Models\SalaryType;
 use App\Models\Tag;
 use App\Models\Workday;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Storage;
@@ -22,9 +23,14 @@ class JobDetailController extends Controller
     public function updateJobStatus(Job $job, $status)
     {
         $user = auth()->user();
+        $deathline = Carbon::now()->addDays($job->featured ? 60 : 30);
 
         if ($user) {
             $job->status = $status;
+            // Actualizar el $job->deathline y anadirle 60 dias y cambiar el featured a true
+            $job->featured = true;
+            $job->deathline = $deathline;
+
 
             $job->save();
 
