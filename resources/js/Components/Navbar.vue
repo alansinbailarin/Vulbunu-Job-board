@@ -251,7 +251,7 @@
                             <div class="w-full px-6 py-3 text-center">
                                 <Link
                                     class="block bg-gray-100 w-full py-3 px-4 rounded-md text-gray-700 hover:bg-gray-200 transition duration-200 ease-in-out font-semibold"
-                                    href="#"
+                                    href="/talents"
                                 >
                                     Hire talent
                                 </Link>
