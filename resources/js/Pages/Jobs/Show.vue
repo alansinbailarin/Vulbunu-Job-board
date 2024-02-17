@@ -9,7 +9,7 @@
                     v-if="job.img_path"
                     :src="`https://primerempleolat.s3.us-east-2.amazonaws.com/${job.img_path}`"
                     alt=""
-                    class="w-20 lg:w-24 rounded-lg h-14 lg:h-16 object-fill"
+                    class="w-20 lg:w-24 rounded-lg h-14 lg:h-16 object-cover"
                 />
                 <img
                     v-else
