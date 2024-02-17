@@ -1079,7 +1079,8 @@
                     />
                     <label for="featured"
                         ><span class="ml-2"
-                            >Highlight my job offer
+                            >I would like to highlight my job posting for free
+                            so that more users see my posting
                         </span></label
                     >
                 </div>
