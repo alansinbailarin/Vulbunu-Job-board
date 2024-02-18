@@ -5,19 +5,22 @@
         >
             <span class="text-sm text-gray-500 sm:text-center"
                 >© 2023
-                <a href="https://flowbite.com/" class="hover:underline"
+                <a href="https://vulbunu.com/" class="hover:underline"
                     >Vulbunu</a
                 >. All rigths reserved.
             </span>
-            <!-- <ul
+            <ul
                 class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0"
             >
                 <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6"
-                        >About us</a
+                    Any problem or suggestion? please send us an email to
+                    <a
+                        href="mailto:admin@vulbunu.com"
+                        class="mr-4 underline md:mr-6"
+                        >admin@vulbunu.com</a
                     >
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#" class="mr-4 hover:underline md:mr-6"
                         >Privacity</a
                     >
@@ -29,8 +32,8 @@
                 </li>
                 <li>
                     <a href="#" class="hover:underline">Contact</a>
-                </li>
-            </ul> -->
+                </li> -->
+            </ul>
         </div>
     </footer>
 </template>
