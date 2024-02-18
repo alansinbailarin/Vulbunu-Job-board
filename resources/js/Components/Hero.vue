@@ -12,7 +12,7 @@
                     >The right offer for you is here</span
                 >
                 <h1
-                    class="font-bold text-gray-900 text-3xl md:text-4xl mt-3 lg:text-6xl md:mt-3"
+                    class="font-semibold text-gray-900 text-3xl md:text-4xl mt-3 lg:text-6xl md:mt-3"
                 >
                     Job
                     <span
