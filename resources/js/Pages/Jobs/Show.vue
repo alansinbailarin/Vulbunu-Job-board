@@ -111,7 +111,9 @@
                 class="text-orange-600 bg-orange-100 px-1 py-0.5 rounded-md"
                 >{{ job.workday.title }}</span
             >
-            <span class="text-green-600 bg-green-100 px-1 py-0.5 rounded-md">
+            <span
+                class="text-green-600 bg-green-100 px-1 py-0.5 rounded-md capitalize"
+            >
                 {{ job.state.name }} {{ job.city?.name }},
                 {{ job.country.name }}</span
             >
