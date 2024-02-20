@@ -1,9 +1,35 @@
 <template>
     <div>
-        <Head :title="`${count} available talents`">
+        <Head
+            :title="`${count} Talented Professionals Ready for Hire - Vulbunu`"
+        >
             <meta
                 name="description"
-                content="Explore our list of available talent and find qualified candidates for your hiring needs. Find professionals in various areas ready to contribute to your team."
+                content="Discover and connect with a diverse pool of talented professionals on Vulbunu. Browse through our curated list of skilled individuals across various industries and find the perfect candidates to fulfill your hiring needs."
+            />
+            <meta
+                property="og:title"
+                :content="`${count} Talented Professionals Ready for Hire - Vulbunu`"
+            />
+            <meta
+                property="og:description"
+                content="Discover and connect with a diverse pool of talented professionals on Vulbunu. Browse through our curated list of skilled individuals across various industries and find the perfect candidates to fulfill your hiring needs."
+            />
+            <meta
+                property="og:image"
+                content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
+            />
+            <meta
+                name="twitter:title"
+                :content="`${count} Talented Professionals Ready for Hire - Vulbunu`"
+            />
+            <meta
+                name="twitter:description"
+                content="Discover and connect with a diverse pool of talented professionals on Vulbunu. Browse through our curated list of skilled individuals across various industries and find the perfect candidates to fulfill your hiring needs."
+            />
+            <meta
+                name="twitter:image"
+                content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
             />
         </Head>
     </div>

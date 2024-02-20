@@ -1,9 +1,33 @@
 <template>
     <div>
-        <Head title="Edit the job information">
+        <Head :title="`Edit the job information for ${job.title}`">
             <meta
                 name="description"
-                content="Publish a job to find the best talent for your company"
+                :content="`Edit your published job information (${job.title}) if there is any information not validated by you`"
+            />
+            <meta
+                property="og:title"
+                :content="`Edit the job information for ${job.title}`"
+            />
+            <meta
+                property="og:description"
+                :content="`Edit your published job information (${job.title}) if there is any information not validated by you`"
+            />
+            <meta
+                property="og:image"
+                content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
+            />
+            <meta
+                name="twitter:title"
+                :content="`Edit the job information for ${job.title}`"
+            />
+            <meta
+                name="twitter:description"
+                :content="`Edit your published job information (${job.title}) if there is any information not validated by you`"
+            />
+            <meta
+                name="twitter:image"
+                content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
             />
         </Head>
     </div>
@@ -1062,7 +1086,7 @@ const props = defineProps({
     salary: {
         type: Object,
     },
-    currency : {
+    currency: {
         type: Object,
     },
     asignedTags: {
@@ -1257,7 +1281,6 @@ const getButtonClass = (value) => {
         "cursor-not-allowed": isSelected(value) || selectedTagsCount.value >= 6,
     };
 };
-
 </script>
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";

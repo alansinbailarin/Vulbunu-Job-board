@@ -1,8 +1,32 @@
 <template>
-    <Head title="Vulbunu - Find the best offers that fit your needs">
+    <Head title="Vulbunu - Find the best job offers">
         <meta
             name="description"
-            content="Search our vast list of jobs published daily and available talents, find the one that best suits you"
+            content="Welcome to Vulbunu, your comprehensive platform for discovering the perfect job opportunities. With Vulbunu, you can effortlessly explore a vast array of job listings updated daily, connecting talented individuals with exciting career prospects. Whether you're seeking full-time employment, freelance gigs, or remote positions, our user-friendly interface makes job hunting a breeze. Browse through diverse industries, from tech and finance to creative fields and beyond, and discover your ideal job match today with Vulbunu."
+        />
+        <meta
+            property="og:title"
+            content="Vulbunu - Find the best job offers"
+        />
+        <meta
+            property="og:description"
+            content="Welcome to Vulbunu, your comprehensive platform for discovering the perfect job opportunities. With Vulbunu, you can effortlessly explore a vast array of job listings updated daily, connecting talented individuals with exciting career prospects. Whether you're seeking full-time employment, freelance gigs, or remote positions, our user-friendly interface makes job hunting a breeze. Browse through diverse industries, from tech and finance to creative fields and beyond, and discover your ideal job match today with Vulbunu."
+        />
+        <meta
+            property="og:image"
+            content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
+        />
+        <meta
+            name="twitter:title"
+            content="Vulbunu - Find the best job offers "
+        />
+        <meta
+            name="twitter:description"
+            content="Welcome to Vulbunu, your comprehensive platform for discovering the perfect job opportunities. With Vulbunu, you can effortlessly explore a vast array of job listings updated daily, connecting talented individuals with exciting career prospects. Whether you're seeking full-time employment, freelance gigs, or remote positions, our user-friendly interface makes job hunting a breeze. Browse through diverse industries, from tech and finance to creative fields and beyond, and discover your ideal job match today with Vulbunu."
+        />
+        <meta
+            name="twitter:image"
+            content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
         />
     </Head>
     <Hero />

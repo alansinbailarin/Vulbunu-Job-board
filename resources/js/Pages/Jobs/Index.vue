@@ -1,9 +1,33 @@
 <template>
     <div>
-        <Head :title="`${count} jobs for you`">
+        <Head :title="`Vulbunu - Browse over ${count} job(s) for you`">
             <meta
                 name="description"
-                content="Search our vast list of jobs published daily, find the one that best suits you."
+                content="If you are looking for your first job, Vulbunu should be one of your first options, find the best job for you by searching our list of jobs."
+            />
+            <meta
+                property="og:title"
+                :content="`Vulbunu - Browse over ${count} job(s) for you`"
+            />
+            <meta
+                property="og:description"
+                content="If you are looking for your first job, Vulbunu should be one of your first options, find the best job for you by searching our list of jobs."
+            />
+            <meta
+                property="og:image"
+                content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
+            />
+            <meta
+                name="twitter:title"
+                :content="`Vulbunu - Browse over ${count} job(s) for you`"
+            />
+            <meta
+                name="twitter:description"
+                content="If you are looking for your first job, Vulbunu should be one of your first options, find the best job for you by searching our list of jobs."
+            />
+            <meta
+                name="twitter:image"
+                content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
             />
         </Head>
     </div>
@@ -19,8 +43,8 @@
                     <p
                         class="text-sm md:text-base lg:text-lg text-gray-200 mt-4"
                     >
-                        Search through our list of job postings
-                        published daily, and find the one that suits you best
+                        Search through our list of job postings published daily,
+                        and find the one that suits you best
                     </p>
                 </div>
                 <div class="col-span-1 hidden md:block">

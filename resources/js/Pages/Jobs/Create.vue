@@ -1,9 +1,33 @@
 <template>
     <div>
-        <Head title="Publish a job">
+        <Head title="Publish a new job for FREE | Find top talent - Vulbunu">
             <meta
                 name="description"
-                content="Publish a job to find the best talent for your company"
+                content="Publish your job openings for free on Vulbunu's platform and connect with talented individuals seeking exciting career opportunities. Reach a diverse audience and attract top talent effortlessly. Start posting your job listings now and streamline your recruitment process with Vulbunu."
+            />
+            <meta
+                property="og:title"
+                content="Publish a new job for FREE | Find top talent - Vulbunu"
+            />
+            <meta
+                property="og:description"
+                content="Publish your job openings for free on Vulbunu's platform and connect with talented individuals seeking exciting career opportunities. Reach a diverse audience and attract top talent effortlessly. Start posting your job listings now and streamline your recruitment process with Vulbunu."
+            />
+            <meta
+                property="og:image"
+                content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
+            />
+            <meta
+                name="twitter:title"
+                content="Publish a new job for FREE | Find top talent - Vulbunu"
+            />
+            <meta
+                name="twitter:description"
+                content="Publish your job openings for free on Vulbunu's platform and connect with talented individuals seeking exciting career opportunities. Reach a diverse audience and attract top talent effortlessly. Start posting your job listings now and streamline your recruitment process with Vulbunu."
+            />
+            <meta
+                name="twitter:image"
+                content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
             />
         </Head>
     </div>

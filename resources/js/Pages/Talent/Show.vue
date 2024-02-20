@@ -1,6 +1,58 @@
 <template>
     <div>
-        <Head :title="`${talent.name} ${talent.last_name}`"></Head>
+        <Head
+            :title="`${talent.job_title ? talent.job_title + ' - ' : ''}${
+                talent.name
+            } ${talent.last_name} (${talent.username})`"
+        >
+            <meta
+                name="description"
+                :content="`${
+                    talent.about_me ||
+                    'This talent has not provided a description.'
+                }`"
+            />
+            <meta
+                property="og:title"
+                :content="`${talent.job_title ? talent.job_title + ' - ' : ''}${
+                    talent.name
+                } ${talent.last_name} (${talent.username})`"
+            />
+            <meta
+                property="og:description"
+                :content="`${
+                    talent.about_me ||
+                    'This talent has not provided a description.'
+                }`"
+            />
+            <meta
+                property="og:image"
+                :content="`${
+                    talent.avatar ||
+                    'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg'
+                }`"
+            />
+            <meta
+                name="twitter:title"
+                :content="`${talent.job_title ? talent.job_title + ' - ' : ''}${
+                    talent.name
+                } ${talent.last_name} (${talent.username})`"
+            />
+            <meta
+                name="twitter:description"
+                :content="`${
+                    talent.about_me ||
+                    'This talent has not provided a description.'
+                }`"
+            />
+            <meta
+                name="twitter:image"
+                :content="`${
+                    talent.avatar ||
+                    'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg'
+                }`"
+            />
+        </Head>
     </div>
     <div class="container mx-auto p-4">
         <h1 class="text-xl font-semibold mb-2">User Profile</h1>
@@ -308,7 +360,9 @@
                             </div>
 
                             <div>
-                                <p class="text-gray-400 text-sm whitespace-pre-wrap">
+                                <p
+                                    class="text-gray-400 text-sm whitespace-pre-wrap"
+                                >
                                     {{ talent.about_me }}
                                 </p>
 

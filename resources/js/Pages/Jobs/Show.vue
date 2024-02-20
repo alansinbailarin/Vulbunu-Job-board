@@ -1,7 +1,37 @@
 <template>
-    <div>
-        <Head :title="`${job.title}`"> </Head>
-    </div>
+    <Head
+        :title="`${job.title} by ${job.user.name} ${job.user.last_name} - Vulbunu`"
+    >
+        <meta
+            name="description"
+            :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
+        />
+        <meta
+            property="og:title"
+            :content="`${job.title} by ${job.user.name} ${job.user.last_name} - Vulbunu`"
+        />
+        <meta
+            property="og:description"
+            :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
+        />
+        <meta
+            property="og:image"
+            content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
+        />
+        <meta
+            name="twitter:title"
+            :content="`${job.title} by ${job.user.name} ${job.user.last_name} - Vulbunu`"
+        />
+        <meta
+            name="twitter:description"
+            :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
+        />
+        <meta
+            name="twitter:image"
+            content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
+        />
+    </Head>
+
     <div class="container mx-auto">
         <div class="flex items-center justify-between px-4 pt-4">
             <div class="flex items-center">
