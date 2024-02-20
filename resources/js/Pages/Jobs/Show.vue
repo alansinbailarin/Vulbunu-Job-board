@@ -1,15 +1,10 @@
 <template>
-    <Head
-        :title="`${job.title} by ${job.user.name} ${job.user.last_name} - Vulbunu`"
-    >
+    <Head :title="`${job.title} - Vulbunu`">
         <meta
             name="description"
             :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
         />
-        <meta
-            property="og:title"
-            :content="`${job.title} by ${job.user.name} ${job.user.last_name} - Vulbunu`"
-        />
+        <meta property="og:title" :content="`${job.title}  - Vulbunu`" />
         <meta
             property="og:description"
             :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
@@ -18,10 +13,7 @@
             property="og:image"
             content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg"
         />
-        <meta
-            name="twitter:title"
-            :content="`${job.title} by ${job.user.name} ${job.user.last_name} - Vulbunu`"
-        />
+        <meta name="twitter:title" :content="`${job.title}  - Vulbunu`" />
         <meta
             name="twitter:description"
             :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
