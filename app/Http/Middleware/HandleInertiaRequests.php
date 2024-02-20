@@ -36,6 +36,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        // get role name
+
         return array_merge(parent::share($request), [
             'toast' => session('toast'),
             'user' => $request->user() ? [
@@ -67,6 +69,8 @@ class HandleInertiaRequests extends Middleware
                 'userJobs' => $request->user()->jobs,
                 'notifications' => $request->user()->notifications,
                 'notification' => $request->user()->notification,
+                'roles' => $request->user()->userRoles,
+                'role' => $request->user()->userRoles->first()->role->name,
             ] : null,
             'flash' => fn () => [
                 'success' => session('success'),

@@ -135,30 +135,7 @@
                                         >Talents</Link
                                     >
                                 </li>
-                                <!-- <li>
-                                    <Link
-                                        href="#"
-                                        class="text-base py-2 px-4 flex"
-                                        :class="{
-                                            'text-blue-500':
-                                                $page.url === '/alertas',
-                                        }"
-                                        @click="isMenuOpen = false"
-                                        >Alertas</Link
-                                    >
-                                </li> -->
-                                <!-- <li>
-                                    <Link
-                                        href="#"
-                                        class="text-base py-2 px-4 flex border-b border-gray-100"
-                                        :class="{
-                                            'text-blue-500':
-                                                $page.url === '/salarios',
-                                        }"
-                                        @click="isMenuOpen = false"
-                                        >Salaries</Link
-                                    >
-                                </li> -->
+
                                 <div v-if="user" class="py-2 px-4 text-base">
                                     <Link
                                         :href="`/talents/${user.slug}`"
@@ -172,6 +149,14 @@
                                             {{ user.email }}
                                         </p>
                                     </Link>
+                                    <div v-if="isAdmin" class="my-2">
+                                        <Link
+                                            href="/dashboard"
+                                            @click="isMenuOpen = false"
+                                            class="text-gray-700 font-normal"
+                                            >Dashboard</Link
+                                        >
+                                    </div>
                                     <div class="my-2">
                                         <Link
                                             href="/user-account/configuration"
@@ -180,14 +165,7 @@
                                             >Settings</Link
                                         >
                                     </div>
-                                    <!-- <div class="my-2">
-                                        <Link
-                                            href="/dashboard"
-                                            @click="isMenuOpen = false"
-                                            class="text-gray-700 font-normal"
-                                            >Dashboard</Link
-                                        >
-                                    </div> -->
+
                                     <div
                                         class="my-2"
                                         v-if="
@@ -374,6 +352,14 @@
                                     </p>
                                 </Link>
                                 <hr class="my-2" />
+                                <div v-if="isAdmin" class="my-2">
+                                    <Link
+                                        href="/dashboard"
+                                        class="text-gray-700 font-normal"
+                                        @click="showUserMenu = false"
+                                        >Dashboard</Link
+                                    >
+                                </div>
                                 <div class="my-2">
                                     <Link
                                         href="/user-account/configuration"
@@ -382,14 +368,7 @@
                                         >Settings</Link
                                     >
                                 </div>
-                                <!-- <div class="my-2">
-                                    <Link
-                                        href="/dashboard"
-                                        class="text-gray-700 font-normal"
-                                        @click="showUserMenu = false"
-                                        >Dashboard</Link
-                                    >
-                                </div> -->
+
                                 <div
                                     class="my-2"
                                     v-if="props.user.applications.length > 0"
@@ -458,6 +437,18 @@ const isMenuOpen = ref(false);
 const notificationsOpen = ref(false);
 const isTransparent = ref(false);
 const showUserMenu = ref(false);
+
+console.log(props.user);
+
+const isAdmin = computed(() => {
+    if (props.user.roles.length > 0) {
+        return (
+            props.user.roles[0].role_id === 1 ||
+            props.user.roles[0].name === "admin" ||
+            props.user.email === "agpsalgado@gmail.com"
+        );
+    }
+});
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;

@@ -40,7 +40,7 @@ class User extends Authenticatable
         'gender_id',
         'country_id',
         'state_id',
-        'city_id'
+        'city_id',
     ];
 
     /**
@@ -131,5 +131,10 @@ class User extends Authenticatable
     public function socials()
     {
         return $this->hasMany(Social::class);
+    }
+
+    public function userRoles()
+    {
+        return $this->hasMany(UserRole::class);
     }
 }

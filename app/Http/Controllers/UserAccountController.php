@@ -8,6 +8,7 @@ use App\Models\Gender;
 use App\Models\JobModality;
 use App\Models\Skill;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Storage;
@@ -75,8 +76,15 @@ class UserAccountController extends Controller
 
         $user = User::make($validatedData);
         $user->username = $username;
+
         $user->slug = $slug;
         $user->save();
+
+        $userRole = UserRole::create([
+            'user_id' => $user->id,
+            'role_id' => 2
+        ]);
+        $userRole->save();
 
         Auth::login($user);
 

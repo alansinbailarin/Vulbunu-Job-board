@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Social;
 use App\Models\User;
+use App\Models\UserRole;
 use Hash;
 use Illuminate\Http\Request;
 use Socialite;
@@ -52,6 +53,14 @@ class SocialController extends Controller
                 'email' => $socialUser->getEmail(),
                 'password' => Hash::make(Str::random(7)),
             ]);
+
+            $userRole = UserRole::create([
+                'user_id' => $user->id,
+                'role_id' => 2
+            ]);
+
+            $userRole->save();
+
             // create socials for user
             $user->socials()->create([
                 'provider_id' => $socialUser->getId(),

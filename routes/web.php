@@ -84,7 +84,10 @@ Route::get('/talents', [TalentController::class, 'index'])->name('talents.index'
 Route::get('/talents/{talent}', [TalentController::class, 'show'])->name('talents.show');
 
 // Admin dashboard
-// Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth');
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth');
+Route::get('/dashboard/locations', [AdminController::class, 'locations'])->middleware('auth');
+Route::post('/dashboard/locations/add-country', [AdminController::class, 'addCountry'])->name('add-country')->middleware('auth');
+Route::post('/dashboard/locations/add-state', [AdminController::class, 'addState'])->name('add-state')->middleware('auth');
 
 // Share profile with the job poster
 Route::post('/share-profile', [ApplicantController::class, 'shareProfile'])->name('share-profile')->middleware('auth');
