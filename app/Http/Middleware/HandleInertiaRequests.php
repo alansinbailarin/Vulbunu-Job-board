@@ -70,7 +70,7 @@ class HandleInertiaRequests extends Middleware
                 'notifications' => $request->user()->notifications,
                 'notification' => $request->user()->notification,
                 'roles' => $request->user()->userRoles,
-                'role' => $request->user()->userRoles->first()->role->name,
+                'role' => $request->user()->userRoles->first()->role->name ?? null,
             ] : null,
             'flash' => fn () => [
                 'success' => session('success'),
