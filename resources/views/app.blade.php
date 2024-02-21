@@ -5,12 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="vulbunu.com" />
-    <meta property="twitter:url" content="https://www.vulbunu.com" />
-    <meta property="twitter:creator" content="@vulbunu" />
-    <meta property="og:url" content="https://www.vulbunu.com" />
-    <meta property="og:type" content="website" />
+    <!-- HTML Meta Tags -->
+    <meta property="og:url" content="https://www.vulbunu.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="vulbunu.com">
+    <meta property="twitter:url" content="https://www.vulbunu.com">
+    <meta name="twitter:image" content="https://i.postimg.cc/nrkkj9HX/imgprom.jpg">
+
     <!-- Meta Tags Generated via https://www.opengraph.xyz -->
 
     <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}&currency=USD"
