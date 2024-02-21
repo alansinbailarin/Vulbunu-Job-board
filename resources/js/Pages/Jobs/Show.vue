@@ -2,12 +2,12 @@
     <Head :title="`${job.title} - Vulbunu`">
         <meta
             name="description"
-            :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
+            :content="`Looking for ${job.title}: ${job.description}`"
         />
         <meta property="og:title" :content="`${job.title}  - Vulbunu`" />
         <meta
             property="og:description"
-            :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
+            :content="`Looking for ${job.title}: ${job.description}`"
         />
         <meta
             property="og:image"
@@ -16,7 +16,7 @@
         <meta name="twitter:title" :content="`${job.title}  - Vulbunu`" />
         <meta
             name="twitter:description"
-            :content="`${job.user.name} ${job.user.last_name} is looking for ${job.title}: ${job.description}`"
+            :content="`Looking for ${job.title}: ${job.description}`"
         />
         <meta
             name="twitter:image"
