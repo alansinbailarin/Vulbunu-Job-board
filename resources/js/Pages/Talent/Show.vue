@@ -55,7 +55,7 @@
         </Head>
     </div>
     <div class="container mx-auto p-4">
-        <h1 class="text-xl font-semibold mb-2">User Profile</h1>
+        <!-- <h1 class="text-xl font-semibold mb-2">User Profile</h1> -->
         <div class="bg-white rounded-md mb-4">
             <div class="p-4">
                 <div class="flex items-center justify-between">

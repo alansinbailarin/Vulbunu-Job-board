@@ -19,6 +19,9 @@
     <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}&currency=USD"
         data-sdk-integration-source="button-factory" data-namespace="paypal_sdk"></script>
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8853719818662784"
+        crossorigin="anonymous"></script>
+
     @routes
     @vite('resources/js/app.js')
     @inertiaHead
