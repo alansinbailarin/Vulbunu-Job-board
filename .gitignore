@@ -19,3 +19,5 @@ nginx.conf.save
 /.fleet
 /.idea
 /.vscode
+package.json
+package-lock.json
